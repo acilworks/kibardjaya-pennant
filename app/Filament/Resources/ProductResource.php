@@ -16,6 +16,8 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
 use Illuminate\Support\Str;
+use Filament\Forms\Components\FileUpload;
+
 
 class ProductResource extends Resource
 {
@@ -23,18 +25,20 @@ class ProductResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
-    // public static function form(Form $form): Form
-    // {
-    //     return $form
-    //         ->schema([
-    //             //
-    //         ]);
-    // }
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
+                FileUpload::make('images')
+                    ->label('Product Images')
+                    ->image()
+                    ->multiple()
+                    ->directory('products')
+                    ->maxFiles(5)
+                    ->imagePreviewHeight('150')
+                    ->reorderable()
+                    ->columnSpanFull(),
                 TextInput::make('title')
                     ->required()
                     ->live(onBlur: true)
@@ -56,6 +60,9 @@ class ProductResource extends Resource
 
                 Toggle::make('is_featured')
                     ->label('Featured'),
+
+
+
             ]);
     }
 
