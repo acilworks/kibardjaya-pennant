@@ -4,6 +4,7 @@ use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\CheckoutController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -30,3 +31,10 @@ Route::get('/cart', [CartController::class, 'index']);
 Route::post('/cart/add/{id}', [CartController::class, 'add']);
 Route::post('/cart/update/{id}', [CartController::class, 'update']);
 Route::post('/cart/remove/{id}', [CartController::class, 'remove']);
+
+Route::get('/checkout', [CheckoutController::class, 'index']);
+Route::post('/checkout', [CheckoutController::class, 'process']);
+Route::get('/checkout/success', function () {
+    session()->forget('cart');
+    return view('checkout.success');
+});
