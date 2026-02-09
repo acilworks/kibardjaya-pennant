@@ -25,7 +25,7 @@ class CheckoutController extends Controller
         $total = collect($cart)->sum(fn($i) => $i['price'] * $i['qty']);
 
         $order = Order::create([
-            'order_number' => 'KBJ-' . strtoupper(Str::random(8)),
+            'order_number' => 'KIBAR-' . strtoupper(Str::random(8)),
             'total_amount' => $total,
             'customer_name' => $request->name,
             'customer_email' => $request->email,
