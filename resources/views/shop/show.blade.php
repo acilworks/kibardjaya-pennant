@@ -23,12 +23,11 @@
 
 
 
-        <!-- <button class="px-6 py-3 bg-black text-white">
-                Add to Cart
-            </button> -->
+
         <form action="/cart/add/{{ $product->id }}" method="POST">
             @csrf
-            <button class="px-6 py-3 bg-black text-white">
+            <button
+                class="px-6 py-3 bg-black text-white hover:bg-white border-2 border-black hover:text-black transition-all duration-300">
                 Add to Cart
             </button>
         </form>

@@ -7,6 +7,8 @@
         @csrf
         <input name="name" placeholder="Your Name" class="border p-2 w-full mb-3" required>
         <input name="email" type="email" placeholder="Email" class="border p-2 w-full mb-3" required>
-        <button class="px-6 py-3 bg-black text-white">Pay Now</button>
+        <button
+            class="px-6 py-3 bg-black text-white hover:bg-white border-2 border-black hover:text-black transition-all duration-300">Pay
+            Now</button>
     </form>
 @endsection

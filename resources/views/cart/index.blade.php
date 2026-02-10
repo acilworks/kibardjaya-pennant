@@ -58,7 +58,8 @@
                 Total: Rp {{ number_format($total) }}
             </p>
 
-            <a href="/checkout" class="inline-block mt-4 px-6 py-3 bg-black text-white">
+            <a href="/checkout"
+                class="inline-block mt-4 px-6 py-3 bg-black text-white hover:bg-white border-2 border-black hover:text-black transition-all duration-300">
                 Checkout
             </a>
         </div>

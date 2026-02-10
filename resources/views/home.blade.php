@@ -5,7 +5,8 @@
         <h1 class="text-4xl font-bold mb-4">
             Handmade Pennants Inspired by Everything
         </h1>
-        <a href="/shop" class="inline-block mt-6 px-6 py-3 bg-black text-white">
+        <a href="/shop"
+            class="inline-block mt-6 px-6 py-3 bg-black text-white hover:bg-white border-2 border-black hover:text-black transition-all duration-300">
             Shop Collection
         </a>
     </section>
