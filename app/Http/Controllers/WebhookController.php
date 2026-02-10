@@ -31,6 +31,9 @@ class WebhookController extends Controller
             return response()->json(['message' => 'Order not found'], 404);
         }
 
+        // Simpan status lama sebelum update
+        $previousStatus = $order->payment_status;
+
         // Update status berdasarkan status Midtrans
         match ($request->transaction_status) {
             'settlement' => $order->update(['payment_status' => 'paid']),
@@ -41,13 +44,8 @@ class WebhookController extends Controller
             default => null,
         };
 
-        if (
-            $request->transaction_status === 'settlement'
-            && $order->payment_status !== 'paid'
-        ) {
-
-            $order->update(['payment_status' => 'paid']);
-
+        // Kirim email hanya jika status BARU berubah ke paid
+        if ($request->transaction_status === 'settlement' && $previousStatus !== 'paid') {
             Mail::to($order->customer_email)
                 ->send(new OrderInvoiceMail($order));
         }

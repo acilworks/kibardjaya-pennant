@@ -2,6 +2,7 @@
 
 namespace App\Mail;
 
+use App\Models\Order;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
@@ -17,20 +18,13 @@ class OrderInvoiceMail extends Mailable
     {
     }
 
-    public function build()
-    {
-        return $this
-            ->subject('Invoice Order ' . $this->order->order_number)
-            ->view('emails.invoice');
-    }
-
     /**
      * Get the message envelope.
      */
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Order Invoice Mail',
+            subject: 'Invoice Order ' . $this->order->order_number,
         );
     }
 
@@ -40,7 +34,7 @@ class OrderInvoiceMail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'view.name',
+            view: 'emails.invoice',
         );
     }
 
