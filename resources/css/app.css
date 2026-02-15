@@ -1,3 +1,298 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* ============================================
+   KIBARDJAYA PENNANT - Custom Styles
+   ============================================ */
+
+/* --- Announcement Bar --- */
+.announcement-bar {
+    background-color: #f5f5f0;
+    /* height: 70px; */
+    padding: 10px 0;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #1a1a1a;
+}
+
+/* --- Navbar --- */
+.navbar-sticky {
+    position: sticky;
+    top: 0;
+    width: 100%;
+    z-index: 50;
+    transition: background-color 0.3s ease;
+    background: transparent;
+}
+
+.navbar-sticky--scrolled {
+    background-color: #ffffff;
+    /* background-color: #f5f5f0; */
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+}
+
+.navbar {
+    background: transparent;
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+}
+
+.navbar__links {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+}
+
+
+.navbar__link {
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #ffffff;
+    text-decoration: none;
+    transition: color 0.3s ease, opacity 0.3s ease;
+}
+
+.navbar-sticky--scrolled .navbar__link {
+    color: #1a1a1a;
+}
+
+.navbar__link:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+}
+
+.navbar__logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.navbar__logo img {
+    height: 36px;
+    width: auto;
+}
+
+.navbar__icons {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+}
+
+.navbar__icon {
+    color: #ffffff;
+    transition: color 0.3s ease, opacity 0.3s ease;
+    display: flex;
+    align-items: center;
+}
+
+.navbar-sticky--scrolled .navbar__icon {
+    color: #1a1a1a;
+}
+
+.navbar__icon:hover {
+    opacity: 0.8;
+}
+
+.navbar__icon svg {
+    width: 22px;
+    height: 22px;
+    stroke: #ffffff;
+    fill: none;
+    stroke-width: 1.5;
+    transition: stroke 0.3s ease;
+}
+
+.navbar-sticky--scrolled .navbar__icon svg {
+    stroke: #1a1a1a;
+}
+
+/* --- Mobile Menu --- */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+}
+
+.mobile-menu-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: #1a1a1a;
+    /* stroke: #ffffff; */
+    transition: stroke 0.3s ease;
+}
+
+.navbar-sticky--scrolled .mobile-menu-btn svg {
+    stroke: #1a1a1a;
+}
+
+.mobile-nav {
+    background-color: #ffffff;
+    /* background-color: #f5f5f0; */
+    padding: 20px 40px 30px;
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.mobile-nav a {
+    display: block;
+    padding: 10px 0;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #1a1a1a;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.mobile-nav a:last-child {
+    border-bottom: none;
+}
+
+@media (max-width: 768px) {
+    .navbar__links {
+        display: none;
+    }
+
+    .navbar__icons .navbar__icon:not(.mobile-menu-btn) {
+        display: none;
+    }
+
+    .mobile-menu-btn {
+        display: flex;
+        align-items: center;
+    }
+
+    .navbar__logo {
+        position: relative;
+        left: auto;
+        transform: none;
+    }
+
+    .navbar {
+        justify-content: space-between;
+    }
+}
+
+/* --- Hero Section --- */
+.hero {
+    position: relative;
+    width: 100%;
+    min-height: 85vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+    margin-top: -54px;
+    /* Desktop: -54px to prevent announcement bar overlap */
+}
+
+.hero__bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: 0;
+}
+
+.hero__bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0) 0%,
+            rgba(0, 0, 0, 0.15) 50%,
+            rgba(0, 0, 0, 0.45) 100%);
+    z-index: 1;
+}
+
+.hero__content {
+    position: relative;
+    z-index: 2;
+    padding: 60px 40px 60px;
+    max-width: 600px;
+}
+
+.hero__title {
+    font-size: clamp(2.5rem, 3vw, 3.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    color: #ffffff;
+    text-transform: uppercase;
+    letter-spacing: -1px;
+    margin-bottom: 20px;
+    /* font-style: italic; */
+}
+
+.hero__subtitle {
+    font-size: 13px;
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 32px;
+    max-width: 420px;
+    font-weight: 400;
+}
+
+.hero__cta {
+    display: inline-block;
+    padding: 14px 28px;
+    border: 1.5px solid rgba(255, 255, 255, 0.9);
+    color: #ffffff;
+    font-size: 12px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    background: transparent;
+}
+
+.hero__cta:hover {
+    background-color: #ffffff;
+    color: #1a1a1a;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        min-height: 70vh;
+        margin-top: -74px;
+        /* Mobile: -74px to remove gap */
+    }
+
+    .hero__content {
+        padding: 40px 24px 40px;
+    }
+
+    .hero__title {
+        font-size: 2rem;
+    }
+
+    .hero__subtitle {
+        font-size: 12px;
+    }
+}
+
+/* --- Footer --- */
+.site-footer {
+    background-color: #f5f5f0;
+    padding: 40px 40px;
+    text-align: center;
+    font-size: 11px;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #666;
+}
