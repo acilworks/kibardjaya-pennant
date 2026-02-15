@@ -3,10 +3,19 @@
 @section('content')
     <div class="max-w-3xl">
         @if($product->images)
-            <div class="grid grid-cols-2 gap-4 mb-6">
+            <div class="relative grid grid-cols-2 gap-4 mb-6">
                 @foreach($product->images as $image)
-                    <img src="{{ asset('storage/' . $image) }}" alt="{{ $product->title }}"
-                        class="aspect-square object-cover border">
+                    <div class="relative">
+                        <img src="{{ asset('storage/' . $image) }}" alt="{{ $product->title }}"
+                            class="aspect-square object-cover border {{ $product->is_sold_out ? 'opacity-60 grayscale' : '' }}">
+                        @if($product->is_sold_out && $loop->first)
+                            <div class="absolute inset-0 flex items-center justify-center">
+                                <span class="bg-black/80 text-white text-xs tracking-[3px] uppercase font-semibold px-6 py-3">
+                                    Sold Out
+                                </span>
+                            </div>
+                        @endif
+                    </div>
                 @endforeach
             </div>
         @endif
@@ -21,15 +30,19 @@
             {{ $product->description }}
         </div>
 
-
-
-
-        <form action="/cart/add/{{ $product->id }}" method="POST">
-            @csrf
-            <button
-                class="px-6 py-3 bg-black text-white hover:bg-white border-2 border-black hover:text-black transition-all duration-300">
-                Add to Cart
+        @if($product->is_sold_out)
+            <button disabled
+                class="px-6 py-3 bg-neutral-300 text-neutral-500 border-2 border-neutral-300 cursor-not-allowed tracking-[2px] text-xs uppercase font-semibold">
+                Sold Out
             </button>
-        </form>
+        @else
+            <form action="/cart/add/{{ $product->id }}" method="POST">
+                @csrf
+                <button
+                    class="px-6 py-3 bg-black text-white hover:bg-white border-2 border-black hover:text-black transition-all duration-300 tracking-[2px] text-xs uppercase font-semibold">
+                    Add to Cart
+                </button>
+            </form>
+        @endif
     </div>
 @endsection

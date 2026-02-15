@@ -58,6 +58,12 @@ class ProductResource extends Resource
                     ->prefix('Rp')
                     ->required(),
 
+                TextInput::make('stock')
+                    ->numeric()
+                    ->default(0)
+                    ->required()
+                    ->helperText('Set to 0 for sold out'),
+
                 Toggle::make('is_featured')
                     ->label('Featured'),
 
@@ -75,6 +81,11 @@ class ProductResource extends Resource
                 Tables\Columns\TextColumn::make('price')
                     ->money('IDR')
                     ->sortable(),
+                Tables\Columns\TextColumn::make('stock')
+                    ->sortable()
+                    ->badge()
+                    ->color(fn(int $state): string => $state > 0 ? 'success' : 'danger')
+                    ->formatStateUsing(fn(int $state): string => $state > 0 ? $state : 'SOLD OUT'),
                 Tables\Columns\IconColumn::make('is_featured')
                     ->boolean(),
                 Tables\Columns\TextColumn::make('created_at')

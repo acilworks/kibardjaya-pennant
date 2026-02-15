@@ -58,7 +58,8 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     font-weight: 500;
-    color: #ffffff;
+    color: #1a1a1a;
+    /* color: #ffffff; */
     text-decoration: none;
     transition: color 0.3s ease, opacity 0.3s ease;
 }
@@ -92,7 +93,8 @@
 }
 
 .navbar__icon {
-    color: #ffffff;
+    color: #1a1a1a;
+    /* color: #ffffff; */
     transition: color 0.3s ease, opacity 0.3s ease;
     display: flex;
     align-items: center;
@@ -109,7 +111,7 @@
 .navbar__icon svg {
     width: 22px;
     height: 22px;
-    stroke: #ffffff;
+    stroke: #1a1a1a;
     fill: none;
     stroke-width: 1.5;
     transition: stroke 0.3s ease;

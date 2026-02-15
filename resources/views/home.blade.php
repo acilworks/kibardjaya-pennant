@@ -21,11 +21,18 @@
             <h2 class="text-center text-xs tracking-[3px] uppercase font-semibold mb-10">Featured Products</h2>
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
                 @foreach($featured as $product)
-                    <a href="/shop/{{ $product->slug }}" class="group block">
+                    <a href="/shop/{{ $product->slug }}" class="group block {{ $product->is_sold_out ? 'opacity-75' : '' }}">
                         @if($product->image)
-                            <div class="overflow-hidden mb-4">
+                            <div class="relative overflow-hidden mb-4">
                                 <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->title }}"
-                                    class="w-full aspect-square object-cover transition-transform duration-500 group-hover:scale-105">
+                                    class="w-full aspect-square object-cover {{ $product->is_sold_out ? 'grayscale' : 'transition-transform duration-500 group-hover:scale-105' }}">
+                                @if($product->is_sold_out)
+                                    <div class="absolute inset-0 flex items-center justify-center">
+                                        <span class="bg-black/80 text-white text-[10px] tracking-[3px] uppercase font-semibold px-4 py-2">
+                                            Sold Out
+                                        </span>
+                                    </div>
+                                @endif
                             </div>
                         @endif
                         <h3 class="text-sm font-semibold tracking-wide uppercase">{{ $product->title }}</h3>

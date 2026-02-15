@@ -16,7 +16,20 @@ class CartController extends Controller
     public function add(Request $request, $id)
     {
         $product = Product::findOrFail($id);
+
+        // Reject if product is sold out
+        if ($product->is_sold_out) {
+            return back()->with('error', 'Produk ini sudah habis (Sold Out).');
+        }
+
         $cart = session()->get('cart', []);
+
+        $currentQty = $cart[$id]['qty'] ?? 0;
+
+        // Reject if adding would exceed available stock
+        if (($currentQty + 1) > $product->stock) {
+            return back()->with('error', 'Stok tidak mencukupi. Tersisa ' . $product->stock . ' item.');
+        }
 
         if (isset($cart[$id])) {
             $cart[$id]['qty']++;
@@ -37,9 +50,15 @@ class CartController extends Controller
 
     public function update(Request $request, $id)
     {
+        $product = Product::find($id);
         $cart = session()->get('cart');
 
         if (isset($cart[$id])) {
+            // Validate against stock
+            if ($product && $request->qty > $product->stock) {
+                return back()->with('error', 'Stok tidak mencukupi. Tersisa ' . $product->stock . ' item.');
+            }
+
             $cart[$id]['qty'] = $request->qty;
             session()->put('cart', $cart);
         }
