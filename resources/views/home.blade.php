@@ -15,31 +15,72 @@
         </div>
     </section>
 
-    {{-- Featured Products --}}
-    @if($featured->count())
-        <section class="py-16 px-10">
-            <h2 class="text-center text-xs tracking-[3px] uppercase font-semibold mb-10">Featured Products</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-                @foreach($featured as $product)
-                    <a href="/shop/{{ $product->slug }}" class="group block {{ $product->is_sold_out ? 'opacity-75' : '' }}">
-                        @if($product->image)
-                            <div class="relative overflow-hidden mb-4">
-                                <img src="{{ asset('storage/' . $product->image) }}" alt="{{ $product->title }}"
-                                    class="w-full aspect-square object-cover {{ $product->is_sold_out ? 'grayscale' : 'transition-transform duration-500 group-hover:scale-105' }}">
-                                @if($product->is_sold_out)
-                                    <div class="absolute inset-0 flex items-center justify-center">
-                                        <span class="bg-black/80 text-white text-[10px] tracking-[3px] uppercase font-semibold px-4 py-2">
-                                            Sold Out
-                                        </span>
-                                    </div>
-                                @endif
-                            </div>
-                        @endif
-                        <h3 class="text-sm font-semibold tracking-wide uppercase">{{ $product->title }}</h3>
-                        <p class="mt-1 text-sm text-neutral-500">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
-                    </a>
-                @endforeach
+    {{-- Brand Story Section --}}
+    <section class="brand-story">
+        <div class="brand-story__inner">
+            <div class="brand-story__logo-wrap">
+                <img src="{{ asset('image/kibardjaya.png') }}" alt="Kibardjaya" class="brand-story__logo">
             </div>
-        </section>
-    @endif
+            <div class="brand-story__text">
+                <h2 class="brand-story__title">MORE THAN A SOUVENIR.</h2>
+                <p class="brand-story__desc">
+                    There was a time when travelers brought home pennants as proof of where they had been.
+                    A small symbol. A lasting memory. Kibardjaya revives that tradition – reimagined for modern collectors
+                    who value story, craftsmanship, and timeless design.
+                </p>
+            </div>
+        </div>
+        <div class="brand-story__categories">
+            <a href="/shop" class="brand-story__cat-btn">Pennants</a>
+            <a href="/shop" class="brand-story__cat-btn">Banners</a>
+            <a href="/shop" class="brand-story__cat-btn">Outdoor Flags</a>
+            <a href="/shop" class="brand-story__cat-btn">Pin Patches</a>
+        </div>
+    </section>
+
+    {{-- New Collections --}}
+    <section class="collections">
+        <div class="collections__header">
+            <h2 class="collections__title">New Collections</h2>
+            <a href="/shop" class="collections__view-all">View All &rarr;</a>
+        </div>
+        <div class="collections__grid">
+            @foreach($products as $product)
+                <a href="/shop/{{ $product->slug }}"
+                    class="product-card {{ $product->is_sold_out ? 'product-card--sold-out' : '' }}">
+                    @if($product->images && count($product->images) > 0)
+                        <div class="product-card__image-wrap">
+                            <img src="{{ asset('storage/' . $product->images[0]) }}" alt="{{ $product->title }}"
+                                class="product-card__image product-card__image--primary">
+                            @if(count($product->images) > 1)
+                                <img src="{{ asset('storage/' . $product->images[1]) }}" alt="{{ $product->title }}"
+                                    class="product-card__image product-card__image--hover">
+                            @endif
+                            @if($product->is_sold_out)
+                                <div class="product-card__sold-overlay">
+                                    <span>Sold Out</span>
+                                </div>
+                            @endif
+                        </div>
+                    @endif
+                    <div class="product-card__info">
+                        <h3 class="product-card__name">{{ $product->title }}</h3>
+                        <p class="product-card__price">Rp. {{ number_format($product->price, 0, ',', '.') }},00</p>
+                    </div>
+                </a>
+            @endforeach
+        </div>
+    </section>
+
+    {{-- Running Text Marquee --}}
+    <div class="marquee">
+        <div class="marquee__track">
+            <span class="marquee__content">&bull;&nbsp; Handmade in Indonesia &nbsp;&bull;&nbsp; Limited Small Batches
+                &nbsp;&bull;&nbsp; Built for Collectors &nbsp;&bull;&nbsp; Crafted Memories &nbsp;</span>
+            <span class="marquee__content">&bull;&nbsp; Handmade in Indonesia &nbsp;&bull;&nbsp; Limited Small Batches
+                &nbsp;&bull;&nbsp; Built for Collectors &nbsp;&bull;&nbsp; Crafted Memories &nbsp;</span>
+            <span class="marquee__content">&bull;&nbsp; Handmade in Indonesia &nbsp;&bull;&nbsp; Limited Small Batches
+                &nbsp;&bull;&nbsp; Built for Collectors &nbsp;&bull;&nbsp; Crafted Memories &nbsp;</span>
+        </div>
+    </div>
 @endsection
