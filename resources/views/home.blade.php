@@ -83,4 +83,50 @@
                 &nbsp;&bull;&nbsp; Built for Collectors &nbsp;&bull;&nbsp; Crafted Memories &nbsp;</span>
         </div>
     </div>
+
+    {{-- Custom Order Section --}}
+    <section class="custom-order">
+        <div class="custom-order__image-wrap">
+            <img src="{{ asset('image/custom-img.jpeg') }}" alt="Custom Pennant Order" class="custom-order__image">
+        </div>
+        <div class="custom-order__content">
+            <p class="custom-order__tagline">Not every journey is the same.</p>
+            <h2 class="custom-order__title">Create Your Own Story</h2>
+            <p class="custom-order__desc">
+                Choose your place, your words, your colors –
+                and let us craft it into a pennant that's uniquely yours.
+            </p>
+            <a href="#" class="custom-order__cta">Start Custom Order &rarr;</a>
+        </div>
+    </section>
+
+    {{-- Crafted to Last Section --}}
+    <section class="crafted">
+        <div class="crafted__header">
+            <h2 class="crafted__title">Crafted to Last</h2>
+        </div>
+        <div class="crafted__grid">
+            <div class="crafted__card">
+                <img src="{{ asset('image/craft-left.png') }}" alt="Handmade in Yogyakarta" class="crafted__card-image">
+                <div class="crafted__card-overlay">
+                    <h3 class="crafted__card-title">Handmade in Yogyakarta</h3>
+                    <p class="crafted__card-desc">Crafted by skilled local makers.</p>
+                </div>
+            </div>
+            <div class="crafted__card">
+                <img src="{{ asset('image/craft-mid.png') }}" alt="Premium fabric construction" class="crafted__card-image">
+                <div class="crafted__card-overlay">
+                    <h3 class="crafted__card-title">Premium fabric construction</h3>
+                    <p class="crafted__card-desc">Durable materials built for long display.</p>
+                </div>
+            </div>
+            <div class="crafted__card">
+                <img src="{{ asset('image/craft-right.png') }}" alt="Small batch production" class="crafted__card-image">
+                <div class="crafted__card-overlay">
+                    <h3 class="crafted__card-title">Small batch production</h3>
+                    <p class="crafted__card-desc">Limited quantities to preserve uniqueness.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 @endsection

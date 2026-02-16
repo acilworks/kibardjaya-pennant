@@ -114,8 +114,73 @@
     </main>
 
     {{-- Footer --}}
-    <footer class="site-footer">
-        © {{ date('Y') }} Kibardjaya — Handcrafted in Indonesia
+    <footer class="footer">
+        {{-- Newsletter Bar --}}
+        <div class="footer__newsletter">
+            <div class="footer__newsletter-logo">
+                <img src="{{ asset('image/kibardjaya-footer.png') }}" alt="Kibardjaya">
+            </div>
+            <span class="footer__newsletter-label">Stay in the loop!</span>
+            <form class="footer__newsletter-form" action="#" method="POST">
+                @csrf
+                <input type="email" name="email" class="footer__newsletter-input" placeholder="Enter your email"
+                    required>
+                <button type="submit" class="footer__newsletter-btn">Submit &rarr;</button>
+            </form>
+        </div>
+
+        {{-- Main Footer Content --}}
+        <div class="footer__main">
+            {{-- About Us --}}
+            <div class="footer__col-about">
+                <span class="footer__col-label">About Us</span>
+                <p class="footer__about-text">
+                    Kibardjaya is a small studio crafting handmade pennants from Yogyakarta, Indonesia.
+                </p>
+            </div>
+
+            {{-- Socials --}}
+            <div class="footer__col-socials">
+                <span class="footer__col-label">Socials</span>
+                <div class="footer__col-socials-inner">
+                    <a href="https://instagram.com/kibardjaya" target="_blank">Instagram</a>
+                    <a href="https://tiktok.com/@kibardjaya" target="_blank">TikTok</a>
+                </div>
+            </div>
+
+            {{-- The Store --}}
+            <div class="footer__col-store">
+                <span class="footer__col-label">The Store</span>
+                <div class="footer__col-store-inner">
+                    <a href="#" target="_blank">Etsy</a>
+                    <a href="#" target="_blank">Shopee</a>
+                    <a href="#" target="_blank">Mobile Vending</a>
+                </div>
+            </div>
+
+            {{-- The Studio --}}
+            <div class="footer__col-studio">
+                <span class="footer__col-label">The Studio</span>
+                <div class="footer__col-studio-inner">
+                    <p class="footer__studio-address">
+                        Ngangkrik RT 03 / RW 14<br>
+                        Triharjo Sleman, Sleman<br>
+                        Yogyakarta
+                    </p>
+                    <p class="footer__studio-hours">
+                        Mon-Fri: Online<br>
+                        Sat: 10-21<br>
+                        Sun: 13-22
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        {{-- Bottom Bar --}}
+        <div class="footer__bottom">
+            <span class="footer__copyright">©{{ date('Y') }} – Kibardjaya</span>
+            <span class="footer__credit">Site by <a href="https://acworks.vercel.app/" target="_blank">Acil</a></span>
+        </div>
     </footer>
 
     @stack('scripts')
