@@ -179,16 +179,30 @@
         align-items: center;
     }
 
+    .mobile-menu-btn svg {
+        width: 24px;
+        height: 24px;
+        stroke: #1a1a1a;
+        /* stroke: #ffffff; */
+        transition: stroke 0.3s ease;
+        margin-right: -15px;
+    }
+
+    .navbar-sticky--scrolled .mobile-menu-btn svg {
+        stroke: #1a1a1a;
+    }
+
     .navbar__logo {
         position: relative;
         left: auto;
         transform: none;
-        margin-left: -20px;
+        margin-left: -15px;
     }
 
     .navbar__logo img {
         height: 28px;
     }
+
 
     .navbar {
         justify-content: space-between;
