@@ -21,12 +21,17 @@
             <div class="brand-story__logo-wrap">
                 <img src="{{ asset('image/kibardjaya.png') }}" alt="Kibardjaya" class="brand-story__logo">
             </div>
+            <div class="brand-story__heading">
+                <h2 class="brand-story__title">MORE THAN<br>A SOUVENIR</h2>
+            </div>
             <div class="brand-story__text">
-                <h2 class="brand-story__title">MORE THAN A SOUVENIR.</h2>
                 <p class="brand-story__desc">
-                    There was a time when travelers brought home pennants as proof of where they had been.
-                    A small symbol. A lasting memory. Kibardjaya revives that tradition – reimagined for modern collectors
-                    who value story, craftsmanship, and timeless design.
+                    There was a time when travelers brought home pennants as proof of where they had been.A small symbol. A
+                    lasting memory.
+                </p>
+                <p class="brand-story__desc">
+                    Kibardjaya revives that tradition – reimagined for modern collectors who value story, craftsmanship, and
+                    timeless design.
                 </p>
             </div>
         </div>
