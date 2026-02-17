@@ -360,7 +360,7 @@
     font-size: clamp(2rem, 3.5vw, 2.8rem);
     font-weight: 700;
     text-transform: uppercase;
-    /* letter-spacing: 6px; */
+    letter-spacing: -1px;
     color: #1a1a1a;
     line-height: 1.15;
     text-align: end;
@@ -414,16 +414,6 @@
     color: #ffffff;
 }
 
-@media (max-width: 768px) {
-    .brand-story__title {
-        text-align: center;
-        letter-spacing: 1px;
-    }
-
-    .brand-story__cat-btn {
-        padding: 3px 5px;
-    }
-}
 
 /* ============================================
    NEW COLLECTIONS SECTION
@@ -612,6 +602,10 @@
         padding: 40px 20px 32px;
     }
 
+    .brand-story__cat-btn {
+        padding: 3px 3px;
+    }
+
     .brand-story__inner {
         grid-template-columns: 1fr;
         text-align: center;
@@ -626,7 +620,8 @@
 
     .brand-story__title {
         font-size: 1.5rem;
-        letter-spacing: 4px;
+        letter-spacing: -1px;
+        text-align: center;
     }
 
     .brand-story__desc {
@@ -770,6 +765,7 @@
 
     .custom-order__title {
         font-size: 1.3rem;
+        letter-spacing: -1px;
     }
 
     .custom-order__desc {
