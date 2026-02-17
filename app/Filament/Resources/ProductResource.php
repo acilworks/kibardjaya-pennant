@@ -67,7 +67,21 @@ class ProductResource extends Resource
                 Toggle::make('is_featured')
                     ->label('Featured'),
 
+                TextInput::make('category')
+                    ->label('Category Tag')
+                    ->placeholder('e.g. CAMPUSES, CITIES')
+                    ->helperText('Displayed as a tag label above the product title'),
 
+                TextInput::make('subtitle')
+                    ->label('Subtitle Banner')
+                    ->placeholder('e.g. PRODUCED IN LIMITED STUDIO BATCHES')
+                    ->helperText('Banner text shown below the description'),
+
+                Textarea::make('details')
+                    ->label('Product Details')
+                    ->placeholder("Size: 68 cm x 23 cm\nColor: Black body, cream details\nMaterial: premium fabric blend")
+                    ->helperText('One detail per line, each becomes a bullet point')
+                    ->rows(5),
 
             ]);
     }
