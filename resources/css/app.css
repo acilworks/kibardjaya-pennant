@@ -1259,7 +1259,8 @@
     display: flex;
     flex-direction: column;
     width: 100%;
-    border: 1.5px solid #1a1a1a;
+    border: 1.5px solid #bbb;
+    /* border: 1.5px solid #1a1a1a; */
     margin: 20px;
 }
 
@@ -1275,8 +1276,10 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     font-weight: 600;
-    color: #1a1a1a;
-    border: 1.5px solid #1a1a1a;
+    color: #444;
+    /* color: #1a1a1a; */
+    border: 1.5px solid #444;
+    /* border: 1.5px solid #1a1a1a; */
     padding: 5px 12px;
     margin-bottom: 20px;
 }
@@ -1401,7 +1404,7 @@
 }
 
 .pdp__qty-input {
-    width: 32px;
+    width: 40px;
     text-align: center;
     font-size: 13px;
     font-weight: 600;
@@ -1425,7 +1428,7 @@
     padding: 12px 20px;
     background-color: #1a1a1a;
     color: #ffffff;
-    font-size: 10px;
+    font-size: 13px;
     letter-spacing: 3px;
     text-transform: uppercase;
     font-weight: 600;
@@ -1480,12 +1483,13 @@
 
 .pdp-lifestyle__swiper .swiper-slide {
     height: 100%;
+    width: auto;
     overflow: hidden;
     border-right: 1px solid #d5d5d5;
 }
 
 .pdp-lifestyle__img {
-    width: 100%;
+    width: auto;
     height: 100%;
     object-fit: cover;
     display: block;
@@ -1498,9 +1502,10 @@
     border-top: 1px solid #d5d5d5;
 }
 
-.pdp-trust__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
+/* .pdp-trust__grid removed */
+
+.pdp-trust__swiper {
+    width: 100%;
 }
 
 .pdp-trust__card {
@@ -1508,6 +1513,7 @@
     aspect-ratio: 1;
     overflow: hidden;
     border-right: 1px solid #d5d5d5;
+    background: #EDECEA;
 }
 
 .pdp-trust__card:last-child {
@@ -1524,14 +1530,14 @@
 .pdp-trust__card-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.7);
+    background: #EDECEA;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     padding: 24px;
     text-align: center;
-    color: #ffffff;
+    color: #1a1a1a;
 }
 
 .pdp-trust__card-title {
@@ -1546,7 +1552,7 @@
 .pdp-trust__card-desc {
     font-size: 11px;
     line-height: 1.6;
-    color: rgba(255, 255, 255, 0.8);
+    color: #444;
     margin-bottom: 16px;
     max-width: 220px;
 }
@@ -1556,7 +1562,7 @@
     letter-spacing: 2px;
     text-transform: uppercase;
     font-weight: 600;
-    color: #ffffff;
+    color: #1a1a1a;
     text-decoration: underline;
     text-underline-offset: 3px;
     background: none;
@@ -1567,7 +1573,7 @@
 }
 
 .pdp-trust__card-link:hover {
-    color: #d5d5d5;
+    color: #444;
 }
 
 /* Trust Block — Modal */
@@ -1623,6 +1629,36 @@
     font-size: 13px;
     line-height: 1.7;
     color: #444;
+}
+
+/* Trust Block — Pagination */
+.pdp-trust__pagination {
+    position: absolute;
+    bottom: 24px !important;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    z-index: 10;
+}
+
+.pdp-trust__pagination .swiper-pagination-bullet {
+    background: #1a1a1a;
+    opacity: 0.3;
+    width: 8px;
+    height: 8px;
+    margin: 0 4px;
+}
+
+.pdp-trust__pagination .swiper-pagination-bullet-active {
+    opacity: 1;
+}
+
+/* Hide pagination on desktop */
+@media (min-width: 768px) {
+    .pdp-trust__pagination {
+        display: none;
+    }
 }
 
 /* ============================================
@@ -1753,13 +1789,13 @@
     }
 
     .pdp__qty-input {
-        width: 28px;
+        width: 40px;
         font-size: 12px;
     }
 
     .pdp__btn {
         padding: 10px 14px;
-        font-size: 9px;
+        font-size: 13px;
         letter-spacing: 2px;
     }
 
@@ -1773,17 +1809,14 @@
     }
 
     /* Trust Block */
-    .pdp-trust__grid {
-        grid-template-columns: 1fr;
-    }
-
     .pdp-trust__card {
-        border-right: none;
-        border-bottom: 1px solid #d5d5d5;
+        border-right: 1px solid #d5d5d5;
+        border-bottom: none;
         aspect-ratio: 16 / 9;
     }
 
     .pdp-trust__card:last-child {
+        border-right: none;
         border-bottom: none;
     }
 

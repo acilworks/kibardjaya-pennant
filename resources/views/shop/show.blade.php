@@ -131,79 +131,90 @@
     {{-- ============================================
     SECTION 3: TRUST BLOCK
     ============================================ --}}
-    <section class="pdp-trust" x-data="{ activeModal: null }">
-        <div class="pdp-trust__grid">
-            {{-- Card 1: 15% Off --}}
-            <div class="pdp-trust__card">
-                <img src="{{ asset('image/balibarong4.jpg') }}" alt="15% Off" class="pdp-trust__card-bg">
-                <div class="pdp-trust__card-overlay">
-                    <h3 class="pdp-trust__card-title">15% Off<br>First Order</h3>
-                    <p class="pdp-trust__card-desc">Subscribe to our newsletter and receive 15% off your first order.</p>
-                    <button class="pdp-trust__card-link" @click="activeModal = 'discount'">Info ›</button>
+    <section class="pdp-trust" x-data="{ activeModal: null }" @trust-modal-open.window="activeModal = $event.detail">
+        <div class="swiper pdp-trust__swiper">
+            <div class="swiper-wrapper">
+                {{-- Card 1: 15% Off --}}
+                <div class="swiper-slide pdp-trust__card">
+                    <!-- <img src="{{ asset('image/balibarong4.jpg') }}" alt="15% Off" class="pdp-trust__card-bg"> -->
+                    <div class="pdp-trust__card-overlay">
+                        <h3 class="pdp-trust__card-title">15% Off<br>First Order</h3>
+                        <p class="pdp-trust__card-desc">Subscribe to our newsletter and receive 15% off your first order.
+                        </p>
+                        <button class="pdp-trust__card-link" data-modal="discount">Info ↗</button>
+                    </div>
                 </div>
-            </div>
 
-            {{-- Card 2: Ships Worldwide --}}
-            <div class="pdp-trust__card">
-                <img src="{{ asset('image/enjoy.png') }}" alt="Ships Worldwide" class="pdp-trust__card-bg">
-                <div class="pdp-trust__card-overlay">
-                    <h3 class="pdp-trust__card-title">Ships<br>Worldwide</h3>
-                    <p class="pdp-trust__card-desc">Sends from our studio in Indonesia. For international orders, please
-                        contact us.</p>
-                    <button class="pdp-trust__card-link" @click="activeModal = 'shipping'">Info ›</button>
+                {{-- Card 2: Ships Worldwide --}}
+                <div class="swiper-slide pdp-trust__card">
+                    <!-- <img src="{{ asset('image/enjoy.png') }}" alt="Ships Worldwide" class="pdp-trust__card-bg"> -->
+                    <div class="pdp-trust__card-overlay">
+                        <h3 class="pdp-trust__card-title">Ships<br>Worldwide</h3>
+                        <p class="pdp-trust__card-desc">Sends from our studio in Indonesia. For international orders, please
+                            contact us.</p>
+                        <button class="pdp-trust__card-link" data-modal="shipping">Info ↗</button>
+                    </div>
                 </div>
-            </div>
 
-            {{-- Card 3: Handmade Studio --}}
-            <div class="pdp-trust__card">
-                <img src="{{ asset('image/yes-chef.png') }}" alt="Handmade" class="pdp-trust__card-bg">
-                <div class="pdp-trust__card-overlay">
-                    <h3 class="pdp-trust__card-title">Handmade<br>Studio Production</h3>
-                    <p class="pdp-trust__card-desc">Produced in small batches and crafted individually in our Yogyakarta
-                        studio.</p>
-                    <button class="pdp-trust__card-link" @click="activeModal = 'handmade'">Info ›</button>
+                {{-- Card 3: Handmade Studio --}}
+                <div class="swiper-slide pdp-trust__card">
+                    <!-- <img src="{{ asset('image/yes-chef.png') }}" alt="Handmade" class="pdp-trust__card-bg"> -->
+                    <div class="pdp-trust__card-overlay">
+                        <h3 class="pdp-trust__card-title">Handmade<br>Studio Production</h3>
+                        <p class="pdp-trust__card-desc">Produced in small batches and crafted individually in our Yogyakarta
+                            studio.</p>
+                        <button class="pdp-trust__card-link" data-modal="handmade">Info ↗</button>
+                    </div>
                 </div>
             </div>
+            <div class="swiper-pagination pdp-trust__pagination"></div>
         </div>
 
         {{-- Modals --}}
         <template x-teleport="body">
-            {{-- Discount Modal --}}
-            <div class="pdp-trust__modal-backdrop" x-show="activeModal === 'discount'" x-cloak
-                x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0"
-                x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150"
-                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click.self="activeModal = null">
-                <div class="pdp-trust__modal">
-                    <button class="pdp-trust__modal-close" @click="activeModal = null">&times;</button>
-                    <h3 class="pdp-trust__modal-title">15% Off First Order</h3>
-                    <p class="pdp-trust__modal-text">Subscribe to our newsletter and receive 15% off your first order. The
-                        discount code will be sent directly to your email after subscribing.</p>
+            <div>
+                {{-- Discount Modal --}}
+                <div class="pdp-trust__modal-backdrop" x-show="activeModal === 'discount'" x-cloak
+                    x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150"
+                    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                    @click.self="activeModal = null">
+                    <div class="pdp-trust__modal">
+                        <button class="pdp-trust__modal-close" @click="activeModal = null">&times;</button>
+                        <h3 class="pdp-trust__modal-title">15% Off First Order</h3>
+                        <p class="pdp-trust__modal-text">Subscribe to our newsletter and receive 15% off your first order.
+                            The
+                            discount code will be sent directly to your email after subscribing.</p>
+                    </div>
                 </div>
-            </div>
 
-            {{-- Shipping Modal --}}
-            <div class="pdp-trust__modal-backdrop" x-show="activeModal === 'shipping'" x-cloak
-                x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0"
-                x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150"
-                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click.self="activeModal = null">
-                <div class="pdp-trust__modal">
-                    <button class="pdp-trust__modal-close" @click="activeModal = null">&times;</button>
-                    <h3 class="pdp-trust__modal-title">Ships Worldwide</h3>
-                    <p class="pdp-trust__modal-text">We ship from our studio in Indonesia. For international orders, please
-                        contact us directly for shipping estimates and customs information.</p>
+                {{-- Shipping Modal --}}
+                <div class="pdp-trust__modal-backdrop" x-show="activeModal === 'shipping'" x-cloak
+                    x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150"
+                    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                    @click.self="activeModal = null">
+                    <div class="pdp-trust__modal">
+                        <button class="pdp-trust__modal-close" @click="activeModal = null">&times;</button>
+                        <h3 class="pdp-trust__modal-title">Ships Worldwide</h3>
+                        <p class="pdp-trust__modal-text">We ship from our studio in Indonesia. For international orders,
+                            please
+                            contact us directly for shipping estimates and customs information.</p>
+                    </div>
                 </div>
-            </div>
 
-            {{-- Handmade Modal --}}
-            <div class="pdp-trust__modal-backdrop" x-show="activeModal === 'handmade'" x-cloak
-                x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0"
-                x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150"
-                x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click.self="activeModal = null">
-                <div class="pdp-trust__modal">
-                    <button class="pdp-trust__modal-close" @click="activeModal = null">&times;</button>
-                    <h3 class="pdp-trust__modal-title">Handmade Studio Production</h3>
-                    <p class="pdp-trust__modal-text">Each piece is individually finished in our Yogyakarta studio. We
-                        produce in small batches to preserve quality and craftsmanship in every pennant.</p>
+                {{-- Handmade Modal --}}
+                <div class="pdp-trust__modal-backdrop" x-show="activeModal === 'handmade'" x-cloak
+                    x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-150"
+                    x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0"
+                    @click.self="activeModal = null">
+                    <div class="pdp-trust__modal">
+                        <button class="pdp-trust__modal-close" @click="activeModal = null">&times;</button>
+                        <h3 class="pdp-trust__modal-title">Handmade Studio Production</h3>
+                        <p class="pdp-trust__modal-text">Each piece is individually finished in our Yogyakarta studio. We
+                            produce in small batches to preserve quality and craftsmanship in every pennant.</p>
+                    </div>
                 </div>
             </div>
         </template>
@@ -215,11 +226,11 @@
     <div class="marquee">
         <div class="marquee__track">
             <span class="marquee__content">&bull;&nbsp; Handmade in Indonesia &nbsp;&bull;&nbsp; Limited Small Batches
-                &nbsp;&bull;&nbsp; Built for Collectors &nbsp;&bull;&nbsp; Crafted Memories &nbsp;</span>
+                &bull;&nbsp; Built for Collectors &nbsp;&bull;&nbsp; Crafted Memories &nbsp;</span>
             <span class="marquee__content">&bull;&nbsp; Handmade in Indonesia &nbsp;&bull;&nbsp; Limited Small Batches
-                &nbsp;&bull;&nbsp; Built for Collectors &nbsp;&bull;&nbsp; Crafted Memories &nbsp;</span>
+                &bull;&nbsp; Built for Collectors &nbsp;&bull;&nbsp; Crafted Memories &nbsp;</span>
             <span class="marquee__content">&bull;&nbsp; Handmade in Indonesia &nbsp;&bull;&nbsp; Limited Small Batches
-                &nbsp;&bull;&nbsp; Built for Collectors &nbsp;&bull;&nbsp; Crafted Memories &nbsp;</span>
+                &bull;&nbsp; Built for Collectors &nbsp;&bull;&nbsp; Crafted Memories &nbsp;</span>
         </div>
     </div>
 
@@ -279,17 +290,36 @@
 
             // Lifestyle Gallery Swiper
             new Swiper('.pdp-lifestyle__swiper', {
-                slidesPerView: 2.3,
+                slidesPerView: 'auto',
                 spaceBetween: 0,
                 loop: true,
-                breakpoints: {
-                    0: {
-                        slidesPerView: 1.2,
-                    },
-                    768: {
-                        slidesPerView: 2.3,
-                    },
+            });
+
+            // Trust Block Swiper
+            new Swiper('.pdp-trust__swiper', {
+                slidesPerView: 1,
+                spaceBetween: 0,
+                loop: true,
+                pagination: {
+                    el: '.pdp-trust__pagination',
+                    clickable: true,
                 },
+                on: {
+                    click: function (swiper, event) {
+                        const trigger = event.target.closest('.pdp-trust__card-link');
+                        if (trigger) {
+                            window.dispatchEvent(new CustomEvent('trust-modal-open', {
+                                detail: trigger.dataset.modal
+                            }));
+                        }
+                    }
+                },
+                breakpoints: {
+                    768: {
+                        slidesPerView: 3,
+                        allowTouchMove: false,
+                    }
+                }
             });
         });
     </script>
