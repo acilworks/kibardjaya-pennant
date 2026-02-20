@@ -10,7 +10,8 @@ class CartController extends Controller
     public function index()
     {
         $cart = session()->get('cart', []);
-        return view('cart.index', compact('cart'));
+        $provinces = \App\Models\ShippingProvince::all();
+        return view('cart.index', compact('cart', 'provinces'));
     }
 
     public function add(Request $request, $id)
