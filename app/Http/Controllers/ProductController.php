@@ -19,7 +19,7 @@ class ProductController extends Controller
             ->where('slug', $slug)
             ->firstOrFail();
 
-        $relatedProducts = Product::where('category_id', $product->category_id)
+        $relatedProducts = Product::where('sub_category_id', $product->sub_category_id)
             ->where('id', '!=', $product->id)
             ->take(4)
             ->get();

@@ -74,6 +74,7 @@
 
         .cart-input {
             width: 100%;
+            /* color: #FAFAFA; */
             border: 1px solid #d5d5d5;
             /* border: 1px solid #1c1c1c; */
             padding: 14px 16px;
@@ -81,7 +82,7 @@
             font-size: 12px;
             letter-spacing: 0.1em;
             /* text-transform: uppercase; */
-            background: transparent;
+            /* background: transparent; */
             outline: none;
             margin-bottom: 16px;
         }
@@ -315,11 +316,14 @@
 @section('content')
     <div class="cart-container" x-data="cartPage()">
         @if(empty($cart))
-            <h1 class="text-3xl font-bold mb-8 text-center uppercase tracking-widest font-mono">Your Cart is Empty</h1>
-            <div class="text-center">
-                <a href="/shop"
-                    class="inline-block px-8 py-3 bg-[#1c1c1c] text-white hover:bg-black transition uppercase tracking-widest font-bold text-sm font-mono">Return
-                    to Shop</a>
+            <div class="pt-24 pb-24">
+                <h1 class="text-3xl font-bold mb-8 text-center uppercase tracking-widest font-mono"
+                    style="letter-spacing: -1px;">Your Cart is Empty</h1>
+                <div class="text-center">
+                    <a href="/shop"
+                        class="inline-block px-8 py-3 bg-[#1c1c1c] text-white hover:bg-white hover:text-black border border-[#1c1c1c] transition uppercase tracking-widest font-bold text-sm font-mono">Return
+                        to Collections</a>
+                </div>
             </div>
         @else
             <div class="cart-grid">
@@ -347,11 +351,11 @@
                                     <select name="country" class="cart-input" style="color:#757575; cursor:not-allowed;">
                                         <option value="Indonesia" selected>INDONESIA</option>
                                     </select>
-                                    <svg class="cart-select-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                            d="M19 9l-7 7-7-7">
-                                        </path>
-                                    </svg>
+                                    <!-- <svg class="cart-select-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                                                                                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                                                                                                                                    d="M19 9l-7 7-7-7">
+                                                                                                                                                                </path>
+                                                                                                                                                            </svg> -->
                                 </div>
 
                                 <div class="cart-row">
@@ -374,11 +378,11 @@
                                                 </option>
                                             @endforeach
                                         </select>
-                                        <svg class="cart-select-icon w-4 h-4" fill="none" stroke="currentColor"
-                                            viewBox="0 0 24 24">
-                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                d="M19 9l-7 7-7-7"></path>
-                                        </svg>
+                                        <!-- <svg class="cart-select-icon w-4 h-4" fill="none" stroke="currentColor"
+                                                                                                                                                            viewBox="0 0 24 24">
+                                                                                                                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                                                                                                                                d="M19 9l-7 7-7-7"></path>
+                                                                                                                                                        </svg> -->
                                     </div>
 
                                     <input type="text" name="postal_code" placeholder="POSTAL CODE" required class="cart-input">

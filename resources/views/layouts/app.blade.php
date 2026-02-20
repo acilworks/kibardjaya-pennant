@@ -112,7 +112,7 @@
             @else
                 <a href="{{ route('login') }}">Login</a>
             @endauth
-            <a href="/cart">Cart</a>
+            <a href="/cart">Cart ({{ $cartCount }})</a>
         </div>
     </div>
 
@@ -145,6 +145,9 @@
                 <p class="footer__about-text">
                     Kibardjaya is a small studio crafting handmade pennants from Yogyakarta, Indonesia.
                 </p>
+                <p class="footer__about-text">
+                    +62 851 1996 0101
+                </p>
             </div>
 
             {{-- Socials --}}
@@ -176,10 +179,15 @@
                         Yogyakarta
                     </p>
                     <p class="footer__studio-hours">
+                        General business hours<br>
+                        Monday to Friday, from 09:00h to 17:00h.<br>
+                        West Indonesian Timezone, equivalent to UTC+7
+                    </p>
+                    <!-- <p class="footer__studio-hours">
                         Mon-Fri: Online<br>
                         Sat: 10-21<br>
                         Sun: 13-22
-                    </p>
+                    </p> -->
                 </div>
             </div>
         </div>

@@ -27,20 +27,22 @@ class CartController extends Controller
 
         $currentQty = $cart[$id]['qty'] ?? 0;
 
+        $requestedQty = (int) $request->input('quantity', 1);
+
         // Reject if adding would exceed available stock
-        if (($currentQty + 1) > $product->stock) {
+        if (($currentQty + $requestedQty) > $product->stock) {
             return back()->with('error', 'Stok tidak mencukupi. Tersisa ' . $product->stock . ' item.');
         }
 
         if (isset($cart[$id])) {
-            $cart[$id]['qty']++;
+            $cart[$id]['qty'] += $requestedQty;
         } else {
             $cart[$id] = [
                 'id' => $product->id,
                 'title' => $product->title,
                 'price' => $product->price,
                 'image' => $product->images[0] ?? null,
-                'qty' => 1,
+                'qty' => $requestedQty,
             ];
         }
 

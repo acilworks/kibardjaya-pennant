@@ -645,7 +645,7 @@
     }
 
     .brand-story__categories {
-        justify-content: center;
+        justify-content: start;
     }
 
     .brand-story__cat-btn {
@@ -1724,7 +1724,8 @@
 }
 
 .pdp-related__grid .product-card:last-child {
-    border-right: none;
+    /* border-right: none; */
+    border-right: 1px solid #d5d5d5;
 }
 
 /* ============================================
@@ -1859,10 +1860,12 @@
     }
 
     .pdp-related__grid .product-card:nth-child(2n) {
+        /* border-right: 1px solid #d5d5d5; */
         border-right: none;
     }
 
     .pdp-related__grid .product-card {
         border-bottom: 1px solid #d5d5d5;
+        /* border-right: 1px solid #d5d5d5; */
     }
 }
