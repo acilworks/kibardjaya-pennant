@@ -7,7 +7,7 @@
         /* Styling for the cart layout to match Figma */
         .cart-container {
             width: 100%;
-            border-top: 1px solid #d5d5d5;
+            border-top: 1px solid #1a1a1a;
         }
 
         .cart-grid {
@@ -18,7 +18,7 @@
         .cart-left,
         .cart-right {
             padding: 40px 20px;
-            border-bottom: 1px solid #d5d5d5;
+            border-bottom: 1px solid #1a1a1a;
         }
 
         .cart-left {
@@ -46,7 +46,7 @@
 
             .cart-left {
                 flex: 1;
-                border-right: 1px solid #d5d5d5;
+                border-right: 1px solid #1a1a1a;
                 padding: 60px 40px;
             }
 
@@ -58,7 +58,7 @@
 
         /* Form Styles */
         .cart-box {
-            border: 1px solid #d5d5d5;
+            border: 1px solid #1a1a1a;
             /* border: 1px solid #1c1c1c; */
             padding: 32px;
         }
@@ -75,7 +75,7 @@
         .cart-input {
             width: 100%;
             /* color: #FAFAFA; */
-            border: 1px solid #d5d5d5;
+            border: 1px solid #1a1a1a;
             /* border: 1px solid #1c1c1c; */
             padding: 14px 16px;
             font-family: 'JetBrains Mono', monospace;
@@ -140,7 +140,7 @@
         .cart-checkmark-box {
             width: 18px;
             height: 18px;
-            border: 1px solid #d5d5d5;
+            border: 1px solid #1a1a1a;
             /* border: 1px solid #1c1c1c; */
             display: flex;
             align-items: center;
@@ -159,7 +159,7 @@
 
         /* Right Side Styles */
         .cart-collection-list {
-            border: 1px solid #d5d5d5;
+            border: 1px solid #1a1a1a;
             /* border: 1px solid #1c1c1c; */
             display: flex;
             flex-direction: column;
@@ -167,7 +167,7 @@
 
         .cart-collection-header {
             background-color: #e0e0e0;
-            border-bottom: 1px solid #d5d5d5;
+            border-bottom: 1px solid #1a1a1a;
             /* border-bottom: 1px solid #1c1c1c; */
             text-align: center;
             padding: 10px;
@@ -181,7 +181,7 @@
         .cart-item {
             display: flex;
             padding: 24px;
-            border-bottom: 1px solid #d5d5d5;
+            border-bottom: 1px solid #1a1a1a;
             /* border-bottom: 1px solid #1c1c1c; */
         }
 
@@ -252,7 +252,7 @@
         }
 
         .cart-summary {
-            border: 2px solid #d5d5d5;
+            border: 2px solid #1a1a1a;
             /* border: 1px solid #1c1c1c; */
             font-family: 'JetBrains Mono', monospace;
             display: flex;
@@ -268,7 +268,7 @@
         }
 
         .cart-summary-footer {
-            border-top: 1px solid #d5d5d5;
+            border-top: 1px solid #1a1a1a;
             padding: 24px;
         }
 
@@ -306,7 +306,6 @@
         }
 
         .cart-pay-btn:hover {
-            /* background-color: #000000; */
             background-color: #ffffff;
             color: #1a1a1a;
         }
@@ -352,10 +351,10 @@
                                         <option value="Indonesia" selected>INDONESIA</option>
                                     </select>
                                     <!-- <svg class="cart-select-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                                                                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                                                                                                                                    d="M19 9l-7 7-7-7">
-                                                                                                                                                                </path>
-                                                                                                                                                            </svg> -->
+                                                                                                                                                                                                                                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                                                                                                                                                                                                                                                    d="M19 9l-7 7-7-7">
+                                                                                                                                                                                                                                                                                </path>
+                                                                                                                                                                                                                                                                            </svg> -->
                                 </div>
 
                                 <div class="cart-row">
@@ -379,10 +378,10 @@
                                             @endforeach
                                         </select>
                                         <!-- <svg class="cart-select-icon w-4 h-4" fill="none" stroke="currentColor"
-                                                                                                                                                            viewBox="0 0 24 24">
-                                                                                                                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                                                                                                                                d="M19 9l-7 7-7-7"></path>
-                                                                                                                                                        </svg> -->
+                                                                                                                                                                                                                                                                            viewBox="0 0 24 24">
+                                                                                                                                                                                                                                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                                                                                                                                                                                                                                                d="M19 9l-7 7-7-7"></path>
+                                                                                                                                                                                                                                                                        </svg> -->
                                     </div>
 
                                     <input type="text" name="postal_code" placeholder="POSTAL CODE" required class="cart-input">
