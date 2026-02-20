@@ -121,6 +121,22 @@
     stroke: #1a1a1a;
 }
 
+/* --- Cart Badge --- */
+.navbar__cart-icon {
+    position: relative;
+}
+
+.navbar__cart-badge {
+    position: absolute;
+    top: -6px;
+    right: -8px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #1a1a1a;
+    line-height: 1;
+    letter-spacing: 0;
+}
+
 /* --- Mobile Menu --- */
 .mobile-menu-btn {
     display: none;

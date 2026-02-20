@@ -65,11 +65,18 @@
                 @endauth
 
                 {{-- Cart Icon --}}
-                <a href="/cart" class="navbar__icon" title="Cart">
+                @php
+                    $cartItems = session()->get('cart', []);
+                    $cartCount = array_sum(array_column($cartItems, 'qty'));
+                @endphp
+                <a href="/cart" class="navbar__icon navbar__cart-icon" title="Cart">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                         <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
                         <path d="M16 1v6M8 1v6" />
                     </svg>
+                    @if($cartCount > 0)
+                        <span class="navbar__cart-badge">{{ $cartCount }}</span>
+                    @endif
                 </a>
             </div>
 

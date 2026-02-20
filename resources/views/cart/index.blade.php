@@ -251,7 +251,7 @@
         }
 
         .cart-summary {
-            border: 1px solid #d5d5d5;
+            border: 2px solid #d5d5d5;
             /* border: 1px solid #1c1c1c; */
             font-family: 'JetBrains Mono', monospace;
             display: flex;
@@ -289,22 +289,25 @@
         }
 
         .cart-pay-btn {
+            flex: 1;
             width: 100%;
-            background-color: #1c1c1c;
+            padding: 12px 20px;
+            background-color: #1a1a1a;
             color: #ffffff;
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 12px;
-            font-weight: 700;
-            letter-spacing: 0.2em;
+            font-size: 13px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            padding: 16px;
-            text-align: center;
+            font-weight: 600;
+            border: 2px solid #1a1a1a;
             cursor: pointer;
-            transition: background-color 0.2s;
+            transition: all 0.3s ease;
+            font-family: inherit;
         }
 
         .cart-pay-btn:hover {
-            background-color: #000000;
+            /* background-color: #000000; */
+            background-color: #ffffff;
+            color: #1a1a1a;
         }
     </style>
 @endpush
