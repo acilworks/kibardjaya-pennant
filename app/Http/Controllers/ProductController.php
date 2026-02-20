@@ -15,9 +15,11 @@ class ProductController extends Controller
 
     public function show($slug)
     {
-        $product = Product::where('slug', $slug)->firstOrFail();
+        $product = Product::with(['categoryRelation', 'subCategory'])
+            ->where('slug', $slug)
+            ->firstOrFail();
 
-        $relatedProducts = Product::where('category', $product->category)
+        $relatedProducts = Product::where('category_id', $product->category_id)
             ->where('id', '!=', $product->id)
             ->take(4)
             ->get();

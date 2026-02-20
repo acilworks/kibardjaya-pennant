@@ -36,10 +36,9 @@
             </div>
         </div>
         <div class="brand-story__categories">
-            <a href="/shop" class="brand-story__cat-btn">Pennants</a>
-            <a href="/shop" class="brand-story__cat-btn">Banners</a>
-            <a href="/shop" class="brand-story__cat-btn">Outdoor Flags</a>
-            <a href="/shop" class="brand-story__cat-btn">Pin Patches</a>
+            @foreach($categories as $category)
+                <a href="/shop" class="brand-story__cat-btn">{{ $category->name }}</a>
+            @endforeach
         </div>
     </section>
 

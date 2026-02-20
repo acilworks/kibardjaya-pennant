@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
@@ -16,6 +17,8 @@ class Product extends Model
         'is_featured',
         'images',
         'category',
+        'category_id',
+        'sub_category_id',
         'subtitle',
         'details',
     ];
@@ -27,6 +30,16 @@ class Product extends Model
     public function getIsSoldOutAttribute(): bool
     {
         return $this->stock <= 0;
+    }
+
+    public function categoryRelation(): BelongsTo
+    {
+        return $this->belongsTo(Category::class, 'category_id');
+    }
+
+    public function subCategory(): BelongsTo
+    {
+        return $this->belongsTo(SubCategory::class, 'sub_category_id');
     }
 
     public function orderItems(): HasMany

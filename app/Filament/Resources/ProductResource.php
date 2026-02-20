@@ -5,8 +5,12 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\ProductResource\Pages;
 use App\Filament\Resources\ProductResource\RelationManagers;
 use App\Models\Product;
+use App\Models\Category;
+use App\Models\SubCategory;
 use Filament\Forms;
 use Filament\Forms\Form;
+use Filament\Forms\Get;
+use Filament\Forms\Set;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
@@ -15,6 +19,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\Select;
 use Illuminate\Support\Str;
 use Filament\Forms\Components\FileUpload;
 
@@ -24,6 +29,10 @@ class ProductResource extends Resource
     protected static ?string $model = Product::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+
+    protected static ?string $navigationGroup = 'Catalog';
+
+    protected static ?int $navigationSort = 2;
 
 
     public static function form(Form $form): Form
@@ -67,10 +76,44 @@ class ProductResource extends Resource
                 Toggle::make('is_featured')
                     ->label('Featured'),
 
-                TextInput::make('category')
-                    ->label('Category Tag')
-                    ->placeholder('e.g. CAMPUSES, CITIES')
-                    ->helperText('Displayed as a tag label above the product title'),
+                Select::make('category_id')
+                    ->label('Category')
+                    ->relationship('categoryRelation', 'name')
+                    ->searchable()
+                    ->preload()
+                    ->live()
+                    ->afterStateUpdated(fn(Set $set) => $set('sub_category_id', null))
+                    ->createOptionForm([
+                        TextInput::make('name')
+                            ->required()
+                            ->live(onBlur: true)
+                            ->afterStateUpdated(fn($state, callable $set) => $set('slug', Str::slug($state))),
+                        TextInput::make('slug')
+                            ->required()
+                            ->unique('categories', 'slug'),
+                    ]),
+
+                Select::make('sub_category_id')
+                    ->label('Sub Category')
+                    ->options(fn(Get $get) => SubCategory::query()
+                        ->where('category_id', $get('category_id'))
+                        ->pluck('name', 'id'))
+                    ->searchable()
+                    ->preload()
+                    ->helperText('Displayed as category tag on product detail page')
+                    ->createOptionForm([
+                        TextInput::make('name')
+                            ->required()
+                            ->live(onBlur: true)
+                            ->afterStateUpdated(fn($state, callable $set) => $set('slug', Str::slug($state))),
+                        TextInput::make('slug')
+                            ->required()
+                            ->unique('sub_categories', 'slug'),
+                    ])
+                    ->createOptionUsing(function (array $data, Get $get): int {
+                        $data['category_id'] = $get('category_id');
+                        return SubCategory::create($data)->getKey();
+                    }),
 
                 TextInput::make('subtitle')
                     ->label('Subtitle Banner')
@@ -91,6 +134,14 @@ class ProductResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('title')
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('categoryRelation.name')
+                    ->label('Category')
+                    ->sortable()
+                    ->searchable(),
+                Tables\Columns\TextColumn::make('subCategory.name')
+                    ->label('Sub Category')
+                    ->sortable()
                     ->searchable(),
                 Tables\Columns\TextColumn::make('price')
                     ->money('IDR')

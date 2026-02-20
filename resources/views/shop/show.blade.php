@@ -40,8 +40,8 @@
             <div class="pdp__info-box">
                 <div class="pdp__info-inner">
                     {{-- Category Tag --}}
-                    @if($product->category)
-                        <span class="pdp__category">{{ $product->category }}</span>
+                    @if($product->subCategory)
+                        <span class="pdp__category">{{ $product->subCategory->name }}</span>
                     @endif
 
                     {{-- Title + Price --}}
