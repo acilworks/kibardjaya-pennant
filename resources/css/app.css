@@ -1874,3 +1874,286 @@
         /* border-right: 1px solid #d5d5d5; */
     }
 }
+
+/* ============================================
+   CHECKOUT PAY PAGE
+   ============================================ */
+
+.paypage-full {
+    border-top: 1px solid #1a1a1a;
+    background-color: #fafafa;
+    padding: 40px 0;
+}
+
+.pay-page {
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 0 20px;
+    font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+}
+
+/* --- Payment Section --- */
+.pay-section {
+    margin-bottom: 32px;
+    text-align: center;
+    border: 1px solid #1a1a1a;
+    padding: 24px;
+    background-color: #ffffff;
+}
+
+.pay-section__btn {
+    display: block;
+    width: 100%;
+    padding: 16px 24px;
+    background-color: #1a1a1a;
+    color: #ffffff;
+    font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    border: 2px solid #1a1a1a;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.pay-section__btn:hover {
+    background-color: #ffffff;
+    color: #1a1a1a;
+}
+
+.pay-section__banks {
+    margin-top: 20px;
+}
+
+.pay-section__banks img {
+    max-width: 260px;
+    height: auto;
+    margin: 0 auto;
+    display: block;
+}
+
+/* --- Order Summary Receipt --- */
+.pay-receipt {
+    border: 1px solid #1a1a1a;
+    padding: 32px 28px;
+    background-color: #ffffff;
+}
+
+.pay-receipt__header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.pay-receipt__order-number {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.pay-receipt__label-bold {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #1a1a1a;
+}
+
+.pay-receipt__value-bold {
+    font-size: 14px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #1a1a1a;
+}
+
+.pay-receipt__logo {
+    width: 50px;
+    height: auto;
+    object-fit: contain;
+}
+
+/* Dividers */
+.pay-receipt__divider-double {
+    border: none;
+    border-top: 3px double #1a1a1a;
+    margin: 16px 0;
+}
+
+.pay-receipt__divider-dashed {
+    border: none;
+    border-top: 1px dashed #999;
+    margin: 20px 0;
+}
+
+/* Section Titles */
+.pay-receipt__section-title {
+    font-size: 13px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+}
+
+/* Delivery Info Table */
+.pay-receipt__info-table {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.pay-receipt__info-row {
+    display: grid;
+    grid-template-columns: 140px 12px 1fr;
+    gap: 4px;
+    font-size: 11px;
+    line-height: 1.6;
+    color: #1a1a1a;
+}
+
+.pay-receipt__info-label {
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.pay-receipt__info-sep {
+    font-weight: 500;
+    text-align: center;
+}
+
+.pay-receipt__info-value {
+    font-weight: 400;
+    word-break: break-word;
+}
+
+/* Items Table */
+.pay-receipt__items-header {
+    display: grid;
+    grid-template-columns: 1fr 50px 90px 100px;
+    gap: 8px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #1a1a1a;
+    padding-bottom: 6px;
+}
+
+.pay-receipt__items-divider {
+    border-top: 1px solid #d5d5d5;
+    margin-bottom: 12px;
+}
+
+.pay-receipt__items-row {
+    display: grid;
+    grid-template-columns: 1fr 50px 90px 100px;
+    gap: 8px;
+    font-size: 11px;
+    line-height: 1.6;
+    color: #1a1a1a;
+    margin-bottom: 8px;
+}
+
+.pay-receipt__col-qty {
+    text-align: center;
+}
+
+.pay-receipt__col-price,
+.pay-receipt__col-subtotal {
+    text-align: right;
+}
+
+/* Totals */
+.pay-receipt__totals {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: 8px;
+}
+
+.pay-receipt__totals-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 11px;
+    color: #1a1a1a;
+}
+
+.pay-receipt__totals-row--grand {
+    font-weight: 800;
+    font-size: 12px;
+    margin-top: 6px;
+}
+
+.pay-receipt__note {
+    text-align: center;
+    margin-top: 40px;
+    margin-bottom: -20px;
+    font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    /* padding: 30px 0; */
+    /* border: 1px solid #d5d5d5; */
+    /* background-color: #f5f5f0; */
+}
+
+/* Thank You */
+.pay-thankyou {
+    text-align: center;
+    margin-top: 24px;
+    font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    padding: 14px 0;
+    /* border: 1px solid #d5d5d5; */
+    /* background-color: #f5f5f0; */
+}
+
+/* --- Responsive --- */
+@media (max-width: 768px) {
+    .paypage-full {
+        padding: 24px 0 40px;
+    }
+
+    .pay-page {
+        margin: 0 auto;
+        padding: 0 16px;
+    }
+
+    .pay-receipt {
+        padding: 24px 18px;
+    }
+
+    .pay-receipt__info-row {
+        grid-template-columns: 110px 12px 1fr;
+        font-size: 10px;
+    }
+
+    .pay-receipt__items-header,
+    .pay-receipt__items-row {
+        grid-template-columns: 1fr 35px 75px 80px;
+        font-size: 10px;
+        gap: 4px;
+    }
+
+    .pay-receipt__totals-row {
+        font-size: 10px;
+    }
+
+    .pay-receipt__totals-row--grand {
+        font-size: 11px;
+    }
+
+    .pay-section__banks img {
+        max-width: 220px;
+    }
+}

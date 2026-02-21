@@ -21,6 +21,12 @@ class Order extends Model
         'customer_email',
         'order_status',
         'tracking_number',
+        'phone',
+        'note',
+        'address',
+        'city',
+        'postal_code',
+        'shipping_cost',
     ];
 
     public function items()

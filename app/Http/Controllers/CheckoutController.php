@@ -35,8 +35,14 @@ class CheckoutController extends Controller
         $order = Order::create([
             'order_number' => 'KIBAR-' . strtoupper(Str::random(8)),
             'total_amount' => $grandTotal,
+            'shipping_cost' => $shippingCost,
             'customer_name' => trim($request->first_name . ' ' . $request->last_name),
             'customer_email' => $request->email,
+            'phone' => $request->phone,
+            'note' => $request->note,
+            'address' => $request->address,
+            'city' => $shippingProvince ? $shippingProvince->province : null,
+            'postal_code' => $request->postal_code,
         ]);
 
         foreach ($cart as $item) {

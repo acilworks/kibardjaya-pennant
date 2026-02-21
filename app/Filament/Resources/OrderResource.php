@@ -9,6 +9,7 @@ use App\Models\Order;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Textarea;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Section;
 use Filament\Forms\Components\Grid;
@@ -47,6 +48,33 @@ class OrderResource extends Resource
                             ->prefix('Rp')
                             ->disabled()
                             ->label('Total Amount'),
+                        TextInput::make('shipping_cost')
+                            ->prefix('Rp')
+                            ->disabled()
+                            ->label('Shipping Cost'),
+                    ]),
+                ]),
+
+            Section::make('Delivery Information')
+                ->schema([
+                    Grid::make(2)->schema([
+                        TextInput::make('phone')
+                            ->disabled()
+                            ->label('Phone Number'),
+                        TextInput::make('city')
+                            ->disabled()
+                            ->label('City/Province'),
+                        TextInput::make('postal_code')
+                            ->disabled()
+                            ->label('Postal Code'),
+                        Textarea::make('address')
+                            ->disabled()
+                            ->columnSpanFull()
+                            ->label('Full Address'),
+                        Textarea::make('note')
+                            ->disabled()
+                            ->columnSpanFull()
+                            ->label('Customer Note'),
                     ]),
                 ]),
 
