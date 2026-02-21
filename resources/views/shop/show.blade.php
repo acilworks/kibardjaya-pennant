@@ -10,7 +10,29 @@
     {{-- ============================================
     SECTION 1: PRODUCT HERO
     ============================================ --}}
-    <section class="pdp" x-data="{ qty: 1 }">
+    <section class="pdp" x-data="{
+                        qty: 1,
+                        selectedColorIndex: null,
+                        selectedColorName: '',
+                        colorVariants: {{ Js::from($product->colorVariants->map(fn($v) => ['name' => $v->color_name, 'code' => $v->color_code, 'image' => $v->image ? asset('storage/' . $v->image) : null])) }},
+                        swiperInstance: null,
+                        originalFirstSlide: '',
+                        selectColor(index) {
+                            this.selectedColorIndex = index;
+                            this.selectedColorName = this.colorVariants[index].name;
+                            const img = this.colorVariants[index].image;
+                            if (img && this.swiperInstance) {
+                                const firstSlideImg = this.swiperInstance.slides[0]?.querySelector('img');
+                                if (firstSlideImg) {
+                                    if (!this.originalFirstSlide) {
+                                        this.originalFirstSlide = firstSlideImg.src;
+                                    }
+                                    firstSlideImg.src = img;
+                                }
+                                this.swiperInstance.slideTo(0);
+                            }
+                        }
+                    }">
         {{-- Left: Product Photos Swiper --}}
         <div class="pdp__gallery">
             <div class="swiper pdp__swiper">
@@ -52,7 +74,7 @@
 
                     {{-- Description --}}
                     @if($product->description)
-                        <p class="pdp__desc">{{ $product->description }}</p>
+                        <p class="pdp__desc">{!! nl2br(e($product->description)) !!}</p>
                     @endif
 
                     {{-- Subtitle Banner --}}
@@ -73,6 +95,24 @@
                                     @endif
                                 @endforeach
                             </ul>
+                        </div>
+                    @endif
+
+                    {{-- Color Variants --}}
+                    @if($product->colorVariants->count() > 0)
+                        <div class="pdp__colors">
+                            <span class="pdp__colors-label">
+                                COLOR: <span
+                                    x-text="selectedColorName || '{{ $product->colorVariants->first()->color_name }}'"></span>
+                            </span>
+                            <div class="pdp__colors-swatches">
+                                <template x-for="(variant, index) in colorVariants" :key="index">
+                                    <button class="pdp__color-swatch"
+                                        :class="{ 'pdp__color-swatch--active': selectedColorIndex === index }"
+                                        :style="'background-color: ' + variant.code" @click="selectColor(index)"
+                                        :title="variant.name"></button>
+                                </template>
+                            </div>
                         </div>
                     @endif
                 </div>
@@ -277,16 +317,25 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
-            // Product Photos Swiper
-            new Swiper('.pdp__swiper', {
+            // Product Photos Swiper — store instance in Alpine for color variant swap
+            const pdpSwiper = new Swiper('.pdp__swiper', {
                 slidesPerView: 1,
                 spaceBetween: 0,
                 pagination: {
                     el: '.pdp__pagination',
                     clickable: true,
                 },
-                loop: true,
+                loop: false,
             });
+
+            // Pass swiper instance to Alpine.js component
+            const pdpSection = document.querySelector('.pdp');
+            if (pdpSection && pdpSection.__x) {
+                pdpSection.__x.$data.swiperInstance = pdpSwiper;
+            } else if (pdpSection) {
+                // Alpine v3 approach
+                pdpSection._x_dataStack && (pdpSection._x_dataStack[0].swiperInstance = pdpSwiper);
+            }
 
             // Lifestyle Gallery Swiper
             new Swiper('.pdp-lifestyle__swiper', {

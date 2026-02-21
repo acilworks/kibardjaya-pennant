@@ -42,6 +42,16 @@ class Product extends Model
         return $this->belongsTo(SubCategory::class, 'sub_category_id');
     }
 
+    public function colorVariants(): HasMany
+    {
+        return $this->hasMany(ProductColorVariant::class)->orderBy('sort_order');
+    }
+
+    public function getHasColorVariantsAttribute(): bool
+    {
+        return $this->colorVariants->isNotEmpty();
+    }
+
     public function orderItems(): HasMany
     {
         return $this->hasMany(\App\Models\OrderItem::class);
