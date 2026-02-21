@@ -2156,4 +2156,39 @@
     .pay-section__banks img {
         max-width: 220px;
     }
+
+    .pay-receipt__stamp img {
+        width: 150px;
+        height: auto;
+    }
+}
+
+/* --- Success Page: Stamp & Paid --- */
+.pay-receipt__totals-wrap {
+    position: relative;
+}
+
+.pay-receipt__stamp {
+    position: absolute;
+    bottom: 0;
+    left: 80%;
+    transform: translateX(-50%) rotate(-10deg);
+    opacity: 0.8;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.pay-receipt__stamp img {
+    width: 300px;
+    height: auto;
+}
+
+.pay-receipt__paid-label {
+    text-align: right;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1a1a1a;
+    margin-top: 2px;
 }

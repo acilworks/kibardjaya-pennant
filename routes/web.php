@@ -36,5 +36,6 @@ Route::get('/checkout', [CheckoutController::class, 'index']);
 Route::post('/checkout', [CheckoutController::class, 'process']);
 Route::get('/checkout/success', function () {
     session()->forget('cart');
-    return view('checkout.success');
+    $order = \App\Models\Order::with('items.product')->latest()->first();
+    return view('checkout.success', compact('order'));
 });
