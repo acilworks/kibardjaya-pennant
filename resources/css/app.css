@@ -507,7 +507,7 @@
     position: relative;
     overflow: hidden;
     background: #f5f5f0;
-    flex: 1;
+    /* Removed flex: 1 so image doesn't stretch and misalign borders */
 }
 
 .product-card__image {
@@ -561,6 +561,9 @@
     padding: 14px 16px;
     /* border-top: 1px solid #1a1a1a; */
     border-top: 1px solid #d5d5d5;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
 }
 
 .product-card__name {
@@ -575,6 +578,7 @@
     font-size: 12px;
     color: #666;
     font-weight: 400;
+    margin-top: auto;
 }
 
 /* ============================================
@@ -1004,7 +1008,9 @@
     font-size: 12px;
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.7);
-    max-width: 160px;
+    max-width: 320px;
+    text-transform: capitalize;
+
 }
 
 .footer__col-socials {

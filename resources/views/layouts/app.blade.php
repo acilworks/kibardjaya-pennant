@@ -144,8 +144,12 @@
                 <span class="footer__col-label">About Us</span>
                 <p class="footer__about-text">
                     Kibardjaya is a small studio crafting handmade pennants from Yogyakarta, Indonesia.
-                </p>
-                <p class="footer__about-text">
+                    <br>
+                    <br>
+                    We believe that every pennant tells a story, and we pour our heart and soul into every piece we
+                    create.
+                    <br>
+                    <br>
                     +62 851 1996 0101
                 </p>
             </div>

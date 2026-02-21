@@ -26,7 +26,7 @@
         }
 
         .cart-left-inner {
-            /* background-color: #FAFAFA; */
+            background-color: #ffffff;
         }
 
         .cart-left-inner,
@@ -354,10 +354,10 @@
                                         orders, please contact us
                                         directly for shipping estimates and customs information.</label>
                                     <!-- <svg class="cart-select-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                                                                                                                                                                                                                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                                                                                                                                                                                                                                                                                    d="M19 9l-7 7-7-7">
-                                                                                                                                                                                                                                                                                                                </path>
-                                                                                                                                                                                                                                                                                                            </svg> -->
+                                                                                                                                                                                                                                                                                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                                                                                                                                                                                                                                                                                            d="M19 9l-7 7-7-7">
+                                                                                                                                                                                                                                                                                                                        </path>
+                                                                                                                                                                                                                                                                                                                    </svg> -->
                                 </div>
 
                                 <div class="cart-row">
@@ -381,10 +381,10 @@
                                             @endforeach
                                         </select>
                                         <!-- <svg class="cart-select-icon w-4 h-4" fill="none" stroke="currentColor"
-                                                                                                                                                                                                                                                                                                            viewBox="0 0 24 24">
-                                                                                                                                                                                                                                                                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                                                                                                                                                                                                                                                                                d="M19 9l-7 7-7-7"></path>
-                                                                                                                                                                                                                                                                                                        </svg> -->
+                                                                                                                                                                                                                                                                                                                    viewBox="0 0 24 24">
+                                                                                                                                                                                                                                                                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                                                                                                                                                                                                                                                                                        d="M19 9l-7 7-7-7"></path>
+                                                                                                                                                                                                                                                                                                                </svg> -->
                                     </div>
 
                                     <input type="text" name="postal_code" placeholder="POSTAL CODE" required class="cart-input">
