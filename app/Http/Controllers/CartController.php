@@ -25,7 +25,21 @@ class CartController extends Controller
 
         $cart = session()->get('cart', []);
 
-        $currentQty = $cart[$id]['qty'] ?? 0;
+        $variationId = $request->input('color_variant_id');
+        $variationName = '';
+        $variationImage = '';
+
+        if ($variationId) {
+            $variation = \App\Models\ProductColorVariant::find($variationId);
+            if ($variation) {
+                $variationName = $variation->color_name;
+                $variationImage = $variation->image;
+            }
+        }
+
+        $cartKey = $variationId ? $id . '_' . $variationId : $id;
+
+        $currentQty = $cart[$cartKey]['qty'] ?? 0;
 
         $requestedQty = (int) $request->input('quantity', 1);
 
@@ -34,15 +48,16 @@ class CartController extends Controller
             return back()->with('error', 'Stok tidak mencukupi. Tersisa ' . $product->stock . ' item.');
         }
 
-        if (isset($cart[$id])) {
-            $cart[$id]['qty'] += $requestedQty;
+        if (isset($cart[$cartKey])) {
+            $cart[$cartKey]['qty'] += $requestedQty;
         } else {
-            $cart[$id] = [
+            $cart[$cartKey] = [
                 'id' => $product->id,
                 'title' => $product->title,
                 'price' => $product->price,
-                'image' => $product->images[0] ?? null,
+                'image' => $variationImage ? $variationImage : ($product->images[0] ?? null),
                 'qty' => $requestedQty,
+                'variation_name' => $variationName,
             ];
         }
 
@@ -53,10 +68,11 @@ class CartController extends Controller
 
     public function update(Request $request, $id)
     {
-        $product = Product::find($id);
         $cart = session()->get('cart');
 
         if (isset($cart[$id])) {
+            $productId = $cart[$id]['id'];
+            $product = Product::find($productId);
             // Validate against stock
             if ($product && $request->qty > $product->stock) {
                 return back()->with('error', 'Stok tidak mencukupi. Tersisa ' . $product->stock . ' item.');

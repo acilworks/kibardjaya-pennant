@@ -93,7 +93,12 @@
                 {{-- Items --}}
                 @foreach($order->items as $item)
                     <div class="pay-receipt__items-row">
-                        <span class="pay-receipt__col-item">{{ $item->product->title ?? 'Product' }}</span>
+                        <span class="pay-receipt__col-item">
+                            {{ $item->product->title ?? 'Product' }}
+                            @if($item->variation_name)
+                                <br><span style="font-size: 0.85em; color: #757575;">({{ $item->variation_name }})</span>
+                            @endif
+                        </span>
                         <span class="pay-receipt__col-qty">{{ $item->quantity }}</span>
                         <span class="pay-receipt__col-price">Rp.{{ number_format($item->price, 0, ',', '.') }}</span>
                         <span

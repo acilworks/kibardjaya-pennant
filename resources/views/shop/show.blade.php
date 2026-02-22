@@ -11,28 +11,28 @@
     SECTION 1: PRODUCT HERO
     ============================================ --}}
     <section class="pdp" x-data="{
-                        qty: 1,
-                        selectedColorIndex: null,
-                        selectedColorName: '',
-                        colorVariants: {{ Js::from($product->colorVariants->map(fn($v) => ['name' => $v->color_name, 'code' => $v->color_code, 'image' => $v->image ? asset('storage/' . $v->image) : null])) }},
-                        swiperInstance: null,
-                        originalFirstSlide: '',
-                        selectColor(index) {
-                            this.selectedColorIndex = index;
-                            this.selectedColorName = this.colorVariants[index].name;
-                            const img = this.colorVariants[index].image;
-                            if (img && this.swiperInstance) {
-                                const firstSlideImg = this.swiperInstance.slides[0]?.querySelector('img');
-                                if (firstSlideImg) {
-                                    if (!this.originalFirstSlide) {
-                                        this.originalFirstSlide = firstSlideImg.src;
+                            qty: 1,
+                            selectedColorIndex: null,
+                            selectedColorName: '',
+                            colorVariants: {{ Js::from($product->colorVariants->map(fn($v) => ['id' => $v->id, 'name' => $v->color_name, 'code' => $v->color_code, 'image' => $v->image ? asset('storage/' . $v->image) : null])) }},
+                            swiperInstance: null,
+                            originalFirstSlide: '',
+                            selectColor(index) {
+                                this.selectedColorIndex = index;
+                                this.selectedColorName = this.colorVariants[index].name;
+                                const img = this.colorVariants[index].image;
+                                if (img && this.swiperInstance) {
+                                    const firstSlideImg = this.swiperInstance.slides[0]?.querySelector('img');
+                                    if (firstSlideImg) {
+                                        if (!this.originalFirstSlide) {
+                                            this.originalFirstSlide = firstSlideImg.src;
+                                        }
+                                        firstSlideImg.src = img;
                                     }
-                                    firstSlideImg.src = img;
+                                    this.swiperInstance.slideTo(0);
                                 }
-                                this.swiperInstance.slideTo(0);
                             }
-                        }
-                    }">
+                        }">
         {{-- Left: Product Photos Swiper --}}
         <div class="pdp__gallery">
             <div class="swiper pdp__swiper">
@@ -128,6 +128,8 @@
                     @else
                         <form action="/cart/add/{{ $product->id }}" method="POST" class="pdp__actions-inner">
                             @csrf
+                            <input type="hidden" name="color_variant_id"
+                                :value="colorVariants[selectedColorIndex] ? colorVariants[selectedColorIndex].id : ''">
                             <div class="pdp__qty">
                                 <button type="button" class="pdp__qty-btn" @click="qty = Math.max(1, qty - 1)">−</button>
                                 <input type="number" name="quantity" x-model="qty" min="1" class="pdp__qty-input" readonly>

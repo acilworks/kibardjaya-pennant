@@ -409,7 +409,7 @@
                             </div>
 
                             @php $orderValue = 0; @endphp
-                            @foreach($cart as $item)
+                            @foreach($cart as $key => $item)
                                 @php $orderValue += $item['price'] * $item['qty']; @endphp
                                 <div class="cart-item">
                                     @if(isset($item['image']) && $item['image'])
@@ -421,13 +421,18 @@
 
                                     <div class="cart-item-info">
                                         <div class="cart-item-top">
-                                            <h3 class="cart-item-title">{{ $item['title'] }}</h3>
+                                            <h3 class="cart-item-title">
+                                                {{ $item['title'] }}
+                                                @if(!empty($item['variation_name']))
+                                                    <br><span style="font-weight: 400;">({{ $item['variation_name'] }})</span>
+                                                @endif
+                                            </h3>
                                             <span class="cart-item-price">Rp.
                                                 {{ number_format($item['price'], 0, ',', '.') }}</span>
                                         </div>
                                         <div class="cart-item-bottom">
                                             <div class="cart-qty-ctrl">
-                                                <form action="/cart/update/{{ $item['id'] }}" method="POST"
+                                                <form action="/cart/update/{{ $key }}" method="POST"
                                                     class="inline m-0 p-0 line-height-1" style="line-height:1;">
                                                     @csrf
                                                     <input type="hidden" name="qty" value="{{ max(1, $item['qty'] - 1) }}">
@@ -437,7 +442,7 @@
 
                                                 <span>{{ $item['qty'] }}</span>
 
-                                                <form action="/cart/update/{{ $item['id'] }}" method="POST"
+                                                <form action="/cart/update/{{ $key }}" method="POST"
                                                     class="inline m-0 p-0 line-height-1" style="line-height:1;">
                                                     @csrf
                                                     <input type="hidden" name="qty" value="{{ $item['qty'] + 1 }}">
@@ -445,7 +450,7 @@
                                                         class="cart-qty-btn bg-transparent border-0 p-0">+</button>
                                                 </form>
                                             </div>
-                                            <form action="/cart/remove/{{ $item['id'] }}" method="POST" style="line-height:1;">
+                                            <form action="/cart/remove/{{ $key }}" method="POST" style="line-height:1;">
                                                 @csrf
                                                 <button type="submit" class="cart-remove-btn bg-transparent border-0 p-0">
                                                     <svg width="18" height="20" viewBox="0 0 24 24" fill="none"

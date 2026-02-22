@@ -23,10 +23,21 @@ class ItemsRelationManager extends RelationManager
                 Forms\Components\Placeholder::make('product_image')
                     ->label('Product Image')
                     ->content(function ($record) {
-                        if (!$record || !$record->product || !$record->product->images) {
+                        if (!$record || !$record->product) {
                             return 'No image';
                         }
-                        $image = is_array($record->product->images) ? $record->product->images[0] : null;
+                        $image = null;
+                        if ($record->variation_name) {
+                            $variant = \App\Models\ProductColorVariant::where('product_id', $record->product_id)
+                                ->where('color_name', $record->variation_name)
+                                ->first();
+                            if ($variant && $variant->image) {
+                                $image = $variant->image;
+                            }
+                        }
+                        if (!$image && $record->product->images) {
+                            $image = is_array($record->product->images) ? $record->product->images[0] : null;
+                        }
                         if (!$image)
                             return 'No image';
                         return new \Illuminate\Support\HtmlString(
@@ -36,7 +47,7 @@ class ItemsRelationManager extends RelationManager
                     ->columnSpanFull(),
                 Forms\Components\Placeholder::make('product_title')
                     ->label('Product')
-                    ->content(fn($record) => $record?->product?->title ?? '-'),
+                    ->content(fn($record) => ($record?->product?->title ?? '-') . ($record?->variation_name ? ' (' . $record->variation_name . ')' : '')),
                 Forms\Components\Placeholder::make('quantity_display')
                     ->label('Quantity')
                     ->content(fn($record) => $record?->quantity ?? '-'),
@@ -60,8 +71,16 @@ class ItemsRelationManager extends RelationManager
                     ->circular()
                     ->size(40)
                     ->getStateUsing(function ($record) {
-                        if (!$record->product || !$record->product->images) {
+                        if (!$record->product) {
                             return null;
+                        }
+                        if ($record->variation_name) {
+                            $variant = \App\Models\ProductColorVariant::where('product_id', $record->product_id)
+                                ->where('color_name', $record->variation_name)
+                                ->first();
+                            if ($variant && $variant->image) {
+                                return asset('storage/' . $variant->image);
+                            }
                         }
                         $images = $record->product->images;
                         if (is_array($images) && count($images) > 0) {
@@ -71,7 +90,8 @@ class ItemsRelationManager extends RelationManager
                     }),
                 Tables\Columns\TextColumn::make('product.title')
                     ->label('Product')
-                    ->searchable(),
+                    ->searchable()
+                    ->formatStateUsing(fn(string $state, $record) => $state . ($record->variation_name ? ' (' . $record->variation_name . ')' : '')),
                 Tables\Columns\TextColumn::make('quantity'),
                 Tables\Columns\TextColumn::make('price')
                     ->money('IDR', true),
