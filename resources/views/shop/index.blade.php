@@ -22,7 +22,17 @@
                 @endif
 
                 <h3 class="font-semibold">{{ $product->title }}</h3>
-                <p class="mt-2 font-bold">Rp {{ number_format($product->price) }}</p>
+                <div class="mt-2 flex justify-between items-center">
+                    <p class="font-bold">Rp {{ number_format($product->price, 0, ',', '.') }}</p>
+                    @if($product->colorVariants->count() > 0)
+                        <div class="flex gap-1">
+                            @foreach($product->colorVariants as $variant)
+                                <span class="w-3 h-3 rounded-full border border-black"
+                                    style="background-color: {{ $variant->color_code }};"></span>
+                            @endforeach
+                        </div>
+                    @endif
+                </div>
             </a>
         @endforeach
     </div>

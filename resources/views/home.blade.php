@@ -69,7 +69,18 @@
                     @endif
                     <div class="product-card__info">
                         <h3 class="product-card__name">{{ $product->title }}</h3>
-                        <p class="product-card__price">Rp. {{ number_format($product->price, 0, ',', '.') }},00</p>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+                            <p class="product-card__price" style="margin: 0;">Rp.
+                                {{ number_format($product->price, 0, ',', '.') }},00</p>
+                            @if($product->colorVariants->count() > 0)
+                                <div style="display: flex; gap: 4px;">
+                                    @foreach($product->colorVariants as $variant)
+                                        <span
+                                            style="width: 12px; height: 12px; border-radius: 50%; background-color: {{ $variant->color_code }}; border: 1px solid #1a1a1a;"></span>
+                                    @endforeach
+                                </div>
+                            @endif
+                        </div>
                     </div>
                 </a>
             @endforeach

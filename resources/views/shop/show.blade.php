@@ -11,28 +11,28 @@
     SECTION 1: PRODUCT HERO
     ============================================ --}}
     <section class="pdp" x-data="{
-                            qty: 1,
-                            selectedColorIndex: null,
-                            selectedColorName: '',
-                            colorVariants: {{ Js::from($product->colorVariants->map(fn($v) => ['id' => $v->id, 'name' => $v->color_name, 'code' => $v->color_code, 'image' => $v->image ? asset('storage/' . $v->image) : null])) }},
-                            swiperInstance: null,
-                            originalFirstSlide: '',
-                            selectColor(index) {
-                                this.selectedColorIndex = index;
-                                this.selectedColorName = this.colorVariants[index].name;
-                                const img = this.colorVariants[index].image;
-                                if (img && this.swiperInstance) {
-                                    const firstSlideImg = this.swiperInstance.slides[0]?.querySelector('img');
-                                    if (firstSlideImg) {
-                                        if (!this.originalFirstSlide) {
-                                            this.originalFirstSlide = firstSlideImg.src;
+                                qty: 1,
+                                selectedColorIndex: null,
+                                selectedColorName: '',
+                                colorVariants: {{ Js::from($product->colorVariants->map(fn($v) => ['id' => $v->id, 'name' => $v->color_name, 'code' => $v->color_code, 'image' => $v->image ? asset('storage/' . $v->image) : null])) }},
+                                swiperInstance: null,
+                                originalFirstSlide: '',
+                                selectColor(index) {
+                                    this.selectedColorIndex = index;
+                                    this.selectedColorName = this.colorVariants[index].name;
+                                    const img = this.colorVariants[index].image;
+                                    if (img && this.swiperInstance) {
+                                        const firstSlideImg = this.swiperInstance.slides[0]?.querySelector('img');
+                                        if (firstSlideImg) {
+                                            if (!this.originalFirstSlide) {
+                                                this.originalFirstSlide = firstSlideImg.src;
+                                            }
+                                            firstSlideImg.src = img;
                                         }
-                                        firstSlideImg.src = img;
+                                        this.swiperInstance.slideTo(0);
                                     }
-                                    this.swiperInstance.slideTo(0);
                                 }
-                            }
-                        }">
+                            }">
         {{-- Left: Product Photos Swiper --}}
         <div class="pdp__gallery">
             <div class="swiper pdp__swiper">
@@ -306,7 +306,18 @@
                         @endif
                         <div class="product-card__info">
                             <h3 class="product-card__name">{{ $related->title }}</h3>
-                            <p class="product-card__price">Rp. {{ number_format($related->price, 0, ',', '.') }},00</p>
+                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+                                <p class="product-card__price" style="margin: 0;">Rp.
+                                    {{ number_format($related->price, 0, ',', '.') }},00</p>
+                                @if($related->colorVariants->count() > 0)
+                                    <div style="display: flex; gap: 4px;">
+                                        @foreach($related->colorVariants as $variant)
+                                            <span
+                                                style="width: 12px; height: 12px; border-radius: 50%; background-color: {{ $variant->color_code }}; border: 1px solid #1a1a1a;"></span>
+                                        @endforeach
+                                    </div>
+                                @endif
+                            </div>
                         </div>
                     </a>
                 @endforeach
