@@ -153,6 +153,11 @@ class OrderResource extends Resource
                     ->label('Order Status'),
             ])
             ->actions([
+                Tables\Actions\Action::make('invoice')
+                    ->label('Invoice')
+                    ->icon('heroicon-o-printer')
+                    ->url(fn(Order $record) => route('admin.order.invoice', $record))
+                    ->openUrlInNewTab(),
                 Tables\Actions\EditAction::make(),
             ])
             ->bulkActions([

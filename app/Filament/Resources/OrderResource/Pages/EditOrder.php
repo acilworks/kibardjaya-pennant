@@ -13,6 +13,11 @@ class EditOrder extends EditRecord
     protected function getHeaderActions(): array
     {
         return [
+            Actions\Action::make('invoice')
+                ->label('Print Invoice')
+                ->icon('heroicon-o-printer')
+                ->url(fn() => route('admin.order.invoice', $this->record))
+                ->openUrlInNewTab(),
             Actions\DeleteAction::make(),
         ];
     }

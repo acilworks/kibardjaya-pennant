@@ -58,3 +58,8 @@ Route::get('/checkout/success', function () {
 
     return view('checkout.success', compact('order'));
 })->name('checkout.success');
+
+Route::get('/admin/orders/{order}/invoice', function (\App\Models\Order $order) {
+    $order->load('items.product');
+    return view('admin.invoice', compact('order'));
+})->middleware(['auth'])->name('admin.order.invoice');
