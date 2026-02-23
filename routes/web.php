@@ -34,8 +34,27 @@ Route::post('/cart/remove/{id}', [CartController::class, 'remove']);
 
 Route::get('/checkout', [CheckoutController::class, 'index']);
 Route::post('/checkout', [CheckoutController::class, 'process']);
-Route::get('/checkout/success', function () {
-    session()->forget('cart');
-    $order = \App\Models\Order::with('items.product')->latest()->first();
-    return view('checkout.success', compact('order'));
+
+Route::post('/checkout/payment-complete', function (\Illuminate\Http\Request $request) {
+    $order = \App\Models\Order::where('order_number', $request->order_number)->first();
+    if ($order) {
+        session()->put('checkout_success_order_id', $order->id);
+    }
+    return response()->json(['success' => true]);
 });
+Route::get('/checkout/success', function () {
+    // Prevent direct access — only allow if redirected from payment callback
+    $orderId = session('checkout_success_order_id');
+    if (!$orderId) {
+        return redirect('/');
+    }
+
+    session()->forget('cart');
+    $order = \App\Models\Order::with('items.product')->find($orderId);
+
+    if (!$order) {
+        return redirect('/');
+    }
+
+    return view('checkout.success', compact('order'));
+})->name('checkout.success');

@@ -149,7 +149,16 @@
         document.getElementById('pay-button').onclick = function () {
             snap.pay('{{ $snapToken }}', {
                 onSuccess: function () {
-                    window.location.href = '/checkout/success';
+                    fetch('/checkout/payment-complete', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': '{{ csrf_token() }}'
+                        },
+                        body: JSON.stringify({ order_number: '{{ $order->order_number }}' })
+                    }).then(function () {
+                        window.location.href = '/checkout/success';
+                    });
                 }
             });
         };
