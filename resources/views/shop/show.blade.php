@@ -11,28 +11,20 @@
     SECTION 1: PRODUCT HERO
     ============================================ --}}
     <section class="pdp" x-data="{
-                                        qty: 1,
-                                        selectedColorIndex: null,
-                                        selectedColorName: '',
-                                        colorVariants: {{ Js::from($product->colorVariants->map(fn($v) => ['id' => $v->id, 'name' => $v->color_name, 'code' => $v->color_code, 'image' => $v->image ? asset('storage/' . $v->image) : null])) }},
-                                        swiperInstance: null,
-                                        originalFirstSlide: '',
-                                        selectColor(index) {
-                                            this.selectedColorIndex = index;
-                                            this.selectedColorName = this.colorVariants[index].name;
-                                            const img = this.colorVariants[index].image;
-                                            if (img && this.swiperInstance) {
-                                                const firstSlideImg = this.swiperInstance.slides[0]?.querySelector('img');
-                                                if (firstSlideImg) {
-                                                    if (!this.originalFirstSlide) {
-                                                        this.originalFirstSlide = firstSlideImg.src;
-                                                    }
-                                                    firstSlideImg.src = img;
+                                            qty: 1,
+                                            selectedColorIndex: null,
+                                            selectedColorName: '',
+                                            colorVariants: {{ Js::from($product->colorVariants->map(fn($v) => ['id' => $v->id, 'name' => $v->color_name, 'code' => $v->color_code, 'image' => $v->image ? asset('storage/' . $v->image) : null])) }},
+                                            swiperInstance: null,
+                                            variantSlideMap: {},
+                                            selectColor(index) {
+                                                this.selectedColorIndex = index;
+                                                this.selectedColorName = this.colorVariants[index].name;
+                                                if (this.swiperInstance && this.variantSlideMap[index] !== undefined) {
+                                                    this.swiperInstance.slideTo(this.variantSlideMap[index]);
                                                 }
-                                                this.swiperInstance.slideTo(0);
                                             }
-                                        }
-                                    }">
+                                        }">
         {{-- Left: Product Photos Swiper --}}
         <div class="pdp__gallery">
             <div class="swiper pdp__swiper">
@@ -52,6 +44,18 @@
                             </div>
                         @endforeach
                     @endif
+                    {{-- Variant image slides --}}
+                    @foreach($product->colorVariants as $variant)
+                        @if($variant->image)
+                            <div class="swiper-slide" data-variant-index="{{ $loop->index }}">
+                                <div class="pdp__gallery-item">
+                                    <img src="{{ asset('storage/' . $variant->image) }}"
+                                        alt="{{ $product->title }} - {{ $variant->color_name }}"
+                                        class="pdp__gallery-img {{ $product->is_sold_out ? 'pdp__gallery-img--soldout' : '' }}">
+                                </div>
+                            </div>
+                        @endif
+                    @endforeach
                 </div>
                 <div class="swiper-pagination pdp__pagination"></div>
             </div>
@@ -102,7 +106,7 @@
                     @if($product->colorVariants->count() > 0)
                         <div class="pdp__colors">
                             <span class="pdp__colors-label">
-                                COLOR: <span
+                                VARIANT: <span
                                     x-text="selectedColorName || '{{ $product->colorVariants->first()->color_name }}'"></span>
                             </span>
                             <div class="pdp__colors-swatches">
@@ -342,13 +346,18 @@
                 loop: false,
             });
 
-            // Pass swiper instance to Alpine.js component
+            // Pass swiper instance to Alpine.js component & build variant slide map
             const pdpSection = document.querySelector('.pdp');
-            if (pdpSection && pdpSection.__x) {
-                pdpSection.__x.$data.swiperInstance = pdpSwiper;
-            } else if (pdpSection) {
-                // Alpine v3 approach
-                pdpSection._x_dataStack && (pdpSection._x_dataStack[0].swiperInstance = pdpSwiper);
+            const alpineData = pdpSection?._x_dataStack?.[0];
+            if (alpineData) {
+                alpineData.swiperInstance = pdpSwiper;
+                // Build variantSlideMap: { variantIndex: slideIndex }
+                pdpSwiper.slides.forEach((slide, slideIdx) => {
+                    const vi = slide.dataset.variantIndex;
+                    if (vi !== undefined) {
+                        alpineData.variantSlideMap[parseInt(vi)] = slideIdx;
+                    }
+                });
             }
 
             // Lifestyle Gallery Swiper
