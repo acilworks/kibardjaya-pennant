@@ -231,10 +231,68 @@
 }
 
 /* --- Hero Section --- */
+
+/* Hero Swiper */
+.hero--swiper {
+    margin-top: -54px;
+}
+
+.hero-swiper {
+    width: 100%;
+    height: 100%;
+}
+
+.hero-swiper .swiper-slide {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: flex-end;
+    overflow: hidden;
+}
+
+.hero-swiper__pagination {
+    position: absolute;
+    bottom: 44px !important;
+    z-index: 10;
+    text-align: center;
+}
+
+.hero-swiper__pagination .swiper-pagination-bullet {
+    width: 10px;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.0);
+    border: 1px solid #ffffff;
+    opacity: 1;
+    margin: 0 5px;
+    transition: all 0.3s ease;
+}
+
+.hero-swiper__pagination .swiper-pagination-bullet-active {
+    background: #0B5369;
+
+    /* transform: scale(1.2); */
+}
+
+@media (max-width: 768px) {
+    .hero--swiper {
+        margin-top: -74px;
+    }
+
+    .hero-swiper .swiper-slide {
+        height: 100vh;
+        height: 100dvh;
+    }
+
+    .hero-swiper__pagination {
+        bottom: 26px !important;
+    }
+}
+
 .hero {
     position: relative;
     width: 100%;
-    min-height: 85vh;
+    height: 100vh;
     display: flex;
     align-items: flex-end;
     overflow: hidden;
@@ -269,6 +327,20 @@
     max-width: 600px;
 }
 
+.hero__label {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    font-weight: 300;
+    color: #1a1a1a;
+    background-color: #ffffff;
+    border: 1px solid #1a1a1a;
+    /* border: 1px solid rgba(255, 255, 255, 0.7); */
+    padding: 2px 6px;
+    margin-bottom: 20px;
+}
+
 .hero__title {
     font-size: clamp(2.5rem, 3vw, 3.5rem);
     font-weight: 700;
@@ -276,6 +348,7 @@
     color: #ffffff;
     text-transform: uppercase;
     letter-spacing: -1px;
+    /* margin-bottom: 40px; */
     margin-bottom: 20px;
     /* font-style: italic; */
 }
@@ -284,6 +357,7 @@
     font-size: 13px;
     line-height: 1.7;
     color: rgba(255, 255, 255, 0.85);
+    /* margin-bottom: 52px; */
     margin-bottom: 32px;
     max-width: 420px;
     font-weight: 400;
@@ -301,6 +375,7 @@
     text-decoration: none;
     transition: all 0.3s ease;
     background: transparent;
+    margin-bottom: 20px;
 }
 
 .hero__cta:hover {
@@ -310,7 +385,8 @@
 
 @media (max-width: 768px) {
     .hero {
-        min-height: 70vh;
+        height: 100vh;
+        height: 100dvh;
         margin-top: -74px;
         /* Mobile: -74px to remove gap */
     }

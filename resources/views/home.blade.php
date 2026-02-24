@@ -1,19 +1,54 @@
 @extends('layouts.app')
 
+@push('styles')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+@endpush
+
+
 @section('content')
-    {{-- Hero Section --}}
-    <section class="hero">
-        <div class="hero__bg" style="background-image: url('{{ asset('image/bg-hero.png') }}');"></div>
-        <div class="hero__content">
-            <h1 class="hero__title">Stories You Can Hang.</h1>
-            <p class="hero__subtitle">
-                Handmade pennants inspired by places and memories
-                worth keeping. Crafted in Indonesia for collectors
-                and explorers alike.
-            </p>
-            <a href="/shop" class="hero__cta">Explore Collection</a>
-        </div>
-    </section>
+    {{-- Hero Section — Swiper --}}
+    @if($heroSlides->count() > 0)
+        <section class="hero hero--swiper">
+            <div class="swiper hero-swiper">
+                <div class="swiper-wrapper">
+                    @foreach($heroSlides as $slide)
+                        <div class="swiper-slide">
+                            <div class="hero__bg"
+                                style="background-image: url('{{ asset('storage/' . $slide->background_image) }}');"></div>
+                            <div class="hero__content">
+                                @if($slide->label)
+                                    <span class="hero__label">{{ $slide->label }}</span>
+                                @endif
+                                <h1 class="hero__title">{{ $slide->title }}</h1>
+                                @if($slide->subtitle)
+                                    <p class="hero__subtitle">{{ $slide->subtitle }}</p>
+                                @endif
+                                @if($slide->cta_text && $slide->cta_url)
+                                    <a href="{{ $slide->cta_url }}" class="hero__cta">{{ $slide->cta_text }}</a>
+                                @endif
+                            </div>
+                        </div>
+                    @endforeach
+                </div>
+                {{-- Pagination --}}
+                <div class="swiper-pagination hero-swiper__pagination"></div>
+            </div>
+        </section>
+    @else
+        {{-- Fallback: static hero if no slides --}}
+        <section class="hero">
+            <div class="hero__bg" style="background-image: url('{{ asset('image/bg-hero.png') }}');"></div>
+            <div class="hero__content">
+                <h1 class="hero__title">Stories You Can Hang.</h1>
+                <p class="hero__subtitle">
+                    Handmade pennants inspired by places and memories
+                    worth keeping. Crafted in Indonesia for collectors
+                    and explorers alike.
+                </p>
+                <a href="/shop" class="hero__cta">Explore Collection</a>
+            </div>
+        </section>
+    @endif
 
     {{-- Brand Story Section --}}
     <section class="brand-story">
@@ -71,7 +106,8 @@
                         <h3 class="product-card__name">{{ $product->title }}</h3>
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
                             <p class="product-card__price" style="margin: 0;">Rp.
-                                {{ number_format($product->price, 0, ',', '.') }},00</p>
+                                {{ number_format($product->price, 0, ',', '.') }},00
+                            </p>
                             @if($product->colorVariants->count() > 0)
                                 <div style="display: flex; gap: 4px;">
                                     @foreach($product->colorVariants as $variant)
@@ -145,3 +181,25 @@
         </div>
     </section>
 @endsection
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            new Swiper('.hero-swiper', {
+                loop: true,
+                allowTouchMove: true,
+                autoplay: {
+                    delay: 5000,
+                    disableOnInteraction: false,
+                    pauseOnMouseEnter: true,
+                },
+                speed: 1000,
+                pagination: {
+                    el: '.hero-swiper__pagination',
+                    clickable: true,
+                },
+            });
+        });
+    </script>
+@endpush
