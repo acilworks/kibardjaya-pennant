@@ -27,6 +27,11 @@ class AdminPanelProvider extends PanelProvider
             ->id('admin')
             ->path('admin')
             ->login()
+            ->brandName('Kibardjaya')
+            ->brandLogo(asset('image/logo-kibar.png'))
+            ->darkModeBrandLogo(asset('image/kibardjaya-footer.png'))
+            ->brandLogoHeight('2rem')
+            ->favicon(asset('image/logostamp.png'))
             ->colors([
                 'primary' => Color::Amber,
             ])
