@@ -880,6 +880,7 @@
    ============================================ */
 .crafted {
     border-top: 1px solid #1a1a1a;
+    border-bottom: 1px solid #1a1a1a;
 }
 
 .crafted__header {
@@ -893,6 +894,11 @@
     text-transform: uppercase;
     letter-spacing: 3px;
     color: #1a1a1a;
+}
+
+/* Desktop: Swiper wrapper acts as a simple grid container */
+.crafted__swiper {
+    overflow: visible;
 }
 
 .crafted__grid {
@@ -940,6 +946,11 @@
     max-width: 280px;
 }
 
+/* Desktop: hide pagination */
+.crafted__pagination {
+    display: none;
+}
+
 @media (max-width: 768px) {
     .crafted__header {
         padding: 16px 20px;
@@ -949,8 +960,14 @@
         font-size: 11px;
     }
 
+    /* Mobile: Swiper takes over — reset grid to flex (Swiper manages layout) */
+    .crafted__swiper {
+        overflow: hidden;
+        position: relative;
+    }
+
     .crafted__grid {
-        grid-template-columns: 1fr;
+        display: flex;
     }
 
     .crafted__card-image {
@@ -964,6 +981,29 @@
     .crafted__card-desc {
         font-size: 11px;
     }
+
+    /* Pagination dots */
+    .crafted__pagination {
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        bottom: 10px;
+        left: 0;
+        right: 0;
+        z-index: 10;
+    }
+
+    .crafted__pagination .swiper-pagination-bullet {
+        width: 8px;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.5);
+        opacity: 1;
+        margin: 0 4px;
+    }
+
+    .crafted__pagination .swiper-pagination-bullet-active {
+        background: #ffffff;
+    }
 }
 
 /* ============================================
@@ -971,6 +1011,7 @@
    ============================================ */
 .footer {
     background-color: #1a1a1a;
+    border-top: 1px solid #1a1a1a;
     color: #ffffff;
 }
 
@@ -1201,6 +1242,10 @@
 
 /* Footer Responsive */
 @media (max-width: 768px) {
+    .footer {
+        border-top: 1px solid #1a1a1a;
+    }
+
     .footer__newsletter {
         flex-direction: column;
         padding: 24px 20px;

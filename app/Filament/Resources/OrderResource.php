@@ -153,6 +153,56 @@ class OrderResource extends Resource
                     ->label('Order Status'),
             ])
             ->actions([
+                Tables\Actions\Action::make('sync_midtrans')
+                    ->label('Sync Midtrans')
+                    ->icon('heroicon-o-arrow-path')
+                    ->color('info')
+                    ->visible(fn(Order $record) => $record->payment_status === 'pending')
+                    ->requiresConfirmation()
+                    ->modalHeading('Sync Payment Status')
+                    ->modalDescription(fn(Order $record) => "Cek status pembayaran order {$record->order_number} dari Midtrans?")
+                    ->modalSubmitActionLabel('Sync Now')
+                    ->action(function (Order $record) {
+                        try {
+                            $midtrans = app(\App\Services\MidtransService::class);
+                            $status = $midtrans->getTransactionStatus($record->order_number);
+
+                            $previousStatus = $record->payment_status;
+
+                            $newStatus = match ($status->transaction_status) {
+                                'settlement', 'capture' => 'paid',
+                                'pending' => 'pending',
+                                'expire' => 'expired',
+                                'cancel', 'deny' => 'failed',
+                                default => $record->payment_status,
+                            };
+
+                            $record->update(['payment_status' => $newStatus]);
+
+                            // Kirim email jika baru berubah ke paid
+                            $emailWarning = '';
+                            if ($newStatus === 'paid' && $previousStatus !== 'paid') {
+                                try {
+                                    \Illuminate\Support\Facades\Mail::to($record->customer_email)
+                                        ->send(new \App\Mail\OrderInvoiceMail($record));
+                                } catch (\Exception $mailError) {
+                                    $emailWarning = ' (Email gagal terkirim)';
+                                }
+                            }
+
+                            \Filament\Notifications\Notification::make()
+                                ->title('Sync Berhasil')
+                                ->body("Status Midtrans: {$status->transaction_status} → Lokal: {$newStatus}{$emailWarning}")
+                                ->success()
+                                ->send();
+                        } catch (\Exception $e) {
+                            \Filament\Notifications\Notification::make()
+                                ->title('Sync Gagal')
+                                ->body('Error: ' . $e->getMessage())
+                                ->danger()
+                                ->send();
+                        }
+                    }),
                 Tables\Actions\Action::make('invoice')
                     ->label('Invoice')
                     ->icon('heroicon-o-printer')
