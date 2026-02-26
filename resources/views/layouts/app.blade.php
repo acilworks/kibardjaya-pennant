@@ -22,19 +22,55 @@
     <!-- <body class="bg-[#f5f5f0] text-neutral-900 font-sans"> -->
 
     {{-- Announcement Bar --}}
-    <div class="announcement-bar">
-        Subscribe for 15% off your first order
-    </div>
+    @if($announcementText)
+        <div class="announcement-bar">
+            {{ $announcementText }}
+        </div>
+    @endif
 
-    {{-- Navbar + Mobile Nav wrapper --}}
-    <div class="navbar-sticky" x-data="{ mobileOpen: false, scrolled: false }"
-        @scroll.window="scrolled = (window.pageYOffset > 20)" :class="{ 'navbar-sticky--scrolled': scrolled }">
+    {{-- Navbar + Mega Menu + Mobile Nav wrapper --}}
+    @php
+        $allNavItems = $navItemsLeft->merge($navItemsRight);
+        $megaNavItems = $allNavItems->where('has_mega_menu', true);
+    @endphp
+    <div class="navbar-sticky" x-data="{
+        mobileOpen: false,
+        activeMegaId: null,
+        activeGroupId: null,
+        scrolled: false,
+        mobileSubmenus: {},
+        openMega(id, firstGroupId) {
+            this.activeMegaId = id;
+            this.activeGroupId = firstGroupId;
+        },
+        closeMega() {
+            this.activeMegaId = null;
+            this.activeGroupId = null;
+        },
+        toggleMobileSub(id) {
+            this.mobileSubmenus[id] = !this.mobileSubmenus[id];
+        },
+        isMobileSubOpen(id) {
+            return this.mobileSubmenus[id] || false;
+        }
+    }" @scroll.window="scrolled = (window.pageYOffset > 20)"
+        :class="{ 'navbar-sticky--scrolled': scrolled || activeMegaId !== null }">
         <nav class="navbar">
             {{-- Left Links --}}
             <div class="navbar__links">
-                <a href="/shop" class="navbar__link">Collections</a>
-                <a href="/shop" class="navbar__link">Goods</a>
-                <a href="#" class="navbar__link">Make Your Own</a>
+                @foreach($navItemsLeft as $navItem)
+                    @if($navItem->has_mega_menu && $navItem->megaGroups->count() > 0)
+                        <a href="{{ $navItem->url ?? '/shop' }}" class="navbar__link"
+                            @mouseenter="openMega({{ $navItem->id }}, {{ $navItem->megaGroups->first()->id ?? 'null' }})"
+                            @click.prevent="activeMegaId === {{ $navItem->id }} ? closeMega() : openMega({{ $navItem->id }}, {{ $navItem->megaGroups->first()->id ?? 'null' }})">
+                            {{ $navItem->label }}
+                        </a>
+                    @else
+                        <a href="{{ $navItem->url ?? '#' }}" class="navbar__link">
+                            {{ $navItem->label }}
+                        </a>
+                    @endif
+                @endforeach
             </div>
 
             {{-- Center Logo --}}
@@ -44,8 +80,19 @@
 
             {{-- Right Links + Icons --}}
             <div class="navbar__links">
-                <a href="#" class="navbar__link">Collaborations</a>
-                <a href="#" class="navbar__link">About</a>
+                @foreach($navItemsRight as $navItem)
+                    @if($navItem->has_mega_menu && $navItem->megaGroups->count() > 0)
+                        <a href="{{ $navItem->url ?? '/shop' }}" class="navbar__link"
+                            @mouseenter="openMega({{ $navItem->id }}, {{ $navItem->megaGroups->first()->id ?? 'null' }})"
+                            @click.prevent="activeMegaId === {{ $navItem->id }} ? closeMega() : openMega({{ $navItem->id }}, {{ $navItem->megaGroups->first()->id ?? 'null' }})">
+                            {{ $navItem->label }}
+                        </a>
+                    @else
+                        <a href="{{ $navItem->url ?? '#' }}" class="navbar__link">
+                            {{ $navItem->label }}
+                        </a>
+                    @endif
+                @endforeach
 
                 {{-- User Icon --}}
                 @auth
@@ -97,16 +144,104 @@
             </button>
         </nav>
 
+        {{-- Per-NavItem Mega Menu Dropdowns --}}
+        @foreach($megaNavItems as $megaNav)
+            @if($megaNav->megaGroups->count() > 0)
+                <div class="mega-menu" x-show="activeMegaId === {{ $megaNav->id }}" x-cloak
+                    @mouseenter="activeMegaId = {{ $megaNav->id }}" @mouseleave="closeMega()"
+                    x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-1"
+                    x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150"
+                    x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-1">
+
+                    {{-- Sidebar: Groups --}}
+                    <div class="mega-menu__sidebar">
+                        <div class="mega-menu__sidebar-items">
+                            @foreach($megaNav->megaGroups as $group)
+                                <a href="{{ $group->url ?? '#' }}" class="mega-menu__sidebar-link"
+                                    :class="{ 'mega-menu__sidebar-link--active': activeGroupId === {{ $group->id }} }"
+                                    @mouseenter="activeGroupId = {{ $group->id }}">
+                                    <span class="mega-menu__sidebar-link-text">{{ strtoupper($group->label) }}</span>
+                                    @if($group->items->count() > 0)
+                                        <span class="mega-menu__arrow">&rarr;</span>
+                                    @endif
+                                </a>
+                            @endforeach
+                        </div>
+
+                        {{-- Brand Logo at bottom of sidebar --}}
+                        <div class="mega-menu__brand-logo">
+                            <img src="{{ asset('image/kibardjaya.png') }}" alt="Kibardjaya">
+                        </div>
+                    </div>
+
+                    {{-- Content: Items per group --}}
+                    <div class="mega-menu__content">
+                        @foreach($megaNav->megaGroups as $group)
+                            <div class="mega-menu__subcategories" x-show="activeGroupId === {{ $group->id }}"
+                                x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0"
+                                x-transition:enter-end="opacity-100">
+                                @foreach($group->items as $item)
+                                    <a href="{{ $item->url ?? '#' }}" class="mega-menu__subcategory-link">
+                                        {{ strtoupper($item->label) }}
+                                    </a>
+                                @endforeach
+                            </div>
+                        @endforeach
+                    </div>
+                </div>
+            @endif
+        @endforeach
+
         {{-- Mobile Navigation --}}
         <div class="mobile-nav" x-show="mobileOpen" x-cloak x-transition:enter="transition ease-out duration-200"
             x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
             x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0"
             x-transition:leave-end="opacity-0 -translate-y-2">
-            <a href="/shop">Collections</a>
-            <a href="/shop">Goods</a>
-            <a href="#">Make Your Own</a>
-            <a href="#">Collaborations</a>
-            <a href="#">About</a>
+
+            @foreach($navItemsLeft as $navItem)
+                @if($navItem->has_mega_menu && $navItem->megaGroups->count() > 0)
+                    <button class="mobile-nav__toggle" @click="toggleMobileSub({{ $navItem->id }})">
+                        {{ $navItem->label }}
+                        <span :class="{ 'mobile-nav__chevron--open': isMobileSubOpen({{ $navItem->id }}) }"
+                            class="mobile-nav__chevron">&#9662;</span>
+                    </button>
+                    <div class="mobile-nav__submenu" x-show="isMobileSubOpen({{ $navItem->id }})" x-cloak
+                        x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 max-h-0"
+                        x-transition:enter-end="opacity-100 max-h-screen">
+                        @foreach($navItem->megaGroups as $group)
+                            <a href="{{ $group->url ?? '#' }}">{{ $group->label }}</a>
+                            @foreach($group->items as $item)
+                                <a href="{{ $item->url ?? '#' }}" class="mobile-nav__sub-item">{{ $item->label }}</a>
+                            @endforeach
+                        @endforeach
+                    </div>
+                @else
+                    <a href="{{ $navItem->url ?? '#' }}">{{ $navItem->label }}</a>
+                @endif
+            @endforeach
+
+            @foreach($navItemsRight as $navItem)
+                @if($navItem->has_mega_menu && $navItem->megaGroups->count() > 0)
+                    <button class="mobile-nav__toggle" @click="toggleMobileSub({{ $navItem->id }})">
+                        {{ $navItem->label }}
+                        <span :class="{ 'mobile-nav__chevron--open': isMobileSubOpen({{ $navItem->id }}) }"
+                            class="mobile-nav__chevron">&#9662;</span>
+                    </button>
+                    <div class="mobile-nav__submenu" x-show="isMobileSubOpen({{ $navItem->id }})" x-cloak
+                        x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 max-h-0"
+                        x-transition:enter-end="opacity-100 max-h-screen">
+                        @foreach($navItem->megaGroups as $group)
+                            <a href="{{ $group->url ?? '#' }}">{{ $group->label }}</a>
+                            @foreach($group->items as $item)
+                                <a href="{{ $item->url ?? '#' }}" class="mobile-nav__sub-item">{{ $item->label }}</a>
+                            @endforeach
+                        @endforeach
+                    </div>
+                @else
+                    <a href="{{ $navItem->url ?? '#' }}">{{ $navItem->label }}</a>
+                @endif
+            @endforeach
+
             @auth
                 <a href="{{ route('profile.edit') }}">Profile</a>
             @else
