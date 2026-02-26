@@ -5,6 +5,9 @@
 /* ============================================
    KIBARDJAYA PENNANT - Custom Styles
    ============================================ */
+[x-cloak] {
+    display: none !important;
+}
 
 /* --- Announcement Bar --- */
 .announcement-bar {
