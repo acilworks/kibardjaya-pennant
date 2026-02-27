@@ -15,6 +15,7 @@ class Product extends Model
         'price',
         'stock',
         'is_featured',
+        'is_studio_pick',
         'images',
         'category',
         'category_id',

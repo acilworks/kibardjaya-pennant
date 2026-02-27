@@ -95,6 +95,11 @@ class ProductResource extends Resource
                         Toggle::make('is_featured')
                             ->label('Featured')
                             ->inline(false),
+
+                        Toggle::make('is_studio_pick')
+                            ->label('Studio Pick')
+                            ->inline(false)
+                            ->helperText('Show in Collections page Studio Picks'),
                     ]),
 
                 // ── Section 4: Classification ──

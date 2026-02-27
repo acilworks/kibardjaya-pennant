@@ -5,6 +5,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
+use App\Http\Controllers\CollectionController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -22,6 +23,7 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::get('/', [HomeController::class, 'index']);
+Route::get('/collections', [CollectionController::class, 'index']);
 Route::get('/shop', [ProductController::class, 'index']);
 Route::get('/shop/{slug}', [ProductController::class, 'show']);
 

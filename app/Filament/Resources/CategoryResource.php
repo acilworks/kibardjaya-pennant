@@ -11,6 +11,7 @@ use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
 use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\FileUpload;
 use Illuminate\Support\Str;
 
 class CategoryResource extends Resource
@@ -38,6 +39,18 @@ class CategoryResource extends Resource
                 TextInput::make('slug')
                     ->required()
                     ->unique(ignoreRecord: true),
+
+                FileUpload::make('thumbnail')
+                    ->label('Thumbnail Image')
+                    ->image()
+                    ->directory('categories')
+                    ->imagePreviewHeight('150')
+                    ->helperText('Displayed on the Collections page category swiper'),
+
+                TextInput::make('tagline')
+                    ->label('Micro Tagline')
+                    ->placeholder('e.g. Flags and pennants for bold displays')
+                    ->helperText('Short tagline shown on the Collections page category card'),
             ]);
     }
 
@@ -45,11 +58,18 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('thumbnail')
+                    ->label('Thumb')
+                    ->disk('public')
+                    ->size(40),
                 Tables\Columns\TextColumn::make('name')
                     ->searchable()
                     ->sortable(),
                 Tables\Columns\TextColumn::make('slug')
                     ->searchable(),
+                Tables\Columns\TextColumn::make('tagline')
+                    ->limit(30)
+                    ->toggleable(isToggledHiddenByDefault: true),
                 Tables\Columns\TextColumn::make('sub_categories_count')
                     ->label('Sub Categories')
                     ->counts('subCategories')

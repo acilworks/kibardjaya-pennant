@@ -100,6 +100,9 @@
                         </div>
                     @endif
                     <div class="product-card__info">
+                        @if($product->subCategory)
+                            <span class="product-card__subcategory">{{ $product->subCategory->name }}</span>
+                        @endif
                         <h3 class="product-card__name">{{ $product->title }}</h3>
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
                             <p class="product-card__price" style="margin: 0;">Rp.
