@@ -256,6 +256,13 @@
         @yield('content')
     </main>
 
+    {{-- Back to Top (Mobile Only) --}}
+    <div class="back-to-top-mobile">
+
+        <a onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">BACK TO TOP</a>
+        <!-- <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">BACK TO TOP</button> -->
+    </div>
+
     {{-- Footer --}}
     <footer class="footer">
         {{-- Newsletter Bar --}}

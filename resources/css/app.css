@@ -428,7 +428,8 @@
 }
 
 .hero-swiper__pagination .swiper-pagination-bullet-active {
-    background: #0B5369;
+    background: #e8e4dd;
+    /* background: #0B5369; */
 
     /* transform: scale(1.2); */
 }
@@ -538,8 +539,10 @@
 }
 
 .hero__cta:hover {
-    background-color: #ffffff;
+    background-color: #e8e4dd;
+    /* background-color: #ffffff; */
     color: #1a1a1a;
+    border: 1.5px solid #1a1a1a;
 }
 
 @media (max-width: 768px) {
@@ -563,6 +566,44 @@
     }
 }
 
+/* --- Back to Top (Mobile Only) --- */
+.back-to-top-mobile {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .back-to-top-mobile {
+        padding: 3px 10px;
+        display: block;
+        height: 35px;
+        text-align: center;
+        background-color: #e8e4dd;
+        border-top: 1px solid #1a1a1a;
+        border-bottom: 1px solid #1a1a1a;
+    }
+
+    .back-to-top-mobile a {
+        width: 100%;
+        /* padding: 16px 0; */
+        font-size: 11px;
+        letter-spacing: 1px;
+        text-transform: uppercase;
+        font-weight: 600;
+        color: #1a1a1a;
+        /* background-color: #e8e4dd; */
+        /* border: none; */
+        /* border-top: 1px solid #1a1a1a; */
+        /* border-bottom: 1px solid #1a1a1a; */
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .back-to-top-mobile a:hover {
+        /* background-color: #d5d0c9; */
+        color: #666;
+    }
+}
+
 /* --- Footer --- */
 .site-footer {
     background-color: #f5f5f0;
@@ -578,54 +619,44 @@
    BRAND STORY SECTION
    ============================================ */
 .brand-story {
-    background-color: #f0f0ec;
-    padding: 60px 60px 40px;
+    background-color: #ffffff;
+    padding: 80px 50px 50px;
 }
 
 .brand-story__inner {
     display: grid;
-    grid-template-columns: auto 1fr 1fr;
-    align-items: center;
-    gap: 40px;
-    max-width: 1100px;
-    margin: 0 auto 40px;
-}
-
-.brand-story__logo-wrap {
-    flex-shrink: 0;
-}
-
-.brand-story__logo {
-    width: 120px;
-    height: 120px;
-    object-fit: contain;
-    padding: 8px;
-    background: transparent;
+    grid-template-columns: 1.8fr 1fr;
+    align-items: start;
+    gap: 20px;
+    max-width: 1200px;
+    margin: 0 auto 44px;
 }
 
 .brand-story__heading {
-    /* Middle column: large title */
+    /* Left column: dominant title */
 }
 
 .brand-story__title {
-    font-size: clamp(2rem, 3.5vw, 2.8rem);
-    font-weight: 700;
+    font-size: clamp(5rem, 12vw, 7rem);
+    /* font-size: clamp(3.5rem, 8vw, 7rem); */
+    font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: -1px;
+    letter-spacing: -5px;
     color: #1a1a1a;
-    line-height: 1.15;
-    text-align: end;
+    line-height: 0.95;
+    font-style: normal;
 }
 
 .brand-story__text {
-    /* Right column: description */
+    padding-top: 120px;
 }
 
 .brand-story__desc {
-    font-size: 13px;
-    /* line-height: 1.8; */
+    font-size: 10px;
+    line-height: 1.65;
     color: #555;
-    font-weight: 400;
+    font-weight: 600;
+    /* font-style: italic; */
 }
 
 .brand-story__desc+.brand-story__desc {
@@ -635,23 +666,22 @@
 .brand-story__categories {
     display: flex;
     gap: 12px;
-    max-width: 1100px;
+    max-width: 1200px;
     margin: 0 auto;
     flex-wrap: wrap;
 }
 
 .brand-story__cat-btn {
     display: inline-block;
-    padding: 2px 6px;
+    padding: 3px 6px;
     font-size: 11px;
     letter-spacing: 1px;
     text-transform: uppercase;
-    font-weight: 300;
+    font-weight: 400;
     text-decoration: none;
     border: 1.5px solid #1a1a1a;
     color: #1a1a1a;
-    background: #ffffff;
-    /* background: transparent; */
+    background: #e8e4dd;
     transition: all 0.25s ease;
     cursor: pointer;
 }
@@ -862,26 +892,19 @@
         padding: 40px 20px 32px;
     }
 
-    /* .brand-story__cat-btn {
-        padding: 2px 6px;
-    } */
-
     .brand-story__inner {
         grid-template-columns: 1fr;
-        text-align: center;
-        gap: 24px;
-        justify-items: center;
-    }
-
-    .brand-story__logo {
-        width: 90px;
-        height: 90px;
+        text-align: left;
+        gap: 20px;
     }
 
     .brand-story__title {
-        font-size: 1.5rem;
-        letter-spacing: -1px;
-        text-align: center;
+        font-size: clamp(2.5rem, 12vw, 3.5rem);
+        letter-spacing: -2px;
+    }
+
+    .brand-story__text {
+        padding-top: 0;
     }
 
     .brand-story__desc {
@@ -1039,7 +1062,7 @@
    ============================================ */
 .crafted {
     border-top: 1px solid #1a1a1a;
-    border-bottom: 1px solid #1a1a1a;
+    /* border-bottom: 1px solid #1a1a1a; */
 }
 
 .crafted__header {
