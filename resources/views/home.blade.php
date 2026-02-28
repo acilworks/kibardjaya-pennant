@@ -67,11 +67,11 @@
                 </p>
             </div>
         </div>
-        <div class="brand-story__categories">
-            @foreach($categories as $category)
-                <a href="/shop" class="brand-story__cat-btn">{{ $category->name }}</a>
-            @endforeach
-        </div>
+        <!-- <div class="brand-story__categories">
+                @foreach($categories as $category)
+                    <a href="/shop" class="brand-story__cat-btn">{{ $category->name }}</a>
+                @endforeach
+            </div> -->
     </section>
 
     {{-- New Collections --}}

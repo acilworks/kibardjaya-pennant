@@ -43,6 +43,7 @@ class CategoryResource extends Resource
                 FileUpload::make('thumbnail')
                     ->label('Thumbnail Image')
                     ->image()
+                    ->disk('public')
                     ->directory('categories')
                     ->imagePreviewHeight('150')
                     ->helperText('Displayed on the Collections page category swiper'),

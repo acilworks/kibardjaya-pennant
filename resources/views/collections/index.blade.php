@@ -13,12 +13,12 @@
     <section class="clp-hero">
         <div class="clp-hero__left">
             <h1 class="clp-hero__title">COLLECTIONS.</h1>
-            <a href="/shop" class="clp-hero__subtitle-link">EXPLORE ALL ITEMS</a>
+            <!-- <a class="clp-hero__subtitle-link">PIECES AVAILABLE</a> -->
+            <!-- <a href="/shop" class="clp-hero__subtitle-link">EXPLORE ALL ITEMS</a> -->
         </div>
         <div class="clp-hero__right">
             <p class="clp-hero__tagline">
-                Handmade pieces crafted in small studio runs.
-                Explore by scale, story, and ambition.
+                Curated pieces crafted in limited studio runs. <br> Explore by series, story, and intention.
             </p>
         </div>
     </section>
@@ -117,54 +117,6 @@
     </section>
 
     {{-- ============================================
-    SECTION 5: NEW STUDIO DROP
-    ============================================ --}}
-    @if($newDrop)
-        <section class="clp-drop">
-            <div class="clp-drop__header">
-                <h2 class="clp-drop__title">New Studio Drop</h2>
-            </div>
-            <div class="clp-drop__content">
-                {{-- Left: Main product image + info --}}
-                <div class="clp-drop__main">
-                    <a href="/shop/{{ $newDrop->slug }}" class="clp-drop__main-link">
-                        @if($newDrop->images && count($newDrop->images) > 0)
-                            <div class="clp-drop__main-image">
-                                <img src="{{ asset('storage/' . $newDrop->images[0]) }}" alt="{{ $newDrop->title }}">
-                            </div>
-                        @endif
-                        <div class="clp-drop__main-info">
-                            <h3 class="clp-drop__main-name">{{ $newDrop->title }}</h3>
-                            <div class="clp-drop__main-meta">
-                                <span class="clp-drop__main-price">Rp.
-                                    {{ number_format($newDrop->price, 0, ',', '.') }},00</span>
-                                @if($newDrop->colorVariants->count() > 0)
-                                    <div class="clp-drop__main-colors">
-                                        @foreach($newDrop->colorVariants as $variant)
-                                            <span class="clp-drop__main-swatch"
-                                                style="background-color: {{ $variant->color_code }};"></span>
-                                        @endforeach
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                    </a>
-                </div>
-                {{-- Right: Additional product images --}}
-                <div class="clp-drop__gallery">
-                    @if($newDrop->images && count($newDrop->images) > 1)
-                        @foreach(array_slice($newDrop->images, 1, 4) as $image)
-                            <a href="/shop/{{ $newDrop->slug }}" class="clp-drop__gallery-item">
-                                <img src="{{ asset('storage/' . $image) }}" alt="{{ $newDrop->title }}">
-                            </a>
-                        @endforeach
-                    @endif
-                </div>
-            </div>
-        </section>
-    @endif
-
-    {{-- ============================================
     SECTION 6: TRUST BLOCK
     ============================================ --}}
     <section class="pdp-trust" x-data="{ activeModal: null }" @trust-modal-open.window="activeModal = $event.detail">
@@ -252,6 +204,48 @@
             </div>
         </template>
     </section>
+
+    {{-- ============================================
+    SECTION 5: NEW STUDIO DROP
+    ============================================ --}}
+    @if($newDrop)
+        <section class="clp-drop">
+            <div class="clp-drop__header">
+                <h2 class="clp-drop__title">New Studio Drop</h2>
+            </div>
+            <div class="clp-drop__content">
+                {{-- Left: Main product image + info --}}
+                <div class="clp-drop__main">
+                    <a href="/shop/{{ $newDrop->slug }}" class="clp-drop__main-link">
+                        @if($newDrop->images && count($newDrop->images) > 0)
+                            <div class="clp-drop__main-image">
+                                <img src="{{ asset('storage/' . $newDrop->images[0]) }}" alt="{{ $newDrop->title }}">
+                            </div>
+                        @endif
+                    </a>
+                    <div class="clp-drop__main-info">
+                        <div class="clp-drop__main-info-left">
+                            <h3 class="clp-drop__main-name">{{ $newDrop->title }}</h3>
+                            <span class="clp-drop__main-price">Rp. {{ number_format($newDrop->price, 0, ',', '.') }},00</span>
+                        </div>
+                        <a href="/shop/{{ $newDrop->slug }}" class="clp-drop__main-add">+ ADD</a>
+                    </div>
+                </div>
+                {{-- Right: 2x2 gallery grid --}}
+                <div class="clp-drop__gallery">
+                    @if($newDrop->images && count($newDrop->images) > 1)
+                        @foreach(array_slice($newDrop->images, 1, 4) as $image)
+                            <a href="/shop/{{ $newDrop->slug }}" class="clp-drop__gallery-item">
+                                <img src="{{ asset('storage/' . $image) }}" alt="{{ $newDrop->title }}">
+                            </a>
+                        @endforeach
+                    @endif
+                </div>
+            </div>
+        </section>
+    @endif
+
+
 @endsection
 
 @push('scripts')
@@ -261,7 +255,7 @@
             // Categories Swiper
             new Swiper('.clp-categories__swiper', {
                 slidesPerView: 'auto',
-                spaceBetween: 0,
+                spaceBetween: 30,
                 grabCursor: true,
                 freeMode: true,
             });

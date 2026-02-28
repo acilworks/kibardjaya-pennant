@@ -46,6 +46,7 @@ class ProductResource extends Resource
                         FileUpload::make('images')
                             ->label('Product Images')
                             ->image()
+                            ->disk('public')
                             ->multiple()
                             ->directory('products')
                             ->maxFiles(5)
@@ -184,6 +185,7 @@ class ProductResource extends Resource
                                 FileUpload::make('image')
                                     ->label('Variant Image')
                                     ->image()
+                                    ->disk('public')
                                     ->directory('products/variants')
                                     ->imagePreviewHeight('100'),
                                 TextInput::make('sort_order')

@@ -31,6 +31,7 @@ class HeroSlideResource extends Resource
                         Forms\Components\FileUpload::make('background_image')
                             ->label('Background Image')
                             ->image()
+                            ->disk('public')
                             ->directory('hero-slides')
                             ->required()
                             ->columnSpanFull()
