@@ -35,10 +35,10 @@
     @endphp
     <div class="navbar-sticky" x-data="{
         mobileOpen: false,
+        activeMobileSubId: null,
         activeMegaId: null,
         activeGroupId: null,
         scrolled: false,
-        mobileSubmenus: {},
         openMega(id, firstGroupId) {
             this.activeMegaId = id;
             this.activeGroupId = firstGroupId;
@@ -46,31 +46,45 @@
         closeMega() {
             this.activeMegaId = null;
             this.activeGroupId = null;
-        },
-        toggleMobileSub(id) {
-            this.mobileSubmenus[id] = !this.mobileSubmenus[id];
-        },
-        isMobileSubOpen(id) {
-            return this.mobileSubmenus[id] || false;
         }
     }" @scroll.window="scrolled = (window.pageYOffset > 20)"
-        :class="{ 'navbar-sticky--scrolled': scrolled || activeMegaId !== null }">
+        x-init="$watch('mobileOpen', value => { if(!value) activeMobileSubId = null; document.body.style.overflow = value ? 'hidden' : ''; })"
+        :class="{ 'navbar-sticky--scrolled': scrolled || activeMegaId !== null || mobileOpen }">
         <nav class="navbar">
-            {{-- Left Links --}}
-            <div class="navbar__links">
-                @foreach($navItemsLeft as $navItem)
-                    @if($navItem->has_mega_menu && $navItem->megaGroups->count() > 0)
-                        <a href="{{ $navItem->url ?? '/shop' }}" class="navbar__link"
-                            @mouseenter="openMega({{ $navItem->id }}, {{ $navItem->megaGroups->first()->id ?? 'null' }})"
-                            @click.prevent="activeMegaId === {{ $navItem->id }} ? closeMega() : openMega({{ $navItem->id }}, {{ $navItem->megaGroups->first()->id ?? 'null' }})">
-                            {{ $navItem->label }}
-                        </a>
-                    @else
-                        <a href="{{ $navItem->url ?? '#' }}" class="navbar__link">
-                            {{ $navItem->label }}
-                        </a>
-                    @endif
-                @endforeach
+            {{-- Left Side --}}
+            <div class="navbar__left">
+                {{-- Mobile Menu Button --}}
+                <button class="navbar__icon mobile-menu-btn" @click="mobileOpen = !mobileOpen" aria-label="Menu">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                        stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                        <g x-show="!mobileOpen">
+                            <line x1="3" y1="12" x2="21" y2="12"></line>
+                            <line x1="3" y1="6" x2="21" y2="6"></line>
+                            <line x1="3" y1="18" x2="21" y2="18"></line>
+                        </g>
+                        <g x-show="mobileOpen" x-cloak>
+                            <line x1="18" y1="6" x2="6" y2="18"></line>
+                            <line x1="6" y1="6" x2="18" y2="18"></line>
+                        </g>
+                    </svg>
+                </button>
+
+                {{-- Left Links --}}
+                <div class="navbar__links">
+                    @foreach($navItemsLeft as $navItem)
+                        @if($navItem->has_mega_menu && $navItem->megaGroups->count() > 0)
+                            <a href="{{ $navItem->url ?? '/shop' }}" class="navbar__link"
+                                @mouseenter="openMega({{ $navItem->id }}, {{ $navItem->megaGroups->first()->id ?? 'null' }})"
+                                @click.prevent="activeMegaId === {{ $navItem->id }} ? closeMega() : openMega({{ $navItem->id }}, {{ $navItem->megaGroups->first()->id ?? 'null' }})">
+                                {{ $navItem->label }}
+                            </a>
+                        @else
+                            <a href="{{ $navItem->url ?? '#' }}" class="navbar__link">
+                                {{ $navItem->label }}
+                            </a>
+                        @endif
+                    @endforeach
+                </div>
             </div>
 
             {{-- Center Logo --}}
@@ -78,70 +92,59 @@
                 <img src="{{ asset('image/logo-kibar.png') }}" alt="Kibardjaya Logo">
             </a>
 
-            {{-- Right Links + Icons --}}
-            <div class="navbar__links">
-                @foreach($navItemsRight as $navItem)
-                    @if($navItem->has_mega_menu && $navItem->megaGroups->count() > 0)
-                        <a href="{{ $navItem->url ?? '/shop' }}" class="navbar__link"
-                            @mouseenter="openMega({{ $navItem->id }}, {{ $navItem->megaGroups->first()->id ?? 'null' }})"
-                            @click.prevent="activeMegaId === {{ $navItem->id }} ? closeMega() : openMega({{ $navItem->id }}, {{ $navItem->megaGroups->first()->id ?? 'null' }})">
-                            {{ $navItem->label }}
+            {{-- Right Side --}}
+            <div class="navbar__right">
+                {{-- Right Links --}}
+                <div class="navbar__links">
+                    @foreach($navItemsRight as $navItem)
+                        @if($navItem->has_mega_menu && $navItem->megaGroups->count() > 0)
+                            <a href="{{ $navItem->url ?? '/shop' }}" class="navbar__link"
+                                @mouseenter="openMega({{ $navItem->id }}, {{ $navItem->megaGroups->first()->id ?? 'null' }})"
+                                @click.prevent="activeMegaId === {{ $navItem->id }} ? closeMega() : openMega({{ $navItem->id }}, {{ $navItem->megaGroups->first()->id ?? 'null' }})">
+                                {{ $navItem->label }}
+                            </a>
+                        @else
+                            <a href="{{ $navItem->url ?? '#' }}" class="navbar__link">
+                                {{ $navItem->label }}
+                            </a>
+                        @endif
+                    @endforeach
+                </div>
+
+                <div class="navbar__icons">
+                    {{-- User Icon --}}
+                    @auth
+                        <a href="{{ route('profile.edit') }}" class="navbar__icon" title="Profile">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
                         </a>
                     @else
-                        <a href="{{ $navItem->url ?? '#' }}" class="navbar__link">
-                            {{ $navItem->label }}
+                        <a href="{{ route('login') }}" class="navbar__icon" title="Login">
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
+                                <circle cx="12" cy="7" r="4" />
+                            </svg>
                         </a>
-                    @endif
-                @endforeach
+                    @endauth
 
-                {{-- User Icon --}}
-                @auth
-                    <a href="{{ route('profile.edit') }}" class="navbar__icon" title="Profile">
+                    {{-- Cart Icon --}}
+                    @php
+                        $cartItems = session()->get('cart', []);
+                        $cartCount = array_sum(array_column($cartItems, 'qty'));
+                    @endphp
+                    <a href="/cart" class="navbar__icon navbar__cart-icon" title="Cart">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                            <circle cx="12" cy="7" r="4" />
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                            <path d="M16 1v6M8 1v6" />
                         </svg>
+                        @if($cartCount > 0)
+                            <span class="navbar__cart-badge">{{ $cartCount }}</span>
+                        @endif
                     </a>
-                @else
-                    <a href="{{ route('login') }}" class="navbar__icon" title="Login">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                            <circle cx="12" cy="7" r="4" />
-                        </svg>
-                    </a>
-                @endauth
-
-                {{-- Cart Icon --}}
-                @php
-                    $cartItems = session()->get('cart', []);
-                    $cartCount = array_sum(array_column($cartItems, 'qty'));
-                @endphp
-                <a href="/cart" class="navbar__icon navbar__cart-icon" title="Cart">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                        <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
-                        <path d="M16 1v6M8 1v6" />
-                    </svg>
-                    @if($cartCount > 0)
-                        <span class="navbar__cart-badge">{{ $cartCount }}</span>
-                    @endif
-                </a>
+                </div>
             </div>
-
-            {{-- Mobile Menu Button --}}
-            <button class="navbar__icon mobile-menu-btn" @click="mobileOpen = !mobileOpen" aria-label="Menu">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <g x-show="!mobileOpen">
-                        <line x1="3" y1="12" x2="21" y2="12"></line>
-                        <line x1="3" y1="6" x2="21" y2="6"></line>
-                        <line x1="3" y1="18" x2="21" y2="18"></line>
-                    </g>
-                    <g x-show="mobileOpen" x-cloak>
-                        <line x1="18" y1="6" x2="6" y2="18"></line>
-                        <line x1="6" y1="6" x2="18" y2="18"></line>
-                    </g>
-                </svg>
-            </button>
         </nav>
 
         {{-- Per-NavItem Mega Menu Dropdowns --}}
@@ -192,62 +195,91 @@
             @endif
         @endforeach
 
-        {{-- Mobile Navigation --}}
-        <div class="mobile-nav" x-show="mobileOpen" x-cloak x-transition:enter="transition ease-out duration-200"
-            x-transition:enter-start="opacity-0 -translate-y-2" x-transition:enter-end="opacity-100 translate-y-0"
-            x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 translate-y-0"
-            x-transition:leave-end="opacity-0 -translate-y-2">
+        {{-- Mobile Navigation Overlay --}}
+        <div class="mobile-nav-overlay" x-show="mobileOpen" x-cloak
+            x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-200"
+            x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0">
 
-            @foreach($navItemsLeft as $navItem)
+            {{-- Main Menu --}}
+            <div class="mobile-nav-panel" x-show="!activeMobileSubId"
+                x-transition:enter="transition ease-in-out duration-300 transform"
+                x-transition:enter-start="-translate-x-full" x-transition:enter-end="translate-x-0"
+                x-transition:leave="transition ease-in-out duration-300 transform"
+                x-transition:leave-start="translate-x-0" x-transition:leave-end="-translate-x-full">
+
+                <div class="mobile-nav-panel__content">
+                    @foreach($navItemsLeft as $navItem)
+                        @if($navItem->has_mega_menu && $navItem->megaGroups->count() > 0)
+                            <button class="mobile-nav-panel__link" @click="activeMobileSubId = {{ $navItem->id }}">
+                                {{ strtoupper($navItem->label) }}
+                                <span class="mobile-nav-panel__arrow">&gt;</span>
+                            </button>
+                        @else
+                            <a href="{{ $navItem->url ?? '#' }}" class="mobile-nav-panel__link">
+                                {{ strtoupper($navItem->label) }}
+                            </a>
+                        @endif
+                    @endforeach
+
+                    @foreach($navItemsRight as $navItem)
+                        @if($navItem->has_mega_menu && $navItem->megaGroups->count() > 0)
+                            <button class="mobile-nav-panel__link" @click="activeMobileSubId = {{ $navItem->id }}">
+                                {{ strtoupper($navItem->label) }}
+                                <span class="mobile-nav-panel__arrow">&gt;</span>
+                            </button>
+                        @else
+                            <a href="{{ $navItem->url ?? '#' }}" class="mobile-nav-panel__link">
+                                {{ strtoupper($navItem->label) }}
+                            </a>
+                        @endif
+                    @endforeach
+
+                    @auth
+                        <a href="{{ route('profile.edit') }}" class="mobile-nav-panel__link">PROFILE</a>
+                    @else
+                        <a href="{{ route('login') }}" class="mobile-nav-panel__link">LOGIN</a>
+                    @endauth
+                    <a href="/cart" class="mobile-nav-panel__link">CART ({{ $cartCount }})</a>
+                </div>
+
+                <!-- <div class="mobile-nav-panel__footer">
+                    CURRENCY: (IDR/Rupiah)
+                </div> -->
+            </div>
+
+            {{-- Drill-down Submenus --}}
+            @foreach($allNavItems as $navItem)
                 @if($navItem->has_mega_menu && $navItem->megaGroups->count() > 0)
-                    <button class="mobile-nav__toggle" @click="toggleMobileSub({{ $navItem->id }})">
-                        {{ $navItem->label }}
-                        <span :class="{ 'mobile-nav__chevron--open': isMobileSubOpen({{ $navItem->id }}) }"
-                            class="mobile-nav__chevron">&#9662;</span>
-                    </button>
-                    <div class="mobile-nav__submenu" x-show="isMobileSubOpen({{ $navItem->id }})" x-cloak
-                        x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 max-h-0"
-                        x-transition:enter-end="opacity-100 max-h-screen">
-                        @foreach($navItem->megaGroups as $group)
-                            <a href="{{ $group->url ?? '#' }}">{{ $group->label }}</a>
-                            @foreach($group->items as $item)
-                                <a href="{{ $item->url ?? '#' }}" class="mobile-nav__sub-item">{{ $item->label }}</a>
+                    <div class="mobile-nav-panel" x-show="activeMobileSubId === {{ $navItem->id }}" x-cloak
+                        x-transition:enter="transition ease-in-out duration-300 transform"
+                        x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+                        x-transition:leave="transition ease-in-out duration-300 transform"
+                        x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full">
+
+                        <div class="mobile-nav-panel__content">
+                            <button class="mobile-nav-panel__link mobile-nav-panel__link--back"
+                                @click="activeMobileSubId = null">
+                                <span class="mobile-nav-panel__arrow">&lt;</span> {{ strtoupper($navItem->label) }}
+                            </button>
+                            @foreach($navItem->megaGroups as $group)
+                                @if(count($navItem->megaGroups) > 1 && $group->label)
+                                    <div class="mobile-nav-panel__group-label">{{ strtoupper($group->label) }}</div>
+                                @endif
+                                @foreach($group->items as $item)
+                                    <a href="{{ $item->url ?? '#' }}" class="mobile-nav-panel__link">
+                                        {{ strtoupper($item->label) }}
+                                    </a>
+                                @endforeach
                             @endforeach
-                        @endforeach
+                        </div>
+
+                        <!-- <div class="mobile-nav-panel__footer">
+                                    CURRENCY: (IDR/Rupiah)
+                                </div> -->
                     </div>
-                @else
-                    <a href="{{ $navItem->url ?? '#' }}">{{ $navItem->label }}</a>
                 @endif
             @endforeach
-
-            @foreach($navItemsRight as $navItem)
-                @if($navItem->has_mega_menu && $navItem->megaGroups->count() > 0)
-                    <button class="mobile-nav__toggle" @click="toggleMobileSub({{ $navItem->id }})">
-                        {{ $navItem->label }}
-                        <span :class="{ 'mobile-nav__chevron--open': isMobileSubOpen({{ $navItem->id }}) }"
-                            class="mobile-nav__chevron">&#9662;</span>
-                    </button>
-                    <div class="mobile-nav__submenu" x-show="isMobileSubOpen({{ $navItem->id }})" x-cloak
-                        x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0 max-h-0"
-                        x-transition:enter-end="opacity-100 max-h-screen">
-                        @foreach($navItem->megaGroups as $group)
-                            <a href="{{ $group->url ?? '#' }}">{{ $group->label }}</a>
-                            @foreach($group->items as $item)
-                                <a href="{{ $item->url ?? '#' }}" class="mobile-nav__sub-item">{{ $item->label }}</a>
-                            @endforeach
-                        @endforeach
-                    </div>
-                @else
-                    <a href="{{ $navItem->url ?? '#' }}">{{ $navItem->label }}</a>
-                @endif
-            @endforeach
-
-            @auth
-                <a href="{{ route('profile.edit') }}">Profile</a>
-            @else
-                <a href="{{ route('login') }}">Login</a>
-            @endauth
-            <a href="/cart">Cart ({{ $cartCount }})</a>
         </div>
     </div>
 
