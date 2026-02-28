@@ -339,6 +339,25 @@
     margin-top: auto;
 }
 
+/* --- Mobile Menu --- */
+.mobile-menu-btn {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.mobile-menu-btn svg {
+    width: 24px;
+    height: 24px;
+    stroke: #1a1a1a;
+    transition: stroke 0.3s ease;
+}
+
+.navbar-sticky--scrolled .mobile-menu-btn svg {
+    stroke: #1a1a1a;
+}
+
 @media (max-width: 768px) {
     .navbar {
         padding: 16px 20px;
