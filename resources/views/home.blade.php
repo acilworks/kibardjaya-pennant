@@ -68,10 +68,10 @@
             </div>
         </div>
         <!-- <div class="brand-story__categories">
-                @foreach($categories as $category)
-                    <a href="/shop" class="brand-story__cat-btn">{{ $category->name }}</a>
-                @endforeach
-            </div> -->
+                        @foreach($categories as $category)
+                            <a href="/shop" class="brand-story__cat-btn">{{ $category->name }}</a>
+                        @endforeach
+                    </div> -->
     </section>
 
     {{-- New Collections --}}
@@ -86,6 +86,9 @@
                     class="product-card {{ $product->is_sold_out ? 'product-card--sold-out' : '' }}">
                     @if($product->images && count($product->images) > 0)
                         <div class="product-card__image-wrap">
+                            @if($product->subCategory)
+                                <div class="product-card__badge">{{ $product->subCategory->name }}</div>
+                            @endif
                             <img src="{{ asset('storage/' . $product->images[0]) }}" alt="{{ $product->title }}"
                                 class="product-card__image product-card__image--primary">
                             @if(count($product->images) > 1)
@@ -100,13 +103,10 @@
                         </div>
                     @endif
                     <div class="product-card__info">
-                        @if($product->subCategory)
-                            <span class="product-card__subcategory">{{ $product->subCategory->name }}</span>
-                        @endif
                         <h3 class="product-card__name">{{ $product->title }}</h3>
                         <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
                             <p class="product-card__price" style="margin: 0;">Rp.
-                                {{ number_format($product->price, 0, ',', '.') }},00
+                                {{ number_format($product->price, 0, ',', '.') }}
                             </p>
                             @if($product->colorVariants->count() > 0)
                                 <div style="display: flex; gap: 4px;">

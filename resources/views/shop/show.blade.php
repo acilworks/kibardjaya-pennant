@@ -11,20 +11,20 @@
     SECTION 1: PRODUCT HERO
     ============================================ --}}
     <section class="pdp" x-data="{
-                                                qty: 1,
-                                                selectedColorIndex: null,
-                                                selectedColorName: '',
-                                                colorVariants: {{ Js::from($product->colorVariants->map(fn($v) => ['id' => $v->id, 'name' => $v->color_name, 'code' => $v->color_code, 'image' => $v->image ? asset('storage/' . $v->image) : null])) }},
-                                                swiperInstance: null,
-                                                variantSlideMap: {},
-                                                selectColor(index) {
-                                                    this.selectedColorIndex = index;
-                                                    this.selectedColorName = this.colorVariants[index].name;
-                                                    if (this.swiperInstance && this.variantSlideMap[index] !== undefined) {
-                                                        this.swiperInstance.slideTo(this.variantSlideMap[index]);
-                                                    }
-                                                }
-                                            }">
+                                                        qty: 1,
+                                                        selectedColorIndex: null,
+                                                        selectedColorName: '',
+                                                        colorVariants: {{ Js::from($product->colorVariants->map(fn($v) => ['id' => $v->id, 'name' => $v->color_name, 'code' => $v->color_code, 'image' => $v->image ? asset('storage/' . $v->image) : null])) }},
+                                                        swiperInstance: null,
+                                                        variantSlideMap: {},
+                                                        selectColor(index) {
+                                                            this.selectedColorIndex = index;
+                                                            this.selectedColorName = this.colorVariants[index].name;
+                                                            if (this.swiperInstance && this.variantSlideMap[index] !== undefined) {
+                                                                this.swiperInstance.slideTo(this.variantSlideMap[index]);
+                                                            }
+                                                        }
+                                                    }">
         {{-- Left: Product Photos Swiper --}}
         <div class="pdp__gallery">
             <div class="swiper pdp__swiper">
@@ -295,6 +295,9 @@
                         class="product-card {{ $related->is_sold_out ? 'product-card--sold-out' : '' }}">
                         @if($related->images && count($related->images) > 0)
                             <div class="product-card__image-wrap">
+                                @if($related->subCategory)
+                                    <div class="product-card__badge">{{ $related->subCategory->name }}</div>
+                                @endif
                                 <img src="{{ asset('storage/' . $related->images[0]) }}" alt="{{ $related->title }}"
                                     class="product-card__image product-card__image--primary">
                                 @if(count($related->images) > 1)
@@ -309,13 +312,10 @@
                             </div>
                         @endif
                         <div class="product-card__info">
-                            @if($related->subCategory)
-                                <span class="product-card__subcategory">{{ $related->subCategory->name }}</span>
-                            @endif
                             <h3 class="product-card__name">{{ $related->title }}</h3>
                             <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
                                 <p class="product-card__price" style="margin: 0;">Rp.
-                                    {{ number_format($related->price, 0, ',', '.') }},00
+                                    {{ number_format($related->price, 0, ',', '.') }}
                                 </p>
                                 @if($related->colorVariants->count() > 0)
                                     <div style="display: flex; gap: 4px;">
