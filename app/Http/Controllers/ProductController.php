@@ -9,8 +9,9 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::latest()->paginate(9);
-        return view('shop.index', compact('products'));
+        $products = Product::with(['subCategory', 'colorVariants'])->latest()->paginate(16);
+        $categories = \App\Models\Category::all();
+        return view('shop.index', compact('products', 'categories'));
     }
 
     public function show($slug)

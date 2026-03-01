@@ -264,7 +264,12 @@
                             </button>
                             @foreach($navItem->megaGroups as $group)
                                 @if(count($navItem->megaGroups) > 1 && $group->label)
-                                    <div class="mobile-nav-panel__group-label">{{ strtoupper($group->label) }}</div>
+                                    @if(!empty($group->url))
+                                        <a href="{{ $group->url }}"
+                                            class="mobile-nav-panel__group-label block no-underline">{{ strtoupper($group->label) }}</a>
+                                    @else
+                                        <div class="mobile-nav-panel__group-label">{{ strtoupper($group->label) }}</div>
+                                    @endif
                                 @endif
                                 @foreach($group->items as $item)
                                     <a href="{{ $item->url ?? '#' }}" class="mobile-nav-panel__link">
@@ -275,8 +280,8 @@
                         </div>
 
                         <!-- <div class="mobile-nav-panel__footer">
-                                    CURRENCY: (IDR/Rupiah)
-                                </div> -->
+                                            CURRENCY: (IDR/Rupiah)
+                                        </div> -->
                     </div>
                 @endif
             @endforeach
