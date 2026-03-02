@@ -17,7 +17,8 @@ class CollectionController extends Controller
             ->latest()
             ->get();
 
-        $newDrop = Product::with(['subCategory', 'colorVariants'])
+        $newDrop = Product::where('is_new_drop', true)
+            ->with(['subCategory', 'colorVariants'])
             ->latest()
             ->first();
 

@@ -101,6 +101,11 @@ class ProductResource extends Resource
                             ->label('Studio Pick')
                             ->inline(false)
                             ->helperText('Show in Collections page Studio Picks'),
+
+                        Toggle::make('is_new_drop')
+                            ->label('New Studio Drop')
+                            ->inline(false)
+                            ->helperText('Show as the featured New Studio Drop in Collections page'),
                     ]),
 
                 // ── Section 4: Classification ──
