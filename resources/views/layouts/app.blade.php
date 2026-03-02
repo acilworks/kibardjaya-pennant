@@ -295,9 +295,8 @@
                             @endforeach
                         </div>
 
-                        <!-- <div class="mobile-nav-panel__footer">
-                                                                                                                                            CURRENCY: (IDR/Rupiah)
-                                                                                                                                        </div> -->
+                        <div class="mobile-nav-panel__footer">
+                        </div>
                     </div>
                 @endif
             @endforeach
@@ -433,6 +432,7 @@
                             </a>
                         </div>
                     </div>
+                    <div class="cart-drawer__summary-gap"></div>
                 @endif
             </div>
         </div>

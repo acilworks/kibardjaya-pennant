@@ -340,13 +340,14 @@
 }
 
 .mobile-nav-panel__footer {
-    background-color: #efede5;
+    /* background-color: #efede5; */
     padding: 24px 20px;
     font-size: 12px;
     letter-spacing: 1px;
     color: #1a1a1a;
     font-family: 'JetBrains Mono', monospace;
     margin-top: auto;
+    margin-bottom: 60px;
 }
 
 /* --- Mobile Menu --- */
@@ -3347,7 +3348,7 @@
 }
 
 .cart-drawer__inner {
-    padding: 60px 40px 80px;
+    padding: 60px 40px 40px;
     /* match padding from cart-page right side */
     display: flex;
     flex-direction: column;
@@ -3524,7 +3525,13 @@
 .cart-drawer__summary-footer {
     border-top: 1px solid #1a1a1a;
     padding: 24px;
-    border-bottom: 1.5px solid #1a1a1a;
+    /* border-bottom: 1.5px solid #1a1a1a; */
+}
+
+.cart-drawer__summary-gap {
+    /* height: 30px; */
+    margin-top: 24px;
+    border-bottom: 1px solid #ffffff;
 }
 
 .cart-drawer__process-btn {
