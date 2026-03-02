@@ -7,11 +7,43 @@ use App\Models\Product;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::with(['subCategory', 'colorVariants'])->latest()->paginate(16);
+        $query = Product::with(['subCategory', 'colorVariants']);
+
+        if ($request->filled('category')) {
+            $query->whereHas('categoryRelation', function ($q) use ($request) {
+                $q->where('slug', $request->category);
+            });
+        }
+
+        if ($request->filled('subcategory')) {
+            $query->whereHas('subCategory', function ($q) use ($request) {
+                $q->where('slug', $request->subcategory);
+            });
+        }
+
+        if ($request->filled('sort')) {
+            if ($request->sort === 'price_asc') {
+                $query->orderBy('price', 'asc');
+            } elseif ($request->sort === 'price_desc') {
+                $query->orderBy('price', 'desc');
+            } else {
+                $query->latest();
+            }
+        } else {
+            $query->latest();
+        }
+
+        $products = $query->paginate(16)->withQueryString();
         $categories = \App\Models\Category::all();
-        return view('shop.index', compact('products', 'categories'));
+        $subCategories = \App\Models\SubCategory::all();
+
+        $currentSort = $request->sort ?? 'latest';
+        $currentCategory = $request->category;
+        $currentSubCategory = $request->subcategory;
+
+        return view('shop.index', compact('products', 'categories', 'subCategories', 'currentSort', 'currentCategory', 'currentSubCategory'));
     }
 
     public function show($slug)

@@ -20,9 +20,59 @@
     {{-- ============================================
     SHOP FILTER
     ============================================ --}}
-    <div class="shop-filter">
-        <span>FILTER</span>
-        <span>SORT: NO. FL</span>
+    <div class="shop-filter" x-data="{ filterOpen: false, sortOpen: false }" @click.away="filterOpen = false; sortOpen = false">
+        {{-- Filter Dropdown --}}
+        <div class="shop-filter__group">
+            <button class="shop-filter__toggle" @click="filterOpen = !filterOpen; sortOpen = false">
+                @if($currentCategory)
+                    FILTER: {{ strtoupper(str_replace('-', ' ', $currentCategory)) }}
+                @elseif($currentSubCategory)
+                    FILTER: {{ strtoupper(str_replace('-', ' ', $currentSubCategory)) }}
+                @else
+                    FILTER
+                @endif
+                <span x-show="!filterOpen">&#9662;</span>
+                <span x-show="filterOpen" x-cloak>&#9652;</span>
+            </button>
+            <div class="shop-filter__dropdown" x-show="filterOpen" x-cloak x-transition>
+                <a href="/shop{{ request()->has('sort') ? '?sort=' . request('sort') : '' }}" class="shop-filter__item {{ !$currentCategory && !$currentSubCategory ? 'shop-filter__item--active' : '' }}">ALL PIECES</a>
+                @foreach($categories as $category)
+                    <a href="/shop?category={{ $category->slug }}{{ request()->has('sort') ? '&sort=' . request('sort') : '' }}" class="shop-filter__item shop-filter__item--cat {{ $currentCategory == $category->slug ? 'shop-filter__item--active' : '' }}">{{ strtoupper($category->name) }}</a>
+                @endforeach
+                <div style="border-top: 1px solid #e1e1e1; margin: 4px 0;"></div>
+                @foreach($subCategories as $subCat)
+                    <a href="/shop?subcategory={{ $subCat->slug }}{{ request()->has('sort') ? '&sort=' . request('sort') : '' }}" class="shop-filter__item shop-filter__item--sub {{ $currentSubCategory == $subCat->slug ? 'shop-filter__item--active' : '' }}">{{ strtoupper($subCat->name) }}</a>
+                @endforeach
+            </div>
+        </div>
+
+        {{-- Sort Dropdown --}}
+        <div class="shop-filter__group">
+            <button class="shop-filter__toggle" @click="sortOpen = !sortOpen; filterOpen = false">
+                SORT: 
+                @if($currentSort === 'latest')
+                    NEWEST
+                @elseif($currentSort === 'price_asc')
+                    PRICE LOW-HIGH
+                @elseif($currentSort === 'price_desc')
+                    PRICE HIGH-LOW
+                @else
+                    NO. FL
+                @endif
+                <span x-show="!sortOpen">&#9662;</span>
+                <span x-show="sortOpen" x-cloak>&#9652;</span>
+            </button>
+            <div class="shop-filter__dropdown shop-filter__dropdown--right" x-show="sortOpen" x-cloak x-transition>
+                @php
+                    $filterQuery = '';
+                    if(request()->has('category')) $filterQuery = 'category=' . request('category') . '&';
+                    if(request()->has('subcategory')) $filterQuery = 'subcategory=' . request('subcategory') . '&';
+                @endphp
+                <a href="/shop?{{ $filterQuery }}sort=latest" class="shop-filter__item {{ $currentSort == 'latest' ? 'shop-filter__item--active' : '' }}">NEWEST</a>
+                <a href="/shop?{{ $filterQuery }}sort=price_asc" class="shop-filter__item {{ $currentSort == 'price_asc' ? 'shop-filter__item--active' : '' }}">PRICE LOW-HIGH</a>
+                <a href="/shop?{{ $filterQuery }}sort=price_desc" class="shop-filter__item {{ $currentSort == 'price_desc' ? 'shop-filter__item--active' : '' }}">PRICE HIGH-LOW</a>
+            </div>
+        </div>
     </div>
 
     {{-- ============================================
