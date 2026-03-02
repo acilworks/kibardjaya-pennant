@@ -1343,7 +1343,7 @@
     line-height: 1.6;
     color: rgba(255, 255, 255, 0.7);
     max-width: 320px;
-    text-transform: capitalize;
+    /* text-transform: capitalize; */
 
 }
 

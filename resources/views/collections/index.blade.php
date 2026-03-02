@@ -34,7 +34,7 @@
             <div class="swiper-wrapper">
                 @foreach($categories as $category)
                     <div class="swiper-slide clp-categories__slide">
-                        <a href="/shop" class="clp-categories__card">
+                        <a href="/shop?category={{ $category->slug }}" class="clp-categories__card">
                             <div class="clp-categories__card-image">
                                 @if($category->thumbnail)
                                     <img src="{{ asset('storage/' . $category->thumbnail) }}" alt="{{ $category->name }}">
