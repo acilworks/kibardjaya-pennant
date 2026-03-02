@@ -39,6 +39,8 @@
         activeMegaId: null,
         activeGroupId: null,
         scrolled: false,
+        lastScroll: 0,
+        scrollDirection: 'up',
         openMega(id, firstGroupId) {
             this.activeMegaId = id;
             this.activeGroupId = firstGroupId;
@@ -47,9 +49,22 @@
             this.activeMegaId = null;
             this.activeGroupId = null;
         }
-    }" @scroll.window="scrolled = (window.pageYOffset > 20)"
-        x-init="$watch('mobileOpen', value => { if(!value) activeMobileSubId = null; document.body.style.overflow = value ? 'hidden' : ''; })"
-        :class="{ 'navbar-sticky--scrolled': scrolled || activeMegaId !== null || mobileOpen }">
+    }" @scroll.window="
+        let currentScroll = window.pageYOffset;
+        if (currentScroll <= 0) {
+            scrollDirection = 'up';
+        } else if (currentScroll > lastScroll && !mobileOpen) {
+            scrollDirection = 'down';
+        } else if (currentScroll < lastScroll) {
+            scrollDirection = 'up';
+        }
+        lastScroll = currentScroll;
+        scrolled = (currentScroll > 70);
+    " x-init="$watch('mobileOpen', value => { if(!value) activeMobileSubId = null; document.body.style.overflow = value ? 'hidden' : ''; })"
+        :class="{ 
+            'navbar-sticky--scrolled': scrolled || activeMegaId !== null || mobileOpen,
+            'navbar-sticky--hidden': scrollDirection === 'down' && scrolled && !mobileOpen
+        }">
         <nav class="navbar">
             {{-- Left Side --}}
             <div class="navbar__left">
@@ -280,8 +295,8 @@
                         </div>
 
                         <!-- <div class="mobile-nav-panel__footer">
-                                            CURRENCY: (IDR/Rupiah)
-                                        </div> -->
+                                                                                    CURRENCY: (IDR/Rupiah)
+                                                                                </div> -->
                     </div>
                 @endif
             @endforeach
