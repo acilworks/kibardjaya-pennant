@@ -63,7 +63,7 @@ class CartController extends Controller
 
         session()->put('cart', $cart);
 
-        return redirect('/cart')->with('success', 'Product added to cart');
+        return back()->with('success', 'Product added to cart')->with('cart_open', true);
     }
 
     public function update(Request $request, $id)
@@ -75,14 +75,14 @@ class CartController extends Controller
             $product = Product::find($productId);
             // Validate against stock
             if ($product && $request->qty > $product->stock) {
-                return back()->with('error', 'Stok tidak mencukupi. Tersisa ' . $product->stock . ' item.');
+                return back()->with('error', 'Stok tidak mencukupi. Tersisa ' . $product->stock . ' item.')->with('cart_open', true);
             }
 
             $cart[$id]['qty'] = $request->qty;
             session()->put('cart', $cart);
         }
 
-        return back();
+        return back()->with('cart_open', true);
     }
 
     public function remove($id)
@@ -94,6 +94,6 @@ class CartController extends Controller
             session()->put('cart', $cart);
         }
 
-        return back();
+        return back()->with('cart_open', true);
     }
 }

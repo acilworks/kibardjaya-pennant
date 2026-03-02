@@ -149,7 +149,8 @@
                         $cartItems = session()->get('cart', []);
                         $cartCount = array_sum(array_column($cartItems, 'qty'));
                     @endphp
-                    <a href="/cart" class="navbar__icon navbar__cart-icon" title="Cart">
+                    <a href="#" @click.prevent="$dispatch('open-cart')" class="navbar__icon navbar__cart-icon"
+                        title="Cart">
                         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
                             <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
                             <path d="M16 1v6M8 1v6" />
@@ -295,8 +296,8 @@
                         </div>
 
                         <!-- <div class="mobile-nav-panel__footer">
-                                                                                    CURRENCY: (IDR/Rupiah)
-                                                                                </div> -->
+                                                                                                                                            CURRENCY: (IDR/Rupiah)
+                                                                                                                                        </div> -->
                     </div>
                 @endif
             @endforeach
@@ -312,6 +313,129 @@
     <div class="back-to-top-mobile">
         <a onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">BACK TO TOP</a>
         <!-- <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">BACK TO TOP</button> -->
+    </div>
+
+    {{-- Slide-out Cart Drawer --}}
+    @php
+        $cartOrderValue = 0;
+        foreach ($cartItems as $item) {
+            $cartOrderValue += $item['price'] * $item['qty'];
+        }
+    @endphp
+    <div x-data="{ cartOpen: {{ session('cart_open') ? 'true' : 'false' }} }" @open-cart.window="cartOpen = true"
+        @keydown.escape.window="cartOpen = false" :class="{'overflow-hidden': cartOpen}">
+
+        {{-- Overlay --}}
+        <div class="cart-drawer-overlay" x-show="cartOpen" x-transition.opacity.duration.300ms @click="cartOpen = false"
+            x-cloak></div>
+
+        {{-- Drawer --}}
+        <div class="cart-drawer" x-show="cartOpen" x-transition:enter="transition ease-in-out duration-300 transform"
+            x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+            x-transition:leave="transition ease-in-out duration-300 transform" x-transition:leave-start="translate-x-0"
+            x-transition:leave-end="translate-x-full" x-cloak>
+
+            <button class="cart-drawer__close" @click="cartOpen = false">&times;</button>
+
+            <div class="cart-drawer__inner">
+                @if(empty($cartItems))
+                    <div class="cart-drawer__empty">
+                        <h2>Your Cart is Empty</h2>
+                        <button @click="cartOpen = false" class="cart-drawer__continue">Explore Collections</button>
+                    </div>
+                @else
+                    {{-- Collection List --}}
+                    <div class="cart-drawer__collection-list">
+                        <div class="cart-drawer__header">
+                            Collection List
+                        </div>
+
+                        @foreach($cartItems as $key => $item)
+                            <div class="cart-drawer__item">
+                                @if(isset($item['image']) && $item['image'])
+                                    <img src="{{ asset('storage/' . $item['image']) }}" alt="{{ $item['title'] }}"
+                                        class="cart-drawer__item-img">
+                                @else
+                                    <div class="cart-drawer__item-img" style="background-color: #f5f5f5;"></div>
+                                @endif
+
+                                <div class="cart-drawer__item-info">
+                                    <div class="cart-drawer__item-top">
+                                        <h3 class="cart-drawer__item-title">
+                                            {{ $item['title'] }}
+                                            @if(!empty($item['variation_name']))
+                                                <br><span style="font-weight: 400;">({{ $item['variation_name'] }})</span>
+                                            @endif
+                                        </h3>
+                                        <span class="cart-drawer__item-price">Rp.
+                                            {{ number_format($item['price'], 0, ',', '.') }}</span>
+                                    </div>
+                                    <div class="cart-drawer__item-bottom">
+                                        <div class="cart-drawer__qty-ctrl">
+                                            <form action="/cart/update/{{ $key }}" method="POST"
+                                                style="margin:0; padding:0; line-height:1;">
+                                                @csrf
+                                                <input type="hidden" name="qty" value="{{ max(1, $item['qty'] - 1) }}">
+                                                <button type="submit" class="cart-drawer__qty-btn">-</button>
+                                            </form>
+
+                                            <span>{{ $item['qty'] }}</span>
+
+                                            <form action="/cart/update/{{ $key }}" method="POST"
+                                                style="margin:0; padding:0; line-height:1;">
+                                                @csrf
+                                                <input type="hidden" name="qty" value="{{ $item['qty'] + 1 }}">
+                                                <button type="submit" class="cart-drawer__qty-btn">+</button>
+                                            </form>
+                                        </div>
+                                        <form action="/cart/remove/{{ $key }}" method="POST" style="line-height:1;">
+                                            @csrf
+                                            <button type="submit" class="cart-drawer__remove-btn">
+                                                <svg width="18" height="20" viewBox="0 0 24 24" fill="none"
+                                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                                    stroke-linejoin="round">
+                                                    <polyline points="3 6 5 6 21 6"></polyline>
+                                                    <path
+                                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                                    </path>
+                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
+                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
+                                                </svg>
+                                            </button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        @endforeach
+                    </div>
+
+                    {{-- Summary Block --}}
+                    <div class="cart-drawer__summary">
+                        <div class="cart-drawer__summary-content">
+                            <div class="cart-drawer__summary-row">
+                                <span>Order Value</span>
+                                <span>Rp. {{ number_format($cartOrderValue, 0, ',', '.') }}</span>
+                            </div>
+                            <div class="cart-drawer__summary-row">
+                                <span>Shipping</span>
+                                <span>Enter province first</span>
+                            </div>
+
+                            <div class="cart-drawer__summary-row cart-drawer__summary-total">
+                                <span>Total</span>
+                                <span>Rp. {{ number_format($cartOrderValue, 0, ',', '.') }}</span>
+                            </div>
+                        </div>
+
+                        <div class="cart-drawer__summary-footer">
+                            <a href="/cart" class="cart-drawer__process-btn">
+                                PROCESS
+                            </a>
+                        </div>
+                    </div>
+                @endif
+            </div>
+        </div>
     </div>
 
 
