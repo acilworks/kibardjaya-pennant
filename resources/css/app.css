@@ -3157,7 +3157,7 @@
     display: flex;
     align-items: center;
     gap: 6px;
-    text-decoration: underline;
+    /* text-decoration: underline; */
     text-underline-offset: 4px;
     text-decoration-thickness: 1px;
 }
