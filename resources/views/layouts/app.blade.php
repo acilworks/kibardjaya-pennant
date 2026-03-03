@@ -127,22 +127,6 @@
                 </div>
 
                 <div class="navbar__icons">
-                    {{-- User Icon --}}
-                    @auth
-                        <a href="{{ route('profile.edit') }}" class="navbar__icon" title="Profile">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                                <circle cx="12" cy="7" r="4" />
-                            </svg>
-                        </a>
-                    @else
-                        <a href="{{ route('login') }}" class="navbar__icon" title="Login">
-                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
-                                <circle cx="12" cy="7" r="4" />
-                            </svg>
-                        </a>
-                    @endauth
 
                     {{-- Cart Icon --}}
                     @php
@@ -250,12 +234,6 @@
                             </a>
                         @endif
                     @endforeach
-
-                    @auth
-                        <a href="{{ route('profile.edit') }}" class="mobile-nav-panel__link">PROFILE</a>
-                    @else
-                        <a href="{{ route('login') }}" class="mobile-nav-panel__link">LOGIN</a>
-                    @endauth
                     <a href="/cart" class="mobile-nav-panel__link">CART ({{ $cartCount }})</a>
                 </div>
 

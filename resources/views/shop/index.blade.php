@@ -136,19 +136,17 @@
     SHOP PAGINATION
     ============================================ --}}
     <div class="shop-pagination-wrap">
-        @if ($products->lastPage() > 1)
-            <div class="shop-pagination__info">
-                {{ $products->currentPage() }} OF {{ $products->lastPage() }}
-            </div>
-            <div class="shop-pagination__progress">
-                <div class="shop-pagination__progress-bar"
-                    style="width: {{ ($products->currentPage() / $products->lastPage()) * 100 }}%;"></div>
-            </div>
-            @if ($products->hasMorePages())
-                <a href="{{ $products->nextPageUrl() }}" class="shop-pagination__button">
-                    LOAD MORE PIECES
-                </a>
-            @endif
+        <div class="shop-pagination__info">
+            {{ $products->currentPage() }} OF {{ $products->lastPage() }}
+        </div>
+        <div class="shop-pagination__progress">
+            <div class="shop-pagination__progress-bar"
+                style="width: {{ ($products->currentPage() / $products->lastPage()) * 100 }}%;"></div>
+        </div>
+        @if ($products->hasMorePages())
+            <a href="{{ $products->nextPageUrl() }}" class="shop-pagination__button">
+                LOAD MORE PIECES
+            </a>
         @endif
     </div>
 
