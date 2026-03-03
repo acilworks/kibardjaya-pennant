@@ -3305,6 +3305,10 @@
         grid-template-columns: repeat(2, 1fr);
     }
 
+    .shop-grid.shop-grid--1col {
+        grid-template-columns: 1fr;
+    }
+
     .shop-pagination-wrap {
         padding: 40px 20px;
     }

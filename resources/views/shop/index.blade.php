@@ -18,118 +18,144 @@
     </section>
 
     {{-- ============================================
-    SHOP FILTER
+    SHOP FILTER & GRID WRAPPER
     ============================================ --}}
-    <div class="shop-filter" x-data="{ filterOpen: false, sortOpen: false }"
-        @click.away="filterOpen = false; sortOpen = false">
-        {{-- Filter Dropdown --}}
-        <div class="shop-filter__group">
-            <button class="shop-filter__toggle" @click="filterOpen = !filterOpen; sortOpen = false">
-                @if($currentCategory)
-                    FILTER: {{ strtoupper(str_replace('-', ' ', $currentCategory)) }}
-                @elseif($currentSubCategory)
-                    FILTER: {{ strtoupper(str_replace('-', ' ', $currentSubCategory)) }}
-                @else
-                    FILTER
-                @endif
-                <span x-show="!filterOpen">&#9662;</span>
-                <span x-show="filterOpen" x-cloak>&#9652;</span>
-            </button>
-            <div class="shop-filter__dropdown" x-show="filterOpen" x-cloak x-transition>
-                <a href="/shop{{ request()->has('sort') ? '?sort=' . request('sort') : '' }}"
-                    class="shop-filter__item {{ !$currentCategory && !$currentSubCategory ? 'shop-filter__item--active' : '' }}">ALL
-                    PIECES</a>
-                @foreach($categories as $category)
-                    <a href="/shop?category={{ $category->slug }}{{ request()->has('sort') ? '&sort=' . request('sort') : '' }}"
-                        class="shop-filter__item shop-filter__item--cat {{ $currentCategory == $category->slug ? 'shop-filter__item--active' : '' }}">{{ strtoupper($category->name) }}</a>
-                @endforeach
-                <div style="border-top: 1px solid #e1e1e1; margin: 4px 0;"></div>
-                @foreach($subCategories as $subCat)
-                    <a href="/shop?subcategory={{ $subCat->slug }}{{ request()->has('sort') ? '&sort=' . request('sort') : '' }}"
-                        class="shop-filter__item shop-filter__item--sub {{ $currentSubCategory == $subCat->slug ? 'shop-filter__item--active' : '' }}">{{ strtoupper($subCat->name) }}</a>
-                @endforeach
-            </div>
-        </div>
+    <div x-data="{ filterOpen: false, sortOpen: false, gridCols: 2 }" @click.away="filterOpen = false; sortOpen = false">
 
-        {{-- Sort Dropdown --}}
-        <div class="shop-filter__group">
-            <button class="shop-filter__toggle" @click="sortOpen = !sortOpen; filterOpen = false">
-                SORT:
-                @if($currentSort === 'latest')
-                    NEWEST
-                @elseif($currentSort === 'price_asc')
-                    PRICE LOW-HIGH
-                @elseif($currentSort === 'price_desc')
-                    PRICE HIGH-LOW
-                @else
-                    NO. FL
-                @endif
-                <span x-show="!sortOpen">&#9662;</span>
-                <span x-show="sortOpen" x-cloak>&#9652;</span>
-            </button>
-            <div class="shop-filter__dropdown shop-filter__dropdown--right" x-show="sortOpen" x-cloak x-transition>
-                @php
-                    $filterQuery = '';
-                    if (request()->has('category'))
-                        $filterQuery = 'category=' . request('category') . '&';
-                    if (request()->has('subcategory'))
-                        $filterQuery = 'subcategory=' . request('subcategory') . '&';
-                @endphp
-                <a href="/shop?{{ $filterQuery }}sort=latest"
-                    class="shop-filter__item {{ $currentSort == 'latest' ? 'shop-filter__item--active' : '' }}">NEWEST</a>
-                <a href="/shop?{{ $filterQuery }}sort=price_asc"
-                    class="shop-filter__item {{ $currentSort == 'price_asc' ? 'shop-filter__item--active' : '' }}">PRICE
-                    LOW-HIGH</a>
-                <a href="/shop?{{ $filterQuery }}sort=price_desc"
-                    class="shop-filter__item {{ $currentSort == 'price_desc' ? 'shop-filter__item--active' : '' }}">PRICE
-                    HIGH-LOW</a>
-            </div>
-        </div>
-    </div>
-
-    {{-- ============================================
-    SHOP GRID
-    ============================================ --}}
-    <div class="shop-grid">
-        @foreach($products as $product)
-            <a href="/shop/{{ $product->slug }}"
-                class="product-card {{ $product->is_sold_out ? 'product-card--sold-out' : '' }}">
-                @if($product->images && count($product->images) > 0)
-                    <div class="product-card__image-wrap">
-                        @if($product->subCategory)
-                            <div class="product-card__badge">{{ $product->subCategory->name }}</div>
-                        @endif
-                        <img src="{{ asset('storage/' . $product->images[0]) }}" alt="{{ $product->title }}"
-                            class="product-card__image product-card__image--primary">
-                        @if(count($product->images) > 1)
-                            <img src="{{ asset('storage/' . $product->images[1]) }}" alt="{{ $product->title }}"
-                                class="product-card__image product-card__image--hover">
-                        @endif
-                        @if($product->is_sold_out)
-                            <div class="product-card__sold-overlay">
-                                <span>Sold Out</span>
-                            </div>
-                        @endif
-                    </div>
-                @endif
-                <div class="product-card__info">
-                    <h3 class="product-card__name">{{ $product->title }}</h3>
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
-                        <p class="product-card__price" style="margin: 0;">Rp.
-                            {{ number_format($product->price, 0, ',', '.') }}
-                        </p>
-                        @if($product->colorVariants->count() > 0)
-                            <div style="display: flex; gap: 4px;">
-                                @foreach($product->colorVariants as $variant)
-                                    <span
-                                        style="width: 12px; height: 12px; border-radius: 50%; background-color: {{ $variant->color_code }}; border: 1px solid #1a1a1a;"></span>
-                                @endforeach
-                            </div>
-                        @endif
-                    </div>
+        {{-- ============================================
+        SHOP FILTER
+        ============================================ --}}
+        <div class="shop-filter">
+            {{-- Filter Dropdown --}}
+            <div class="shop-filter__group">
+                <button class="shop-filter__toggle" @click="filterOpen = !filterOpen; sortOpen = false">
+                    @if($currentCategory)
+                        FILTER: {{ strtoupper(str_replace('-', ' ', $currentCategory)) }}
+                    @elseif($currentSubCategory)
+                        FILTER: {{ strtoupper(str_replace('-', ' ', $currentSubCategory)) }}
+                    @else
+                        FILTER
+                    @endif
+                    <span x-show="!filterOpen">&#9662;</span>
+                    <span x-show="filterOpen" x-cloak>&#9652;</span>
+                </button>
+                <div class="shop-filter__dropdown" x-show="filterOpen" x-cloak x-transition>
+                    <a href="/shop{{ request()->has('sort') ? '?sort=' . request('sort') : '' }}"
+                        class="shop-filter__item {{ !$currentCategory && !$currentSubCategory ? 'shop-filter__item--active' : '' }}">ALL
+                        PIECES</a>
+                    @foreach($categories as $category)
+                        <a href="/shop?category={{ $category->slug }}{{ request()->has('sort') ? '&sort=' . request('sort') : '' }}"
+                            class="shop-filter__item shop-filter__item--cat {{ $currentCategory == $category->slug ? 'shop-filter__item--active' : '' }}">{{ strtoupper($category->name) }}</a>
+                    @endforeach
+                    <div style="border-top: 1px solid #e1e1e1; margin: 4px 0;"></div>
+                    @foreach($subCategories as $subCat)
+                        <a href="/shop?subcategory={{ $subCat->slug }}{{ request()->has('sort') ? '&sort=' . request('sort') : '' }}"
+                            class="shop-filter__item shop-filter__item--sub {{ $currentSubCategory == $subCat->slug ? 'shop-filter__item--active' : '' }}">{{ strtoupper($subCat->name) }}</a>
+                    @endforeach
                 </div>
-            </a>
-        @endforeach
+            </div>
+
+            {{-- Sort Dropdown (Desktop) & Grid View Toggle (Mobile) --}}
+            <div class="shop-filter__group">
+                {{-- Desktop Sort Button --}}
+                <button class="shop-filter__toggle xl:flex lg:flex md:flex hidden"
+                    @click="sortOpen = !sortOpen; filterOpen = false">
+                    SORT:
+                    @if($currentSort === 'latest')
+                        NEWEST
+                    @elseif($currentSort === 'price_asc')
+                        PRICE LOW-HIGH
+                    @elseif($currentSort === 'price_desc')
+                        PRICE HIGH-LOW
+                    @else
+                        NO. FL
+                    @endif
+                    <span x-show="!sortOpen">&#9662;</span>
+                    <span x-show="sortOpen" x-cloak>&#9652;</span>
+                </button>
+
+                {{-- Mobile Grid View Toggles --}}
+                <div class="shop-filter__view-toggle md:hidden flex gap-2 items-center">
+                    <button @click="gridCols = 1" :class="{'opacity-100': gridCols === 1, 'opacity-30': gridCols !== 1}">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <rect x="3" y="3" width="18" height="18" />
+                        </svg>
+                    </button>
+                    <button @click="gridCols = 2" :class="{'opacity-100': gridCols === 2, 'opacity-30': gridCols !== 2}">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <rect x="3" y="3" width="8" height="8" />
+                            <rect x="13" y="3" width="8" height="8" />
+                            <rect x="3" y="13" width="8" height="8" />
+                            <rect x="13" y="13" width="8" height="8" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="shop-filter__dropdown shop-filter__dropdown--right xl:block lg:block md:block" x-show="sortOpen"
+                    x-cloak x-transition>
+                    @php
+                        $filterQuery = '';
+                        if (request()->has('category'))
+                            $filterQuery = 'category=' . request('category') . '&';
+                        if (request()->has('subcategory'))
+                            $filterQuery = 'subcategory=' . request('subcategory') . '&';
+                    @endphp
+                    <a href="/shop?{{ $filterQuery }}sort=latest"
+                        class="shop-filter__item {{ $currentSort == 'latest' ? 'shop-filter__item--active' : '' }}">NEWEST</a>
+                    <a href="/shop?{{ $filterQuery }}sort=price_asc"
+                        class="shop-filter__item {{ $currentSort == 'price_asc' ? 'shop-filter__item--active' : '' }}">PRICE
+                        LOW-HIGH</a>
+                    <a href="/shop?{{ $filterQuery }}sort=price_desc"
+                        class="shop-filter__item {{ $currentSort == 'price_desc' ? 'shop-filter__item--active' : '' }}">PRICE
+                        HIGH-LOW</a>
+                </div>
+            </div>
+        </div>
+
+        {{-- ============================================
+        SHOP GRID
+        ============================================ --}}
+        <div class="shop-grid" :class="{'shop-grid--1col': gridCols === 1}">
+            @foreach($products as $product)
+                <a href="/shop/{{ $product->slug }}"
+                    class="product-card {{ $product->is_sold_out ? 'product-card--sold-out' : '' }}">
+                    @if($product->images && count($product->images) > 0)
+                        <div class="product-card__image-wrap">
+                            @if($product->subCategory)
+                                <div class="product-card__badge">{{ $product->subCategory->name }}</div>
+                            @endif
+                            <img src="{{ asset('storage/' . $product->images[0]) }}" alt="{{ $product->title }}"
+                                class="product-card__image product-card__image--primary">
+                            @if(count($product->images) > 1)
+                                <img src="{{ asset('storage/' . $product->images[1]) }}" alt="{{ $product->title }}"
+                                    class="product-card__image product-card__image--hover">
+                            @endif
+                            @if($product->is_sold_out)
+                                <div class="product-card__sold-overlay">
+                                    <span>Sold Out</span>
+                                </div>
+                            @endif
+                        </div>
+                    @endif
+                    <div class="product-card__info">
+                        <h3 class="product-card__name">{{ $product->title }}</h3>
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
+                            <p class="product-card__price" style="margin: 0;">Rp.
+                                {{ number_format($product->price, 0, ',', '.') }}
+                            </p>
+                            @if($product->colorVariants->count() > 0)
+                                <div style="display: flex; gap: 4px;">
+                                    @foreach($product->colorVariants as $variant)
+                                        <span
+                                            style="width: 12px; height: 12px; border-radius: 50%; background-color: {{ $variant->color_code }}; border: 1px solid #1a1a1a;"></span>
+                                    @endforeach
+                                </div>
+                            @endif
+                        </div>
+                    </div>
+                </a>
+            @endforeach
+        </div>
     </div>
 
     {{-- ============================================
