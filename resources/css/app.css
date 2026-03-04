@@ -923,7 +923,7 @@
    ============================================ */
 @media (max-width: 768px) {
     .brand-story {
-        padding: 40px 20px 32px;
+        padding: 40px 20px 5px;
     }
 
     .brand-story__inner {
@@ -3299,6 +3299,10 @@
 
     .shop-filter {
         padding: 16px 20px;
+    }
+
+    .shop-filter__toggle--sort-btn {
+        display: none !important;
     }
 
     .shop-grid {

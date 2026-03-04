@@ -58,7 +58,7 @@
             {{-- Sort Dropdown (Desktop) & Grid View Toggle (Mobile) --}}
             <div class="shop-filter__group">
                 {{-- Desktop Sort Button --}}
-                <button class="shop-filter__toggle xl:flex lg:flex md:flex hidden"
+                <button class="shop-filter__toggle shop-filter__toggle--sort-btn xl:flex lg:flex md:flex hidden"
                     @click="sortOpen = !sortOpen; filterOpen = false">
                     SORT:
                     @if($currentSort === 'latest')
