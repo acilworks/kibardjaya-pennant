@@ -32,6 +32,9 @@
     z-index: 50;
     transition: background-color 0.3s ease, transform 0.3s ease;
     background: transparent;
+    /* coba dihp */
+    /* position: relative; */
+    /* z-index: 9999; */
 }
 
 .navbar-sticky--hidden {
@@ -163,8 +166,18 @@
     border-top: 1px solid #1a1a1a;
     border-bottom: 1px solid #1a1a1a;
     display: flex;
-    z-index: 100;
+    z-index: 40;
     min-height: 400px;
+    pointer-events: none;
+}
+
+[x-cloak] .mega-menu,
+.mega-menu[style*="display: none"] {
+    pointer-events: none !important;
+}
+
+.mega-menu:not([style*="display: none"]) {
+    pointer-events: auto;
 }
 
 .mega-menu__sidebar {
@@ -258,7 +271,6 @@
     opacity: 0.6;
 }
 
-/* --- Mobile Menu Overlay --- */
 .mobile-nav-overlay {
     position: absolute;
     top: 100%;
@@ -271,6 +283,16 @@
     overflow: hidden;
     border-top: 1px solid rgba(0, 0, 0, 0.08);
     /* Divider from sticky header */
+    pointer-events: none;
+}
+
+[x-cloak] .mobile-nav-overlay,
+.mobile-nav-overlay[style*="display: none"] {
+    pointer-events: none !important;
+}
+
+.mobile-nav-overlay:not([style*="display: none"]) {
+    pointer-events: auto;
 }
 
 .mobile-nav-panel {
@@ -888,9 +910,10 @@
 .marquee {
     overflow: hidden;
     background-color: #1a1a1a;
-    border-top: 1px solid #1a1a1a;
+    /* border-top: 1px solid #1a1a1a; */
+    /* border-bottom: 1px solid #1a1a1a; */
     /* border-top: 1px solid #e8e8e8; */
-    padding: 10px 0;
+    padding: 3px 0;
     white-space: nowrap;
 }
 
@@ -900,10 +923,11 @@
 }
 
 .marquee__content {
-    font-size: 13px;
-    letter-spacing: 2px;
-    text-transform: capitalize;
-    font-weight: 500;
+    font-size: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    /* text-transform: capitalize; */
+    font-weight: 300;
     color: #ffffff;
     padding-right: 8px;
     flex-shrink: 0;
@@ -993,7 +1017,7 @@
     }
 
     .marquee__content {
-        font-size: 13px;
+        font-size: 10px;
     }
 }
 
@@ -1597,7 +1621,7 @@
 }
 
 .pdp__pagination {
-    bottom: 16px !important;
+    bottom: 20px !important;
 }
 
 .pdp__pagination .swiper-pagination-bullet {
@@ -1995,6 +2019,16 @@
     justify-content: center;
     z-index: 100;
     padding: 20px;
+    pointer-events: none;
+}
+
+[x-cloak] .pdp-trust__modal-backdrop,
+.pdp-trust__modal-backdrop[style*="display: none"] {
+    pointer-events: none !important;
+}
+
+.pdp-trust__modal-backdrop:not([style*="display: none"]) {
+    pointer-events: auto;
 }
 
 .pdp-trust__modal {
@@ -2139,7 +2173,15 @@
     }
 
     .pdp__swiper {
-        height: 380px;
+        height: auto;
+    }
+
+    .pdp__swiper .swiper-slide {
+        height: auto;
+    }
+
+    .pdp__gallery-item {
+        height: auto;
     }
 
     .pdp__info {
@@ -2444,6 +2486,15 @@
     letter-spacing: 0.5px;
     color: #1a1a1a;
     padding-bottom: 6px;
+}
+
+/* ============================================
+   IOS SAFARI TOUCH FIXES
+   ============================================ */
+/* Prevent SVG elements from intercepting clicks meant for their parent toggle buttons */
+button svg,
+a svg {
+    pointer-events: none;
 }
 
 .pay-receipt__items-divider {
@@ -3330,6 +3381,16 @@
     height: 100vh;
     background: rgba(0, 0, 0, 0.4);
     z-index: 100;
+    pointer-events: none;
+}
+
+[x-cloak] .cart-drawer-overlay,
+.cart-drawer-overlay[style*="display: none"] {
+    pointer-events: none !important;
+}
+
+.cart-drawer-overlay:not([style*="display: none"]) {
+    pointer-events: auto;
 }
 
 .cart-drawer {

@@ -61,8 +61,20 @@
     {{-- ============================================
     SECTION 3: BLACK STATEMENT BAR
     ============================================ --}}
-    <div class="clp-statement">
-        <p class="clp-statement__text">Crafted for collectors who value story over trend.</p>
+    <!-- <div class="clp-statement">
+            <p class="clp-statement__text">Crafted for collectors who value story over trend.</p>
+        </div> -->
+
+    {{-- Running Text Marquee --}}
+    <div class="marquee">
+        <div class="marquee__track">
+            <span class="marquee__content">&bull;&nbsp; Handmade in Indonesia &nbsp;&bull;&nbsp; Limited Small Batches
+                &nbsp;&bull;&nbsp; Built for Collectors &nbsp;&bull;&nbsp; Crafted Memories &nbsp;</span>
+            <span class="marquee__content">&bull;&nbsp; Handmade in Indonesia &nbsp;&bull;&nbsp; Limited Small Batches
+                &nbsp;&bull;&nbsp; Built for Collectors &nbsp;&bull;&nbsp; Crafted Memories &nbsp;</span>
+            <span class="marquee__content">&bull;&nbsp; Handmade in Indonesia &nbsp;&bull;&nbsp; Limited Small Batches
+                &nbsp;&bull;&nbsp; Built for Collectors &nbsp;&bull;&nbsp; Crafted Memories &nbsp;</span>
+        </div>
     </div>
 
     {{-- ============================================

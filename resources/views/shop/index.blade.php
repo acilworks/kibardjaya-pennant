@@ -91,8 +91,7 @@
                     </button>
                 </div>
 
-                <div class="shop-filter__dropdown shop-filter__dropdown--right xl:block lg:block md:block" x-show="sortOpen"
-                    x-cloak x-transition>
+                <div class="shop-filter__dropdown shop-filter__dropdown--right" x-show="sortOpen" x-cloak x-transition>
                     @php
                         $filterQuery = '';
                         if (request()->has('category'))
