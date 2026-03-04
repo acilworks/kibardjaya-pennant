@@ -77,12 +77,12 @@
                 {{-- Mobile Grid View Toggles --}}
                 <div class="shop-filter__view-toggle md:hidden flex gap-2 items-center">
                     <button @click="gridCols = 1" :class="{'opacity-100': gridCols === 1, 'opacity-30': gridCols !== 1}">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <svg width="25" height="25" viewBox="0 0 24 24" fill="currentColor">
                             <rect x="3" y="3" width="18" height="18" />
                         </svg>
                     </button>
                     <button @click="gridCols = 2" :class="{'opacity-100': gridCols === 2, 'opacity-30': gridCols !== 2}">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                        <svg width="25" height="25" viewBox="0 0 24 24" fill="currentColor">
                             <rect x="3" y="3" width="8" height="8" />
                             <rect x="13" y="3" width="8" height="8" />
                             <rect x="3" y="13" width="8" height="8" />

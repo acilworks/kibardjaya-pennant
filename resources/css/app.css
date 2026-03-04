@@ -371,7 +371,7 @@
 
 @media (max-width: 768px) {
     .navbar {
-        padding: 16px 20px;
+        padding: 20px 20px;
         justify-content: space-between;
     }
 
@@ -381,7 +381,7 @@
     }
 
     .navbar__icons {
-        gap: 12px;
+        gap: 16px;
     }
 
     .navbar__links {
@@ -476,8 +476,8 @@
     }
 
     .hero-swiper .swiper-slide {
-        height: 100vh;
-        height: 100dvh;
+        height: 80vh;
+        height: 80dvh;
     }
 
     .hero-swiper__pagination {
@@ -530,7 +530,7 @@
     text-transform: uppercase;
     font-weight: 300;
     color: #1a1a1a;
-    background-color: #ffffff;
+    background-color: rgba(255, 255, 255, 0.3);
     border: 1px solid #1a1a1a;
     /* border: 1px solid rgba(255, 255, 255, 0.7); */
     padding: 2px 6px;
@@ -561,13 +561,13 @@
 
 .hero__cta {
     display: inline-block;
-    padding: 14px 28px;
+    padding: 10px 15px;
     border: 1.5px solid rgba(255, 255, 255, 0.9);
     color: #ffffff;
     font-size: 12px;
     letter-spacing: 2px;
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 700;
     text-decoration: none;
     transition: all 0.3s ease;
     background: transparent;
@@ -583,9 +583,9 @@
 
 @media (max-width: 768px) {
     .hero {
-        height: 100vh;
-        height: 100dvh;
-        margin-top: -74px;
+        height: 80vh;
+        height: 80dvh;
+        margin-top: -81px;
         /* Mobile: -74px to remove gap */
     }
 
@@ -812,7 +812,8 @@
 
 .product-card__image {
     width: 100%;
-    aspect-ratio: 1 / 1;
+    aspect-ratio: 3 / 4;
+    /* aspect-ratio: 1 / 1; */
     object-fit: cover;
     display: block;
     transition: opacity 0.4s ease;
@@ -889,7 +890,7 @@
     background-color: #1a1a1a;
     border-top: 1px solid #1a1a1a;
     /* border-top: 1px solid #e8e8e8; */
-    padding: 5px 0;
+    padding: 10px 0;
     white-space: nowrap;
 }
 
@@ -899,7 +900,7 @@
 }
 
 .marquee__content {
-    font-size: 12px;
+    font-size: 13px;
     letter-spacing: 2px;
     text-transform: capitalize;
     font-weight: 500;
@@ -955,7 +956,7 @@
     }
 
     .collections__header {
-        padding: 16px 20px;
+        padding: 20px 20px;
     }
 
     .collections__grid {
@@ -992,7 +993,7 @@
     }
 
     .marquee__content {
-        font-size: 11px;
+        font-size: 13px;
     }
 }
 
@@ -1169,7 +1170,7 @@
 
 @media (max-width: 768px) {
     .crafted__header {
-        padding: 16px 20px;
+        padding: 20px 20px;
     }
 
     .crafted__title {
@@ -2229,7 +2230,7 @@
     }
 
     .pdp-lifestyle__header {
-        padding: 16px 20px;
+        padding: 20px 20px;
     }
 
     /* Trust Block */
@@ -2259,7 +2260,7 @@
 
     /* Related Products */
     .pdp-related__header {
-        padding: 16px 20px;
+        padding: 20px 20px;
     }
 
     .pdp-related__grid {
@@ -2602,8 +2603,8 @@
     position: absolute;
     top: 14px;
     left: 14px;
-    background: transparent;
-    /* background-color: #ffffff; */
+    /* background: transparent; */
+    background-color: rgba(255, 255, 255, 0.3);
     border: 0.5px solid #1a1a1a;
     padding: 2px 6px;
     font-size: 8px;
@@ -3016,7 +3017,7 @@
     }
 
     .clp-categories__header {
-        padding: 16px 20px;
+        padding: 20px 20px;
 
     }
 
@@ -3038,7 +3039,7 @@
     }
 
     .clp-picks__header {
-        padding: 16px 20px;
+        padding: 20px 20px;
     }
 
     .clp-picks__title {
@@ -3062,7 +3063,7 @@
     }
 
     .clp-drop__header {
-        padding: 16px 20px;
+        padding: 20px 20px;
     }
 
     .clp-drop__title {
@@ -3298,7 +3299,7 @@
     }
 
     .shop-filter {
-        padding: 16px 20px;
+        padding: 20px 20px;
     }
 
     .shop-filter__toggle--sort-btn {
