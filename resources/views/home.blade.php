@@ -68,10 +68,10 @@
             </div>
         </div>
         <!-- <div class="brand-story__categories">
-                                        @foreach($categories as $category)
-                                            <a href="/shop" class="brand-story__cat-btn">{{ $category->name }}</a>
-                                        @endforeach
-                                    </div> -->
+                                                @foreach($categories as $category)
+                                                    <a href="/shop" class="brand-story__cat-btn">{{ $category->name }}</a>
+                                                @endforeach
+                                            </div> -->
     </section>
 
     {{-- New Collections --}}
@@ -82,43 +82,7 @@
         </div>
         <div class="collections__grid">
             @foreach($products as $product)
-                <a href="/shop/{{ $product->slug }}"
-                    class="product-card {{ $product->is_sold_out ? 'product-card--sold-out' : '' }}">
-                    @if($product->images && count($product->images) > 0)
-                        <div class="product-card__image-wrap">
-                            @if($product->subCategory)
-                                <div class="product-card__badge">{{ $product->subCategory->name }}</div>
-                            @endif
-                            <img src="{{ asset('storage/' . $product->images[0]) }}" alt="{{ $product->title }}"
-                                class="product-card__image product-card__image--primary">
-                            @if(count($product->images) > 1)
-                                <img src="{{ asset('storage/' . $product->images[1]) }}" alt="{{ $product->title }}"
-                                    class="product-card__image product-card__image--hover">
-                            @endif
-                            @if($product->is_sold_out)
-                                <div class="product-card__sold-overlay">
-                                    <span>Sold Out</span>
-                                </div>
-                            @endif
-                        </div>
-                    @endif
-                    <div class="product-card__info">
-                        <h3 class="product-card__name">{{ $product->title }}</h3>
-                        <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
-                            <p class="product-card__price" style="margin: 0;">Rp.
-                                {{ number_format($product->price, 0, ',', '.') }}
-                            </p>
-                            @if($product->colorVariants->count() > 0)
-                                <div style="display: flex; gap: 4px;">
-                                    @foreach($product->colorVariants as $variant)
-                                        <span
-                                            style="width: 12px; height: 12px; border-radius: 50%; background-color: {{ $variant->color_code }}; border: 1px solid #1a1a1a;"></span>
-                                    @endforeach
-                                </div>
-                            @endif
-                        </div>
-                    </div>
-                </a>
+                @include('components._product-card', ['product' => $product])
             @endforeach
         </div>
     </section>
@@ -194,6 +158,22 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Product Card Swipers
+            document.querySelectorAll('.product-card__swiper').forEach(function (el) {
+                new Swiper(el, {
+                    slidesPerView: 1,
+                    loop: false,
+                    pagination: {
+                        el: el.querySelector('.product-card__swiper-pagination'),
+                        clickable: true,
+                    },
+                    navigation: {
+                        prevEl: el.querySelector('.product-card__swiper-prev'),
+                        nextEl: el.querySelector('.product-card__swiper-next'),
+                    },
+                });
+            });
+
             new Swiper('.hero-swiper', {
                 loop: true,
                 allowTouchMove: true,

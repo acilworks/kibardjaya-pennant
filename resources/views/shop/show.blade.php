@@ -11,20 +11,20 @@
     SECTION 1: PRODUCT HERO
     ============================================ --}}
     <section class="pdp" x-data="{
-                                                        qty: 1,
-                                                        selectedColorIndex: null,
-                                                        selectedColorName: '',
-                                                        colorVariants: {{ Js::from($product->colorVariants->map(fn($v) => ['id' => $v->id, 'name' => $v->color_name, 'code' => $v->color_code, 'image' => $v->image ? asset('storage/' . $v->image) : null])) }},
-                                                        swiperInstance: null,
-                                                        variantSlideMap: {},
-                                                        selectColor(index) {
-                                                            this.selectedColorIndex = index;
-                                                            this.selectedColorName = this.colorVariants[index].name;
-                                                            if (this.swiperInstance && this.variantSlideMap[index] !== undefined) {
-                                                                this.swiperInstance.slideTo(this.variantSlideMap[index]);
-                                                            }
-                                                        }
-                                                    }">
+                                                                qty: 1,
+                                                                selectedColorIndex: null,
+                                                                selectedColorName: '',
+                                                                colorVariants: {{ Js::from($product->colorVariants->map(fn($v) => ['id' => $v->id, 'name' => $v->color_name, 'code' => $v->color_code, 'image' => $v->image ? asset('storage/' . $v->image) : null])) }},
+                                                                swiperInstance: null,
+                                                                variantSlideMap: {},
+                                                                selectColor(index) {
+                                                                    this.selectedColorIndex = index;
+                                                                    this.selectedColorName = this.colorVariants[index].name;
+                                                                    if (this.swiperInstance && this.variantSlideMap[index] !== undefined) {
+                                                                        this.swiperInstance.slideTo(this.variantSlideMap[index]);
+                                                                    }
+                                                                }
+                                                            }">
         {{-- Left: Product Photos Swiper --}}
         <div class="pdp__gallery">
             <div class="swiper pdp__swiper">
@@ -291,43 +291,7 @@
             </div>
             <div class="pdp-related__grid">
                 @foreach($relatedProducts as $related)
-                    <a href="/shop/{{ $related->slug }}"
-                        class="product-card {{ $related->is_sold_out ? 'product-card--sold-out' : '' }}">
-                        @if($related->images && count($related->images) > 0)
-                            <div class="product-card__image-wrap">
-                                @if($related->subCategory)
-                                    <div class="product-card__badge">{{ $related->subCategory->name }}</div>
-                                @endif
-                                <img src="{{ asset('storage/' . $related->images[0]) }}" alt="{{ $related->title }}"
-                                    class="product-card__image product-card__image--primary">
-                                @if(count($related->images) > 1)
-                                    <img src="{{ asset('storage/' . $related->images[1]) }}" alt="{{ $related->title }}"
-                                        class="product-card__image product-card__image--hover">
-                                @endif
-                                @if($related->is_sold_out)
-                                    <div class="product-card__sold-overlay">
-                                        <span>Sold Out</span>
-                                    </div>
-                                @endif
-                            </div>
-                        @endif
-                        <div class="product-card__info">
-                            <h3 class="product-card__name">{{ $related->title }}</h3>
-                            <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
-                                <p class="product-card__price" style="margin: 0;">Rp.
-                                    {{ number_format($related->price, 0, ',', '.') }}
-                                </p>
-                                @if($related->colorVariants->count() > 0)
-                                    <div style="display: flex; gap: 4px;">
-                                        @foreach($related->colorVariants as $variant)
-                                            <span
-                                                style="width: 12px; height: 12px; border-radius: 50%; background-color: {{ $variant->color_code }}; border: 1px solid #1a1a1a;"></span>
-                                        @endforeach
-                                    </div>
-                                @endif
-                            </div>
-                        </div>
-                    </a>
+                    @include('components._product-card', ['product' => $related])
                 @endforeach
             </div>
         </section>
@@ -338,6 +302,22 @@
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function () {
+            // Product Card Swipers (related products)
+            document.querySelectorAll('.product-card__swiper').forEach(function (el) {
+                new Swiper(el, {
+                    slidesPerView: 1,
+                    loop: false,
+                    pagination: {
+                        el: el.querySelector('.product-card__swiper-pagination'),
+                        clickable: true,
+                    },
+                    navigation: {
+                        prevEl: el.querySelector('.product-card__swiper-prev'),
+                        nextEl: el.querySelector('.product-card__swiper-next'),
+                    },
+                });
+            });
+
             // Product Photos Swiper — store instance in Alpine for color variant swap
             const pdpSwiper = new Swiper('.pdp__swiper', {
                 slidesPerView: 1,
