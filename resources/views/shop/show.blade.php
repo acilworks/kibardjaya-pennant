@@ -11,20 +11,20 @@
     SECTION 1: PRODUCT HERO
     ============================================ --}}
     <section class="pdp" x-data="{
-                                                                qty: 1,
-                                                                selectedColorIndex: null,
-                                                                selectedColorName: '',
-                                                                colorVariants: {{ Js::from($product->colorVariants->map(fn($v) => ['id' => $v->id, 'name' => $v->color_name, 'code' => $v->color_code, 'image' => $v->image ? asset('storage/' . $v->image) : null])) }},
-                                                                swiperInstance: null,
-                                                                variantSlideMap: {},
-                                                                selectColor(index) {
-                                                                    this.selectedColorIndex = index;
-                                                                    this.selectedColorName = this.colorVariants[index].name;
-                                                                    if (this.swiperInstance && this.variantSlideMap[index] !== undefined) {
-                                                                        this.swiperInstance.slideTo(this.variantSlideMap[index]);
+                                                                    qty: 1,
+                                                                    selectedColorIndex: null,
+                                                                    selectedColorName: '',
+                                                                    colorVariants: {{ Js::from($product->colorVariants->map(fn($v) => ['id' => $v->id, 'name' => $v->color_name, 'code' => $v->color_code, 'image' => $v->image ? asset('storage/' . $v->image) : null])) }},
+                                                                    swiperInstance: null,
+                                                                    variantSlideMap: {},
+                                                                    selectColor(index) {
+                                                                        this.selectedColorIndex = index;
+                                                                        this.selectedColorName = this.colorVariants[index].name;
+                                                                        if (this.swiperInstance && this.variantSlideMap[index] !== undefined) {
+                                                                            this.swiperInstance.slideTo(this.variantSlideMap[index]);
+                                                                        }
                                                                     }
-                                                                }
-                                                            }">
+                                                                }">
         {{-- Left: Product Photos Swiper --}}
         <div class="pdp__gallery">
             <div class="swiper pdp__swiper">
@@ -73,7 +73,7 @@
                     {{-- Title + Price --}}
                     <div class="pdp__header">
                         <h1 class="pdp__title">{{ $product->title }}</h1>
-                        <span class="pdp__price">Rp. {{ number_format($product->price, 0, ',', '.') }}</span>
+                        <span class="pdp__price">Rp.{{ number_format($product->price, 0, ',', '.') }}</span>
                     </div>
 
                     {{-- Description --}}

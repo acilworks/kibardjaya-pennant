@@ -62,8 +62,8 @@
     SECTION 3: BLACK STATEMENT BAR
     ============================================ --}}
     <!-- <div class="clp-statement">
-                    <p class="clp-statement__text">Crafted for collectors who value story over trend.</p>
-                </div> -->
+                        <p class="clp-statement__text">Crafted for collectors who value story over trend.</p>
+                    </div> -->
 
     {{-- Running Text Marquee --}}
     <div class="marquee">
@@ -202,7 +202,7 @@
                     <div class="clp-drop__main-info">
                         <div class="clp-drop__main-info-left">
                             <h3 class="clp-drop__main-name">{{ $newDrop->title }}</h3>
-                            <span class="clp-drop__main-price">Rp. {{ number_format($newDrop->price, 0, ',', '.') }}</span>
+                            <span class="clp-drop__main-price">Rp.{{ number_format($newDrop->price, 0, ',', '.') }}</span>
                         </div>
                         <a href="/shop/{{ $newDrop->slug }}" class="clp-drop__main-add">+ ADD</a>
                     </div>

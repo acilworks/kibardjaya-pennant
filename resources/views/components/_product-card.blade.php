@@ -43,14 +43,13 @@
         <div class="product-card__info">
             <h3 class="product-card__name">{{ $item->title }}</h3>
             <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto;">
-                <p class="product-card__price" style="margin: 0;">Rp.
-                    {{ number_format($item->price, 0, ',', '.') }}
+                <p class="product-card__price" style="margin: 0;">Rp.{{ number_format($item->price, 0, ',', '.') }}
                 </p>
                 @if($item->colorVariants->count() > 0)
                     <div style="display: flex; gap: 4px;">
                         @foreach($item->colorVariants as $variant)
                             <span
-                                style="width: 12px; height: 12px; border-radius: 50%; background-color: {{ $variant->color_code }}; border: 1px solid #1a1a1a;"></span>
+                                style="width: 14px; height: 14px; border-radius: 50%; background-color: {{ $variant->color_code }}; border: 1px solid #1a1a1a;"></span>
                         @endforeach
                     </div>
                 @endif
