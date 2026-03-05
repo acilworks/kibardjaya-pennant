@@ -498,8 +498,15 @@
     }
 
     .hero-swiper .swiper-slide {
-        height: 80vh;
-        height: 80dvh;
+        /* height: 80vh; */
+        /* height: 80dvh; */
+        /* width: 100%; */
+        height: auto;
+    }
+
+    .hero-swiper .swiper-slide .hero__bg {
+        /* background-position: center; */
+
     }
 
     .hero-swiper__pagination {
@@ -605,8 +612,9 @@
 
 @media (max-width: 768px) {
     .hero {
-        height: 80vh;
-        height: 80dvh;
+        height: 650px;
+        /* height: 80vh; */
+        /* height: 80dvh; */
         margin-top: -81px;
         /* Mobile: -74px to remove gap */
     }
@@ -615,12 +623,19 @@
         padding: 40px 24px 40px;
     }
 
+    .hero__label {
+        margin-bottom: 8px;
+    }
+
     .hero__title {
         font-size: 2rem;
+        font-weight: 900;
+        margin-bottom: 15px;
     }
 
     .hero__subtitle {
         font-size: 12px;
+        margin-bottom: 15px;
     }
 }
 

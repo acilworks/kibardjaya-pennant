@@ -68,10 +68,10 @@
             </div>
         </div>
         <!-- <div class="brand-story__categories">
-                                                @foreach($categories as $category)
-                                                    <a href="/shop" class="brand-story__cat-btn">{{ $category->name }}</a>
-                                                @endforeach
-                                            </div> -->
+                                                        @foreach($categories as $category)
+                                                            <a href="/shop" class="brand-story__cat-btn">{{ $category->name }}</a>
+                                                        @endforeach
+                                                    </div> -->
     </section>
 
     {{-- New Collections --}}
@@ -178,7 +178,7 @@
                 loop: true,
                 allowTouchMove: true,
                 autoplay: {
-                    delay: 5000,
+                    delay: 8000,
                     disableOnInteraction: false,
                     pauseOnMouseEnter: true,
                 },
