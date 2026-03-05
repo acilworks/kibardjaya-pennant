@@ -8,13 +8,13 @@ export default defineConfig({
             refresh: true,
         }),
     ],
-    server: {
-        host: '0.0.0.0',
-        port: 5173,
-        strictPort: true,
-        hmr: {
-            host: '192.168.100.20',
-            overlay: false,
-        }
-    }
+    // server: {
+    //     host: '0.0.0.0',
+    //     port: 5173,
+    //     strictPort: true,
+    //     hmr: {
+    //         host: '192.168.0.120',
+    //         overlay: false,
+    //     }
+    // }
 });

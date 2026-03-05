@@ -68,10 +68,10 @@
             </div>
         </div>
         <!-- <div class="brand-story__categories">
-                        @foreach($categories as $category)
-                            <a href="/shop" class="brand-story__cat-btn">{{ $category->name }}</a>
-                        @endforeach
-                    </div> -->
+                                        @foreach($categories as $category)
+                                            <a href="/shop" class="brand-story__cat-btn">{{ $category->name }}</a>
+                                        @endforeach
+                                    </div> -->
     </section>
 
     {{-- New Collections --}}
@@ -147,7 +147,10 @@
                 Choose your place, your words, your colors –
                 and let us craft it into a pennant that's uniquely yours.
             </p>
-            <a href="#" class="custom-order__cta">Start Custom Order &rarr;</a>
+            <div class="custom-order__cta-wrap">
+                <a href="#" class="custom-order__cta">Start Custom Order </a>
+                <span class="custom-order__cta-arrow">&rarr;</span>
+            </div>
         </div>
     </section>
 
