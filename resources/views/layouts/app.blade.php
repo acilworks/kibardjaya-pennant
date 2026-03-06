@@ -344,8 +344,7 @@
                                                 <br><span style="font-weight: 400;">({{ $item['variation_name'] }})</span>
                                             @endif
                                         </h3>
-                                        <span class="cart-drawer__item-price">Rp.
-                                            {{ number_format($item['price'], 0, ',', '.') }}</span>
+                                        <span class="cart-drawer__item-price">Rp.{{ number_format($item['price'], 0, ',', '.') }}</span>
                                     </div>
                                     <div class="cart-drawer__item-bottom">
                                         <div class="cart-drawer__qty-ctrl">
@@ -391,7 +390,7 @@
                         <div class="cart-drawer__summary-content">
                             <div class="cart-drawer__summary-row">
                                 <span>Order Value</span>
-                                <span>Rp. {{ number_format($cartOrderValue, 0, ',', '.') }}</span>
+                                <span>Rp.{{ number_format($cartOrderValue, 0, ',', '.') }}</span>
                             </div>
                             <div class="cart-drawer__summary-row">
                                 <span>Shipping</span>
@@ -400,7 +399,7 @@
 
                             <div class="cart-drawer__summary-row cart-drawer__summary-total">
                                 <span>Total</span>
-                                <span>Rp. {{ number_format($cartOrderValue, 0, ',', '.') }}</span>
+                                <span>Rp.{{ number_format($cartOrderValue, 0, ',', '.') }}</span>
                             </div>
                         </div>
 

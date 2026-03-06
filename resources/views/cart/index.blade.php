@@ -354,10 +354,10 @@
                                         orders, please contact us
                                         directly for shipping estimates and customs information.</label>
                                     <!-- <svg class="cart-select-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                                                                                                                                                                                                                                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                                                                                                                                                                                                                                                                                            d="M19 9l-7 7-7-7">
-                                                                                                                                                                                                                                                                                                                        </path>
-                                                                                                                                                                                                                                                                                                                    </svg> -->
+                                                                                                                                                                                                                                                                                                                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                                                                                                                                                                                                                                                                                                                            d="M19 9l-7 7-7-7">
+                                                                                                                                                                                                                                                                                                                                                        </path>
+                                                                                                                                                                                                                                                                                                                                                    </svg> -->
                                 </div>
 
                                 <div class="cart-row">
@@ -381,10 +381,10 @@
                                             @endforeach
                                         </select>
                                         <!-- <svg class="cart-select-icon w-4 h-4" fill="none" stroke="currentColor"
-                                                                                                                                                                                                                                                                                                                    viewBox="0 0 24 24">
-                                                                                                                                                                                                                                                                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                                                                                                                                                                                                                                                                                        d="M19 9l-7 7-7-7"></path>
-                                                                                                                                                                                                                                                                                                                </svg> -->
+                                                                                                                                                                                                                                                                                                                                                    viewBox="0 0 24 24">
+                                                                                                                                                                                                                                                                                                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                                                                                                                                                                                                                                                                                                                        d="M19 9l-7 7-7-7"></path>
+                                                                                                                                                                                                                                                                                                                                                </svg> -->
                                     </div>
 
                                     <input type="text" name="postal_code" placeholder="POSTAL CODE" required class="cart-input">
@@ -427,8 +427,7 @@
                                                     <br><span style="font-weight: 400;">({{ $item['variation_name'] }})</span>
                                                 @endif
                                             </h3>
-                                            <span class="cart-item-price">Rp.
-                                                {{ number_format($item['price'], 0, ',', '.') }}</span>
+                                            <span class="cart-item-price">Rp.{{ number_format($item['price'], 0, ',', '.') }}</span>
                                         </div>
                                         <div class="cart-item-bottom">
                                             <div class="cart-qty-ctrl">
@@ -476,7 +475,7 @@
                             <div class="cart-summary-content">
                                 <div class="cart-summary-row">
                                     <span>Order Value</span>
-                                    <span>Rp. {{ number_format($orderValue, 0, ',', '.') }}</span>
+                                    <span>Rp.{{ number_format($orderValue, 0, ',', '.') }}</span>
                                 </div>
                                 <div class="cart-summary-row">
                                     <span>Shipping</span>
@@ -485,7 +484,7 @@
 
                                 <div class="cart-summary-row cart-summary-total">
                                     <span>Total</span>
-                                    <span x-text="totalFormatted">Rp. {{ number_format($orderValue, 0, ',', '.') }}</span>
+                                    <span x-text="totalFormatted">Rp.{{ number_format($orderValue, 0, ',', '.') }}</span>
                                 </div>
                             </div>
 
@@ -524,12 +523,12 @@
 
                     get shippingFormatted() {
                         if (!this.selectedProvinceId) return 'Enter province first';
-                        return 'Rp. ' + new Intl.NumberFormat('id-ID').format(this.shippingCost);
+                        return 'Rp.' + new Intl.NumberFormat('id-ID').format(this.shippingCost);
                     },
 
                     get totalFormatted() {
                         const total = this.orderValue + this.shippingCost;
-                        return 'Rp. ' + new Intl.NumberFormat('id-ID').format(total);
+                        return 'Rp.' + new Intl.NumberFormat('id-ID').format(total);
                     },
 
                     updateShipping(e) {
