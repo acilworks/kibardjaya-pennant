@@ -13,6 +13,7 @@ use Filament\Tables\Table;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\FileUpload;
 use Illuminate\Support\Str;
+use App\Services\WebpImageService;
 
 class CategoryResource extends Resource
 {
@@ -46,7 +47,15 @@ class CategoryResource extends Resource
                     ->disk('public')
                     ->directory('categories')
                     ->imagePreviewHeight('150')
-                    ->helperText('Displayed on the Collections page category swiper'),
+                    ->helperText('Displayed on the Collections page category swiper')
+                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                    ->saveUploadedFileUsing(function ($file) {
+                        $filename = Str::random(40) . '.' . $file->getClientOriginalExtension();
+                        $file->storeAs('categories', $filename, 'public');
+                        $path = 'categories/' . $filename;
+                        $service = app(WebpImageService::class);
+                        return $service->convertToWebp($path);
+                    }),
 
                 TextInput::make('tagline')
                     ->label('Micro Tagline')

@@ -104,7 +104,10 @@
 
             {{-- Center Logo --}}
             <a href="/" class="navbar__logo">
-                <img src="{{ asset('image/logo-kibar.png') }}" alt="Kibardjaya Logo">
+                <picture>
+                    <source srcset="{{ asset('image/logo-kibar.webp') }}" type="image/webp">
+                    <img src="{{ asset('image/logo-kibar.png') }}" alt="Kibardjaya Logo">
+                </picture>
             </a>
 
             {{-- Right Side --}}
@@ -173,7 +176,10 @@
 
                         {{-- Brand Logo at bottom of sidebar --}}
                         <div class="mega-menu__brand-logo">
-                            <img src="{{ asset('image/kibardjaya.png') }}" alt="Kibardjaya">
+                            <picture>
+                                <source srcset="{{ asset('image/kibardjaya.webp') }}" type="image/webp">
+                                <img src="{{ asset('image/kibardjaya.png') }}" alt="Kibardjaya">
+                            </picture>
                         </div>
                     </div>
 
@@ -421,7 +427,10 @@
         {{-- Newsletter Bar --}}
         <div class="footer__newsletter">
             <div class="footer__newsletter-logo">
-                <img src="{{ asset('image/kibardjaya-footer.png') }}" alt="Kibardjaya">
+                <picture>
+                    <source srcset="{{ asset('image/kibardjaya-footer.webp') }}" type="image/webp">
+                    <img src="{{ asset('image/kibardjaya-footer.png') }}" alt="Kibardjaya" loading="lazy">
+                </picture>
             </div>
             <span class="footer__newsletter-label">Stay in the loop!</span>
             <form class="footer__newsletter-form" action="#" method="POST">

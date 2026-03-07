@@ -9,6 +9,8 @@ use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
+use Illuminate\Support\Str;
+use App\Services\WebpImageService;
 
 class HeroSlideResource extends Resource
 {
@@ -36,7 +38,15 @@ class HeroSlideResource extends Resource
                             ->required()
                             ->columnSpanFull()
                             ->imageResizeMode('cover')
-                            ->imageCropAspectRatio('16:9'),
+                            ->imageCropAspectRatio('16:9')
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                            ->saveUploadedFileUsing(function ($file) {
+                                $filename = Str::random(40) . '.' . $file->getClientOriginalExtension();
+                                $file->storeAs('hero-slides', $filename, 'public');
+                                $path = 'hero-slides/' . $filename;
+                                $service = app(WebpImageService::class);
+                                return $service->convertToWebp($path);
+                            }),
 
                         Forms\Components\TextInput::make('label')
                             ->label('Small Label (optional)')

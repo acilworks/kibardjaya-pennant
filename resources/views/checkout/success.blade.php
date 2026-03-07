@@ -10,7 +10,10 @@
                         <span class="pay-receipt__label-bold">ORDER NUMBER:</span>
                         <span class="pay-receipt__value-bold">{{ $order->order_number }}</span>
                     </div>
-                    <img src="{{ asset('image/logo-kibar.png') }}" alt="Kibardjaya" class="pay-receipt__logo">
+                    <picture>
+                        <source srcset="{{ asset('image/logo-kibar.webp') }}" type="image/webp">
+                        <img src="{{ asset('image/logo-kibar.png') }}" alt="Kibardjaya" class="pay-receipt__logo">
+                    </picture>
                 </div>
 
                 <div class="pay-receipt__divider-dashed"></div>
@@ -119,7 +122,10 @@
                         </div>
                     </div>
                     <div class="pay-receipt__stamp">
-                        <img src="{{ asset('image/kibar-stamp.png') }}" alt="KibarDjaya Stamp">
+                        <picture>
+                            <source srcset="{{ asset('image/kibar-stamp.webp') }}" type="image/webp">
+                            <img src="{{ asset('image/kibar-stamp.png') }}" alt="KibarDjaya Stamp">
+                        </picture>
                     </div>
                 </div>
 

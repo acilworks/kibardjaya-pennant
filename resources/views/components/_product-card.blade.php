@@ -18,7 +18,8 @@
                         <div class="swiper-wrapper">
                             @foreach($displayImages as $image)
                                 <div class="swiper-slide">
-                                    <img src="{{ asset('storage/' . $image) }}" alt="{{ $item->title }}" class="product-card__image">
+                                    <img src="{{ asset('storage/' . $image) }}" alt="{{ $item->title }}" class="product-card__image"
+                                        loading="lazy">
                                 </div>
                             @endforeach
                         </div>
@@ -30,7 +31,8 @@
                     </div>
                 @else
                     {{-- Single image fallback --}}
-                    <img src="{{ asset('storage/' . $displayImages[0]) }}" alt="{{ $item->title }}" class="product-card__image">
+                    <img src="{{ asset('storage/' . $displayImages[0]) }}" alt="{{ $item->title }}" class="product-card__image"
+                        loading="lazy">
                 @endif
 
                 @if($item->is_sold_out)

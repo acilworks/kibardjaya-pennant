@@ -37,7 +37,7 @@
     @else
         {{-- Fallback: static hero if no slides --}}
         <section class="hero">
-            <div class="hero__bg" style="background-image: url('{{ asset('image/bg-hero.png') }}');"></div>
+            <div class="hero__bg" style="background-image: url('{{ asset('image/bg-hero.webp') }}');"></div>
             <div class="hero__content">
                 <h1 class="hero__title">Stories You Can Hang.</h1>
                 <p class="hero__subtitle">
@@ -68,10 +68,10 @@
             </div>
         </div>
         <!-- <div class="brand-story__categories">
-                                                        @foreach($categories as $category)
-                                                            <a href="/shop" class="brand-story__cat-btn">{{ $category->name }}</a>
-                                                        @endforeach
-                                                    </div> -->
+                                                            @foreach($categories as $category)
+                                                                <a href="/shop" class="brand-story__cat-btn">{{ $category->name }}</a>
+                                                            @endforeach
+                                                        </div> -->
     </section>
 
     {{-- New Collections --}}
@@ -102,7 +102,11 @@
     {{-- Custom Order Section --}}
     <section class="custom-order">
         <div class="custom-order__image-wrap">
-            <img src="{{ asset('image/custom-img.jpeg') }}" alt="Custom Pennant Order" class="custom-order__image">
+            <picture>
+                <source srcset="{{ asset('image/custom-img.webp') }}" type="image/webp">
+                <img src="{{ asset('image/custom-img.jpeg') }}" alt="Custom Pennant Order" class="custom-order__image"
+                    loading="lazy">
+            </picture>
         </div>
         <div class="custom-order__content">
             <p class="custom-order__tagline">Not every journey is the same.</p>
@@ -126,23 +130,33 @@
         <div class="swiper crafted__swiper">
             <div class="swiper-wrapper crafted__grid">
                 <div class="swiper-slide crafted__card">
-                    <img src="{{ asset('image/craft-left.png') }}" alt="Handmade in Yogyakarta" class="crafted__card-image">
+                    <picture>
+                        <source srcset="{{ asset('image/craft-left.webp') }}" type="image/webp">
+                        <img src="{{ asset('image/craft-left.png') }}" alt="Handmade in Yogyakarta"
+                            class="crafted__card-image" loading="lazy">
+                    </picture>
                     <div class="crafted__card-overlay">
                         <h3 class="crafted__card-title">Handmade in Yogyakarta</h3>
                         <p class="crafted__card-desc">Crafted by skilled local makers.</p>
                     </div>
                 </div>
                 <div class="swiper-slide crafted__card">
-                    <img src="{{ asset('image/craft-mid.png') }}" alt="Premium fabric construction"
-                        class="crafted__card-image">
+                    <picture>
+                        <source srcset="{{ asset('image/craft-mid.webp') }}" type="image/webp">
+                        <img src="{{ asset('image/craft-mid.png') }}" alt="Premium fabric construction"
+                            class="crafted__card-image" loading="lazy">
+                    </picture>
                     <div class="crafted__card-overlay">
                         <h3 class="crafted__card-title">Premium fabric construction</h3>
                         <p class="crafted__card-desc">Durable materials built for long display.</p>
                     </div>
                 </div>
                 <div class="swiper-slide crafted__card">
-                    <img src="{{ asset('image/craft-right.png') }}" alt="Small batch production"
-                        class="crafted__card-image">
+                    <picture>
+                        <source srcset="{{ asset('image/craft-right.webp') }}" type="image/webp">
+                        <img src="{{ asset('image/craft-right.png') }}" alt="Small batch production"
+                            class="crafted__card-image" loading="lazy">
+                    </picture>
                     <div class="crafted__card-overlay">
                         <h3 class="crafted__card-title">Small batch production</h3>
                         <p class="crafted__card-desc">Limited quantities to preserve uniqueness.</p>

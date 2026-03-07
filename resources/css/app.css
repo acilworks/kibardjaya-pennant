@@ -593,8 +593,8 @@
     padding: 8px 15px;
     /* border: 1.5px solid #000000; */
     border-radius: 5px;
-    background-color: #757575;
-    color: #ffffff;
+    background-color: #EEE6D5;
+    color: #1a1a1a;
     font-size: 12px;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -607,7 +607,7 @@
 
 .hero__cta:hover {
     background-color: #555;
-    color: #ffffff;
+    color: #EEE6D5;
 }
 
 @media (max-width: 768px) {

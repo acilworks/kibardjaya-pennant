@@ -11,20 +11,20 @@
     SECTION 1: PRODUCT HERO
     ============================================ --}}
     <section class="pdp" x-data="{
-                                                                    qty: 1,
-                                                                    selectedColorIndex: null,
-                                                                    selectedColorName: '',
-                                                                    colorVariants: {{ Js::from($product->colorVariants->map(fn($v) => ['id' => $v->id, 'name' => $v->color_name, 'code' => $v->color_code, 'image' => $v->image ? asset('storage/' . $v->image) : null])) }},
-                                                                    swiperInstance: null,
-                                                                    variantSlideMap: {},
-                                                                    selectColor(index) {
-                                                                        this.selectedColorIndex = index;
-                                                                        this.selectedColorName = this.colorVariants[index].name;
-                                                                        if (this.swiperInstance && this.variantSlideMap[index] !== undefined) {
-                                                                            this.swiperInstance.slideTo(this.variantSlideMap[index]);
+                                                                        qty: 1,
+                                                                        selectedColorIndex: null,
+                                                                        selectedColorName: '',
+                                                                        colorVariants: {{ Js::from($product->colorVariants->map(fn($v) => ['id' => $v->id, 'name' => $v->color_name, 'code' => $v->color_code, 'image' => $v->image ? asset('storage/' . $v->image) : null])) }},
+                                                                        swiperInstance: null,
+                                                                        variantSlideMap: {},
+                                                                        selectColor(index) {
+                                                                            this.selectedColorIndex = index;
+                                                                            this.selectedColorName = this.colorVariants[index].name;
+                                                                            if (this.swiperInstance && this.variantSlideMap[index] !== undefined) {
+                                                                                this.swiperInstance.slideTo(this.variantSlideMap[index]);
+                                                                            }
                                                                         }
-                                                                    }
-                                                                }">
+                                                                    }">
         {{-- Left: Product Photos Swiper --}}
         <div class="pdp__gallery">
             <div class="swiper pdp__swiper">
@@ -159,16 +159,31 @@
         <div class="swiper pdp-lifestyle__swiper">
             <div class="swiper-wrapper">
                 <div class="swiper-slide">
-                    <img src="{{ asset('image/balibarong4.jpg') }}" alt="Lifestyle" class="pdp-lifestyle__img">
+                    <picture>
+                        <source srcset="{{ asset('image/balibarong4.webp') }}" type="image/webp">
+                        <img src="{{ asset('image/balibarong4.jpg') }}" alt="Lifestyle" class="pdp-lifestyle__img"
+                            loading="lazy">
+                    </picture>
                 </div>
                 <div class="swiper-slide">
-                    <img src="{{ asset('image/enjoy.png') }}" alt="Lifestyle" class="pdp-lifestyle__img">
+                    <picture>
+                        <source srcset="{{ asset('image/enjoy.webp') }}" type="image/webp">
+                        <img src="{{ asset('image/enjoy.png') }}" alt="Lifestyle" class="pdp-lifestyle__img" loading="lazy">
+                    </picture>
                 </div>
                 <div class="swiper-slide">
-                    <img src="{{ asset('image/brooks.png') }}" alt="Lifestyle" class="pdp-lifestyle__img">
+                    <picture>
+                        <source srcset="{{ asset('image/brooks.webp') }}" type="image/webp">
+                        <img src="{{ asset('image/brooks.png') }}" alt="Lifestyle" class="pdp-lifestyle__img"
+                            loading="lazy">
+                    </picture>
                 </div>
                 <div class="swiper-slide">
-                    <img src="{{ asset('image/yes-chef.png') }}" alt="Lifestyle" class="pdp-lifestyle__img">
+                    <picture>
+                        <source srcset="{{ asset('image/yes-chef.webp') }}" type="image/webp">
+                        <img src="{{ asset('image/yes-chef.png') }}" alt="Lifestyle" class="pdp-lifestyle__img"
+                            loading="lazy">
+                    </picture>
                 </div>
             </div>
         </div>

@@ -22,6 +22,7 @@ use Filament\Forms\Components\Toggle;
 use Filament\Forms\Components\Select;
 use Illuminate\Support\Str;
 use Filament\Forms\Components\FileUpload;
+use App\Services\WebpImageService;
 
 
 class ProductResource extends Resource
@@ -52,7 +53,15 @@ class ProductResource extends Resource
                             ->maxFiles(5)
                             ->imagePreviewHeight('150')
                             ->reorderable()
-                            ->columnSpanFull(),
+                            ->columnSpanFull()
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                            ->saveUploadedFileUsing(function ($file, $get, $set) {
+                                $filename = Str::random(40) . '.' . $file->getClientOriginalExtension();
+                                $file->storeAs('products', $filename, 'public');
+                                $path = 'products/' . $filename;
+                                $service = app(WebpImageService::class);
+                                return $service->convertToWebp($path);
+                            }),
                     ]),
 
                 // ── Section 2: General Information ──
@@ -192,7 +201,15 @@ class ProductResource extends Resource
                                     ->image()
                                     ->disk('public')
                                     ->directory('products/variants')
-                                    ->imagePreviewHeight('100'),
+                                    ->imagePreviewHeight('100')
+                                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                                    ->saveUploadedFileUsing(function ($file) {
+                                        $filename = Str::random(40) . '.' . $file->getClientOriginalExtension();
+                                        $file->storeAs('products/variants', $filename, 'public');
+                                        $path = 'products/variants/' . $filename;
+                                        $service = app(WebpImageService::class);
+                                        return $service->convertToWebp($path);
+                                    }),
                                 TextInput::make('sort_order')
                                     ->numeric()
                                     ->default(0)
