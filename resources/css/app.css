@@ -3931,7 +3931,7 @@ a svg {
     pointer-events: none;
     padding-left: 23%;
     padding-right: 25%;
-    margin-bottom: 22px;
+    margin-bottom: 20px;
 }
 
 .cp-capture__text {
@@ -4046,5 +4046,11 @@ a svg {
 @media (max-width: 768px) {
     .cp-preview {
         min-height: 40vh;
+    }
+
+    .cp-capture__text-overlay {
+        padding-left: 24%;
+        padding-right: 22%;
+        margin-bottom: 12px;
     }
 }

@@ -10,9 +10,11 @@
                 <!-- Capture Area for html2canvas -->
                 <div id="capture-area" class="cp-capture">
 
-                    <!-- The Pennant Image (Flag Color) -->
-                    <template x-if="currentFlagImage">
-                        <img :src="currentFlagImage" class="cp-capture__img" crossorigin="anonymous" />
+                    <template x-if="currentFlagImagePng">
+                        <picture>
+                            <source type="image/webp" :srcset="currentFlagImageWebp" />
+                            <img :src="currentFlagImagePng" class="cp-capture__img" crossorigin="anonymous" />
+                        </picture>
                     </template>
 
                     <!-- Text Overlay -->
@@ -188,9 +190,16 @@
                     confirmed: false,
                     isSubmitting: false,
 
-                    get currentFlagImage() {
+                    get currentFlagImagePng() {
                         if (this.flagColor && this.borderColor) {
                             return `/images/pennant_parts/flag-${this.flagColor}-border-${this.borderColor}.png`;
+                        }
+                        return '';
+                    },
+
+                    get currentFlagImageWebp() {
+                        if (this.flagColor && this.borderColor) {
+                            return `/images/pennant_parts/flag-${this.flagColor}-border-${this.borderColor}.webp`;
                         }
                         return '';
                     },
