@@ -10,12 +10,8 @@
                 <!-- Capture Area for html2canvas -->
                 <div id="capture-area" class="cp-capture">
 
-                    <template x-if="currentFlagImagePng">
-                        <picture>
-                            <source type="image/webp" :srcset="currentFlagImageWebp" />
-                            <img :src="currentFlagImagePng" class="cp-capture__img" crossorigin="anonymous" />
-                        </picture>
-                    </template>
+                    <img x-show="currentFlagImage" :src="currentFlagImage" class="cp-capture__img" crossorigin="anonymous"
+                        loading="eager" />
 
                     <!-- Text Overlay -->
                     <div class="cp-capture__text-overlay">
@@ -190,16 +186,20 @@
                     confirmed: false,
                     isSubmitting: false,
 
-                    get currentFlagImagePng() {
-                        if (this.flagColor && this.borderColor) {
-                            return `/images/pennant_parts/flag-${this.flagColor}-border-${this.borderColor}.png`;
-                        }
-                        return '';
+                    supportsWebp: false,
+
+                    init() {
+                        // Detect WebP support via canvas
+                        const canvas = document.createElement('canvas');
+                        canvas.width = 1;
+                        canvas.height = 1;
+                        this.supportsWebp = canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
                     },
 
-                    get currentFlagImageWebp() {
+                    get currentFlagImage() {
                         if (this.flagColor && this.borderColor) {
-                            return `/images/pennant_parts/flag-${this.flagColor}-border-${this.borderColor}.webp`;
+                            const base = `/images/pennant_parts/flag-${this.flagColor}-border-${this.borderColor}`;
+                            return this.supportsWebp ? `${base}.webp` : `${base}.png`;
                         }
                         return '';
                     },
