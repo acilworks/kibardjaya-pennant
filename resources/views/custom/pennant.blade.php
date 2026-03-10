@@ -189,7 +189,6 @@
                     supportsWebp: false,
 
                     init() {
-                        // Detect WebP support via canvas
                         const canvas = document.createElement('canvas');
                         canvas.width = 1;
                         canvas.height = 1;
@@ -212,9 +211,8 @@
                         try {
                             const captureArea = document.getElementById('capture-area');
 
-                            // html2canvas to save image
                             const canvas = await html2canvas(captureArea, {
-                                backgroundColor: '#ffffff', // Ensures white background for cart thumbnail
+                                backgroundColor: '#ffffff',
                                 scale: 2,
                                 useCORS: true,
                                 logging: false
@@ -223,35 +221,37 @@
                             const base64Image = canvas.toDataURL('image/webp', 0.8);
 
                             const payload = {
-                                id: 'custom-pennant',
-                                name: 'Custom Pennant',
-                                price: 99000,
+                                flag_color: this.flagColors[this.flagColor].name,
+                                border_color: this.borderColors[this.borderColor].name,
+                                text_color: this.textColors[this.textColor].name,
+                                text: this.text,
+                                font: this.fonts[this.fontStyle],
                                 qty: this.qty,
-                                options: {
-                                    flag_color: this.flagColors[this.flagColor].name,
-                                    border_color: this.borderColors[this.borderColor].name,
-                                    text_color: this.textColors[this.textColor].name,
-                                    text: this.text,
-                                    font: this.fonts[this.fontStyle],
-                                    custom_image: base64Image
-                                }
+                                custom_image: base64Image
                             };
 
-                            // Since the CartController implementation isn't fully detailed in the prompt,
-                            // we'll simulate the axios call to add to cart.
-                            // If Kibardjaya uses standard form submission, we might need to populate hidden fields
-                            // But typically custom attributes via base64 are better sent via AJAX.
+                            const csrfToken = document.querySelector('meta[name="csrf-token"]')?.content
+                                || '{{ csrf_token() }}';
 
-                            console.log('Final Payload ready for Cart:', payload);
+                            const response = await fetch('/cart/add-custom-pennant', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                    'X-CSRF-TOKEN': csrfToken,
+                                    'Accept': 'application/json'
+                                },
+                                body: JSON.stringify(payload)
+                            });
 
-                            // Simulate Cart API Call 
-                            // await axios.post('/cart/add/custom-pennant', payload);
+                            const data = await response.json();
 
-                            // Simulating success
-                            setTimeout(() => {
+                            if (data.success) {
+                                // Reload page to reflect cart changes, then open cart drawer
+                                window.location.href = window.location.pathname + '?cart_added=1';
+                            } else {
+                                alert(data.message || 'Failed to add to cart.');
                                 this.isSubmitting = false;
-                                alert('Your custom pennant has been generated. Check console for payload.\nReady to be integrated with actual Cart Add Logic.');
-                            }, 1000);
+                            }
 
                         } catch (error) {
                             console.error("Error generating image", error);

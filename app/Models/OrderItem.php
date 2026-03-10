@@ -10,8 +10,14 @@ class OrderItem extends Model
         'order_id',
         'product_id',
         'variation_name',
+        'product_name',
+        'custom_options',
         'price',
         'quantity'
+    ];
+
+    protected $casts = [
+        'custom_options' => 'array',
     ];
 
     public function product()

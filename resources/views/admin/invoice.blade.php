@@ -407,9 +407,20 @@
             @foreach ($order->items as $item)
                 <div class="pay-receipt__items-row">
                     <span class="pay-receipt__col-item">
-                        {{ $item->product->title ?? 'Product' }}
+                        {{ $item->product_name ?? ($item->product->title ?? 'Product') }}
                         @if ($item->variation_name)
                             <br><span style="font-size: 0.85em; color: #757575;">({{ $item->variation_name }})</span>
+                        @endif
+                        @if ($item->custom_options)
+                            <br>
+                            <span style="font-size: 0.8em; color: #666; display: block; margin-top:2px;">
+                                @foreach(is_string($item->custom_options) ? (json_decode($item->custom_options, true) ?? []) : ($item->custom_options ?? []) as $key => $val)
+                                    @if($key !== 'image')
+                                        {{ Str::title(str_replace('_', ' ', $key)) }}:
+                                        {{ is_array($val) ? json_encode($val) : $val }}<br>
+                                    @endif
+                                @endforeach
+                            </span>
                         @endif
                     </span>
                     <span class="pay-receipt__col-qty">{{ $item->quantity }}</span>

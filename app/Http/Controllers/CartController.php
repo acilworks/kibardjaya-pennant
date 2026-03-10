@@ -71,11 +71,13 @@ class CartController extends Controller
         $cart = session()->get('cart');
 
         if (isset($cart[$id])) {
-            $productId = $cart[$id]['id'];
-            $product = Product::find($productId);
-            // Validate against stock
-            if ($product && $request->qty > $product->stock) {
-                return back()->with('error', 'Stok tidak mencukupi. Tersisa ' . $product->stock . ' item.')->with('cart_open', true);
+            // Skip stock validation for custom items
+            if (empty($cart[$id]['is_custom'])) {
+                $productId = $cart[$id]['id'];
+                $product = Product::find($productId);
+                if ($product && $request->qty > $product->stock) {
+                    return back()->with('error', 'Stok tidak mencukupi. Tersisa ' . $product->stock . ' item.')->with('cart_open', true);
+                }
             }
 
             $cart[$id]['qty'] = $request->qty;
@@ -90,6 +92,14 @@ class CartController extends Controller
         $cart = session()->get('cart');
 
         if (isset($cart[$id])) {
+            // Delete custom image file if it's a custom item
+            if (!empty($cart[$id]['is_custom']) && !empty($cart[$id]['image'])) {
+                $filePath = storage_path('app/public/' . $cart[$id]['image']);
+                if (file_exists($filePath)) {
+                    unlink($filePath);
+                }
+            }
+
             unset($cart[$id]);
             session()->put('cart', $cart);
         }

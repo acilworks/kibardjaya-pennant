@@ -41,4 +41,65 @@ class CustomPennantController extends Controller
 
         return view('custom.pennant', compact('flagColors', 'borderColors', 'textColors', 'fonts'));
     }
+
+    public function addToCart(Request $request)
+    {
+        $request->validate([
+            'flag_color' => 'required|string',
+            'border_color' => 'required|string',
+            'text_color' => 'required|string',
+            'text' => 'required|string|max:15',
+            'font' => 'required|string',
+            'qty' => 'required|integer|min:1',
+            'custom_image' => 'required|string',
+        ]);
+
+        // Decode base64 image and save to storage
+        $imageData = $request->input('custom_image');
+        $imageData = preg_replace('/^data:image\/\w+;base64,/', '', $imageData);
+        $imageData = base64_decode($imageData);
+
+        if (!$imageData) {
+            return response()->json(['success' => false, 'message' => 'Invalid image data.'], 422);
+        }
+
+        // Ensure directory exists
+        $directory = storage_path('app/public/custom-pennants');
+        if (!is_dir($directory)) {
+            mkdir($directory, 0755, true);
+        }
+
+        $filename = 'custom-pennants/cp-' . time() . '-' . uniqid() . '.webp';
+        file_put_contents(storage_path('app/public/' . $filename), $imageData);
+
+        // Build cart entry
+        $cart = session()->get('cart', []);
+        $cartKey = 'custom-pennant-' . time() . '-' . uniqid();
+
+        $customOptions = [
+            'flag_color' => $request->input('flag_color'),
+            'border_color' => $request->input('border_color'),
+            'text_color' => $request->input('text_color'),
+            'text' => $request->input('text'),
+            'font' => $request->input('font'),
+        ];
+
+        $variationSummary = $request->input('flag_color') . ' / ' . $request->input('border_color') . ' / "' . $request->input('text') . '"';
+
+        $cart[$cartKey] = [
+            'id' => null,
+            'title' => 'Custom Pennant',
+            'price' => 99000,
+            'image' => $filename,
+            'qty' => (int) $request->input('qty'),
+            'variation_name' => $variationSummary,
+            'is_custom' => true,
+            'custom_options' => $customOptions,
+        ];
+
+        session()->put('cart', $cart);
+        session()->flash('cart_open', true);
+
+        return response()->json(['success' => true, 'message' => 'Custom pennant added to cart!']);
+    }
 }

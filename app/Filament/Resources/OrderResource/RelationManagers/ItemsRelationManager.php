@@ -23,7 +23,7 @@ class ItemsRelationManager extends RelationManager
                 Forms\Components\Placeholder::make('product_image')
                     ->label('Product Image')
                     ->content(function ($record) {
-                        if (!$record || !$record->product) {
+                        if (!$record) {
                             return 'No image';
                         }
                         $image = null;
@@ -35,8 +35,17 @@ class ItemsRelationManager extends RelationManager
                                 $image = $variant->image;
                             }
                         }
-                        if (!$image && $record->product->images) {
+                        if (!$image && $record->product && $record->product->images) {
                             $image = is_array($record->product->images) ? $record->product->images[0] : null;
+                        }
+                        if (!$image && $record->custom_options && is_array($record->custom_options) && isset($record->custom_options['image'])) {
+                            $image = $record->custom_options['image'];
+                        }
+                        if (!$image && is_string($record->custom_options)) {
+                            $decoded = json_decode($record->custom_options, true);
+                            if (is_array($decoded) && isset($decoded['image'])) {
+                                $image = $decoded['image'];
+                            }
                         }
                         if (!$image)
                             return 'No image';
@@ -47,7 +56,7 @@ class ItemsRelationManager extends RelationManager
                     ->columnSpanFull(),
                 Forms\Components\Placeholder::make('product_title')
                     ->label('Product')
-                    ->content(fn($record) => ($record?->product?->title ?? '-') . ($record?->variation_name ? ' (' . $record->variation_name . ')' : '')),
+                    ->content(fn($record) => ($record?->product?->title ?? $record?->product_name ?? 'Custom Pennant') . ($record?->variation_name ? ' (' . $record->variation_name . ')' : '')),
                 Forms\Components\Placeholder::make('quantity_display')
                     ->label('Quantity')
                     ->content(fn($record) => $record?->quantity ?? '-'),
@@ -71,7 +80,7 @@ class ItemsRelationManager extends RelationManager
                     ->circular()
                     ->size(40)
                     ->getStateUsing(function ($record) {
-                        if (!$record->product) {
+                        if (!$record->product && empty($record->custom_options) && empty($record->product_name)) {
                             return null;
                         }
                         if ($record->variation_name) {
@@ -82,15 +91,24 @@ class ItemsRelationManager extends RelationManager
                                 return asset('storage/' . $variant->image);
                             }
                         }
-                        $images = $record->product->images;
-                        if (is_array($images) && count($images) > 0) {
-                            return asset('storage/' . $images[0]);
+                        if ($record->product && $record->product->images) {
+                            $images = $record->product->images;
+                            if (is_array($images) && count($images) > 0) {
+                                return asset('storage/' . $images[0]);
+                            }
+                        }
+                        if ($record->custom_options) {
+                            $options = is_string($record->custom_options) ? json_decode($record->custom_options, true) : $record->custom_options;
+                            if (is_array($options) && isset($options['image'])) {
+                                return asset('storage/' . $options['image']);
+                            }
                         }
                         return null;
                     }),
-                Tables\Columns\TextColumn::make('product.title')
+                Tables\Columns\TextColumn::make('product_name')
                     ->label('Product')
                     ->searchable()
+                    ->getStateUsing(fn($record) => $record?->product?->title ?? $record?->product_name ?? '-')
                     ->formatStateUsing(fn(string $state, $record) => $state . ($record->variation_name ? ' (' . $record->variation_name . ')' : '')),
                 Tables\Columns\TextColumn::make('quantity'),
                 Tables\Columns\TextColumn::make('price')

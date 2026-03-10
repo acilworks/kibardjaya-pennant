@@ -46,13 +46,26 @@ class CheckoutController extends Controller
         ]);
 
         foreach ($cart as $item) {
-            OrderItem::create([
+            $orderItemData = [
                 'order_id' => $order->id,
-                'product_id' => $item['id'],
-                'variation_name' => $item['variation_name'] ?? null,
                 'price' => $item['price'],
                 'quantity' => $item['qty'],
-            ]);
+                'variation_name' => $item['variation_name'] ?? null,
+            ];
+
+            if (!empty($item['is_custom'])) {
+                // Custom pennant — no product_id
+                $orderItemData['product_id'] = null;
+                $customOpts = $item['custom_options'] ?? [];
+                if (!empty($item['image'])) {
+                    $customOpts['image'] = $item['image'];
+                }
+                $orderItemData['custom_options'] = $customOpts;
+            } else {
+                $orderItemData['product_id'] = $item['id'];
+            }
+
+            OrderItem::create($orderItemData);
         }
 
         $snapToken = $midtrans->createSnapToken([

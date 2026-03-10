@@ -29,6 +29,7 @@ Route::get('/shop', [ProductController::class, 'index']);
 Route::get('/shop/{slug}', [ProductController::class, 'show']);
 
 Route::get('/custom/pennant', [CustomPennantController::class, 'index']);
+Route::post('/cart/add-custom-pennant', [CustomPennantController::class, 'addToCart']);
 
 require __DIR__ . '/auth.php';
 

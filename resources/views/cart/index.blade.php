@@ -354,10 +354,10 @@
                                         orders, please contact us
                                         directly for shipping estimates and customs information.</label>
                                     <!-- <svg class="cart-select-icon w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                                                                                                                                                                                                                                                                                                                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                                                                                                                                                                                                                                                                                                                            d="M19 9l-7 7-7-7">
-                                                                                                                                                                                                                                                                                                                                                        </path>
-                                                                                                                                                                                                                                                                                                                                                    </svg> -->
+                                                                                                                                                                                                                                                                                                                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                                                                                                                                                                                                                                                                                                                                    d="M19 9l-7 7-7-7">
+                                                                                                                                                                                                                                                                                                                                                                </path>
+                                                                                                                                                                                                                                                                                                                                                            </svg> -->
                                 </div>
 
                                 <div class="cart-row">
@@ -381,10 +381,10 @@
                                             @endforeach
                                         </select>
                                         <!-- <svg class="cart-select-icon w-4 h-4" fill="none" stroke="currentColor"
-                                                                                                                                                                                                                                                                                                                                                    viewBox="0 0 24 24">
-                                                                                                                                                                                                                                                                                                                                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                                                                                                                                                                                                                                                                                                                                        d="M19 9l-7 7-7-7"></path>
-                                                                                                                                                                                                                                                                                                                                                </svg> -->
+                                                                                                                                                                                                                                                                                                                                                            viewBox="0 0 24 24">
+                                                                                                                                                                                                                                                                                                                                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                                                                                                                                                                                                                                                                                                                                                d="M19 9l-7 7-7-7"></path>
+                                                                                                                                                                                                                                                                                                                                                        </svg> -->
                                     </div>
 
                                     <input type="text" name="postal_code" placeholder="POSTAL CODE" required class="cart-input">
@@ -431,23 +431,27 @@
                                         </div>
                                         <div class="cart-item-bottom">
                                             <div class="cart-qty-ctrl">
-                                                <form action="/cart/update/{{ $key }}" method="POST"
-                                                    class="inline m-0 p-0 line-height-1" style="line-height:1;">
-                                                    @csrf
-                                                    <input type="hidden" name="qty" value="{{ max(1, $item['qty'] - 1) }}">
-                                                    <button type="submit"
-                                                        class="cart-qty-btn bg-transparent border-0 p-0">-</button>
-                                                </form>
+                                                @if(empty($item['is_custom']))
+                                                    <form action="/cart/update/{{ $key }}" method="POST"
+                                                        class="inline m-0 p-0 line-height-1" style="line-height:1;">
+                                                        @csrf
+                                                        <input type="hidden" name="qty" value="{{ max(1, $item['qty'] - 1) }}">
+                                                        <button type="submit"
+                                                            class="cart-qty-btn bg-transparent border-0 p-0">-</button>
+                                                    </form>
 
-                                                <span>{{ $item['qty'] }}</span>
+                                                    <span>{{ $item['qty'] }}</span>
 
-                                                <form action="/cart/update/{{ $key }}" method="POST"
-                                                    class="inline m-0 p-0 line-height-1" style="line-height:1;">
-                                                    @csrf
-                                                    <input type="hidden" name="qty" value="{{ $item['qty'] + 1 }}">
-                                                    <button type="submit"
-                                                        class="cart-qty-btn bg-transparent border-0 p-0">+</button>
-                                                </form>
+                                                    <form action="/cart/update/{{ $key }}" method="POST"
+                                                        class="inline m-0 p-0 line-height-1" style="line-height:1;">
+                                                        @csrf
+                                                        <input type="hidden" name="qty" value="{{ $item['qty'] + 1 }}">
+                                                        <button type="submit"
+                                                            class="cart-qty-btn bg-transparent border-0 p-0">+</button>
+                                                    </form>
+                                                @else
+                                                    <span>{{ $item['qty'] }}</span>
+                                                @endif
                                             </div>
                                             <form action="/cart/remove/{{ $key }}" method="POST" style="line-height:1;">
                                                 @csrf
