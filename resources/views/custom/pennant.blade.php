@@ -18,9 +18,10 @@
                         loading="eager" />
 
                     <!-- Text Overlay -->
-                    <div class="cp-capture__text-overlay">
+                    <div class="cp-capture__text-overlay"
+                        :style="`padding-left: ${containerWidth * 0.10}px; padding-bottom: ${containerWidth * 0.05}px;`">
                         <span x-text="text" :class="'font-' + fontStyle" class="cp-capture__text"
-                            :style="`color: ${textColors[textColor] ? textColors[textColor].hex : '#FFFFFF'};`">
+                            :style="`color: ${textColors[textColor] ? textColors[textColor].hex : '#FFFFFF'}; font-size: ${Math.max(16, containerWidth * 0.08)}px; padding-left: ${containerWidth * 0.14}px; padding-bottom: ${containerWidth * 0.05}px;`">
                         </span>
                     </div>
                 </div>
@@ -245,12 +246,28 @@
                     isSubmitting: false,
 
                     supportsWebp: false,
+                    containerWidth: 500, // Safe default
+                    resizeObserver: null,
 
                     init() {
                         const canvas = document.createElement('canvas');
                         canvas.width = 1;
                         canvas.height = 1;
                         this.supportsWebp = canvas.toDataURL('image/webp').indexOf('data:image/webp') === 0;
+
+                        this.$nextTick(() => {
+                            const captureArea = document.getElementById('capture-area');
+                            if (captureArea) {
+                                this.containerWidth = captureArea.clientWidth;
+
+                                this.resizeObserver = new ResizeObserver(entries => {
+                                    for (let entry of entries) {
+                                        this.containerWidth = entry.contentRect.width;
+                                    }
+                                });
+                                this.resizeObserver.observe(captureArea);
+                            }
+                        });
                     },
 
                     get currentFlagImage() {

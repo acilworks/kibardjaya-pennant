@@ -3929,17 +3929,19 @@ a svg {
     display: flex;
     align-items: center;
     pointer-events: none;
-    padding-left: 23%;
-    padding-right: 25%;
-    padding-bottom: 20px;
+    /* margin-top: 5%; */
+    /* margin-left: 140px; */
+    /* padding-right: 25%; */
+    /* margin-bottom: 5px; */
+    /* margin-top: 10px; */
     /* margin-bottom: 20px; */
 }
 
 .cp-capture__text {
     /* text-transform: uppercase; */
-    white-space: nowrap;
-    font-size: clamp(25px, 4.5vw, 64px);
-    line-height: 1;
+    /* white-space: nowrap; */
+    /* font-size: clamp(25px, 4.5vw, 64px); */
+    /* line-height: 1; */
     /* letter-spacing: 3px; */
 }
 
@@ -4048,13 +4050,6 @@ a svg {
 @media (max-width: 768px) {
     .cp-preview {
         min-height: 40vh;
-    }
-
-    .cp-capture__text-overlay {
-        padding-left: 24%;
-        padding-right: 22%;
-        padding-bottom: 15px;
-        /* margin-bottom: 54px; */
     }
 }
 
