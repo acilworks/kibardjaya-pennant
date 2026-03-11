@@ -2,6 +2,10 @@
 
 @section('title', 'Custom Pennant - Kibardjaya')
 
+@push('styles')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+@endpush
+
 @section('content')
     <section class="pdp" x-data="pennantCustomizer()">
         <!-- LEFT: Product Preview -->
@@ -167,9 +171,63 @@
         </div>
     </section>
 
+    {{-- Running Text Marquee --}}
+    <div class="marquee">
+        <div class="marquee__track">
+            <span class="marquee__content">&bull;&nbsp; Handmade in Indonesia &nbsp;&bull;&nbsp; Limited Small Batches
+                &nbsp;&bull;&nbsp; Built for Collectors &nbsp;&bull;&nbsp; Crafted Memories &nbsp;</span>
+            <span class="marquee__content">&bull;&nbsp; Handmade in Indonesia &nbsp;&bull;&nbsp; Limited Small Batches
+                &nbsp;&bull;&nbsp; Built for Collectors &nbsp;&bull;&nbsp; Crafted Memories &nbsp;</span>
+            <span class="marquee__content">&bull;&nbsp; Handmade in Indonesia &nbsp;&bull;&nbsp; Limited Small Batches
+                &nbsp;&bull;&nbsp; Built for Collectors &nbsp;&bull;&nbsp; Crafted Memories &nbsp;</span>
+        </div>
+    </div>
+
+    {{-- Custom Ideas Section --}}
+    <section class="custom-ideas">
+        <div class="custom-ideas__header">
+            <h2 class="custom-ideas__title">CUSTOM IDEAS</h2>
+        </div>
+
+        @if(isset($latestPennants) && count($latestPennants) > 0)
+            <div class="swiper custom-ideas-swiper-top custom-ideas__swiper">
+                <div class="swiper-wrapper" style="transition-timing-function: linear;">
+                    @foreach($latestPennants as $img)
+                        <div class="swiper-slide custom-ideas__slide">
+                            <img src="{{ asset($img) }}" alt="Custom Pennant Idea" loading="lazy">
+                        </div>
+                    @endforeach
+                </div>
+            </div>
+        @endif
+    </section>
+
     @push('scripts')
+        <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
         <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                if (document.querySelector('.custom-ideas-swiper-top')) {
+                    new Swiper('.custom-ideas-swiper-top', {
+                        slidesPerView: 'auto',
+                        spaceBetween: 20,
+                        loop: true,
+                        allowTouchMove: false,
+                        speed: 5000,
+                        autoplay: {
+                            delay: 0,
+                            disableOnInteraction: false,
+                            reverseDirection: true, // slide left
+                        },
+                        breakpoints: {
+                            768: {
+                                spaceBetween: 40,
+                            }
+                        }
+                    });
+                }
+            });
+
             document.addEventListener('alpine:init', () => {
                 Alpine.data('pennantCustomizer', () => ({
                     flagColors: @json($flagColors),

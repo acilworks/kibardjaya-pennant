@@ -39,7 +39,23 @@ class CustomPennantController extends Controller
             'unifrakturmaguntia' => 'Unifraktur',
         ];
 
-        return view('custom.pennant', compact('flagColors', 'borderColors', 'textColors', 'fonts'));
+        $latestPennants = [];
+        $directory = storage_path('app/public/custom-pennants');
+        if (is_dir($directory)) {
+            $files = collect(\Illuminate\Support\Facades\File::files($directory))
+                ->sortByDesc(function ($file) {
+                    return $file->getMTime();
+                })
+                ->take(12)
+                ->map(function ($file) {
+                    return 'storage/custom-pennants/' . $file->getFilename();
+                })
+                ->values()
+                ->toArray();
+            $latestPennants = $files;
+        }
+
+        return view('custom.pennant', compact('flagColors', 'borderColors', 'textColors', 'fonts', 'latestPennants'));
     }
 
     public function addToCart(Request $request)
