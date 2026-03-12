@@ -2284,6 +2284,10 @@
     .pdp__gallery {
         border-right: none;
         border-bottom: 1px solid #1a1a1a;
+        position: sticky;
+        top: 0;
+        /* top: 68px; */
+        z-index: 30;
     }
 
     .pdp__swiper {
