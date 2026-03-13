@@ -3913,8 +3913,9 @@ a svg {
     width: 100%;
     /* width: 90%; */
     /* max-width: 700px; */
-    aspect-ratio: 1 / 1;
+    padding-top: 100%;
     /* aspect-ratio: 2 / 1; */
+    transform: scale(1);
 }
 
 .cp-capture__img {
@@ -3927,20 +3928,33 @@ a svg {
 }
 
 .cp-capture__text-overlay {
-    border: 1px solid red;
+    /* border: 1px solid red; */
     position: absolute;
-    top: 47%;
-    left: 0;
-    right: 0;
-    transform: translateY(-47%);
+    top: 33%;
+    left: 23%;
+    right: 23%;
+    bottom: 37%;
     z-index: 20;
     pointer-events: none;
+
+    overflow: hidden;
 }
 
 .cp-capture__text {
-    border: 1px solid blue;
-    display: block;
-    line-height: 0.8;
+    /* border: 1px solid blue; */
+    /* display: block; */
+    /* line-height: 1; */
+    /* text-align: left; */
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    white-space: nowrap;
+
+    max-width: 100%;
+    overflow: hidden;
 }
 
 /* --- Custom Pennant Config (Right Column) --- */

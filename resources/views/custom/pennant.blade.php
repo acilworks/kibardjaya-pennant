@@ -18,9 +18,9 @@
                     loading="eager" />
 
                 <!-- Text Overlay -->
-                <div class="cp-capture__text-overlay" :style="`padding-left: ${containerWidth * 0.10}px;`">
-                    <span x-text="text" :class="'font-' + fontStyle" class="cp-capture__text"
-                        :style="`color: ${textColors[textColor] ? textColors[textColor].hex : '#FFFFFF'}; font-size: ${Math.max(16, containerWidth * 0.08)}px; padding-left: ${containerWidth * 0.14}px;`">
+                <div class="cp-capture__text-overlay" x-ref="textContainer">
+                    <span x-ref="textElement" x-text="text" :class="'font-' + fontStyle" class="cp-capture__text"
+                        :style="`color: ${textColors[textColor] ? textColors[textColor].hex : '#FFFFFF'};`">
                     </span>
                 </div>
             </div>
@@ -101,9 +101,9 @@
                     <div class="pdp__colors">
                         <div class="cp-text-row">
                             <span class="pdp__colors-label cp-label--flush">YOUR TEXT*</span>
-                            <span class="cp-text-counter" x-text="(15 - text.length) + ' Characters left.'"></span>
+                            <span class="cp-text-counter" x-text="(14 - text.length) + ' Characters left.'"></span>
                         </div>
-                        <input type="text" x-model="text" maxlength="15" class="cp-input" placeholder="EXAMPLE">
+                        <input type="text" x-model="text" maxlength="14" class="cp-input" placeholder="EXAMPLE">
                     </div>
 
                     {{-- CHOOSE STYLE --}}
@@ -204,7 +204,6 @@
 
 @push('scripts')
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         if (document.querySelector('.custom-ideas-swiper-top')) {
@@ -248,6 +247,27 @@
             containerWidth: 500, // Safe default
             resizeObserver: null,
 
+            resizeText() {
+                this.$nextTick(() => {
+                    const container = this.$refs.textContainer;
+                    const text = this.$refs.textElement;
+
+                    if (!container || !text) return;
+
+                    // Start with a large font size
+                    let fontSize = parseInt(window.getComputedStyle(container).height) * 0.8; // 80% of container height max
+                    if (isNaN(fontSize) || fontSize < 10) fontSize = 150;
+                    
+                    text.style.fontSize = fontSize + 'px';
+
+                    // Reduce font size until it fits within the container width
+                    while (text.scrollWidth > container.clientWidth && fontSize > 10) {
+                        fontSize--;
+                        text.style.fontSize = fontSize + 'px';
+                    }
+                });
+            },
+
             init() {
                 const canvas = document.createElement('canvas');
                 canvas.width = 1;
@@ -263,9 +283,21 @@
                             for (let entry of entries) {
                                 this.containerWidth = entry.contentRect.width;
                             }
+                            this.resizeText(); // Resize when container changes size
                         });
                         this.resizeObserver.observe(captureArea);
                     }
+                    
+                    // Initial resize
+                    this.resizeText();
+                });
+
+                // Watch for relevant changes that affect text size
+                this.$watch('text', () => this.resizeText());
+                this.$watch('fontStyle', () => {
+                    // Fonts might take a moment to load/apply, adding a small delay or nextTick helps,
+                    // but nextTick is usually safe enough if the font is already loaded.
+                    setTimeout(() => this.resizeText(), 50); 
                 });
             },
 
@@ -283,14 +315,61 @@
                 this.isSubmitting = true;
 
                 try {
-                    const captureArea = document.getElementById('capture-area');
+                    await document.fonts.ready;
+                    await new Promise(resolve => setTimeout(resolve, 50));
 
-                    const canvas = await html2canvas(captureArea, {
-                        backgroundColor: '#ffffff',
-                        scale: 2,
-                        useCORS: true,
-                        logging: false
+                    // Use Native Canvas API for perfect mapping
+                    const canvas = document.createElement('canvas');
+                    const ctx = canvas.getContext('2d');
+                    
+                    const img = new Image();
+                    img.crossOrigin = 'anonymous';
+                    img.src = this.currentFlagImage;
+                    
+                    await new Promise((resolve, reject) => {
+                        img.onload = resolve;
+                        img.onerror = reject;
                     });
+                    
+                    canvas.width = img.naturalWidth;
+                    canvas.height = img.naturalHeight;
+                    
+                    // Render background image
+                    ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+                    
+                    const textStr = this.text;
+                    if (textStr.trim().length > 0) {
+                        const captureArea = document.getElementById('capture-area');
+                        const textElement = this.$refs.textElement;
+                        
+                        // Scale ratio between native image resolution and DOM rendered size
+                        const captureRect = captureArea.getBoundingClientRect();
+                        const scaleFactor = canvas.width / captureRect.width;
+
+                        const computedStyle = window.getComputedStyle(textElement);
+                        const domFontSize = parseFloat(computedStyle.fontSize);
+                        const canvasFontSize = domFontSize * scaleFactor;
+                        
+                        // Find the exact visual center coordinate of the text element relative to the capture area bounds
+                        const textRect = textElement.getBoundingClientRect();
+                        const centerXDom = (textRect.left - captureRect.left) + (textRect.width / 2);
+                        let centerYDom = (textRect.top - captureRect.top) + (textRect.height / 2);
+                        
+                        const canvasX = centerXDom * scaleFactor;
+                        const canvasY = centerYDom * scaleFactor;
+                        
+                        ctx.fillStyle = computedStyle.color || '#FFFFFF';
+                        
+                        const fontFamily = computedStyle.fontFamily;
+                        const fontWeight = computedStyle.fontWeight || 'normal';
+                        const fontStyle = computedStyle.fontStyle || 'normal';
+                        
+                        ctx.font = `${fontStyle} ${fontWeight} ${canvasFontSize}px ${fontFamily}`;
+                        ctx.textAlign = 'center';
+                        ctx.textBaseline = 'middle';
+                        
+                        ctx.fillText(textStr, canvasX, canvasY);
+                    }
 
                     const base64Image = canvas.toDataURL('image/webp', 0.8);
 
