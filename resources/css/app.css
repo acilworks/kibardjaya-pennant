@@ -3927,26 +3927,20 @@ a svg {
 }
 
 .cp-capture__text-overlay {
+    border: 1px solid red;
     position: absolute;
-    inset: 0;
+    top: 47%;
+    left: 0;
+    right: 0;
+    transform: translateY(-47%);
     z-index: 20;
-    display: flex;
-    align-items: center;
     pointer-events: none;
-    /* margin-top: 5%; */
-    /* margin-left: 140px; */
-    /* padding-right: 25%; */
-    /* margin-bottom: 5px; */
-    /* margin-top: 10px; */
-    /* margin-bottom: 20px; */
 }
 
 .cp-capture__text {
-    /* text-transform: uppercase; */
-    /* white-space: nowrap; */
-    /* font-size: clamp(25px, 4.5vw, 64px); */
-    /* line-height: 1; */
-    /* letter-spacing: 3px; */
+    border: 1px solid blue;
+    display: block;
+    line-height: 0.8;
 }
 
 /* --- Custom Pennant Config (Right Column) --- */
