@@ -3930,7 +3930,7 @@ a svg {
 .cp-capture__text-overlay {
     /* border: 1px solid red; */
     position: absolute;
-    top: 33%;
+    top: 35%;
     left: 23%;
     right: 23%;
     bottom: 37%;
@@ -3951,7 +3951,7 @@ a svg {
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
-    white-space: nowrap;
+    white-space: pre;
 
     max-width: 100%;
     overflow: hidden;

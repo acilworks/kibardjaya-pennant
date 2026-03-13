@@ -237,7 +237,7 @@
             flagColor: 'mustard',
             borderColor: 'black',
             textColor: 'cream',
-            text: 'Kibardjaya',
+            text: 'Kibardjaya    ',
             qty: 1,
             fontStyle: 'stardos-stencil',
             confirmed: false,
@@ -257,7 +257,7 @@
                     // Start with a large font size
                     let fontSize = parseInt(window.getComputedStyle(container).height) * 0.8; // 80% of container height max
                     if (isNaN(fontSize) || fontSize < 10) fontSize = 150;
-                    
+
                     text.style.fontSize = fontSize + 'px';
 
                     // Reduce font size until it fits within the container width
@@ -287,7 +287,7 @@
                         });
                         this.resizeObserver.observe(captureArea);
                     }
-                    
+
                     // Initial resize
                     this.resizeText();
                 });
@@ -297,7 +297,7 @@
                 this.$watch('fontStyle', () => {
                     // Fonts might take a moment to load/apply, adding a small delay or nextTick helps,
                     // but nextTick is usually safe enough if the font is already loaded.
-                    setTimeout(() => this.resizeText(), 50); 
+                    setTimeout(() => this.resizeText(), 50);
                 });
             },
 
@@ -321,27 +321,27 @@
                     // Use Native Canvas API for perfect mapping
                     const canvas = document.createElement('canvas');
                     const ctx = canvas.getContext('2d');
-                    
+
                     const img = new Image();
                     img.crossOrigin = 'anonymous';
                     img.src = this.currentFlagImage;
-                    
+
                     await new Promise((resolve, reject) => {
                         img.onload = resolve;
                         img.onerror = reject;
                     });
-                    
+
                     canvas.width = img.naturalWidth;
                     canvas.height = img.naturalHeight;
-                    
+
                     // Render background image
                     ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-                    
+
                     const textStr = this.text;
                     if (textStr.trim().length > 0) {
                         const captureArea = document.getElementById('capture-area');
                         const textElement = this.$refs.textElement;
-                        
+
                         // Scale ratio between native image resolution and DOM rendered size
                         const captureRect = captureArea.getBoundingClientRect();
                         const scaleFactor = canvas.width / captureRect.width;
@@ -349,25 +349,25 @@
                         const computedStyle = window.getComputedStyle(textElement);
                         const domFontSize = parseFloat(computedStyle.fontSize);
                         const canvasFontSize = domFontSize * scaleFactor;
-                        
+
                         // Find the exact visual center coordinate of the text element relative to the capture area bounds
                         const textRect = textElement.getBoundingClientRect();
                         const centerXDom = (textRect.left - captureRect.left) + (textRect.width / 2);
                         let centerYDom = (textRect.top - captureRect.top) + (textRect.height / 2);
-                        
+
                         const canvasX = centerXDom * scaleFactor;
                         const canvasY = centerYDom * scaleFactor;
-                        
+
                         ctx.fillStyle = computedStyle.color || '#FFFFFF';
-                        
+
                         const fontFamily = computedStyle.fontFamily;
                         const fontWeight = computedStyle.fontWeight || 'normal';
                         const fontStyle = computedStyle.fontStyle || 'normal';
-                        
+
                         ctx.font = `${fontStyle} ${fontWeight} ${canvasFontSize}px ${fontFamily}`;
                         ctx.textAlign = 'center';
                         ctx.textBaseline = 'middle';
-                        
+
                         ctx.fillText(textStr, canvasX, canvasY);
                     }
 
