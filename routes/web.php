@@ -6,6 +6,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\CollectionController;
+use App\Http\Controllers\CustomController;
 use App\Http\Controllers\CustomPennantController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,6 +29,7 @@ Route::get('/collections', [CollectionController::class, 'index']);
 Route::get('/shop', [ProductController::class, 'index']);
 Route::get('/shop/{slug}', [ProductController::class, 'show']);
 
+Route::get('/custom', [CustomController::class, 'index']);
 Route::get('/custom/pennant', [CustomPennantController::class, 'index']);
 Route::post('/cart/add-custom-pennant', [CustomPennantController::class, 'addToCart']);
 
