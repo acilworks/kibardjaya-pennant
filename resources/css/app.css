@@ -2803,7 +2803,7 @@ a svg {
     align-items: flex-start;
     justify-content: space-between;
     padding: 30px 40px 30px;
-    border-bottom: 1px solid #1a1a1a;
+    /* border-bottom: 1px solid #1a1a1a; */
 }
 
 .clp-hero__left {
@@ -2876,6 +2876,12 @@ a svg {
 
 .clp-categories__swiper {
     overflow: hidden;
+    padding-bottom: 30px;
+}
+
+.clp-categories__swiper .swiper-slide {
+    padding: 0 10px;
+    box-sizing: border-box;
 }
 
 .clp-categories__slide {
@@ -4253,12 +4259,17 @@ a svg {
 
 @media (max-width: 768px) {
     .cst-hero {
-        padding: 60px 20px 40px;
+        padding: 30px 20px 30px;
     }
 
-    .cst-hero__inner {
+    /* .cst-hero__inner {
         grid-template-columns: 1fr;
         gap: 24px;
+    } */
+
+    .cst-hero__right {
+        max-width: 100%;
+        padding-top: 0;
     }
 
     .cst-hero__title {
@@ -4332,7 +4343,7 @@ a svg {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
-    padding: 16px 4px 24px;
+    padding: 24px 20px 24px;
 }
 
 .syd__card-title {
@@ -4356,6 +4367,11 @@ a svg {
     font-weight: 600;
     flex-shrink: 0;
     margin-top: 2px;
+}
+
+.syd__card:hover .syd__card-arrow {
+    transform: translateX(5px);
+    transition: transform 0.3s ease;
 }
 
 /* SYD Swiper - 3 slides with gap on desktop */
@@ -4387,7 +4403,7 @@ a svg {
     }
 
     .syd__card-info {
-        padding: 14px 4px 18px;
+        padding: 24px 20px 24px;
     }
 }
 
