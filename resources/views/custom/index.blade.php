@@ -52,7 +52,7 @@
                         <div class="syd__card-info">
                             <div class="syd__card-info-left">
                                 <h3 class="syd__card-title">BANNER</h3>
-                                <p class="syd__card-desc">Rectangular banner for interiors and events.</p>
+                                <p class="syd__card-desc">Rectangular banner for interiors.</p>
                             </div>
                             <span class="syd__card-arrow">&rarr;</span>
                         </div>
@@ -102,6 +102,18 @@
         </div>
     </div>
 </section>
+
+{{-- Running Text Marquee --}}
+<div class="marquee">
+    <div class="marquee__track">
+        <span class="marquee__content">&bull;&nbsp; Handmade in Indonesia &nbsp;&bull;&nbsp; Limited Small Batches
+            &nbsp;&bull;&nbsp; Built for Collectors &nbsp;&bull;&nbsp; Crafted Memories &nbsp;</span>
+        <span class="marquee__content">&bull;&nbsp; Handmade in Indonesia &nbsp;&bull;&nbsp; Limited Small Batches
+            &nbsp;&bull;&nbsp; Built for Collectors &nbsp;&bull;&nbsp; Crafted Memories &nbsp;</span>
+        <span class="marquee__content">&bull;&nbsp; Handmade in Indonesia &nbsp;&bull;&nbsp; Limited Small Batches
+            &nbsp;&bull;&nbsp; Built for Collectors &nbsp;&bull;&nbsp; Crafted Memories &nbsp;</span>
+    </div>
+</div>
 
 {{-- Personalized By You Section --}}
 <section class="pby">

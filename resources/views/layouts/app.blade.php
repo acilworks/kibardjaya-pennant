@@ -24,15 +24,15 @@
 
     {{-- Announcement Bar --}}
     @if($announcementText)
-        <div class="announcement-bar">
-            {{ $announcementText }}
-        </div>
+    <div class="announcement-bar">
+        {{ $announcementText }}
+    </div>
     @endif
 
     {{-- Navbar + Mega Menu + Mobile Nav wrapper --}}
     @php
-        $allNavItems = $navItemsLeft->merge($navItemsRight);
-        $megaNavItems = $allNavItems->where('has_mega_menu', true);
+    $allNavItems = $navItemsLeft->merge($navItemsRight);
+    $megaNavItems = $allNavItems->where('has_mega_menu', true);
     @endphp
     <div class="navbar-sticky" x-data="{
         mobileOpen: false,
@@ -88,17 +88,17 @@
                 {{-- Left Links --}}
                 <div class="navbar__links">
                     @foreach($navItemsLeft as $navItem)
-                        @if($navItem->has_mega_menu && $navItem->megaGroups->count() > 0)
-                            <a href="{{ $navItem->url ?? '/shop' }}" class="navbar__link"
-                                @mouseenter="openMega({{ $navItem->id }}, {{ $navItem->megaGroups->first()->id ?? 'null' }})"
-                                @click.prevent="activeMegaId === {{ $navItem->id }} ? closeMega() : openMega({{ $navItem->id }}, {{ $navItem->megaGroups->first()->id ?? 'null' }})">
-                                {{ $navItem->label }}
-                            </a>
-                        @else
-                            <a href="{{ $navItem->url ?? '#' }}" class="navbar__link">
-                                {{ $navItem->label }}
-                            </a>
-                        @endif
+                    @if($navItem->has_mega_menu && $navItem->megaGroups->count() > 0)
+                    <a href="{{ $navItem->url ?? '/shop' }}" class="navbar__link"
+                        @mouseenter="openMega({{ $navItem->id }}, {{ $navItem->megaGroups->first()->id ?? 'null' }})"
+                        @click.prevent="activeMegaId === {{ $navItem->id }} ? closeMega() : openMega({{ $navItem->id }}, {{ $navItem->megaGroups->first()->id ?? 'null' }})">
+                        {{ $navItem->label }}
+                    </a>
+                    @else
+                    <a href="{{ $navItem->url ?? '#' }}" class="navbar__link">
+                        {{ $navItem->label }}
+                    </a>
+                    @endif
                     @endforeach
                 </div>
             </div>
@@ -116,17 +116,17 @@
                 {{-- Right Links --}}
                 <div class="navbar__links">
                     @foreach($navItemsRight as $navItem)
-                        @if($navItem->has_mega_menu && $navItem->megaGroups->count() > 0)
-                            <a href="{{ $navItem->url ?? '/shop' }}" class="navbar__link"
-                                @mouseenter="openMega({{ $navItem->id }}, {{ $navItem->megaGroups->first()->id ?? 'null' }})"
-                                @click.prevent="activeMegaId === {{ $navItem->id }} ? closeMega() : openMega({{ $navItem->id }}, {{ $navItem->megaGroups->first()->id ?? 'null' }})">
-                                {{ $navItem->label }}
-                            </a>
-                        @else
-                            <a href="{{ $navItem->url ?? '#' }}" class="navbar__link">
-                                {{ $navItem->label }}
-                            </a>
-                        @endif
+                    @if($navItem->has_mega_menu && $navItem->megaGroups->count() > 0)
+                    <a href="{{ $navItem->url ?? '/shop' }}" class="navbar__link"
+                        @mouseenter="openMega({{ $navItem->id }}, {{ $navItem->megaGroups->first()->id ?? 'null' }})"
+                        @click.prevent="activeMegaId === {{ $navItem->id }} ? closeMega() : openMega({{ $navItem->id }}, {{ $navItem->megaGroups->first()->id ?? 'null' }})">
+                        {{ $navItem->label }}
+                    </a>
+                    @else
+                    <a href="{{ $navItem->url ?? '#' }}" class="navbar__link">
+                        {{ $navItem->label }}
+                    </a>
+                    @endif
                     @endforeach
                 </div>
 
@@ -134,8 +134,8 @@
 
                     {{-- Cart Icon --}}
                     @php
-                        $cartItems = session()->get('cart', []);
-                        $cartCount = array_sum(array_column($cartItems, 'qty'));
+                    $cartItems = session()->get('cart', []);
+                    $cartCount = array_sum(array_column($cartItems, 'qty'));
                     @endphp
                     <a href="#" @click.prevent="$dispatch('open-cart')" class="navbar__icon navbar__cart-icon"
                         title="Cart">
@@ -144,7 +144,7 @@
                             <path d="M16 1v6M8 1v6" />
                         </svg>
                         @if($cartCount > 0)
-                            <span class="navbar__cart-badge">{{ $cartCount }}</span>
+                        <span class="navbar__cart-badge">{{ $cartCount }}</span>
                         @endif
                     </a>
                 </div>
@@ -153,53 +153,53 @@
 
         {{-- Per-NavItem Mega Menu Dropdowns --}}
         @foreach($megaNavItems as $megaNav)
-            @if($megaNav->megaGroups->count() > 0)
-                <div class="mega-menu" x-show="activeMegaId === {{ $megaNav->id }}" x-cloak
-                    @mouseenter="activeMegaId = {{ $megaNav->id }}" @mouseleave="closeMega()"
-                    x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-1"
-                    x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150"
-                    x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-1">
+        @if($megaNav->megaGroups->count() > 0)
+        <div class="mega-menu" x-show="activeMegaId === {{ $megaNav->id }}" x-cloak
+            @mouseenter="activeMegaId = {{ $megaNav->id }}" @mouseleave="closeMega()"
+            x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 -translate-y-1"
+            x-transition:enter-end="opacity-100 translate-y-0" x-transition:leave="transition ease-in duration-150"
+            x-transition:leave-start="opacity-100 translate-y-0" x-transition:leave-end="opacity-0 -translate-y-1">
 
-                    {{-- Sidebar: Groups --}}
-                    <div class="mega-menu__sidebar">
-                        <div class="mega-menu__sidebar-items">
-                            @foreach($megaNav->megaGroups as $group)
-                                <a href="{{ $group->url ?? '#' }}" class="mega-menu__sidebar-link"
-                                    :class="{ 'mega-menu__sidebar-link--active': activeGroupId === {{ $group->id }} }"
-                                    @mouseenter="activeGroupId = {{ $group->id }}">
-                                    <span class="mega-menu__sidebar-link-text">{{ strtoupper($group->label) }}</span>
-                                    @if($group->items->count() > 0)
-                                        <span class="mega-menu__arrow">&rarr;</span>
-                                    @endif
-                                </a>
-                            @endforeach
-                        </div>
-
-                        {{-- Brand Logo at bottom of sidebar --}}
-                        <div class="mega-menu__brand-logo">
-                            <picture>
-                                <source srcset="{{ asset('image/kibardjaya.webp') }}" type="image/webp">
-                                <img src="{{ asset('image/kibardjaya.png') }}" alt="Kibardjaya">
-                            </picture>
-                        </div>
-                    </div>
-
-                    {{-- Content: Items per group --}}
-                    <div class="mega-menu__content">
-                        @foreach($megaNav->megaGroups as $group)
-                            <div class="mega-menu__subcategories" x-show="activeGroupId === {{ $group->id }}"
-                                x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0"
-                                x-transition:enter-end="opacity-100">
-                                @foreach($group->items as $item)
-                                    <a href="{{ $item->url ?? '#' }}" class="mega-menu__subcategory-link">
-                                        {{ strtoupper($item->label) }}
-                                    </a>
-                                @endforeach
-                            </div>
-                        @endforeach
-                    </div>
+            {{-- Sidebar: Groups --}}
+            <div class="mega-menu__sidebar">
+                <div class="mega-menu__sidebar-items">
+                    @foreach($megaNav->megaGroups as $group)
+                    <a href="{{ $group->url ?? '#' }}" class="mega-menu__sidebar-link"
+                        :class="{ 'mega-menu__sidebar-link--active': activeGroupId === {{ $group->id }} }"
+                        @mouseenter="activeGroupId = {{ $group->id }}">
+                        <span class="mega-menu__sidebar-link-text">{{ strtoupper($group->label) }}</span>
+                        @if($group->items->count() > 0)
+                        <span class="mega-menu__arrow">&rarr;</span>
+                        @endif
+                    </a>
+                    @endforeach
                 </div>
-            @endif
+
+                {{-- Brand Logo at bottom of sidebar --}}
+                <div class="mega-menu__brand-logo">
+                    <picture>
+                        <source srcset="{{ asset('image/kibardjaya.webp') }}" type="image/webp">
+                        <img src="{{ asset('image/kibardjaya.png') }}" alt="Kibardjaya">
+                    </picture>
+                </div>
+            </div>
+
+            {{-- Content: Items per group --}}
+            <div class="mega-menu__content">
+                @foreach($megaNav->megaGroups as $group)
+                <div class="mega-menu__subcategories" x-show="activeGroupId === {{ $group->id }}"
+                    x-transition:enter="transition ease-out duration-150" x-transition:enter-start="opacity-0"
+                    x-transition:enter-end="opacity-100">
+                    @foreach($group->items as $item)
+                    <a href="{{ $item->url ?? '#' }}" class="mega-menu__subcategory-link">
+                        {{ strtoupper($item->label) }}
+                    </a>
+                    @endforeach
+                </div>
+                @endforeach
+            </div>
+        </div>
+        @endif
         @endforeach
 
         {{-- Mobile Navigation Overlay --}}
@@ -217,29 +217,29 @@
 
                 <div class="mobile-nav-panel__content">
                     @foreach($navItemsLeft as $navItem)
-                        @if($navItem->has_mega_menu && $navItem->megaGroups->count() > 0)
-                            <button class="mobile-nav-panel__link" @click="activeMobileSubId = {{ $navItem->id }}">
-                                {{ strtoupper($navItem->label) }}
-                                <span class="mobile-nav-panel__arrow">&gt;</span>
-                            </button>
-                        @else
-                            <a href="{{ $navItem->url ?? '#' }}" class="mobile-nav-panel__link">
-                                {{ strtoupper($navItem->label) }}
-                            </a>
-                        @endif
+                    @if($navItem->has_mega_menu && $navItem->megaGroups->count() > 0)
+                    <button class="mobile-nav-panel__link" @click="activeMobileSubId = {{ $navItem->id }}">
+                        {{ strtoupper($navItem->label) }}
+                        <span class="mobile-nav-panel__arrow">&gt;</span>
+                    </button>
+                    @else
+                    <a href="{{ $navItem->url ?? '#' }}" class="mobile-nav-panel__link">
+                        {{ strtoupper($navItem->label) }}
+                    </a>
+                    @endif
                     @endforeach
 
                     @foreach($navItemsRight as $navItem)
-                        @if($navItem->has_mega_menu && $navItem->megaGroups->count() > 0)
-                            <button class="mobile-nav-panel__link" @click="activeMobileSubId = {{ $navItem->id }}">
-                                {{ strtoupper($navItem->label) }}
-                                <span class="mobile-nav-panel__arrow">&gt;</span>
-                            </button>
-                        @else
-                            <a href="{{ $navItem->url ?? '#' }}" class="mobile-nav-panel__link">
-                                {{ strtoupper($navItem->label) }}
-                            </a>
-                        @endif
+                    @if($navItem->has_mega_menu && $navItem->megaGroups->count() > 0)
+                    <button class="mobile-nav-panel__link" @click="activeMobileSubId = {{ $navItem->id }}">
+                        {{ strtoupper($navItem->label) }}
+                        <span class="mobile-nav-panel__arrow">&gt;</span>
+                    </button>
+                    @else
+                    <a href="{{ $navItem->url ?? '#' }}" class="mobile-nav-panel__link">
+                        {{ strtoupper($navItem->label) }}
+                    </a>
+                    @endif
                     @endforeach
                     <a href="/cart" class="mobile-nav-panel__link">CART ({{ $cartCount }})</a>
                 </div>
@@ -251,39 +251,39 @@
 
             {{-- Drill-down Submenus --}}
             @foreach($allNavItems as $navItem)
-                @if($navItem->has_mega_menu && $navItem->megaGroups->count() > 0)
-                    <div class="mobile-nav-panel" x-show="activeMobileSubId === {{ $navItem->id }}" x-cloak
-                        x-transition:enter="transition ease-in-out duration-300 transform"
-                        x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
-                        x-transition:leave="transition ease-in-out duration-300 transform"
-                        x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full">
+            @if($navItem->has_mega_menu && $navItem->megaGroups->count() > 0)
+            <div class="mobile-nav-panel" x-show="activeMobileSubId === {{ $navItem->id }}" x-cloak
+                x-transition:enter="transition ease-in-out duration-300 transform"
+                x-transition:enter-start="translate-x-full" x-transition:enter-end="translate-x-0"
+                x-transition:leave="transition ease-in-out duration-300 transform"
+                x-transition:leave-start="translate-x-0" x-transition:leave-end="translate-x-full">
 
-                        <div class="mobile-nav-panel__content">
-                            <button class="mobile-nav-panel__link mobile-nav-panel__link--back"
-                                @click="activeMobileSubId = null">
-                                <span class="mobile-nav-panel__arrow">&lt;</span> {{ strtoupper($navItem->label) }}
-                            </button>
-                            @foreach($navItem->megaGroups as $group)
-                                @if(count($navItem->megaGroups) > 1 && $group->label)
-                                    @if(!empty($group->url))
-                                        <a href="{{ $group->url }}"
-                                            class="mobile-nav-panel__group-label block no-underline">{{ strtoupper($group->label) }}</a>
-                                    @else
-                                        <div class="mobile-nav-panel__group-label">{{ strtoupper($group->label) }}</div>
-                                    @endif
-                                @endif
-                                @foreach($group->items as $item)
-                                    <a href="{{ $item->url ?? '#' }}" class="mobile-nav-panel__link">
-                                        {{ strtoupper($item->label) }}
-                                    </a>
-                                @endforeach
-                            @endforeach
-                        </div>
+                <div class="mobile-nav-panel__content">
+                    <button class="mobile-nav-panel__link mobile-nav-panel__link--back"
+                        @click="activeMobileSubId = null">
+                        <span class="mobile-nav-panel__arrow">&lt;</span> {{ strtoupper($navItem->label) }}
+                    </button>
+                    @foreach($navItem->megaGroups as $group)
+                    @if(count($navItem->megaGroups) > 1 && $group->label)
+                    @if(!empty($group->url))
+                    <a href="{{ $group->url }}" class="mobile-nav-panel__group-label block no-underline">{{
+                        strtoupper($group->label) }}</a>
+                    @else
+                    <div class="mobile-nav-panel__group-label">{{ strtoupper($group->label) }}</div>
+                    @endif
+                    @endif
+                    @foreach($group->items as $item)
+                    <a href="{{ $item->url ?? '#' }}" class="mobile-nav-panel__link">
+                        {{ strtoupper($item->label) }}
+                    </a>
+                    @endforeach
+                    @endforeach
+                </div>
 
-                        <div class="mobile-nav-panel__footer">
-                        </div>
-                    </div>
-                @endif
+                <div class="mobile-nav-panel__footer">
+                </div>
+            </div>
+            @endif
             @endforeach
         </div>
     </div>
@@ -301,10 +301,10 @@
 
     {{-- Slide-out Cart Drawer --}}
     @php
-        $cartOrderValue = 0;
-        foreach ($cartItems as $item) {
-            $cartOrderValue += $item['price'] * $item['qty'];
-        }
+    $cartOrderValue = 0;
+    foreach ($cartItems as $item) {
+    $cartOrderValue += $item['price'] * $item['qty'];
+    }
     @endphp
     <div x-data="{ cartOpen: {{ session('cart_open') ? 'true' : 'false' }} }" @open-cart.window="cartOpen = true"
         @keydown.escape.window="cartOpen = false" :class="{'overflow-hidden': cartOpen}">
@@ -323,100 +323,101 @@
 
             <div class="cart-drawer__inner">
                 @if(empty($cartItems))
-                    <div class="cart-drawer__empty">
-                        <h2>Your Cart is Empty</h2>
-                        <button @click="cartOpen = false" class="cart-drawer__continue">Explore Collections</button>
-                    </div>
+                <div class="cart-drawer__empty">
+                    <h2>Your Cart is Empty</h2>
+                    <button @click="cartOpen = false" class="cart-drawer__continue">Explore Collections</button>
+                </div>
                 @else
-                    {{-- Collection List --}}
-                    <div class="cart-drawer__collection-list">
-                        <div class="cart-drawer__header">
-                            Collection List
-                        </div>
+                {{-- Collection List --}}
+                <div class="cart-drawer__collection-list">
+                    <div class="cart-drawer__header">
+                        Collection List
+                    </div>
 
-                        @foreach($cartItems as $key => $item)
-                            <div class="cart-drawer__item">
-                                @if(isset($item['image']) && $item['image'])
-                                    <img src="{{ asset('storage/' . $item['image']) }}" alt="{{ $item['title'] }}"
-                                        class="cart-drawer__item-img">
-                                @else
-                                    <div class="cart-drawer__item-img" style="background-color: #f5f5f5;"></div>
-                                @endif
+                    @foreach($cartItems as $key => $item)
+                    <div class="cart-drawer__item">
+                        @if(isset($item['image']) && $item['image'])
+                        <img src="{{ asset('storage/' . $item['image']) }}" alt="{{ $item['title'] }}"
+                            class="cart-drawer__item-img">
+                        @else
+                        <div class="cart-drawer__item-img" style="background-color: #f5f5f5;"></div>
+                        @endif
 
-                                <div class="cart-drawer__item-info">
-                                    <div class="cart-drawer__item-top">
-                                        <h3 class="cart-drawer__item-title">
-                                            {{ $item['title'] }}
-                                            @if(!empty($item['variation_name']))
-                                                <br><span style="font-weight: 400;">({{ $item['variation_name'] }})</span>
-                                            @endif
-                                        </h3>
-                                        <span class="cart-drawer__item-price">Rp.{{ number_format($item['price'], 0, ',', '.') }}</span>
-                                    </div>
-                                    <div class="cart-drawer__item-bottom">
-                                        <div class="cart-drawer__qty-ctrl">
-                                            <form action="/cart/update/{{ $key }}" method="POST"
-                                                style="margin:0; padding:0; line-height:1;">
-                                                @csrf
-                                                <input type="hidden" name="qty" value="{{ max(1, $item['qty'] - 1) }}">
-                                                <button type="submit" class="cart-drawer__qty-btn">-</button>
-                                            </form>
+                        <div class="cart-drawer__item-info">
+                            <div class="cart-drawer__item-top">
+                                <h3 class="cart-drawer__item-title">
+                                    {{ $item['title'] }}
+                                    @if(!empty($item['variation_name']))
+                                    <br><span style="font-weight: 400;">({{ $item['variation_name'] }})</span>
+                                    @endif
+                                </h3>
+                                <span class="cart-drawer__item-price">Rp.{{ number_format($item['price'], 0, ',', '.')
+                                    }}</span>
+                            </div>
+                            <div class="cart-drawer__item-bottom">
+                                <div class="cart-drawer__qty-ctrl">
+                                    <form action="/cart/update/{{ $key }}" method="POST"
+                                        style="margin:0; padding:0; line-height:1;">
+                                        @csrf
+                                        <input type="hidden" name="qty" value="{{ max(1, $item['qty'] - 1) }}">
+                                        <button type="submit" class="cart-drawer__qty-btn">-</button>
+                                    </form>
 
-                                            <span>{{ $item['qty'] }}</span>
+                                    <span>{{ $item['qty'] }}</span>
 
-                                            <form action="/cart/update/{{ $key }}" method="POST"
-                                                style="margin:0; padding:0; line-height:1;">
-                                                @csrf
-                                                <input type="hidden" name="qty" value="{{ $item['qty'] + 1 }}">
-                                                <button type="submit" class="cart-drawer__qty-btn">+</button>
-                                            </form>
-                                        </div>
-                                        <form action="/cart/remove/{{ $key }}" method="POST" style="line-height:1;">
-                                            @csrf
-                                            <button type="submit" class="cart-drawer__remove-btn">
-                                                <svg width="18" height="20" viewBox="0 0 24 24" fill="none"
-                                                    stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
-                                                    stroke-linejoin="round">
-                                                    <polyline points="3 6 5 6 21 6"></polyline>
-                                                    <path
-                                                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
-                                                    </path>
-                                                    <line x1="10" y1="11" x2="10" y2="17"></line>
-                                                    <line x1="14" y1="11" x2="14" y2="17"></line>
-                                                </svg>
-                                            </button>
-                                        </form>
-                                    </div>
+                                    <form action="/cart/update/{{ $key }}" method="POST"
+                                        style="margin:0; padding:0; line-height:1;">
+                                        @csrf
+                                        <input type="hidden" name="qty" value="{{ $item['qty'] + 1 }}">
+                                        <button type="submit" class="cart-drawer__qty-btn">+</button>
+                                    </form>
                                 </div>
-                            </div>
-                        @endforeach
-                    </div>
-
-                    {{-- Summary Block --}}
-                    <div class="cart-drawer__summary">
-                        <div class="cart-drawer__summary-content">
-                            <div class="cart-drawer__summary-row">
-                                <span>Order Value</span>
-                                <span>Rp.{{ number_format($cartOrderValue, 0, ',', '.') }}</span>
-                            </div>
-                            <div class="cart-drawer__summary-row">
-                                <span>Shipping</span>
-                                <span>Enter province first</span>
-                            </div>
-
-                            <div class="cart-drawer__summary-row cart-drawer__summary-total">
-                                <span>Total</span>
-                                <span>Rp.{{ number_format($cartOrderValue, 0, ',', '.') }}</span>
+                                <form action="/cart/remove/{{ $key }}" method="POST" style="line-height:1;">
+                                    @csrf
+                                    <button type="submit" class="cart-drawer__remove-btn">
+                                        <svg width="18" height="20" viewBox="0 0 24 24" fill="none"
+                                            stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                                            stroke-linejoin="round">
+                                            <polyline points="3 6 5 6 21 6"></polyline>
+                                            <path
+                                                d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2">
+                                            </path>
+                                            <line x1="10" y1="11" x2="10" y2="17"></line>
+                                            <line x1="14" y1="11" x2="14" y2="17"></line>
+                                        </svg>
+                                    </button>
+                                </form>
                             </div>
                         </div>
+                    </div>
+                    @endforeach
+                </div>
 
-                        <div class="cart-drawer__summary-footer">
-                            <a href="/cart" class="cart-drawer__process-btn">
-                                PROCESS
-                            </a>
+                {{-- Summary Block --}}
+                <div class="cart-drawer__summary">
+                    <div class="cart-drawer__summary-content">
+                        <div class="cart-drawer__summary-row">
+                            <span>Order Value</span>
+                            <span>Rp.{{ number_format($cartOrderValue, 0, ',', '.') }}</span>
+                        </div>
+                        <div class="cart-drawer__summary-row">
+                            <span>Shipping</span>
+                            <span>Enter province first</span>
+                        </div>
+
+                        <div class="cart-drawer__summary-row cart-drawer__summary-total">
+                            <span>Total</span>
+                            <span>Rp.{{ number_format($cartOrderValue, 0, ',', '.') }}</span>
                         </div>
                     </div>
-                    <div class="cart-drawer__summary-gap"></div>
+
+                    <div class="cart-drawer__summary-footer">
+                        <a href="/cart" class="cart-drawer__process-btn">
+                            PROCESS
+                        </a>
+                    </div>
+                </div>
+                <div class="cart-drawer__summary-gap"></div>
                 @endif
             </div>
         </div>
@@ -433,7 +434,7 @@
                     <img src="{{ asset('image/kibardjaya-footer.png') }}" alt="Kibardjaya" loading="lazy">
                 </picture>
             </div>
-            <span class="footer__newsletter-label">Stay in the loop!</span>
+            <span class="footer__newsletter-label">Get in touch!</span>
             <form class="footer__newsletter-form" action="#" method="POST">
                 @csrf
                 <input type="email" name="email" class="footer__newsletter-input" placeholder="Enter your email"
