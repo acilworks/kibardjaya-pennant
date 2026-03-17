@@ -702,7 +702,7 @@
     align-items: start;
     gap: 20px;
     max-width: 1200px;
-    margin: 0 auto 44px;
+    /* margin: 0 auto 44px; */
 }
 
 
@@ -719,20 +719,34 @@
 }
 
 .brand-story__text {
-    padding-top: 120px;
+    padding-top: 100px;
+}
+
+.brand-story__tagline {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #1a1a1a;
+    margin-bottom: 16px;
 }
 
 .brand-story__desc {
-    font-size: 10px;
+    /* font-size: 10px;
     line-height: 1.65;
     color: #000000;
-    font-weight: 400;
+    font-weight: 400; */
     /* font-style: italic; */
+    font-size: 10px;
+    line-height: 1.7;
+    color: #444;
+    /* margin-bottom: 28px; */
+    max-width: 440px;
 }
 
-.brand-story__desc+.brand-story__desc {
+/* .brand-story__desc+.brand-story__desc {
     margin-top: 14px;
-}
+} */
 
 .brand-story__categories {
     display: flex;
@@ -1045,16 +1059,21 @@
     }
 
     .brand-story__title {
-        font-size: clamp(2.5rem, 12vw, 3.5rem);
-        letter-spacing: -2px;
+        /* font-size: clamp(2.5rem, 12vw, 3.5rem);
+        letter-spacing: -2px; */
+        font-size: clamp(3.2rem, 14vw, 5rem);
+        letter-spacing: -3px;
     }
 
     .brand-story__text {
-        padding-top: 0;
+        /* padding-top: 10px; */
+        max-width: 100%;
+        padding-top: 15px;
     }
 
     .brand-story__desc {
         font-size: 12px;
+        margin-bottom: 50px;
     }
 
     .brand-story__categories {
@@ -1134,13 +1153,17 @@
 }
 
 .custom-order__content {
-    display: flex;
+    /* display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     text-align: center;
     padding: 60px 48px;
-    background-color: #ffffff;
+    background-color: #ffffff; */
+    padding: 60px 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .custom-order__tagline {
@@ -1152,22 +1175,33 @@
 }
 
 .custom-order__title {
-    font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+    /* font-size: clamp(1.5rem, 2.5vw, 2.2rem);
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: -2px;
     color: #1a1a1a;
     margin-bottom: 20px;
-    line-height: 1.15;
+    line-height: 1.15; */
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+    line-height: 0.95;
+    color: #1a1a1a;
+    margin-bottom: 24px;
 }
 
 .custom-order__desc {
-    font-size: 13px;
+    /* font-size: 13px;
     line-height: 1.8;
-    /* letter-spacing: -1px; */
     color: #000000;
     max-width: 420px;
+    margin-bottom: 32px; */
+    font-size: 10px;
+    line-height: 1.7;
+    color: #444;
     margin-bottom: 32px;
+    max-width: 380px;
 }
 
 .custom-order__cta-wrap {
@@ -1181,7 +1215,8 @@
     font-weight: 600;
     /* letter-spacing: 2px; */
     text-transform: uppercase;
-    color: #b19e60;
+    color: #1a1a1a;
+    /* color: #b19e60; */
     text-decoration: underline;
     text-underline-offset: 5px;
     text-decoration-thickness: 1px;
@@ -1190,17 +1225,17 @@
 
 .custom-order__cta-arrow {
     font-size: 14px;
-    color: #b19e60;
+    color: #1a1a1a;
     transition: transform 0.3s ease;
 }
 
 .custom-order__cta-wrap:hover .custom-order__cta {
-    color: #000000;
+    color: #b19e60;
 }
 
 .custom-order__cta-wrap:hover .custom-order__cta-arrow {
     transform: translateX(10px);
-    color: #000000;
+    color: #b19e60;
 }
 
 
@@ -1219,13 +1254,15 @@
     }
 
     .custom-order__title {
-        font-size: 1.6rem;
+        /* font-size: 1.6rem;
         letter-spacing: -1px;
-        font-weight: 900;
+        font-weight: 900; */
+        font-size: 2rem;
+        letter-spacing: -1px;
     }
 
     .custom-order__desc {
-        font-size: 13px;
+        font-size: 12px;
     }
 }
 
@@ -2104,6 +2141,15 @@
     max-width: 220px;
 }
 
+.pdp-trust__card-title-number {
+    /* font-size: clamp(0.6rem, 1.8vw, 1.4rem); */
+    font-size: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+    /* letter-spacing: 2px; */
+    /* margin-bottom: 12px; */
+}
+
 .pdp-trust__card-link {
     font-size: 10px;
     letter-spacing: 2px;
@@ -2242,16 +2288,25 @@
 }
 
 .pdp-related__view-all {
-    font-size: 10px;
+    /* font-size: 10px;
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1.5px;
     color: #1a1a1a;
+    text-decoration: none; */
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #1a1a1a;
     text-decoration: none;
+    transition: opacity 0.3s ease;
 }
 
 .pdp-related__view-all:hover {
     text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
 }
 
 .pdp-related__grid {
@@ -2446,6 +2501,10 @@
     .pdp-related__title {
         font-size: 13px;
         font-weight: 400;
+    }
+
+    .pdp-related__view-all {
+        font-size: 10px;
     }
 }
 
@@ -4260,6 +4319,10 @@ a svg {
 @media (max-width: 768px) {
     .cst-hero {
         padding: 30px 20px 30px;
+        flex-direction: column;
+        grid-template-columns: 1fr;
+        text-align: left;
+        gap: 20px;
     }
 
     /* .cst-hero__inner {
@@ -4275,6 +4338,10 @@ a svg {
     .cst-hero__title {
         font-size: clamp(3.2rem, 14vw, 5rem);
         letter-spacing: -3px;
+    }
+
+    .cst-hero__desc {
+        font-size: 12px;
     }
 
     .cst-hero__info {
@@ -4298,12 +4365,15 @@ a svg {
     font-size: 16px;
     font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    /* letter-spacing: 2px; */
     color: #1a1a1a;
 }
 
 .syd__body {
-    padding: 30px 30px 0;
+    /* padding: 30px 30px 0; */
+    /* margin: 30px 0; */
+    padding-top: 30px;
+    /* margin-left: 30px; */
 }
 
 .syd__swiper {
@@ -4382,16 +4452,16 @@ a svg {
 
 @media (max-width: 768px) {
     .syd__header {
-        padding: 16px 20px;
+        padding: 20px 20px;
     }
 
     .syd__label {
-        font-size: 10px;
-        font-weight: 500;
+        font-size: 13px;
+        font-weight: 400;
     }
 
     .syd__body {
-        padding: 20px 20px 0;
+        /* padding: 20px 20px 0; */
     }
 
     .syd__swiper .swiper-slide {
@@ -4422,7 +4492,7 @@ a svg {
     font-size: 16px;
     font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: 2px;
+    /* letter-spacing: 2px; */
     color: #1a1a1a;
 }
 
@@ -4460,12 +4530,12 @@ a svg {
 
 @media (max-width: 768px) {
     .hcw__header {
-        padding: 16px 20px;
+        padding: 20px 20px;
     }
 
     .hcw__label {
-        font-size: 10px;
-        font-weight: 500;
+        font-size: 13px;
+        font-weight: 400;
     }
 
     .hcw__steps {
@@ -4494,7 +4564,7 @@ a svg {
 /* --- Personalized By You (PBY) Section --- */
 .pby {
     display: grid;
-    grid-template-columns: 1.2fr 1fr;
+    grid-template-columns: 1fr 1fr;
     background-color: #ffffff;
     border-bottom: 1.4px solid #1a1a1a;
 }
@@ -4574,11 +4644,16 @@ a svg {
         font-size: 2rem;
         letter-spacing: -1px;
     }
+
+    .pby__desc {
+        font-size: 12px;
+    }
 }
 
 /* --- Inside Kibar Studio (IKS) Section --- */
 .iks {
-    background-color: #1a1a1a;
+    background-color: #ffffff;
+    /* background-color: #1a1a1a; */
 }
 
 .iks__media {

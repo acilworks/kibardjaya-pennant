@@ -57,11 +57,12 @@
             <h2 class="brand-story__title">MORE THAN<br>A SOUVENIR.</h2>
         </div>
         <div class="brand-story__text">
+            <p class="brand-story__tagline">Bring your story home</p>
             <p class="brand-story__desc">
                 There was a time when travelers brought home pennants as proof
                 of where they had been. A small symbol. A lasting memory.
-            </p>
-            <p class="brand-story__desc">
+                <br>
+
                 Kibardjaya revives that tradition – reimagined for modern
                 collectors who value story, craftsmanship, and timeless design.
             </p>
@@ -109,9 +110,10 @@
         </picture>
     </div>
     <div class="custom-order__content">
-        <p class="custom-order__tagline">Not every journey is the same.</p>
+        <!-- <p class="custom-order__tagline">Not every journey is the same.</p> -->
         <h2 class="custom-order__title">Create Your Own Story</h2>
         <p class="custom-order__desc">
+            Not every journey is the same.<br>
             Choose your place, your words, your colors –
             and let us craft it into a pennant that's uniquely yours.
         </p>

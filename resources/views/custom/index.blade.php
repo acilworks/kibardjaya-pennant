@@ -78,28 +78,50 @@
     </div>
 </section>
 
-{{-- How Custom Works Section --}}
-<section class="hcw">
+{{-- How Custom Works Section (Trust Block style) --}}
+<section class="pdp-trust">
     <div class="hcw__header">
         <span class="hcw__label">HOW CUSTOM ORDERS WORK</span>
     </div>
-    <div class="hcw__steps">
-        <div class="hcw__step">
-            <span class="hcw__step-num">1. CHOOSE YOUR PRODUCT</span>
-            <p class="hcw__step-desc">Pennant, banner, or flag.</p>
+    <div class="swiper pdp-trust__swiper cst-hcw__swiper">
+        <div class="swiper-wrapper">
+            {{-- Step 1 --}}
+            <div class="swiper-slide pdp-trust__card">
+                <div class="pdp-trust__card-overlay">
+                    <h3 class="pdp-trust__card-title">Choose<br>Your Product</h3>
+                    <p class="pdp-trust__card-desc">Pennant, banner, or flag.</p>
+                    <h3 class="pdp-trust__card-title-number">[1]</h3>
+                </div>
+            </div>
+
+            {{-- Step 2 --}}
+            <div class="swiper-slide pdp-trust__card">
+                <div class="pdp-trust__card-overlay">
+                    <h3 class="pdp-trust__card-title">Design<br>Your Piece</h3>
+                    <p class="pdp-trust__card-desc">Pick your colors and add your message or logo.</p>
+                    <h3 class="pdp-trust__card-title-number">[2]</h3>
+                </div>
+            </div>
+
+            {{-- Step 3 --}}
+            <div class="swiper-slide pdp-trust__card">
+                <div class="pdp-trust__card-overlay">
+                    <h3 class="pdp-trust__card-title">We Craft<br>By Hand</h3>
+                    <p class="pdp-trust__card-desc">Made in our Yogyakarta studio.</p>
+                    <h3 class="pdp-trust__card-title-number">[3]</h3>
+                </div>
+            </div>
+
+            {{-- Step 4 --}}
+            <div class="swiper-slide pdp-trust__card">
+                <div class="pdp-trust__card-overlay">
+                    <h3 class="pdp-trust__card-title">Ships<br>Worldwide</h3>
+                    <p class="pdp-trust__card-desc">Delivered to your door.</p>
+                    <h3 class="pdp-trust__card-title-number">[4]</h3>
+                </div>
+            </div>
         </div>
-        <div class="hcw__step">
-            <span class="hcw__step-num">2. DESIGN YOUR PIECE</span>
-            <p class="hcw__step-desc">Pick your colors and add your message or logo.</p>
-        </div>
-        <div class="hcw__step">
-            <span class="hcw__step-num">3. WE CRAFT BY HAND</span>
-            <p class="hcw__step-desc">Made in our Yogyakarta studio.</p>
-        </div>
-        <div class="hcw__step">
-            <span class="hcw__step-num">4. SHIPS WORLDWIDE</span>
-            <p class="hcw__step-desc">Delivered to your door.</p>
-        </div>
+        <div class="swiper-pagination pdp-trust__pagination"></div>
     </div>
 </section>
 
@@ -131,14 +153,17 @@
             we bring your vision to life, one stitch at a time.
         </p>
         <div class="pby__links">
-            <a href="/custom/pennant" class="pby__link">Start Your Custom Pennant</a>
-            <a href="#" class="pby__link">Personalized Quote & Corporate Items</a>
+            <!-- <a href="/custom/pennant" class="pby__link">Start Your Custom Pennant</a> -->
+            <a href="#" class="pby__link">Personalized Size & Shape</a>
         </div>
     </div>
 </section>
 
 {{-- Inside Kibar Studio Section --}}
 <section class="iks">
+    <div class="hcw__header">
+        <span class="hcw__label">KIBAR STUDIO</span>
+    </div>
     <div class="iks__media">
         <img src="{{ asset('image/craft-left.webp') }}" alt="Inside Kibar Studio" class="iks__image" loading="lazy">
         <div class="iks__overlay">
@@ -161,7 +186,7 @@
             loop: false,
             breakpoints: {
                 0: {
-                    slidesPerView: 1.2,
+                    slidesPerView: 1.3,
                     spaceBetween: 0,
                 },
                 768: {
@@ -169,6 +194,23 @@
                     spaceBetween: 0,
                 },
             },
+        });
+
+        // How Custom Works — Trust Block Swiper
+        new Swiper('.cst-hcw__swiper', {
+            slidesPerView: 1,
+            spaceBetween: 0,
+            loop: true,
+            pagination: {
+                el: '.cst-hcw__swiper .pdp-trust__pagination',
+                clickable: true,
+            },
+            breakpoints: {
+                768: {
+                    slidesPerView: 4,
+                    allowTouchMove: false,
+                }
+            }
         });
     });
 </script>
