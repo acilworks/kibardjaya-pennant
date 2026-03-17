@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
+@push('styles')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+@endpush
+
 @section('content')
 {{-- Hero Section --}}
 <section class="cst-hero">
@@ -21,67 +25,80 @@
     <div class="syd__header">
         <span class="syd__label">START YOUR DESIGN</span>
     </div>
-    <div class="syd__grid">
-        <a href="/custom/pennant" class="syd__card">
-            <div class="syd__card-img-wrap">
-                <img src="{{ asset('image/syd-01.jpg') }}" alt="Pennant" class="syd__card-img" loading="lazy">
-            </div>
-            <div class="syd__card-info">
-                <div class="syd__card-info-left">
-                    <h3 class="syd__card-title">PENNANT</h3>
-                    <p class="syd__card-desc">Classic triangular felt pennant, hand-printed.</p>
+    <div class="syd__body">
+        <div class="swiper syd__swiper">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <a href="/custom/pennant" class="syd__card">
+                        <div class="syd__card-img-wrap">
+                            <img src="{{ asset('image/syd-01.jpg') }}" alt="Pennant" class="syd__card-img"
+                                loading="lazy">
+                        </div>
+                        <div class="syd__card-info">
+                            <div class="syd__card-info-left">
+                                <h3 class="syd__card-title">PENNANT</h3>
+                                <p class="syd__card-desc">Classic triangular felt pennant.</p>
+                            </div>
+                            <span class="syd__card-arrow">&rarr;</span>
+                        </div>
+                    </a>
                 </div>
-                <span class="syd__card-arrow">&rarr;</span>
-            </div>
-        </a>
-        <a href="#" class="syd__card">
-            <div class="syd__card-img-wrap">
-                <img src="{{ asset('image/syd-02.jpeg') }}" alt="Banner" class="syd__card-img" loading="lazy">
-            </div>
-            <div class="syd__card-info">
-                <div class="syd__card-info-left">
-                    <h3 class="syd__card-title">BANNER</h3>
-                    <p class="syd__card-desc">Rectangular felt banner, perfect for display.</p>
+                <div class="swiper-slide">
+                    <a href="#" class="syd__card">
+                        <div class="syd__card-img-wrap">
+                            <img src="{{ asset('image/syd-02.jpeg') }}" alt="Banner" class="syd__card-img"
+                                loading="lazy">
+                        </div>
+                        <div class="syd__card-info">
+                            <div class="syd__card-info-left">
+                                <h3 class="syd__card-title">BANNER</h3>
+                                <p class="syd__card-desc">Rectangular banner for interiors and events.</p>
+                            </div>
+                            <span class="syd__card-arrow">&rarr;</span>
+                        </div>
+                    </a>
                 </div>
-                <span class="syd__card-arrow">&rarr;</span>
-            </div>
-        </a>
-        <a href="#" class="syd__card">
-            <div class="syd__card-img-wrap">
-                <img src="{{ asset('image/syd-03.jpeg') }}" alt="Camp Flag" class="syd__card-img" loading="lazy">
-            </div>
-            <div class="syd__card-info">
-                <div class="syd__card-info-left">
-                    <h3 class="syd__card-title">CAMP FLAG</h3>
-                    <p class="syd__card-desc">5-sided camp flag, built for outdoor display.</p>
+                <div class="swiper-slide">
+                    <a href="#" class="syd__card">
+                        <div class="syd__card-img-wrap">
+                            <img src="{{ asset('image/syd-03.jpeg') }}" alt="Camp Flag" class="syd__card-img"
+                                loading="lazy">
+                        </div>
+                        <div class="syd__card-info">
+                            <div class="syd__card-info-left">
+                                <h3 class="syd__card-title">CAMP FLAG</h3>
+                                <p class="syd__card-desc">5-sided camp flag for shops and brands.</p>
+                            </div>
+                            <span class="syd__card-arrow">&rarr;</span>
+                        </div>
+                    </a>
                 </div>
-                <span class="syd__card-arrow">&rarr;</span>
             </div>
-        </a>
+        </div>
     </div>
 </section>
 
 {{-- How Custom Works Section --}}
 <section class="hcw">
     <div class="hcw__header">
-        <span class="hcw__label">HOW CUSTOM WORKS WITH</span>
+        <span class="hcw__label">HOW CUSTOM ORDERS WORK</span>
     </div>
     <div class="hcw__steps">
         <div class="hcw__step">
             <span class="hcw__step-num">1. CHOOSE YOUR PRODUCT</span>
-            <p class="hcw__step-desc">Choose a pennant, banner, or camp flag — and start from your vision.</p>
+            <p class="hcw__step-desc">Pennant, banner, or flag.</p>
         </div>
         <div class="hcw__step">
             <span class="hcw__step-num">2. DESIGN YOUR PIECE</span>
-            <p class="hcw__step-desc">Pick your colors, text, and layout — make it uniquely yours.</p>
+            <p class="hcw__step-desc">Pick your colors and add your message or logo.</p>
         </div>
         <div class="hcw__step">
             <span class="hcw__step-num">3. WE CRAFT BY HAND</span>
-            <p class="hcw__step-desc">Handmade in Yogyakarta Studio — crafted with care and precision.</p>
+            <p class="hcw__step-desc">Made in our Yogyakarta studio.</p>
         </div>
         <div class="hcw__step">
-            <span class="hcw__step-num">4. ORDER DELIVERED</span>
-            <p class="hcw__step-desc">We deliver your custom piece — shipped safely to your door.</p>
+            <span class="hcw__step-num">4. SHIPS WORLDWIDE</span>
+            <p class="hcw__step-desc">Delivered to your door.</p>
         </div>
     </div>
 </section>
@@ -121,3 +138,26 @@
     </div>
 </section>
 @endsection
+
+@push('scripts')
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        new Swiper('.syd__swiper', {
+            slidesPerView: 3,
+            spaceBetween: 0,
+            loop: false,
+            breakpoints: {
+                0: {
+                    slidesPerView: 1.2,
+                    spaceBetween: 0,
+                },
+                768: {
+                    slidesPerView: 3,
+                    spaceBetween: 0,
+                },
+            },
+        });
+    });
+</script>
+@endpush
