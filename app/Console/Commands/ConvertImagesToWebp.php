@@ -85,6 +85,34 @@ class ConvertImagesToWebp extends Command
             }
         });
 
+        // ── Static Public Images (Menu Custom dll) ──
+        $this->info('Converting static images in public/image...');
+        $staticPath = public_path('image');
+        if (\Illuminate\Support\Facades\File::exists($staticPath)) {
+            $files = \Illuminate\Support\Facades\File::allFiles($staticPath);
+            $manager = new \Intervention\Image\ImageManager(new \Intervention\Image\Drivers\Gd\Driver());
+
+            foreach ($files as $file) {
+                if (in_array(strtolower($file->getExtension()), ['jpg', 'jpeg', 'png', 'bmp'])) {
+                    $absolutePath = $file->getRealPath();
+                    $webpPath = preg_replace('/\.(jpe?g|png|gif|bmp)$/i', '.webp', $absolutePath);
+
+                    if (!file_exists($webpPath)) {
+                        try {
+                            $image = $manager->read($absolutePath);
+                            $image->toWebp(80)->save($webpPath);
+                            $converted++;
+                            // Jika ingin menghapus file asli agar lebih bersih, uncomment baris di bawah:
+                            // unlink($absolutePath);
+                        } catch (\Throwable $e) {
+                            $this->warn("  Failed: {$file->getFilename()} — {$e->getMessage()}");
+                            $failed++;
+                        }
+                    }
+                }
+            }
+        }
+
         $this->newLine();
         $this->info("✅ Done! Converted: {$converted}, Failed: {$failed}");
 

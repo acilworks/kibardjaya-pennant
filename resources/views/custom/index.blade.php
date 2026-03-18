@@ -31,7 +31,7 @@
                 <div class="swiper-slide">
                     <a href="/custom/pennant" class="syd__card">
                         <div class="syd__card-img-wrap">
-                            <img src="{{ asset('image/syd-01.jpg') }}" alt="Pennant" class="syd__card-img"
+                            <img src="{{ asset('image/syd-01.webp') }}" alt="Pennant" class="syd__card-img"
                                 loading="lazy">
                         </div>
                         <div class="syd__card-info">
@@ -46,7 +46,7 @@
                 <div class="swiper-slide">
                     <a href="#" class="syd__card">
                         <div class="syd__card-img-wrap">
-                            <img src="{{ asset('image/syd-02.jpeg') }}" alt="Banner" class="syd__card-img"
+                            <img src="{{ asset('image/syd-02.webp') }}" alt="Banner" class="syd__card-img"
                                 loading="lazy">
                         </div>
                         <div class="syd__card-info">
@@ -61,7 +61,7 @@
                 <div class="swiper-slide">
                     <a href="#" class="syd__card">
                         <div class="syd__card-img-wrap">
-                            <img src="{{ asset('image/syd-03.jpeg') }}" alt="Camp Flag" class="syd__card-img"
+                            <img src="{{ asset('image/syd-03.webp') }}" alt="Camp Flag" class="syd__card-img"
                                 loading="lazy">
                         </div>
                         <div class="syd__card-info">
@@ -140,7 +140,7 @@
 {{-- Personalized By You Section --}}
 <section class="pby">
     <div class="pby__image-wrap">
-        <img src="{{ asset('image/personalized-01.jpeg') }}" alt="Personalized Pennants" class="pby__image"
+        <img src="{{ asset('image/personalized-01.webp') }}" alt="Personalized Pennants" class="pby__image"
             loading="lazy">
     </div>
     <div class="pby__content">
