@@ -6,8 +6,38 @@
     <title>@yield('title', 'Kibardjaya Pennant')</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    {{-- Basic SEO --}}
     <meta name="description"
         content="Handmade pennants inspired by places and memories worth keeping. Crafted in Indonesia for collectors and explorers alike.">
+    <meta name="keywords"
+        content="kibardjaya, handmade pennants, custom pennants, vintage pennants, yogyakarta, custom flags, camp flags">
+    <meta name="author" content="Kibardjaya">
+    <link rel="canonical" href="{{ url()->current() }}">
+
+    {{-- Open Graph / Facebook --}}
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:title" content="@yield('title', 'Kibardjaya Pennant')">
+    <meta property="og:description"
+        content="Handmade pennants inspired by places and memories worth keeping. Crafted in Indonesia for collectors and explorers alike.">
+    <!-- Pastikan Anda memiliki gambar default untuk preview link -->
+    <meta property="og:image" content="{{ asset('image/og-image.webp') }}">
+
+    {{-- Twitter --}}
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="{{ url()->current() }}">
+    <meta property="twitter:title" content="@yield('title', 'Kibardjaya Pennant')">
+    <meta property="twitter:description"
+        content="Handmade pennants inspired by places and memories worth keeping. Crafted in Indonesia for collectors and explorers alike.">
+    <!-- Pastikan Anda memiliki gambar default untuk preview link -->
+    <meta property="twitter:image" content="{{ asset('image/og-image.webp') }}">
+
+    {{-- Favicon --}}
+    <!-- Ganti format jika menggunakan SVG/PNG -->
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <!-- <link rel="icon" type="image/png" sizes="32x32" href="{{ asset('favicon-32x32.png') }}"> -->
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('apple-touch-icon.png') }}">
 
     {{-- Google Fonts: JetBrains Mono --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
