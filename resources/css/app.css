@@ -1175,13 +1175,7 @@
 }
 
 .custom-order__title {
-    /* font-size: clamp(1.5rem, 2.5vw, 2.2rem);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: -2px;
-    color: #1a1a1a;
-    margin-bottom: 20px;
-    line-height: 1.15; */
+
     font-size: clamp(2rem, 4vw, 3.2rem);
     font-weight: 900;
     text-transform: uppercase;
@@ -3358,16 +3352,11 @@ a svg {
 }
 
 .shop-hero__title {
-    /* font-size: clamp(4rem, 9.5vw, 8rem);
-    font-weight: 900;
-    text-transform: uppercase;
-    color: #1a1a1a;
-    line-height: 1;
-    letter-spacing: -4px; */
+
     font-size: clamp(4rem, 9.5vw, 8rem);
     font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: -4px;
+    letter-spacing: -6px;
     color: #1a1a1a;
     line-height: 0.9;
     margin-bottom: 16px;
@@ -3381,7 +3370,7 @@ a svg {
     /* text-align: right; */
     margin-bottom: 12px;
     font-weight: 400;
-    padding-top: 58px;
+    padding-top: 34px;
 
     /* font-size: 12px;
     line-height: 1.7;
@@ -3535,9 +3524,11 @@ a svg {
     }
 
     .shop-hero__title {
-        font-size: clamp(3.5rem, 12vw, 4rem);
+        /* font-size: clamp(3.5rem, 12vw, 4rem);
         letter-spacing: -2px;
-        margin-bottom: 8px;
+        margin-bottom: 8px; */
+        font-size: clamp(2.5rem, 14vw, 4rem);
+        letter-spacing: -4px;
     }
 
     .shop-hero__desc {
@@ -4440,7 +4431,7 @@ a svg {
 }
 
 .syd__card:hover .syd__card-arrow {
-    transform: translateX(5px);
+    transform: translateX(10px);
     transition: transform 0.3s ease;
 }
 
@@ -4606,8 +4597,9 @@ a svg {
 }
 
 .pby__links {
+
     display: flex;
-    flex-direction: column;
+    align-items: center;
     gap: 8px;
 }
 
@@ -4623,8 +4615,19 @@ a svg {
     transition: opacity 0.3s ease;
 }
 
+.pby__link-arrow {
+    font-size: 14px;
+    color: #1a1a1a;
+    transition: transform 0.3s ease;
+}
+
 .pby__link:hover {
-    opacity: 0.6;
+    color: #b19e60;
+}
+
+.pby__links:hover .pby__link-arrow {
+    transform: translateX(10px);
+    color: #b19e60;
 }
 
 @media (max-width: 768px) {

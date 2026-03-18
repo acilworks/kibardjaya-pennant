@@ -63,7 +63,7 @@
                 of where they had been. A small symbol. A lasting memory.
                 <br>
 
-                Kibardjaya revives that tradition – reimagined for modern
+                Kibardjaya revives that tradition, reimagined for modern
                 collectors who value story, craftsmanship, and timeless design.
             </p>
         </div>
@@ -113,12 +113,15 @@
         <!-- <p class="custom-order__tagline">Not every journey is the same.</p> -->
         <h2 class="custom-order__title">Create Your Own Story</h2>
         <p class="custom-order__desc">
-            Not every journey is the same.<br>
-            Choose your place, your words, your colors –
-            and let us craft it into a pennant that's uniquely yours.
+            Some stories are meant to be created.<br>
+            Design a piece that reflects yours,
+            whether it’s a pennant, banner, or flag.Choose your message, your colors, your style.
+            We’ll bring it to life by hand.
+            Made to keep. Made to remember.
+
         </p>
         <div class="custom-order__cta-wrap">
-            <a href="/custom" class="custom-order__cta">Start Custom Order </a>
+            <a href="/custom" class="custom-order__cta">Start Your Design </a>
             <span class="custom-order__cta-arrow">&rarr;</span>
         </div>
     </div>

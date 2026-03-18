@@ -138,7 +138,7 @@
 </div>
 
 {{-- Personalized By You Section --}}
-<section class="pby">
+<section class="pby" id="custom-pby">
     <div class="pby__image-wrap">
         <img src="{{ asset('image/personalized-01.webp') }}" alt="Personalized Pennants" class="pby__image"
             loading="lazy">
@@ -149,12 +149,13 @@
             Every design starts with you. Choose from a variety of styles,
             colors, and materials to create something truly
             unique. Whether it's a classic felt pennant for your collection
-            or a bold camp flag for your next adventure —
-            we bring your vision to life, one stitch at a time.
+            or a bold camp flag for your next adventure.
+            We bring your vision to life, one stitch at a time.
         </p>
         <div class="pby__links">
             <!-- <a href="/custom/pennant" class="pby__link">Start Your Custom Pennant</a> -->
-            <a href="#" class="pby__link">Personalized Size & Shape</a>
+            <a href="#" class="pby__link">Talk to Us About Your Design</a>
+            <span class="pby__link-arrow">&rarr;</span>
         </div>
     </div>
 </section>
