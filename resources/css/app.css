@@ -4113,7 +4113,21 @@ a svg {
 }
 
 /* ============================================
-   RESPONSIVE – CUSTOM PENNANT
+   CUSTOM BANNER PAGE – MODIFIERS
+   ============================================ */
+.cp-capture--banner {
+    padding-top: 80%; /* Landscape ratio matching banner images */
+}
+
+.cp-capture--banner .cp-capture__text-overlay {
+    top: 20%;
+    left: 18%;
+    right: 18%;
+    bottom: 22%;
+}
+
+/* ============================================
+   RESPONSIVE – CUSTOM PENNANT / BANNER
    ============================================ */
 @media (max-width: 768px) {
     .cp-preview {
