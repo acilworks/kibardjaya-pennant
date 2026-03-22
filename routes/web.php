@@ -9,6 +9,7 @@ use App\Http\Controllers\CollectionController;
 use App\Http\Controllers\CustomController;
 use App\Http\Controllers\CustomPennantController;
 use App\Http\Controllers\CustomBannerController;
+use App\Http\Controllers\CustomCampFlagController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -35,6 +36,8 @@ Route::get('/custom/pennant', [CustomPennantController::class, 'index']);
 Route::post('/cart/add-custom-pennant', [CustomPennantController::class, 'addToCart']);
 Route::get('/custom/banner', [CustomBannerController::class, 'index']);
 Route::post('/cart/add-custom-banner', [CustomBannerController::class, 'addToCart']);
+Route::get('/custom/camp-flag', [CustomCampFlagController::class, 'index']);
+Route::post('/cart/add-custom-camp-flag', [CustomCampFlagController::class, 'addToCart']);
 
 require __DIR__ . '/auth.php';
 

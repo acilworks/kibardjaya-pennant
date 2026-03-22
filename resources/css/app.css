@@ -4116,7 +4116,9 @@ a svg {
    CUSTOM BANNER PAGE – MODIFIERS
    ============================================ */
 .cp-capture--banner {
-    padding-top: 80%; /* Landscape ratio matching banner images */
+    padding-top: 100%;
+
+    /* Landscape ratio matching banner images */
 }
 
 .cp-capture--banner .cp-capture__text-overlay {
@@ -4124,6 +4126,20 @@ a svg {
     left: 18%;
     right: 18%;
     bottom: 22%;
+}
+
+/* ============================================
+   CUSTOM CAMP FLAG PAGE – MODIFIERS
+   ============================================ */
+.cp-capture--camp-flag {
+    padding-top: 100%;
+}
+
+.cp-capture--camp-flag .cp-capture__text-overlay {
+    top: 18%;
+    left: 18%;
+    right: 18%;
+    bottom: 38%;
 }
 
 /* ============================================
