@@ -4122,10 +4122,20 @@ a svg {
 }
 
 .cp-capture--banner .cp-capture__text-overlay {
-    top: 20%;
+    top: 30%;
+    left: 23%;
+    right: 24%;
+    bottom: 32%;
+    /* top: 20%;
     left: 18%;
     right: 18%;
-    bottom: 22%;
+    bottom: 22%; */
+}
+
+.cp-capture--banner .cp-capture__text {
+    /* Pengaturan teks khusus untuk Custom Banner (Multiline) */
+    line-height: 0.8;
+    /* Tambahkan styling khusus lainnya di sini jika diperlukan */
 }
 
 /* ============================================
@@ -4136,10 +4146,15 @@ a svg {
 }
 
 .cp-capture--camp-flag .cp-capture__text-overlay {
-    top: 18%;
-    left: 18%;
-    right: 18%;
-    bottom: 38%;
+    top: 22%;
+    left: 26%;
+    right: 28%;
+    bottom: 34%;
+}
+
+.cp-capture--camp-flag .cp-capture__text {
+    /* Pengaturan teks khusus untuk Custom Camp Flag (Multiline) */
+    line-height: 1.15;
 }
 
 /* ============================================

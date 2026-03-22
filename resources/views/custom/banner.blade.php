@@ -42,7 +42,8 @@
 
                 {{-- Description --}}
                 <p class="pdp__desc">Design your own custom banner!</p>
-                <p class="pdp__desc">Create a timeless rectangular banner for your favorite beach, mountain, lake, hiking trail,
+                <p class="pdp__desc">Create a timeless rectangular banner for your favorite beach, mountain, lake,
+                    hiking trail,
                     etc.</p>
                 <p class="pdp__desc cp-desc--spaced">Choose your flag color, border color, and text... we will build
                     your custom banner for you.</p>
@@ -101,9 +102,11 @@
                     <div class="pdp__colors">
                         <div class="cp-text-row">
                             <span class="pdp__colors-label cp-label--flush">YOUR TEXT*</span>
-                            <span class="cp-text-counter" x-text="(14 - text.length) + ' Characters left.'"></span>
+                            <span class="cp-text-counter">10 Characters, 3 lines max</span>
                         </div>
-                        <input type="text" x-model="text" maxlength="14" class="cp-input" placeholder="EXAMPLE">
+                        <textarea x-model="text" @input="limitText" class="cp-input" rows="3"
+                            placeholder="your&#10;magic&#10;words"
+                            style="resize: none; padding-top: 12px; padding-bottom: 12px; line-height: 1.5;"></textarea>
                     </div>
 
                     {{-- CHOOSE STYLE --}}
@@ -234,10 +237,10 @@
             textColors: @json($textColors),
             fonts: @json($fonts),
 
-            flagColor: 'mustard',
+            flagColor: 'black',
             borderColor: 'black',
             textColor: 'cream',
-            text: 'Kibardjaya    ',
+            text: 'your\nmagic\nwords',
             qty: 1,
             fontStyle: 'stardos-stencil',
             confirmed: false,
@@ -245,6 +248,19 @@
 
             containerWidth: 500,
             resizeObserver: null,
+
+            limitText() {
+                let lines = this.text.split('\n');
+                if (lines.length > 3) {
+                    lines = lines.slice(0, 3);
+                }
+                lines = lines.map(line => line.substring(0, 10));
+                let newText = lines.join('\n');
+                if (this.text !== newText) {
+                    this.text = newText;
+                }
+                this.resizeText();
+            },
 
             resizeText() {
                 this.$nextTick(() => {
@@ -254,11 +270,11 @@
                     if (!container || !text) return;
 
                     let fontSize = parseInt(window.getComputedStyle(container).height) * 0.8;
-                    if (isNaN(fontSize) || fontSize < 10) fontSize = 150;
+                    if (isNaN(fontSize) || fontSize < 10) fontSize = 110;
 
                     text.style.fontSize = fontSize + 'px';
 
-                    while (text.scrollWidth > container.clientWidth && fontSize > 10) {
+                    while ((text.scrollWidth > container.clientWidth || text.scrollHeight > container.clientHeight) && fontSize > 10) {
                         fontSize--;
                         text.style.fontSize = fontSize + 'px';
                     }
@@ -351,7 +367,18 @@
                         ctx.textAlign = 'center';
                         ctx.textBaseline = 'middle';
 
-                        ctx.fillText(textStr, canvasX, canvasY);
+                        const lines = textStr.split('\n');
+                        const computedLineHeight = computedStyle.lineHeight;
+                        const domLineHeight = computedLineHeight === 'normal' ? domFontSize * 1.2 : parseFloat(computedLineHeight);
+                        const canvasLineHeight = domLineHeight * scaleFactor;
+
+                        const totalHeight = (lines.length - 1) * canvasLineHeight;
+                        let startY = canvasY - (totalHeight / 2);
+
+                        lines.forEach(line => {
+                            ctx.fillText(line, canvasX, startY);
+                            startY += canvasLineHeight;
+                        });
                     }
 
                     const base64Image = canvas.toDataURL('image/webp', 0.8);

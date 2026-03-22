@@ -182,7 +182,7 @@ START YOUR DESIGN
                     </a>
                 </div>
                 <div class="swiper-slide">
-                    <a href="#" class="syd__card">
+                    <a href="/custom/banner" class="syd__card">
                         <div class="syd__card-img-wrap">
                             <img src="{{ asset('image/syd-02.webp') }}" alt="Banner" class="syd__card-img"
                                 loading="lazy">
@@ -197,7 +197,7 @@ START YOUR DESIGN
                     </a>
                 </div>
                 <div class="swiper-slide">
-                    <a href="#" class="syd__card">
+                    <a href="/custom/camp-flag" class="syd__card">
                         <div class="syd__card-img-wrap">
                             <img src="{{ asset('image/syd-03.webp') }}" alt="Camp Flag" class="syd__card-img"
                                 loading="lazy">

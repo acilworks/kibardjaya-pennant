@@ -48,12 +48,12 @@ class CustomBannerController extends Controller
         if (is_dir($directory)) {
             $files = collect(\Illuminate\Support\Facades\File::files($directory))
                 ->sortByDesc(function ($file) {
-                    return $file->getMTime();
-                })
+                return $file->getMTime();
+            })
                 ->take(12)
                 ->map(function ($file) {
-                    return 'storage/custom-banners/' . $file->getFilename();
-                })
+                return 'storage/custom-banners/' . $file->getFilename();
+            })
                 ->values()
                 ->toArray();
             $latestBanners = $files;
@@ -68,7 +68,7 @@ class CustomBannerController extends Controller
             'flag_color' => 'required|string',
             'border_color' => 'required|string',
             'text_color' => 'required|string',
-            'text' => 'required|string|max:15',
+            'text' => 'required|string|max:35',
             'font' => 'required|string',
             'qty' => 'required|integer|min:1',
             'custom_image' => 'required|string',
@@ -111,7 +111,7 @@ class CustomBannerController extends Controller
             'title' => 'Custom Banner',
             'price' => 149000,
             'image' => $filename,
-            'qty' => (int) $request->input('qty'),
+            'qty' => (int)$request->input('qty'),
             'variation_name' => $variationSummary,
             'is_custom' => true,
             'custom_options' => $customOptions,

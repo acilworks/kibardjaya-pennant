@@ -88,7 +88,19 @@
                     <div class="pay-receipt__items-row">
                         <!-- <span class="pay-receipt__col-item">{{ $item->product->title ?? 'Product' }}</span> -->
                         <span class="pay-receipt__col-item">
-                            {{ $item->product->title ?? 'Product' }}
+                            @php
+                                $itemName = $item->product->title ?? 'Product';
+                                if (empty($item->product_id) && is_array($item->custom_options) && isset($item->custom_options['image'])) {
+                                    if (str_contains($item->custom_options['image'], 'custom-pennant')) {
+                                        $itemName = 'Custom Pennant';
+                                    } elseif (str_contains($item->custom_options['image'], 'custom-banner')) {
+                                        $itemName = 'Custom Banner';
+                                    } elseif (str_contains($item->custom_options['image'], 'custom-camp-flag')) {
+                                        $itemName = 'Custom 5-sided Camp Flag';
+                                    }
+                                }
+                            @endphp
+                            {{ $itemName }}
                             @if($item->variation_name)
                                 <br><span style="font-size: 0.85em; color: #757575;">({{ $item->variation_name }})</span>
                             @endif
