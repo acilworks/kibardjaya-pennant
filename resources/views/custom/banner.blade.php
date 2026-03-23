@@ -52,7 +52,7 @@
                 <div class="pdp__details">
                     <span class="pdp__details-label">INFO:</span>
                     <ul class="pdp__details-list">
-                        <li>Size: 30 cm x 40 cm</li>
+                        <li>Size: 50 cm x 40 cm</li>
                         <li>Material: premium felt fabric</li>
                         <li>Each piece is individually finished in our Yogyakarta studio.</li>
                         <li>Made in 3-5 days</li>

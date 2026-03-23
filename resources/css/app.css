@@ -3984,10 +3984,9 @@ a svg {
 }
 
 .cp-capture__text-overlay {
-    /* border: 1px solid red; */
     position: absolute;
     top: 35%;
-    left: 23%;
+    left: 27%;
     right: 23%;
     bottom: 37%;
     z-index: 20;
@@ -4110,6 +4109,32 @@ a svg {
 /* --- Custom Pennant Swatch (Square) --- */
 .pdp__color-swatch--square {
     border-radius: 4px;
+}
+
+/* ============================================
+   CUSTOM PENNANT PAGE – MODIFIERS
+   ============================================ */
+.cp-capture--pennant {
+    padding-top: 100%;
+
+    /* Landscape ratio matching banner images */
+}
+
+.cp-capture--pennant .cp-capture__text-overlay {
+    top: 29%;
+    left: 27%;
+    right: 24%;
+    bottom: 32%;
+    /* top: 20%;
+    left: 18%;
+    right: 18%;
+    bottom: 22%; */
+}
+
+.cp-capture--pennant .cp-capture__text {
+    /* Pengaturan teks khusus untuk Custom Banner (Multiline) */
+    line-height: 1.8;
+    /* Tambahkan styling khusus lainnya di sini jika diperlukan */
 }
 
 /* ============================================

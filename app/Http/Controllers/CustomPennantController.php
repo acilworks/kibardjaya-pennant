@@ -11,9 +11,13 @@ class CustomPennantController extends Controller
         $flagColors = [
             'mustard' => ['name' => 'Mustard', 'hex' => '#E4AE3A'],
             'navy' => ['name' => 'Navy', 'hex' => '#1F2937'],
-            'blue' => ['name' => 'Blue', 'hex' => '#3B82F6'],
-            'red' => ['name' => 'Red', 'hex' => '#9f2222ff'],
+            'black' => ['name' => 'Black', 'hex' => '#000000'],
+            'cream' => ['name' => 'Cream', 'hex' => '#F2E8D2'],
+            'forest' => ['name' => 'Forest', 'hex' => '#228B22'],
+            'maroon' => ['name' => 'Maroon', 'hex' => '#800000'],
             'pink' => ['name' => 'Pink', 'hex' => '#EC4899'],
+            'skyblue' => ['name' => 'Sky Blue', 'hex' => '#87CEEB'],
+            'white' => ['name' => 'White', 'hex' => '#FFFFFF'],
         ];
 
         // Border options that determine the image filename

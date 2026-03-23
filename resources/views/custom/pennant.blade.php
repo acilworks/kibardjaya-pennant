@@ -12,7 +12,8 @@
     <div class="pdp__gallery cp-gallery">
         <div class="cp-preview" id="pennant-preview-container">
             <!-- Capture Area for html2canvas -->
-            <div id="capture-area" class="cp-capture">
+            <div id="capture-area" class="cp-capture cp-capture--pennant">
+                <!-- <div id="capture-area" class="cp-capture"> -->
 
                 <img x-show="currentFlagImage" :src="currentFlagImage" class="cp-capture__img" crossorigin="anonymous"
                     loading="eager" />
@@ -234,7 +235,7 @@
             textColors: @json($textColors),
             fonts: @json($fonts),
 
-            flagColor: 'mustard',
+            flagColor: 'maroon',
             borderColor: 'black',
             textColor: 'cream',
             text: 'Kibardjaya    ',
@@ -303,8 +304,7 @@
 
             get currentFlagImage() {
                 if (this.flagColor && this.borderColor) {
-                    const base = `/images/pennant_parts/flag-${this.flagColor}-border-${this.borderColor}`;
-                    return this.supportsWebp ? `${base}.webp` : `${base}.png`;
+                    return `/images/pennant_parts/pennant/pennant-${this.flagColor}-${this.borderColor}.png`;
                 }
                 return '';
             },
