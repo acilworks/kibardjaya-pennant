@@ -36,10 +36,11 @@ class CustomPennantController extends Controller
         ];
 
         $fonts = [
-            'stardos-stencil' => 'Stardos Stencil',
-            'helvetica' => 'Helvetica',
-            'fjalla-one' => 'Fjalla One',
-            'lobster' => 'Lobster',
+            'ombudsman-stencil' => 'Ombudsman Stencil',
+            // 'stardos-stencil' => 'Stardos Stencil',
+            // 'helvetica' => 'Helvetica',
+            // 'fjalla-one' => 'Fjalla One',
+            // 'lobster' => 'Lobster',
             'unifrakturmaguntia' => 'Unifraktur',
         ];
 
@@ -48,12 +49,12 @@ class CustomPennantController extends Controller
         if (is_dir($directory)) {
             $files = collect(\Illuminate\Support\Facades\File::files($directory))
                 ->sortByDesc(function ($file) {
-                    return $file->getMTime();
-                })
+                return $file->getMTime();
+            })
                 ->take(12)
                 ->map(function ($file) {
-                    return 'storage/custom-pennants/' . $file->getFilename();
-                })
+                return 'storage/custom-pennants/' . $file->getFilename();
+            })
                 ->values()
                 ->toArray();
             $latestPennants = $files;
@@ -111,7 +112,7 @@ class CustomPennantController extends Controller
             'title' => 'Custom Pennant',
             'price' => 99000,
             'image' => $filename,
-            'qty' => (int) $request->input('qty'),
+            'qty' => (int)$request->input('qty'),
             'variation_name' => $variationSummary,
             'is_custom' => true,
             'custom_options' => $customOptions,

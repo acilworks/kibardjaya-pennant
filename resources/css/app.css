@@ -3842,6 +3842,14 @@ a svg {
 
 /* --- Font Faces --- */
 @font-face {
+    font-family: 'Ombudsman Stencil';
+    src: url('../fonts/Ombudsmanstencil-jeegj.ttf') format('ttf');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
     font-family: 'Stardos Stencil';
     src: url('../fonts/stardos-stencil-v15-latin-700.woff2') format('woff2');
     font-weight: bold;
@@ -3882,6 +3890,12 @@ a svg {
 }
 
 /* --- Font Utility Classes --- */
+.font-ombudsman-stencil {
+    font-family: 'Ombudsman Stencil', cursive;
+    letter-spacing: 1px;
+    /* font-weight: bold; */
+}
+
 .font-stardos-stencil {
     font-family: 'Stardos Stencil', sans-serif;
     font-weight: bold;
@@ -4121,10 +4135,10 @@ a svg {
 }
 
 .cp-capture--pennant .cp-capture__text-overlay {
-    top: 29%;
+    top: 41%;
     left: 27%;
-    right: 24%;
-    bottom: 32%;
+    right: 30%;
+    bottom: 43%;
     /* top: 20%;
     left: 18%;
     right: 18%;
@@ -4147,7 +4161,8 @@ a svg {
 }
 
 .cp-capture--banner .cp-capture__text-overlay {
-    top: 30%;
+    /* border: 1px solid red; */
+    top: 32%;
     left: 23%;
     right: 24%;
     bottom: 32%;
@@ -4159,7 +4174,7 @@ a svg {
 
 .cp-capture--banner .cp-capture__text {
     /* Pengaturan teks khusus untuk Custom Banner (Multiline) */
-    line-height: 0.8;
+    line-height: 1;
     /* Tambahkan styling khusus lainnya di sini jika diperlukan */
 }
 

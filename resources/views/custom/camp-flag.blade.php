@@ -104,7 +104,9 @@
                             <span class="pdp__colors-label cp-label--flush">YOUR TEXT*</span>
                             <span class="cp-text-counter">10 Characters, 4 lines max</span>
                         </div>
-                        <textarea x-model="text" @input="limitText" class="cp-input" rows="4" placeholder="your&#10;magic&#10;words&#10;here" style="resize: none; padding-top: 12px; padding-bottom: 12px; line-height: 1.5;"></textarea>
+                        <textarea x-model="text" @input="limitText" class="cp-input" rows="4"
+                            placeholder="your&#10;magic&#10;words&#10;here"
+                            style="resize: none; padding-top: 12px; padding-bottom: 12px; line-height: 1.5;"></textarea>
                     </div>
 
                     {{-- CHOOSE STYLE --}}
@@ -237,7 +239,7 @@
 
             flagColor: 'navy',
             borderColor: 'black',
-            textColor: 'cream',
+            textColor: 'mustard',
             text: 'your\nmagic\nwords\nhere',
             qty: 1,
             fontStyle: 'stardos-stencil',

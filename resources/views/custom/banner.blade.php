@@ -242,7 +242,7 @@
             textColor: 'cream',
             text: 'your\nmagic\nwords',
             qty: 1,
-            fontStyle: 'stardos-stencil',
+            fontStyle: 'ombudsman-stencil',
             confirmed: false,
             isSubmitting: false,
 
@@ -269,8 +269,8 @@
 
                     if (!container || !text) return;
 
-                    let fontSize = parseInt(window.getComputedStyle(container).height) * 0.8;
-                    if (isNaN(fontSize) || fontSize < 10) fontSize = 110;
+                    let fontSize = parseInt(window.getComputedStyle(container).height) * 0.6;
+                    if (isNaN(fontSize) || fontSize < 10) fontSize = 100;
 
                     text.style.fontSize = fontSize + 'px';
 

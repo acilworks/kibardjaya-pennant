@@ -36,10 +36,11 @@ class CustomBannerController extends Controller
         ];
 
         $fonts = [
+            'ombudsman-stencil' => 'Ombudsman Stencil',
             'stardos-stencil' => 'Stardos Stencil',
-            'helvetica' => 'Helvetica',
-            'fjalla-one' => 'Fjalla One',
-            'lobster' => 'Lobster',
+            // 'helvetica' => 'Helvetica',
+            // 'fjalla-one' => 'Fjalla One',
+            // 'lobster' => 'Lobster',
             'unifrakturmaguntia' => 'Unifraktur',
         ];
 

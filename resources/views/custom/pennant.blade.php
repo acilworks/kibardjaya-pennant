@@ -238,9 +238,9 @@
             flagColor: 'maroon',
             borderColor: 'black',
             textColor: 'cream',
-            text: 'Kibardjaya    ',
+            text: 'indonesia rep.',
             qty: 1,
-            fontStyle: 'stardos-stencil',
+            fontStyle: 'ombudsman-stencil',
             confirmed: false,
             isSubmitting: false,
 
@@ -257,7 +257,7 @@
 
                     // Start with a large font size
                     let fontSize = parseInt(window.getComputedStyle(container).height) * 0.8; // 80% of container height max
-                    if (isNaN(fontSize) || fontSize < 10) fontSize = 150;
+                    if (isNaN(fontSize) || fontSize < 10) fontSize = 120;
 
                     text.style.fontSize = fontSize + 'px';
 
