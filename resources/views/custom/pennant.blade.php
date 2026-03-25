@@ -238,7 +238,7 @@
             flagColor: 'maroon',
             borderColor: 'black',
             textColor: 'cream',
-            text: 'indonesia rep.',
+            text: 'keep the faith',
             qty: 1,
             fontStyle: 'ombudsman-stencil',
             confirmed: false,

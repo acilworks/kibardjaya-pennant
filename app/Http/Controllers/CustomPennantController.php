@@ -36,8 +36,9 @@ class CustomPennantController extends Controller
         ];
 
         $fonts = [
-            'ombudsman-stencil' => 'Ombudsman Stencil',
-            // 'stardos-stencil' => 'Stardos Stencil',
+            'ombudsman-stencil' => 'Stencil96',
+            // 'stardos-stencil' => 'Stencil07',
+            'jersey666' => 'Collage',
             // 'helvetica' => 'Helvetica',
             // 'fjalla-one' => 'Fjalla One',
             // 'lobster' => 'Lobster',

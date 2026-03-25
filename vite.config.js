@@ -13,7 +13,7 @@ export default defineConfig({
     //     port: 5173,
     //     strictPort: true,
     //     hmr: {
-    //         host: '192.168.100.20',
+    //         host: '172.20.10.3',
     //         overlay: false,
     //     }
     // }

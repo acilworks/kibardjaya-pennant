@@ -242,7 +242,7 @@
             textColor: 'mustard',
             text: 'your\nmagic\nwords\nhere',
             qty: 1,
-            fontStyle: 'stardos-stencil',
+            fontStyle: 'ombudsman-stencil',
             confirmed: false,
             isSubmitting: false,
 

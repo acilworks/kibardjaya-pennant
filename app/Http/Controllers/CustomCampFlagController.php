@@ -36,9 +36,12 @@ class CustomCampFlagController extends Controller
         ];
 
         $fonts = [
-            'stardos-stencil' => 'Stardos Stencil',
-            'helvetica' => 'Helvetica',
-            'fjalla-one' => 'Fjalla One',
+            'ombudsman-stencil' => 'Stencil96',
+            'stardos-stencil' => 'Stencil07',
+            // 'jersey-m54-v2' => 'Jersey M54 V2',
+            'jersey666' => 'Collage',
+            // 'helvetica' => 'Helvetica',
+            // 'fjalla-one' => 'Fjalla One',
             'lobster' => 'Lobster',
             'unifrakturmaguntia' => 'Unifraktur',
         ];

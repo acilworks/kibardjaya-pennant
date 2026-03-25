@@ -3889,6 +3889,22 @@ a svg {
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'Jersey M54 V2';
+    src: url('../fonts/Jersey-M54-V2.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Jersey666';
+    src: url('../fonts/Jersey666.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
 /* --- Font Utility Classes --- */
 .font-ombudsman-stencil {
     font-family: 'Ombudsman Stencil', cursive;
@@ -3917,6 +3933,17 @@ a svg {
 .font-unifrakturmaguntia {
     font-family: 'UnifrakturMaguntia', cursive;
 }
+
+.font-jersey-m54-v2 {
+    font-family: 'Jersey M54 V2', sans-serif;
+    letter-spacing: 2px;
+}
+
+.font-jersey666 {
+    font-family: 'Jersey666', sans-serif;
+    letter-spacing: 2px;
+}
+
 
 /* --- Custom Pennant Form Controls --- */
 .cp-input {
