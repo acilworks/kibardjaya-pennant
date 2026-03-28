@@ -20,7 +20,7 @@
                 <!-- Text Overlay -->
                 <div class="cp-capture__text-overlay" x-ref="textContainer">
                     <span x-ref="textElement" x-text="text" :class="'font-' + fontStyle" class="cp-capture__text"
-                        :style="`color: ${textColors[textColor] ? textColors[textColor].hex : '#FFFFFF'};`">
+                        :style="{ color: textColors[textColor] ? textColors[textColor].hex : '#FFFFFF' }">
                     </span>
                 </div>
             </div>
@@ -239,7 +239,7 @@
 
             flagColor: 'navy',
             borderColor: 'black',
-            textColor: 'mustard',
+            textColor: 'gold',
             text: 'your\nmagic\nwords\nhere',
             qty: 1,
             fontStyle: 'ombudsman-stencil',

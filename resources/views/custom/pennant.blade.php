@@ -21,7 +21,7 @@
                 <!-- Text Overlay -->
                 <div class="cp-capture__text-overlay" x-ref="textContainer">
                     <span x-ref="textElement" x-text="text" :class="'font-' + fontStyle" class="cp-capture__text"
-                        :style="`color: ${textColors[textColor] ? textColors[textColor].hex : '#FFFFFF'};`">
+                        :style="{ color: textColors[textColor] ? textColors[textColor].hex : '#FFFFFF' }">
                     </span>
                 </div>
             </div>
@@ -237,7 +237,7 @@
 
             flagColor: 'maroon',
             borderColor: 'black',
-            textColor: 'cream',
+            textColor: 'white',
             text: 'keep the faith',
             qty: 1,
             fontStyle: 'ombudsman-stencil',

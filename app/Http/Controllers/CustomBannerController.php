@@ -28,11 +28,14 @@ class CustomBannerController extends Controller
 
         // Text Colors
         $textColors = [
-            'cream' => ['name' => 'Cream', 'hex' => '#F2E8D2'],
+            'cream' => ['name' => 'Cream', 'hex' => '#F2E6B5'],
             'black' => ['name' => 'Black', 'hex' => '#000000'],
             'khaki' => ['name' => 'Khaki', 'hex' => '#C19A6B'],
             'navy' => ['name' => 'Navy', 'hex' => '#1F2937'],
-            'mustard' => ['name' => 'Mustard', 'hex' => '#E4AE3A'],
+            'gold' => ['name' => 'Gold', 'hex' => '#E4AE3A'],
+            'white' => ['name' => 'White', 'hex' => '#FFFFFF'],
+            'pink' => ['name' => 'Pink', 'hex' => '#EFB3CA'],
+            'red' => ['name' => 'Red', 'hex' => '#C1192F'],
         ];
 
         $fonts = [
