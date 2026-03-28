@@ -4853,3 +4853,260 @@ a svg {
         font-size: 2rem;
     }
 }
+
+/* ============================================
+   COLLABORATIONS PAGE
+   ============================================ */
+
+/* --- Hero --- */
+.collab-hero {
+    background-color: #ffffff;
+    padding: 60px 50px 50px;
+}
+
+.collab-hero__title {
+    font-size: clamp(5rem, 12vw, 8.5rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -5px;
+    color: #1a1a1a;
+    line-height: 0.9;
+    margin-bottom: 10px;
+}
+
+.collab-hero__subtitle {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.collab-hero__tagline {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+    max-width: 440px;
+    width: 100%;
+}
+
+.collab-hero__desc {
+    font-size: 10px;
+    line-height: 1.7;
+    color: #444;
+    max-width: 440px;
+    width: 100%;
+}
+
+/* --- Collaboration Grid --- */
+.collab-grid {
+    padding: 0 40px;
+    border-top: 1px solid #1a1a1a;
+}
+
+.collab-grid__row {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+}
+
+/* --- Card --- */
+.collab-card {
+    border-right: 1px solid #1a1a1a;
+    border-left: 1px solid #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: opacity 0.3s ease;
+    aspect-ratio: 9 / 16;
+}
+
+.collab-card:hover {
+    /* opacity: 0.92; */
+}
+
+.collab-card__image-wrap {
+    position: relative;
+    overflow: hidden;
+    background: #e8e4dd;
+}
+
+.collab-card__image {
+    width: 100%;
+    height: 70vh;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.5s ease;
+}
+
+.collab-card:hover .collab-card__image {
+    /* transform: scale(1.03); */
+}
+
+.collab-card__tag {
+    border: 1px solid #1a1a1a;
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    font-size: 8px;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #1a1a1a;
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 3px 8px;
+    line-height: 1.4;
+}
+
+.collab-card__info {
+    padding: 16px 12px 28px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.collab-card__title {
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.3;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.collab-card__desc {
+    font-size: 12px;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 16px;
+    max-width: 320px;
+    flex: 1;
+}
+
+.collab-card__link {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #1a1a1a;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    transition: color 0.3s ease;
+    display: inline-block;
+}
+
+.collab-card__link:hover {
+    color: #b19e60;
+}
+
+/* --- CTA --- */
+.collab-cta {
+    background-color: #e8e4dd;
+    border-bottom: 1px solid #1a1a1a;
+    border-top: 1px solid #1a1a1a;
+    padding: 80px 40px;
+    text-align: center;
+}
+
+.collab-cta__inner {
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.collab-cta__label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 500;
+    color: #1a1a1a;
+    margin-bottom: 20px;
+}
+
+.collab-cta__title {
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+    color: #1a1a1a;
+    line-height: 1;
+    margin-bottom: 16px;
+}
+
+.collab-cta__desc {
+    font-size: 11px;
+    line-height: 1.7;
+    color: #555;
+    margin-bottom: 28px;
+}
+
+.collab-cta__link {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-thickness: 1px;
+    transition: color 0.3s ease;
+}
+
+.collab-cta__link:hover {
+    color: #b19e60;
+}
+
+/* --- Collaborations Responsive --- */
+@media (max-width: 768px) {
+    .collab-hero {
+        padding: 30px 20px 24px;
+    }
+
+    .collab-hero__title {
+        font-size: clamp(3.2rem, 14vw, 5rem);
+        letter-spacing: -3px;
+    }
+
+    .collab-hero__subtitle {
+        align-items: flex-start;
+    }
+
+    .collab-hero__desc {
+        font-size: 12px;
+    }
+
+    .collab-grid {
+        padding: 0 20px;
+    }
+
+    .collab-grid__row {
+        grid-template-columns: 1fr;
+    }
+
+    .collab-card__image {
+        aspect-ratio: 9 / 12;
+    }
+
+    .collab-card__info {
+        padding: 14px 4px 24px;
+    }
+
+    .collab-card__title {
+        font-size: 15px;
+    }
+
+    .collab-card__desc {
+        font-size: 12px;
+    }
+
+    .collab-cta {
+        padding: 50px 20px;
+    }
+
+    .collab-cta__title {
+        font-size: 1.6rem;
+        letter-spacing: -1px;
+    }
+}

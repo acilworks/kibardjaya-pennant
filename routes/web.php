@@ -10,6 +10,7 @@ use App\Http\Controllers\CustomController;
 use App\Http\Controllers\CustomPennantController;
 use App\Http\Controllers\CustomBannerController;
 use App\Http\Controllers\CustomCampFlagController;
+use App\Http\Controllers\CollaborationController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/', function () {
@@ -30,6 +31,7 @@ Route::get('/', [HomeController::class, 'index']);
 Route::get('/collections', [CollectionController::class, 'index']);
 Route::get('/shop', [ProductController::class, 'index']);
 Route::get('/shop/{slug}', [ProductController::class, 'show']);
+Route::get('/collaborations', [CollaborationController::class, 'index']);
 
 Route::get('/custom', [CustomController::class, 'index']);
 Route::get('/custom/pennant', [CustomPennantController::class, 'index']);
