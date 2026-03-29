@@ -2865,10 +2865,12 @@ a svg {
 }
 
 .clp-hero__title {
-    font-size: clamp(4rem, 9.5vw, 8rem);
+    font-size: clamp(3.2rem, 14vw, 5rem);
+    letter-spacing: -3px;
+    /* font-size: clamp(4rem, 9.5vw, 8rem); */
     font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: -6px;
+    /* letter-spacing: -6px; */
     color: #1a1a1a;
     line-height: 0.9;
     margin-bottom: 16px;
@@ -3385,6 +3387,7 @@ a svg {
     align-items: center;
     padding: 20px 40px;
     border-bottom: 1px solid #1a1a1a;
+    /* border-top: 1px solid #1a1a1a; */
     position: relative;
     z-index: 20;
     /* Keep above grid */
@@ -3400,7 +3403,7 @@ a svg {
     padding: 0;
     cursor: pointer;
     font-family: inherit;
-    font-size: 12px;
+    font-size: 16px;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 1px;
