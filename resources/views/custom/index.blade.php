@@ -7,18 +7,18 @@
 @section('content')
     {{-- Hero Section --}}
     <!-- <section class="cst-hero">
-        <div class="cst-hero__left">
-            <h1 class="cst-hero__title">MAKE YOUR<br>OWN FLAGS.</h1>
-        </div>
-        <div class="cst-hero__right">
-            <p class="cst-hero__tagline">Designed by you. Made by hand.</p>
-            <p class="cst-hero__desc">
-                Whether it's for your home, your brand, or your crew. Design a custom flag that tells your story. Choose
-                your shape, colors, and text. We'll handle the rest.
-            </p>
+                    <div class="cst-hero__left">
+                        <h1 class="cst-hero__title">MAKE YOUR<br>OWN FLAGS.</h1>
+                    </div>
+                    <div class="cst-hero__right">
+                        <p class="cst-hero__tagline">Designed by you. Made by hand.</p>
+                        <p class="cst-hero__desc">
+                            Whether it's for your home, your brand, or your crew. Design a custom flag that tells your story. Choose
+                            your shape, colors, and text. We'll handle the rest.
+                        </p>
 
-        </div>
-    </section> -->
+                    </div>
+                </section> -->
     {{-- Hero Section --}}
     <section class="collab-hero">
         <h1 class="collab-hero__title">Make Your Own.</h1>
@@ -33,9 +33,9 @@
 
     {{-- Start Your Design Section --}}
     <section class="syd">
-        <div class="syd__header">
-            <span class="syd__label">START YOUR DESIGN</span>
-        </div>
+        <!-- <div class="syd__header">
+                <span class="syd__label">START YOUR DESIGN</span>
+            </div> -->
         <div class="syd__body">
             <div class="swiper syd__swiper">
                 <div class="swiper-wrapper">

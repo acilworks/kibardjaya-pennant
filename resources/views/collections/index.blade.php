@@ -11,24 +11,27 @@
     SECTION 1: COLLECTIONS HERO
     ============================================ --}}
     <!-- <section class="clp-hero">
-            <div class="clp-hero__left">
-                <h1 class="clp-hero__title">COLLECTIONS.</h1> -->
+                                <div class="clp-hero__left">
+                                    <h1 class="clp-hero__title">COLLECTIONS.</h1> -->
     <!-- <a class="clp-hero__subtitle-link">PIECES AVAILABLE</a> -->
     <!-- <a href="/shop" class="clp-hero__subtitle-link">EXPLORE ALL ITEMS</a> -->
     <!-- </div>
-            <div class="clp-hero__right">
-                <p class="clp-hero__tagline">
-                    Curated pieces crafted in limited studio runs. <br> Explore by series, story, and intention.
-                </p>
-            </div>
-        </section> -->
+                                <div class="clp-hero__right">
+                                    <p class="clp-hero__tagline">
+                                        Curated pieces crafted in limited studio runs. <br> Explore by series, story, and intention.
+                                    </p>
+                                </div>
+                            </section> -->
     {{-- Hero Section --}}
     <section class="collab-hero">
         <h1 class="collab-hero__title">Collections.</h1>
         <div class="collab-hero__subtitle">
-            <p class="collab-hero__tagline">Built together, story by story.</p>
+            <p class="collab-hero__tagline">Curated Pieces, Stories in series.</p>
             <p class="collab-hero__desc">
-                Curated pieces crafted in limited studio runs. Explore by series, story, and intention.
+                Thoughtfully crafted in limited studio runs.
+                Each piece belongs to a story, a place, or a moment.
+                Explore collections made to be kept - not just owned.
+            </p>
         </div>
     </section>
 
@@ -36,9 +39,9 @@
     SECTION 2: EXPLORE CATEGORIES
     ============================================ --}}
     <section class="syd">
-        <div class="syd__header">
-            <span class="syd__label">Explore Categories</span>
-        </div>
+        <!-- <div class="syd__header">
+                            <span class="syd__label">Explore Categories</span>
+                        </div> -->
         <div class="syd__body">
             <div class="swiper clp-categories__swiper">
                 <div class="swiper-wrapper">
@@ -76,8 +79,8 @@
     SECTION 3: BLACK STATEMENT BAR
     ============================================ --}}
     <!-- <div class="clp-statement">
-                                <p class="clp-statement__text">Crafted for collectors who value story over trend.</p>
-                            </div> -->
+                                                    <p class="clp-statement__text">Crafted for collectors who value story over trend.</p>
+                                                </div> -->
 
 
 
@@ -203,7 +206,7 @@
     @if($newDrop)
         <section class="clp-drop">
             <div class="clp-drop__header">
-                <h2 class="clp-drop__title">New Studio Drop</h2>
+                <h2 class="clp-drop__title">Best Seller</h2>
             </div>
             <div class="clp-drop__content">
                 {{-- Left: Main product image + info --}}

@@ -52,23 +52,23 @@
 
     {{-- Brand Story Section --}}
     <!-- <section class="brand-story">
-        <div class="brand-story__inner">
-            <div class="brand-story__heading">
-                <h2 class="brand-story__title">MORE THAN<br>A SOUVENIR.</h2>
-            </div>
-            <div class="brand-story__text">
-                <p class="brand-story__tagline">Bring your story home</p>
-                <p class="brand-story__desc">
-                    There was a time when travelers brought home pennants as proof
-                    of where they had been. A small symbol. A lasting memory.
-                    <br>
+            <div class="brand-story__inner">
+                <div class="brand-story__heading">
+                    <h2 class="brand-story__title">MORE THAN<br>A SOUVENIR.</h2>
+                </div>
+                <div class="brand-story__text">
+                    <p class="brand-story__tagline">Bring your story home</p>
+                    <p class="brand-story__desc">
+                        There was a time when travelers brought home pennants as proof
+                        of where they had been. A small symbol. A lasting memory.
+                        <br>
 
-                    Kibardjaya revives that tradition, reimagined for modern
-                    collectors who value story, craftsmanship, and timeless design.
-                </p>
+                        Kibardjaya revives that tradition, reimagined for modern
+                        collectors who value story, craftsmanship, and timeless design.
+                    </p>
+                </div>
             </div>
-        </div>
-    </section> -->
+        </section> -->
 
     {{-- Hero Section --}}
     <section class="collab-hero">
@@ -89,7 +89,10 @@
     <section class="collections">
         <div class="collections__header">
             <h2 class="collections__title">New Collections</h2>
-            <a href="/shop" class="collections__view-all">View All &rarr;</a>
+            <div class="collections__view-all-wrap">
+                <a href="/shop" class="collections__view-all">View All</a>
+                <span class="collections__view-all-arrow">&rarr;</span>
+            </div>
         </div>
         <div class="collections__grid">
             @foreach($products as $product)

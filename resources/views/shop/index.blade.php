@@ -11,12 +11,12 @@
     SHOP HERO
     ============================================ --}}
     <!-- <section class="shop-hero">
-                <h1 class="shop-hero__title">ALL PIECES.</h1>
-                <p class="shop-hero__desc">
-                    Explore our complete collection of handcrafted pennants, banners, and flags.
-                    Made for collectors, spaces, and stories.
-                </p>
-            </section> -->
+                                <h1 class="shop-hero__title">ALL PIECES.</h1>
+                                <p class="shop-hero__desc">
+                                    Explore our complete collection of handcrafted pennants, banners, and flags.
+                                    Made for collectors, spaces, and stories.
+                                </p>
+                            </section> -->
 
     {{-- Hero Section --}}
     <section class="collab-hero" style="border-bottom: 1px solid #1a1a1a;">
@@ -24,8 +24,9 @@
         <div class="collab-hero__subtitle">
             <p class="collab-hero__tagline">Made for collectors, spaces, and stories.</p>
             <p class="collab-hero__desc">
-                Explore our complete collection of handcrafted pennants, banners, and flags.
-
+                Explore handcrafted pennants, banners, flags, and more.
+                Designed for collectors, spaces, and personal stories.
+                Find the piece that feels like yours.
             </p>
         </div>
     </section>
