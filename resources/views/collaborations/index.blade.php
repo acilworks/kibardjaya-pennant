@@ -22,15 +22,15 @@
             @foreach($collaborations as $index => $collab)
                 <div class="collab-card">
                     <div class="collab-card__image-wrap">
-                        <img src="{{ asset($collab['image']) }}" alt="{{ $collab['title'] }}" class="collab-card__image"
+                        <img src="{{ $collab->image ? Storage::url($collab->image) : asset('image/placeholder.jpg') }}" alt="{{ $collab->title }}" class="collab-card__image"
                             loading="lazy">
-                        <span class="collab-card__tag">{{ $collab['tag'] }}</span>
+                        <span class="collab-card__tag">{{ $collab->tag }}</span>
                     </div>
                     <div class="collab-card__info">
-                        <h3 class="collab-card__title">{{ $collab['title'] }}</h3>
-                        <p class="collab-card__desc">{{ $collab['desc'] }}</p>
+                        <h3 class="collab-card__title">{{ $collab->title }}</h3>
+                        <p class="collab-card__desc">{{ $collab->desc }}</p>
                         <div class="collab-card__link-wrap">
-                            <a href="{{ $collab['url'] }}" class="collab-card__link">See Collaboration</a>
+                            <a href="{{ $collab->url ?? '#' }}" class="collab-card__link">See Collaboration</a>
                             <span class="collab-card__link-arrow">&rarr;</span>
                         </div>
                     </div>
