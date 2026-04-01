@@ -11,17 +11,17 @@
     SECTION 1: COLLECTIONS HERO
     ============================================ --}}
     <!-- <section class="clp-hero">
-                                <div class="clp-hero__left">
-                                    <h1 class="clp-hero__title">COLLECTIONS.</h1> -->
+                                        <div class="clp-hero__left">
+                                            <h1 class="clp-hero__title">COLLECTIONS.</h1> -->
     <!-- <a class="clp-hero__subtitle-link">PIECES AVAILABLE</a> -->
     <!-- <a href="/shop" class="clp-hero__subtitle-link">EXPLORE ALL ITEMS</a> -->
     <!-- </div>
-                                <div class="clp-hero__right">
-                                    <p class="clp-hero__tagline">
-                                        Curated pieces crafted in limited studio runs. <br> Explore by series, story, and intention.
-                                    </p>
-                                </div>
-                            </section> -->
+                                        <div class="clp-hero__right">
+                                            <p class="clp-hero__tagline">
+                                                Curated pieces crafted in limited studio runs. <br> Explore by series, story, and intention.
+                                            </p>
+                                        </div>
+                                    </section> -->
     {{-- Hero Section --}}
     <section class="collab-hero">
         <h1 class="collab-hero__title">Collections.</h1>
@@ -40,8 +40,8 @@
     ============================================ --}}
     <section class="syd">
         <!-- <div class="syd__header">
-                            <span class="syd__label">Explore Categories</span>
-                        </div> -->
+                                    <span class="syd__label">Explore Categories</span>
+                                </div> -->
         <div class="syd__body">
             <div class="swiper clp-categories__swiper">
                 <div class="swiper-wrapper">
@@ -79,8 +79,8 @@
     SECTION 3: BLACK STATEMENT BAR
     ============================================ --}}
     <!-- <div class="clp-statement">
-                                                    <p class="clp-statement__text">Crafted for collectors who value story over trend.</p>
-                                                </div> -->
+                                                            <p class="clp-statement__text">Crafted for collectors who value story over trend.</p>
+                                                        </div> -->
 
 
 
@@ -88,9 +88,16 @@
     SECTION 4: STUDIO PICKS
     ============================================ --}}
     <section class="clp-picks">
-        <div class="clp-picks__header">
-            <h2 class="clp-picks__title">Studio Picks</h2>
-            <a href="/shop" class="clp-picks__view-all">View All &rarr;</a>
+        <!-- <div class="clp-picks__header">
+                    <h2 class="clp-picks__title">Studio Picks</h2>
+                    <a href="/shop" class="clp-picks__view-all">View All &rarr;</a>
+                </div> -->
+        <div class="collections__header" style="border-bottom: 1px solid #1a1a1a;">
+            <h2 class="collections__title">Studio Picks</h2>
+            <div class="collections__view-all-wrap">
+                <a href="/shop" class="collections__view-all">View All</a>
+                <span class="collections__view-all-arrow">&rarr;</span>
+            </div>
         </div>
         <div class="clp-picks__grid">
             @foreach($studioPicks as $product)

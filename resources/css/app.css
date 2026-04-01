@@ -808,6 +808,23 @@
     color: #1a1a1a;
 }
 
+
+.collab__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 40px;
+    border-top: 1px solid #1a1a1a;
+}
+
+.collab__title {
+    font-size: 16px;
+    font-weight: 900;
+    text-transform: uppercase;
+    /* letter-spacing: -1px; */
+    color: #1a1a1a;
+}
+
 /* .collections__view-all {
     font-size: 12px;
     font-weight: 600;
@@ -862,6 +879,50 @@
 }
 
 .collections__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border-top: 1px solid #1a1a1a;
+    /* border-top: 1px solid #d5d5d5; */
+}
+
+
+.collab__view-all-wrap {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.collab__view-all {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #1a1a1a;
+    /* color: #b19e60; */
+    /* text-decoration: underline; */
+    text-underline-offset: 5px;
+    text-decoration-thickness: 1px;
+    transition: opacity 0.3s ease;
+}
+
+.collab__view-all-arrow {
+    font-size: 14px;
+    color: #1a1a1a;
+    transition: transform 0.3s ease;
+}
+
+.collab__view-all-wrap:hover .collab__view-all {
+    color: #b19e60;
+    font-weight: 800;
+    text-decoration: underline;
+}
+
+.collab__view-all-wrap:hover .collab__view-all-arrow {
+    transform: translateX(10px);
+    color: #b19e60;
+}
+
+.collab__grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     border-top: 1px solid #1a1a1a;
@@ -1125,6 +1186,10 @@
         padding: 20px 20px;
     }
 
+    .collab__header {
+        padding: 20px 20px;
+    }
+
     .collections__grid {
         grid-template-columns: repeat(2, 1fr);
     }
@@ -1140,11 +1205,20 @@
     }
 
     .collections__title {
+        font-size: 14px;
+        font-weight: 800;
+    }
+
+    .collab__title {
         font-size: 13px;
-        font-weight: 400;
+        font-weight: 800;
     }
 
     .collections__view-all {
+        font-size: 10px;
+    }
+
+    .collab__view-all {
         font-size: 10px;
     }
 
@@ -1228,11 +1302,12 @@
     color: #000000;
     max-width: 420px;
     margin-bottom: 32px; */
-    font-size: 10px;
+    font-size: 13px;
+    font-weight: 300;
     line-height: 1.7;
-    color: #444;
+    color: #222;
     margin-bottom: 32px;
-    max-width: 380px;
+    /* max-width: 380px; */
 }
 
 .custom-order__cta-wrap {
@@ -1295,6 +1370,8 @@
 
     .custom-order__desc {
         font-size: 12px;
+        letter-spacing: 0.5px;
+        font-weight: 300;
     }
 }
 
@@ -2526,13 +2603,13 @@
     }
 
     .pdp-lifestyle__title {
-        font-size: 13px;
-        font-weight: 400;
+        font-size: 14px;
+        font-weight: 800;
     }
 
     .pdp-related__title {
-        font-size: 13px;
-        font-weight: 400;
+        font-size: 14px;
+        font-weight: 800;
     }
 
     .pdp-related__view-all {
@@ -3337,8 +3414,8 @@ a svg {
     }
 
     .clp-picks__title {
-        font-size: 13px;
-        font-weight: 400;
+        font-size: 14px;
+        font-weight: 800;
     }
 
     .clp-picks__view-all {
@@ -3363,8 +3440,8 @@ a svg {
     }
 
     .clp-drop__title {
-        font-size: 13px;
-        font-weight: 400;
+        font-size: 14px;
+        font-weight: 800;
     }
 
     .clp-drop__content {
@@ -4359,8 +4436,8 @@ a svg {
     }
 
     .custom-ideas__title {
-        font-size: 13px;
-        font-weight: 400;
+        font-size: 14px;
+        font-weight: 800;
     }
 
     .custom-ideas__slide {
@@ -4614,8 +4691,8 @@ a svg {
     }
 
     .syd__label {
-        font-size: 13px;
-        font-weight: 400;
+        font-size: 14px;
+        font-weight: 800;
     }
 
     .syd__body {
@@ -4692,8 +4769,8 @@ a svg {
     }
 
     .hcw__label {
-        font-size: 13px;
-        font-weight: 400;
+        font-size: 14px;
+        font-weight: 800;
     }
 
     .hcw__steps {
@@ -4757,11 +4834,12 @@ a svg {
 }
 
 .pby__desc {
-    font-size: 10px;
+    font-size: 13px;
+    font-weight: 300;
     line-height: 1.7;
-    color: #444;
+    color: #222;
     margin-bottom: 32px;
-    max-width: 380px;
+    /* max-width: 380px; */
 }
 
 .pby__links {
@@ -4819,6 +4897,9 @@ a svg {
 
     .pby__desc {
         font-size: 12px;
+        letter-spacing: 0.5px;
+        color: #222;
+        font-weight: 300;
     }
 }
 
@@ -4866,7 +4947,8 @@ a svg {
 }
 
 .iks__desc {
-    font-size: 10px;
+    font-size: 13px;
+    font-weight: 300;
     line-height: 1.7;
     color: rgba(255, 255, 255, 0.8);
     max-width: 420px;
@@ -4906,6 +4988,12 @@ a svg {
 
     .iks__title {
         font-size: 2rem;
+    }
+
+    .iks__desc {
+        font-size: 12px;
+        font-weight: 300;
+        letter-spacing: 0.5px;
     }
 }
 
@@ -4949,7 +5037,8 @@ a svg {
 .collab-hero__desc {
     font-size: 10px;
     line-height: 1.7;
-    color: #444;
+    color: #222;
+    /* color: #444; */
     max-width: 440px;
     width: 100%;
 }
@@ -5033,8 +5122,9 @@ a svg {
 
 .collab-card__desc {
     font-size: 12px;
+    font-weight: 300;
     line-height: 1.7;
-    color: #555;
+    color: #222;
     margin-bottom: 16px;
     max-width: 320px;
     flex: 1;
@@ -5127,10 +5217,10 @@ a svg {
 
 .collab-cta__label {
     display: block;
-    font-size: 10px;
-    letter-spacing: 3px;
+    font-size: 13px;
+    /* letter-spacing: 2px; */
     text-transform: uppercase;
-    font-weight: 500;
+    font-weight: 600;
     color: #1a1a1a;
     margin-bottom: 20px;
 }
@@ -5146,9 +5236,10 @@ a svg {
 }
 
 .collab-cta__desc {
-    font-size: 11px;
+    font-size: 13px;
+    font-weight: 300;
     line-height: 1.7;
-    color: #555;
+    color: #222;
     margin-bottom: 28px;
 }
 
@@ -5224,6 +5315,8 @@ a svg {
 
     .collab-hero__desc {
         font-size: 12px;
+        letter-spacing: 0.5px;
+        font-weight: 300;
     }
 
     .collab-grid {
@@ -5257,5 +5350,11 @@ a svg {
     .collab-cta__title {
         font-size: 1.6rem;
         letter-spacing: -1px;
+    }
+
+    .collab-cta__desc {
+        font-size: 12px;
+        font-weight: 300;
+        letter-spacing: 0.5px;
     }
 }

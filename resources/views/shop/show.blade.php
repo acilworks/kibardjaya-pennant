@@ -11,20 +11,20 @@
     SECTION 1: PRODUCT HERO
     ============================================ --}}
     <section class="pdp" x-data="{
-                                                                        qty: 1,
-                                                                        selectedColorIndex: null,
-                                                                        selectedColorName: '',
-                                                                        colorVariants: {{ Js::from($product->colorVariants->map(fn($v) => ['id' => $v->id, 'name' => $v->color_name, 'code' => $v->color_code, 'image' => $v->image ? asset('storage/' . $v->image) : null])) }},
-                                                                        swiperInstance: null,
-                                                                        variantSlideMap: {},
-                                                                        selectColor(index) {
-                                                                            this.selectedColorIndex = index;
-                                                                            this.selectedColorName = this.colorVariants[index].name;
-                                                                            if (this.swiperInstance && this.variantSlideMap[index] !== undefined) {
-                                                                                this.swiperInstance.slideTo(this.variantSlideMap[index]);
-                                                                            }
-                                                                        }
-                                                                    }">
+                                                                                qty: 1,
+                                                                                selectedColorIndex: null,
+                                                                                selectedColorName: '',
+                                                                                colorVariants: {{ Js::from($product->colorVariants->map(fn($v) => ['id' => $v->id, 'name' => $v->color_name, 'code' => $v->color_code, 'image' => $v->image ? asset('storage/' . $v->image) : null])) }},
+                                                                                swiperInstance: null,
+                                                                                variantSlideMap: {},
+                                                                                selectColor(index) {
+                                                                                    this.selectedColorIndex = index;
+                                                                                    this.selectedColorName = this.colorVariants[index].name;
+                                                                                    if (this.swiperInstance && this.variantSlideMap[index] !== undefined) {
+                                                                                        this.swiperInstance.slideTo(this.variantSlideMap[index]);
+                                                                                    }
+                                                                                }
+                                                                            }">
         {{-- Left: Product Photos Swiper --}}
         <div class="pdp__gallery">
             <div class="swiper pdp__swiper">
@@ -300,9 +300,16 @@
     ============================================ --}}
     @if($relatedProducts->count() > 0)
         <section class="pdp-related">
-            <div class="pdp-related__header">
-                <h2 class="pdp-related__title">Continue Your Collection</h2>
-                <a href="/shop" class="pdp-related__view-all">View All &rarr;</a>
+            <!-- <div class="pdp-related__header">
+                                <h2 class="pdp-related__title">Continue Your Collection</h2>
+                                <a href="/shop" class="pdp-related__view-all">View All &rarr;</a>
+                            </div> -->
+            <div class="collections__header" style="border-bottom: 1px solid #1a1a1a;">
+                <h2 class="collections__title">Continue Your Collection</h2>
+                <div class="collections__view-all-wrap">
+                    <a href="/shop" class="collections__view-all">View All</a>
+                    <span class="collections__view-all-arrow">&rarr;</span>
+                </div>
             </div>
             <div class="pdp-related__grid">
                 @foreach($relatedProducts as $related)

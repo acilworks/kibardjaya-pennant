@@ -52,23 +52,23 @@
 
     {{-- Brand Story Section --}}
     <!-- <section class="brand-story">
-            <div class="brand-story__inner">
-                <div class="brand-story__heading">
-                    <h2 class="brand-story__title">MORE THAN<br>A SOUVENIR.</h2>
-                </div>
-                <div class="brand-story__text">
-                    <p class="brand-story__tagline">Bring your story home</p>
-                    <p class="brand-story__desc">
-                        There was a time when travelers brought home pennants as proof
-                        of where they had been. A small symbol. A lasting memory.
-                        <br>
+                                    <div class="brand-story__inner">
+                                        <div class="brand-story__heading">
+                                            <h2 class="brand-story__title">MORE THAN<br>A SOUVENIR.</h2>
+                                        </div>
+                                        <div class="brand-story__text">
+                                            <p class="brand-story__tagline">Bring your story home</p>
+                                            <p class="brand-story__desc">
+                                                There was a time when travelers brought home pennants as proof
+                                                of where they had been. A small symbol. A lasting memory.
+                                                <br>
 
-                        Kibardjaya revives that tradition, reimagined for modern
-                        collectors who value story, craftsmanship, and timeless design.
-                    </p>
-                </div>
-            </div>
-        </section> -->
+                                                Kibardjaya revives that tradition, reimagined for modern
+                                                collectors who value story, craftsmanship, and timeless design.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </section> -->
 
     {{-- Hero Section --}}
     <section class="collab-hero">
@@ -128,7 +128,7 @@
             <p class="custom-order__desc">
                 Some stories are meant to be created.<br>
                 Design a piece that reflects yours,
-                whether it’s a pennant, banner, or flag.Choose your message, your colors, your style.
+                whether it’s a pennant, banner, or flag. <br>Choose your message, your colors, your style.
                 We’ll bring it to life by hand.
                 Made to keep. Made to remember.
 
@@ -142,20 +142,27 @@
 
     {{-- Collaboration Grid (Latest 3) --}}
     @if($collaborations->count() > 0)
-        <section class="collab-grid">
-            <div class="collections__header">
-                <h2 class="collections__title">Collaborations</h2>
-                <div class="collections__view-all-wrap">
-                    <a href="/collaborations" class="collections__view-all">View All</a>
-                    <span class="collections__view-all-arrow">&rarr;</span>
-                </div>
+        <div class="collab__header">
+            <h2 class="collab__title">Collaborations</h2>
+            <div class="collab__view-all-wrap">
+                <a href="/collaborations" class="collab__view-all">View All</a>
+                <span class="collab__view-all-arrow">&rarr;</span>
             </div>
+        </div>
+        <section class="collab-grid">
+            <!-- <div class="collab__header">
+                                                <h2 class="collab__title">Collaborations</h2>
+                                                <div class="collab__view-all-wrap">
+                                                    <a href="/collaborations" class="collab__view-all">View All</a>
+                                                    <span class="collab__view-all-arrow">&rarr;</span>
+                                                </div>
+                                            </div> -->
             <div class="collab-grid__row">
                 @foreach($collaborations as $collab)
                     <div class="collab-card">
                         <div class="collab-card__image-wrap">
-                            <img src="{{ $collab->image ? Storage::url($collab->image) : asset('image/placeholder.jpg') }}" alt="{{ $collab->title }}" class="collab-card__image"
-                                loading="lazy">
+                            <img src="{{ $collab->image ? Storage::url($collab->image) : asset('image/placeholder.jpg') }}"
+                                alt="{{ $collab->title }}" class="collab-card__image" loading="lazy">
                             <span class="collab-card__tag">{{ $collab->tag }}</span>
                         </div>
                         <div class="collab-card__info">
@@ -170,6 +177,13 @@
                 @endforeach
             </div>
         </section>
+        <div class="collab__header">
+            <h2 class="collab__title"></h2>
+            <div class="collab__view-all-wrap">
+                <!-- <a href="/collaborations" class="collab__view-all">View All</a>
+                        <span class="collab__view-all-arrow">&rarr;</span> -->
+            </div>
+        </div>
     @endif
 @endsection
 
