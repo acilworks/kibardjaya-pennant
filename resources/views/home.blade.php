@@ -140,50 +140,37 @@
         </div>
     </section>
 
-    {{-- Crafted to Last Section --}}
-    <section class="crafted">
-        <div class="crafted__header">
-            <h2 class="crafted__title">Crafted to Last</h2>
-        </div>
-        <div class="swiper crafted__swiper">
-            <div class="swiper-wrapper crafted__grid">
-                <div class="swiper-slide crafted__card">
-                    <picture>
-                        <source srcset="{{ asset('image/craft-left.webp') }}" type="image/webp">
-                        <img src="{{ asset('image/craft-left.png') }}" alt="Handmade in Yogyakarta"
-                            class="crafted__card-image" loading="lazy">
-                    </picture>
-                    <div class="crafted__card-overlay">
-                        <h3 class="crafted__card-title">Handmade in Yogyakarta</h3>
-                        <p class="crafted__card-desc">Crafted by skilled local makers.</p>
-                    </div>
-                </div>
-                <div class="swiper-slide crafted__card">
-                    <picture>
-                        <source srcset="{{ asset('image/craft-mid.webp') }}" type="image/webp">
-                        <img src="{{ asset('image/craft-mid.png') }}" alt="Premium fabric construction"
-                            class="crafted__card-image" loading="lazy">
-                    </picture>
-                    <div class="crafted__card-overlay">
-                        <h3 class="crafted__card-title">Premium fabric construction</h3>
-                        <p class="crafted__card-desc">Durable materials built for long display.</p>
-                    </div>
-                </div>
-                <div class="swiper-slide crafted__card">
-                    <picture>
-                        <source srcset="{{ asset('image/craft-right.webp') }}" type="image/webp">
-                        <img src="{{ asset('image/craft-right.png') }}" alt="Small batch production"
-                            class="crafted__card-image" loading="lazy">
-                    </picture>
-                    <div class="crafted__card-overlay">
-                        <h3 class="crafted__card-title">Small batch production</h3>
-                        <p class="crafted__card-desc">Limited quantities to preserve uniqueness.</p>
-                    </div>
+    {{-- Collaboration Grid (Latest 3) --}}
+    @if($collaborations->count() > 0)
+        <section class="collab-grid">
+            <div class="collections__header">
+                <h2 class="collections__title">Collaborations</h2>
+                <div class="collections__view-all-wrap">
+                    <a href="/collaborations" class="collections__view-all">View All</a>
+                    <span class="collections__view-all-arrow">&rarr;</span>
                 </div>
             </div>
-            <div class="swiper-pagination crafted__pagination"></div>
-        </div>
-    </section>
+            <div class="collab-grid__row">
+                @foreach($collaborations as $collab)
+                    <div class="collab-card">
+                        <div class="collab-card__image-wrap">
+                            <img src="{{ $collab->image ? Storage::url($collab->image) : asset('image/placeholder.jpg') }}" alt="{{ $collab->title }}" class="collab-card__image"
+                                loading="lazy">
+                            <span class="collab-card__tag">{{ $collab->tag }}</span>
+                        </div>
+                        <div class="collab-card__info">
+                            <h3 class="collab-card__title">{{ $collab->title }}</h3>
+                            <p class="collab-card__desc">{{ $collab->desc }}</p>
+                            <div class="collab-card__link-wrap">
+                                <a href="{{ $collab->url ?? '#' }}" class="collab-card__link">See Collaboration</a>
+                                <span class="collab-card__link-arrow">&rarr;</span>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+        </section>
+    @endif
 @endsection
 
 @push('scripts')
@@ -221,31 +208,7 @@
                 },
             });
 
-            // Crafted to Last Swiper — mobile only
-            let craftedSwiper = null;
-            function initCraftedSwiper() {
-                if (window.innerWidth <= 768 && !craftedSwiper) {
-                    craftedSwiper = new Swiper('.crafted__swiper', {
-                        slidesPerView: 1,
-                        spaceBetween: 0,
-                        loop: true,
-                        autoplay: {
-                            delay: 4000,
-                            disableOnInteraction: false,
-                        },
-                        speed: 800,
-                        // pagination: {
-                        //     el: '.crafted__pagination',
-                        //     clickable: true,
-                        // },
-                    });
-                } else if (window.innerWidth > 768 && craftedSwiper) {
-                    craftedSwiper.destroy(true, true);
-                    craftedSwiper = null;
-                }
-            }
-            initCraftedSwiper();
-            window.addEventListener('resize', initCraftedSwiper);
+
         });
     </script>
 @endpush

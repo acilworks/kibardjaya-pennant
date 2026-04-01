@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Category;
 use App\Models\HeroSlide;
+use App\Models\Collaboration;
 
 class HomeController extends Controller
 {
@@ -16,6 +17,7 @@ class HomeController extends Controller
         $heroSlides = HeroSlide::where('is_active', true)
             ->orderBy('sort_order')
             ->get();
-        return view('home', compact('products', 'categories', 'heroSlides'));
+        $collaborations = Collaboration::latest()->take(3)->get();
+        return view('home', compact('products', 'categories', 'heroSlides', 'collaborations'));
     }
 }
