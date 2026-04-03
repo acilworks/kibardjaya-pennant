@@ -52,23 +52,23 @@
 
     {{-- Brand Story Section --}}
     <!-- <section class="brand-story">
-                                    <div class="brand-story__inner">
-                                        <div class="brand-story__heading">
-                                            <h2 class="brand-story__title">MORE THAN<br>A SOUVENIR.</h2>
-                                        </div>
-                                        <div class="brand-story__text">
-                                            <p class="brand-story__tagline">Bring your story home</p>
-                                            <p class="brand-story__desc">
-                                                There was a time when travelers brought home pennants as proof
-                                                of where they had been. A small symbol. A lasting memory.
-                                                <br>
+                                                        <div class="brand-story__inner">
+                                                            <div class="brand-story__heading">
+                                                                <h2 class="brand-story__title">MORE THAN<br>A SOUVENIR.</h2>
+                                                            </div>
+                                                            <div class="brand-story__text">
+                                                                <p class="brand-story__tagline">Bring your story home</p>
+                                                                <p class="brand-story__desc">
+                                                                    There was a time when travelers brought home pennants as proof
+                                                                    of where they had been. A small symbol. A lasting memory.
+                                                                    <br>
 
-                                                Kibardjaya revives that tradition, reimagined for modern
-                                                collectors who value story, craftsmanship, and timeless design.
-                                            </p>
-                                        </div>
-                                    </div>
-                                </section> -->
+                                                                    Kibardjaya revives that tradition, reimagined for modern
+                                                                    collectors who value story, craftsmanship, and timeless design.
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </section> -->
 
     {{-- Hero Section --}}
     <section class="collab-hero">
@@ -94,10 +94,15 @@
                 <span class="collections__view-all-arrow">&rarr;</span>
             </div>
         </div>
-        <div class="collections__grid">
-            @foreach($products as $product)
-                @include('components._product-card', ['product' => $product])
-            @endforeach
+        <div class="swiper collections-swiper" style="border-top: 1px solid #1a1a1a;">
+            <div class="swiper-wrapper">
+                @foreach($products as $product)
+                    <div class="swiper-slide" style="height: auto; display: flex;">
+                        @include('components._product-card', ['product' => $product])
+                    </div>
+                @endforeach
+            </div>
+            <!-- Pagination / Navigation (opsional) bisa ditambahkan di sini jika perlu -->
         </div>
     </section>
 
@@ -150,13 +155,7 @@
             </div>
         </div>
         <section class="collab-grid">
-            <!-- <div class="collab__header">
-                                                <h2 class="collab__title">Collaborations</h2>
-                                                <div class="collab__view-all-wrap">
-                                                    <a href="/collaborations" class="collab__view-all">View All</a>
-                                                    <span class="collab__view-all-arrow">&rarr;</span>
-                                                </div>
-                                            </div> -->
+
             <div class="collab-grid__row">
                 @foreach($collaborations as $collab)
                     <div class="collab-card">
@@ -181,7 +180,7 @@
             <h2 class="collab__title"></h2>
             <div class="collab__view-all-wrap">
                 <!-- <a href="/collaborations" class="collab__view-all">View All</a>
-                        <span class="collab__view-all-arrow">&rarr;</span> -->
+                                                                <span class="collab__view-all-arrow">&rarr;</span> -->
             </div>
         </div>
     @endif
@@ -205,6 +204,21 @@
                         nextEl: el.querySelector('.product-card__swiper-next'),
                     },
                 });
+            });
+
+            // Collections Swiper
+            new Swiper('.collections-swiper', {
+                slidesPerView: 1.2,
+                spaceBetween: 0,
+                loop: false,
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2.2,
+                    },
+                    1024: {
+                        slidesPerView: 3.2, // 3 kolom di desktop sesuai request perbaikan Anda sebelumnya
+                    }
+                }
             });
 
             new Swiper('.hero-swiper', {

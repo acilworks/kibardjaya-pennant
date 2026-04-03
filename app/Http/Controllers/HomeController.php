@@ -12,7 +12,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $products = Product::latest()->take(8)->get();
+        $products = Product::latest()->take(6)->get();
         $categories = Category::all();
         $heroSlides = HeroSlide::where('is_active', true)
             ->orderBy('sort_order')

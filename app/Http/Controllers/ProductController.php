@@ -35,7 +35,7 @@ class ProductController extends Controller
             $query->latest();
         }
 
-        $products = $query->paginate(16)->withQueryString();
+        $products = $query->paginate(12)->withQueryString();
         $categories = \App\Models\Category::all();
         $subCategories = \App\Models\SubCategory::all();
 

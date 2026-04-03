@@ -11,22 +11,33 @@
     SHOP HERO
     ============================================ --}}
     <!-- <section class="shop-hero">
-                                <h1 class="shop-hero__title">ALL PIECES.</h1>
-                                <p class="shop-hero__desc">
-                                    Explore our complete collection of handcrafted pennants, banners, and flags.
-                                    Made for collectors, spaces, and stories.
-                                </p>
-                            </section> -->
+                                        <h1 class="shop-hero__title">ALL PIECES.</h1>
+                                        <p class="shop-hero__desc">
+                                            Explore our complete collection of handcrafted pennants, banners, and flags.
+                                            Made for collectors, spaces, and stories.
+                                        </p>
+                                    </section> -->
 
     {{-- Hero Section --}}
+    <!-- <section class="collab-hero" style="border-bottom: 1px solid #1a1a1a;">
+                <h1 class="collab-hero__title">All Pieces.</h1>
+                <div class="collab-hero__subtitle">
+                    <p class="collab-hero__tagline">Made for collectors, spaces, and stories.</p>
+                    <p class="collab-hero__desc">
+                        Explore handcrafted pennants, banners, flags, and more.
+                        Designed for collectors, spaces, and personal stories.
+                        Find the piece that feels like yours.
+                    </p>
+                </div>
+            </section> -->
     <section class="collab-hero" style="border-bottom: 1px solid #1a1a1a;">
-        <h1 class="collab-hero__title">All Pieces.</h1>
+        <h1 class="collab-hero__title">Collections.</h1>
         <div class="collab-hero__subtitle">
-            <p class="collab-hero__tagline">Made for collectors, spaces, and stories.</p>
+            <p class="collab-hero__tagline">Curated Pieces, Stories in series.</p>
             <p class="collab-hero__desc">
-                Explore handcrafted pennants, banners, flags, and more.
-                Designed for collectors, spaces, and personal stories.
-                Find the piece that feels like yours.
+                Thoughtfully crafted in limited studio runs.
+                Each piece belongs to a story, a place, or a moment.
+                Explore collections made to be kept - not just owned.
             </p>
         </div>
     </section>
