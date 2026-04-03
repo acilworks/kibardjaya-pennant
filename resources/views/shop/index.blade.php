@@ -11,25 +11,25 @@
     SHOP HERO
     ============================================ --}}
     <!-- <section class="shop-hero">
-                                        <h1 class="shop-hero__title">ALL PIECES.</h1>
-                                        <p class="shop-hero__desc">
-                                            Explore our complete collection of handcrafted pennants, banners, and flags.
-                                            Made for collectors, spaces, and stories.
-                                        </p>
-                                    </section> -->
+                                                <h1 class="shop-hero__title">ALL PIECES.</h1>
+                                                <p class="shop-hero__desc">
+                                                    Explore our complete collection of handcrafted pennants, banners, and flags.
+                                                    Made for collectors, spaces, and stories.
+                                                </p>
+                                            </section> -->
 
     {{-- Hero Section --}}
     <!-- <section class="collab-hero" style="border-bottom: 1px solid #1a1a1a;">
-                <h1 class="collab-hero__title">All Pieces.</h1>
-                <div class="collab-hero__subtitle">
-                    <p class="collab-hero__tagline">Made for collectors, spaces, and stories.</p>
-                    <p class="collab-hero__desc">
-                        Explore handcrafted pennants, banners, flags, and more.
-                        Designed for collectors, spaces, and personal stories.
-                        Find the piece that feels like yours.
-                    </p>
-                </div>
-            </section> -->
+                        <h1 class="collab-hero__title">All Pieces.</h1>
+                        <div class="collab-hero__subtitle">
+                            <p class="collab-hero__tagline">Made for collectors, spaces, and stories.</p>
+                            <p class="collab-hero__desc">
+                                Explore handcrafted pennants, banners, flags, and more.
+                                Designed for collectors, spaces, and personal stories.
+                                Find the piece that feels like yours.
+                            </p>
+                        </div>
+                    </section> -->
     <section class="collab-hero" style="border-bottom: 1px solid #1a1a1a;">
         <h1 class="collab-hero__title">Collections.</h1>
         <div class="collab-hero__subtitle">
@@ -199,7 +199,7 @@
                             <div class="syd__card-info">
                                 <div class="syd__card-info-left">
                                     <h3 class="syd__card-title">PENNANT</h3>
-                                    <p class="syd__card-desc">Classic triangular felt pennant.</p>
+                                    <p class="syd__card-desc">Classic triangular flags.</p>
                                 </div>
                                 <span class="syd__card-arrow">&rarr;</span>
                             </div>
@@ -214,7 +214,7 @@
                             <div class="syd__card-info">
                                 <div class="syd__card-info-left">
                                     <h3 class="syd__card-title">BANNER</h3>
-                                    <p class="syd__card-desc">Rectangular banner for interiors.</p>
+                                    <p class="syd__card-desc">Rectangular banner flags.</p>
                                 </div>
                                 <span class="syd__card-arrow">&rarr;</span>
                             </div>
@@ -229,7 +229,7 @@
                             <div class="syd__card-info">
                                 <div class="syd__card-info-left">
                                     <h3 class="syd__card-title">CAMP FLAG</h3>
-                                    <p class="syd__card-desc">5-sided camp flag for shops and brands.</p>
+                                    <p class="syd__card-desc">5-sided camp flags.</p>
                                 </div>
                                 <span class="syd__card-arrow">&rarr;</span>
                             </div>

@@ -10,18 +10,7 @@
     {{-- ============================================
     SECTION 1: COLLECTIONS HERO
     ============================================ --}}
-    <!-- <section class="clp-hero">
-                                        <div class="clp-hero__left">
-                                            <h1 class="clp-hero__title">COLLECTIONS.</h1> -->
-    <!-- <a class="clp-hero__subtitle-link">PIECES AVAILABLE</a> -->
-    <!-- <a href="/shop" class="clp-hero__subtitle-link">EXPLORE ALL ITEMS</a> -->
-    <!-- </div>
-                                        <div class="clp-hero__right">
-                                            <p class="clp-hero__tagline">
-                                                Curated pieces crafted in limited studio runs. <br> Explore by series, story, and intention.
-                                            </p>
-                                        </div>
-                                    </section> -->
+
     {{-- Hero Section --}}
     <section class="collab-hero">
         <h1 class="collab-hero__title">Collections.</h1>
@@ -40,8 +29,8 @@
     ============================================ --}}
     <section class="syd">
         <!-- <div class="syd__header">
-                                    <span class="syd__label">Explore Categories</span>
-                                </div> -->
+                                                                                                                                                                                                                                                                                                            <span class="syd__label">Explore Categories</span>
+                                                                                                                                                                                                                                                                                                        </div> -->
         <div class="syd__body">
             <div class="swiper clp-categories__swiper">
                 <div class="swiper-wrapper">
@@ -78,20 +67,15 @@
     {{-- ============================================
     SECTION 3: BLACK STATEMENT BAR
     ============================================ --}}
-    <!-- <div class="clp-statement">
-                                                            <p class="clp-statement__text">Crafted for collectors who value story over trend.</p>
-                                                        </div> -->
-
-
 
     {{-- ============================================
     SECTION 4: STUDIO PICKS
     ============================================ --}}
     <section class="clp-picks">
         <!-- <div class="clp-picks__header">
-                    <h2 class="clp-picks__title">Studio Picks</h2>
-                    <a href="/shop" class="clp-picks__view-all">View All &rarr;</a>
-                </div> -->
+                                                                                                                                                                                                                                                                                            <h2 class="clp-picks__title">Studio Picks</h2>
+                                                                                                                                                                                                                                                                                            <a href="/shop" class="clp-picks__view-all">View All &rarr;</a>
+                                                                                                                                                                                                                                                                                        </div> -->
         <div class="collections__header" style="border-bottom: 1px solid #1a1a1a;">
             <h2 class="collections__title">Studio Picks</h2>
             <div class="collections__view-all-wrap">
@@ -99,10 +83,14 @@
                 <span class="collections__view-all-arrow">&rarr;</span>
             </div>
         </div>
-        <div class="clp-picks__grid">
-            @foreach($studioPicks as $product)
-                @include('components._product-card', ['product' => $product])
-            @endforeach
+        <div class="swiper picks-swiper">
+            <div class="swiper-wrapper">
+                @foreach($studioPicks as $product)
+                    <div class="swiper-slide" style="height: auto; display: flex;">
+                        @include('components._product-card', ['product' => $product])
+                    </div>
+                @endforeach
+            </div>
         </div>
     </section>
 
@@ -211,30 +199,46 @@
     SECTION 5: NEW STUDIO DROP
     ============================================ --}}
     @if($newDrop)
-        <section class="clp-drop">
-            <div class="clp-drop__header">
-                <h2 class="clp-drop__title">Best Seller</h2>
+        <div class="collab__header">
+            <h2 class="collab__title">New Studio Drop</h2>
+            <div class="collab__view-all-wrap">
+                <a href="/shop" class="collab__view-all">View All</a>
+                <span class="collab__view-all-arrow">&rarr;</span>
             </div>
-            <div class="clp-drop__content">
-                {{-- Left: Main product image + info --}}
-                <div class="clp-drop__main">
-                    <a href="/shop/{{ $newDrop->slug }}" class="clp-drop__main-link">
+        </div>
+        <section class="collab-grid">
+            <!-- <section class="clp-drop" style="border-top: 1px solid #1a1a1a;"> -->
+            <div class="clp-drop__content new-layout" style="display: grid; grid-template-columns: 20% 43% 37%;">
+
+                {{-- Kiri: Teks Info --}}
+                <div class="clp-drop__info-pane"
+                    style="background-color: #F8F4ED; border-left: 1px solid #1a1a1a; padding: 30px; display: flex; flex-direction: column; justify-content: flex-end;">
+                    <a href="/shop/{{ $newDrop->slug }}" style="text-decoration: none; color: #1a1a1a;">
+                        <h3
+                            style="font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; text-transform: uppercase; line-height: 1.5; margin: 0 0 40px 0; color: #1a1a1a;">
+                            {{ $newDrop->title }}
+                        </h3>
+                        <div
+                            style="display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; text-transform: uppercase;">
+                            <span
+                                style="font-size: 13px; font-weight: 500;">Rp{{ number_format($newDrop->price, 0, ',', '.') }}</span>
+                            <span style="font-size: 10px; font-weight: 500; text-decoration: underline;">+ADD</span>
+                        </div>
+                    </a>
+                </div>
+
+                {{-- Tengah: Gambar Utama --}}
+                <div class="clp-drop__main-center" style="border-right: 1px solid #1a1a1a; border-left: 1px solid #1a1a1a;">
+                    <a href="/shop/{{ $newDrop->slug }}" style="display: block; width: 100%; height: 100%;">
                         @if($newDrop->images && count($newDrop->images) > 0)
-                            <div class="clp-drop__main-image">
-                                <img src="{{ asset('storage/' . $newDrop->images[0]) }}" alt="{{ $newDrop->title }}">
-                            </div>
+                            <img src="{{ asset('storage/' . $newDrop->images[0]) }}" alt="{{ $newDrop->title }}"
+                                style="width: 100%; height: 100%; aspect-ratio: 4/4.8; object-fit: cover; display: block; background: #e8e4dd;">
                         @endif
                     </a>
-                    <div class="clp-drop__main-info">
-                        <div class="clp-drop__main-info-left">
-                            <h3 class="clp-drop__main-name">{{ $newDrop->title }}</h3>
-                            <span class="clp-drop__main-price">Rp.{{ number_format($newDrop->price, 0, ',', '.') }}</span>
-                        </div>
-                        <a href="/shop/{{ $newDrop->slug }}" class="clp-drop__main-add">+ ADD</a>
-                    </div>
                 </div>
-                {{-- Right: 2x2 gallery grid --}}
-                <div class="clp-drop__gallery">
+
+                {{-- Kanan: Gallery 2x2 --}}
+                <div class="clp-drop__gallery" style="border-right: 1px solid #1a1a1a;">
                     @if($newDrop->images && count($newDrop->images) > 1)
                         @foreach(array_slice($newDrop->images, 1, 4) as $image)
                             <a href="/shop/{{ $newDrop->slug }}" class="clp-drop__gallery-item">
@@ -243,8 +247,63 @@
                         @endforeach
                     @endif
                 </div>
+
             </div>
+
+            <style>
+                @media (max-width: 1024px) {
+                    .clp-drop__content.new-layout {
+                        grid-template-columns: 1fr 1fr !important;
+                    }
+
+                    .clp-drop__info-pane {
+                        /* border-right: none !important; */
+                        border-bottom: 1px solid #1a1a1a;
+                        /* grid-column: 1 / -1; */
+                    }
+                }
+
+                @media (max-width: 768px) {
+                    .clp-drop__content.new-layout {
+                        display: flex !important;
+                        flex-direction: column;
+                        /* border-left: 1px solid #1a1a1a; */
+                        /* border-right: 1px solid #1a1a1a; */
+                    }
+
+                    .clp-drop__main-center {
+                        order: 1;
+                        /* border-right: none !important; */
+                        /* border-bottom: 1px solid #1a1a1a; */
+                        border-right: 1px solid #1a1a1a;
+                        border-left: 1px solid #1a1a1a;
+                    }
+
+                    .clp-drop__info-pane {
+                        order: 2;
+                        border-top: 1px solid #1a1a1a;
+                        border-right: 1px solid #1a1a1a;
+                        border-left: 1px solid #1a1a1a;
+                        /* border-right: none !important; */
+
+                        /* border-bottom sudah di set di 1024px */
+                    }
+
+                    .clp-drop__gallery {
+                        order: 3;
+                        border-left: 1px solid #1a1a1a;
+                        border-right: 1px solid #1a1a1a;
+                    }
+                }
+            </style>
         </section>
+        <div class="collab__header">
+            <h2 class="collab__title"></h2>
+            <div class="collab__view-all-wrap">
+                <!-- <a href="/collaborations" class="collab__view-all">View All</a>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="collab__view-all-arrow">&rarr;</span> -->
+            </div>
+        </div>
     @endif
 
 
@@ -287,15 +346,30 @@
                 },
             });
 
+            // Studio Picks Swiper
+            new Swiper('.picks-swiper', {
+                slidesPerView: 1.2,
+                spaceBetween: 0,
+                loop: false,
+                breakpoints: {
+                    640: {
+                        slidesPerView: 2.2,
+                    },
+                    1024: {
+                        slidesPerView: 3.2,
+                    }
+                }
+            });
+
             // Trust Block Swiper
             new Swiper('.clp-trust__swiper', {
                 slidesPerView: 1,
                 spaceBetween: 0,
                 loop: true,
-                pagination: {
-                    el: '.pdp-trust__pagination',
-                    clickable: true,
-                },
+                // pagination: {
+                //     el: '.pdp-trust__pagination',
+                //     clickable: true,
+                // },
                 on: {
                     click: function (swiper, event) {
                         const trigger = event.target.closest('.pdp-trust__card-link');

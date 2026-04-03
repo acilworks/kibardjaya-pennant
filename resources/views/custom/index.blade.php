@@ -7,18 +7,18 @@
 @section('content')
     {{-- Hero Section --}}
     <!-- <section class="cst-hero">
-                        <div class="cst-hero__left">
-                            <h1 class="cst-hero__title">MAKE YOUR<br>OWN FLAGS.</h1>
-                        </div>
-                        <div class="cst-hero__right">
-                            <p class="cst-hero__tagline">Designed by you. Made by hand.</p>
-                            <p class="cst-hero__desc">
-                                Whether it's for your home, your brand, or your crew. Design a custom flag that tells your story. Choose
-                                your shape, colors, and text. We'll handle the rest.
-                            </p>
+                                    <div class="cst-hero__left">
+                                        <h1 class="cst-hero__title">MAKE YOUR<br>OWN FLAGS.</h1>
+                                    </div>
+                                    <div class="cst-hero__right">
+                                        <p class="cst-hero__tagline">Designed by you. Made by hand.</p>
+                                        <p class="cst-hero__desc">
+                                            Whether it's for your home, your brand, or your crew. Design a custom flag that tells your story. Choose
+                                            your shape, colors, and text. We'll handle the rest.
+                                        </p>
 
-                        </div>
-                    </section> -->
+                                    </div>
+                                </section> -->
     {{-- Hero Section --}}
     <section class="collab-hero">
         <h1 class="collab-hero__title">Make Your Own.</h1>
@@ -34,8 +34,8 @@
     {{-- Start Your Design Section --}}
     <section class="syd">
         <!-- <div class="syd__header">
-                    <span class="syd__label">START YOUR DESIGN</span>
-                </div> -->
+                                <span class="syd__label">START YOUR DESIGN</span>
+                            </div> -->
         <div class="syd__body">
             <div class="swiper syd__swiper">
                 <div class="swiper-wrapper">
@@ -48,7 +48,7 @@
                             <div class="syd__card-info">
                                 <div class="syd__card-info-left">
                                     <h3 class="syd__card-title">PENNANT</h3>
-                                    <p class="syd__card-desc">Classic triangular felt pennant.</p>
+                                    <p class="syd__card-desc">Classic triangular flags.</p>
                                 </div>
                                 <span class="syd__card-arrow">&rarr;</span>
                             </div>
@@ -63,7 +63,7 @@
                             <div class="syd__card-info">
                                 <div class="syd__card-info-left">
                                     <h3 class="syd__card-title">BANNER</h3>
-                                    <p class="syd__card-desc">Rectangular banner for interiors.</p>
+                                    <p class="syd__card-desc">Rectangular banner flags.</p>
                                 </div>
                                 <span class="syd__card-arrow">&rarr;</span>
                             </div>
@@ -78,7 +78,7 @@
                             <div class="syd__card-info">
                                 <div class="syd__card-info-left">
                                     <h3 class="syd__card-title">CAMP FLAG</h3>
-                                    <p class="syd__card-desc">5-sided camp flag for shops and brands.</p>
+                                    <p class="syd__card-desc">5-sided camp flags.</p>
                                 </div>
                                 <span class="syd__card-arrow">&rarr;</span>
                             </div>
@@ -212,7 +212,7 @@
             new Swiper('.cst-hcw__swiper', {
                 slidesPerView: 1,
                 spaceBetween: 0,
-                loop: true,
+                loop: false,
                 pagination: {
                     el: '.cst-hcw__swiper .pdp-trust__pagination',
                     clickable: true,
