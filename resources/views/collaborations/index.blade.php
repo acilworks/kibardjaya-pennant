@@ -22,8 +22,8 @@
             @foreach($collaborations as $index => $collab)
                 <div class="collab-card">
                     <div class="collab-card__image-wrap">
-                        <img src="{{ $collab->image ? Storage::url($collab->image) : asset('image/placeholder.jpg') }}" alt="{{ $collab->title }}" class="collab-card__image"
-                            loading="lazy">
+                        <img src="{{ $collab->image ? Storage::url($collab->image) : asset('image/placeholder.jpg') }}"
+                            alt="{{ $collab->title }}" class="collab-card__image" loading="lazy">
                         <span class="collab-card__tag">{{ $collab->tag }}</span>
                     </div>
                     <div class="collab-card__info">
@@ -59,7 +59,8 @@
             <h2 class="collab-cta__title">Have an Idea in Mind?</h2>
             <p class="collab-cta__desc">Let's talk, visualize, create, and remember.</p>
             <div class="collab-cta__link-wrap">
-                <a href="#" class="collab-cta__link">Start a Collab Story</a>
+                <a href="https://wa.me/6285119960101?text=Hi%20Kibardjaya,%20I’m%20interested%20in%20a%20collaboration.%20Let’s%20discuss%20further!"
+                    class="collab-cta__link">Start a Collab Story</a>
                 <span class="collab-cta__link-arrow">&rarr;</span>
             </div>
         </div>

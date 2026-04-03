@@ -29,8 +29,8 @@
     ============================================ --}}
     <section class="syd">
         <!-- <div class="syd__header">
-                                                                                                                                                                                                                                                                                                            <span class="syd__label">Explore Categories</span>
-                                                                                                                                                                                                                                                                                                        </div> -->
+                                                                                                                                                                                                                                                                                                                            <span class="syd__label">Explore Categories</span>
+                                                                                                                                                                                                                                                                                                                        </div> -->
         <div class="syd__body">
             <div class="swiper clp-categories__swiper">
                 <div class="swiper-wrapper">
@@ -73,9 +73,9 @@
     ============================================ --}}
     <section class="clp-picks">
         <!-- <div class="clp-picks__header">
-                                                                                                                                                                                                                                                                                            <h2 class="clp-picks__title">Studio Picks</h2>
-                                                                                                                                                                                                                                                                                            <a href="/shop" class="clp-picks__view-all">View All &rarr;</a>
-                                                                                                                                                                                                                                                                                        </div> -->
+                                                                                                                                                                                                                                                                                                            <h2 class="clp-picks__title">Studio Picks</h2>
+                                                                                                                                                                                                                                                                                                            <a href="/shop" class="clp-picks__view-all">View All &rarr;</a>
+                                                                                                                                                                                                                                                                                                        </div> -->
         <div class="collections__header" style="border-bottom: 1px solid #1a1a1a;">
             <h2 class="collections__title">Studio Picks</h2>
             <div class="collections__view-all-wrap">
@@ -198,30 +198,30 @@
     {{-- ============================================
     SECTION 5: NEW STUDIO DROP
     ============================================ --}}
-    @if($newDrop)
+    @if($topPick)
         <div class="collab__header">
-            <h2 class="collab__title">New Studio Drop</h2>
+            <h2 class="collab__title">Top Picks</h2>
             <div class="collab__view-all-wrap">
                 <a href="/shop" class="collab__view-all">View All</a>
                 <span class="collab__view-all-arrow">&rarr;</span>
             </div>
         </div>
-        <section class="collab-grid">
+        <section class="collab-grid" id="top-picks">
             <!-- <section class="clp-drop" style="border-top: 1px solid #1a1a1a;"> -->
             <div class="clp-drop__content new-layout" style="display: grid; grid-template-columns: 20% 43% 37%;">
 
                 {{-- Kiri: Teks Info --}}
                 <div class="clp-drop__info-pane"
                     style="background-color: #F8F4ED; border-left: 1px solid #1a1a1a; padding: 30px; display: flex; flex-direction: column; justify-content: flex-end;">
-                    <a href="/shop/{{ $newDrop->slug }}" style="text-decoration: none; color: #1a1a1a;">
+                    <a href="/shop/{{ $topPick->slug }}" style="text-decoration: none; color: #1a1a1a;">
                         <h3
-                            style="font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; text-transform: uppercase; line-height: 1.5; margin: 0 0 40px 0; color: #1a1a1a;">
-                            {{ $newDrop->title }}
+                            style="font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 900; text-transform: uppercase; line-height: 1.5; margin: 0 0 40px 0; color: #1a1a1a;">
+                            {{ $topPick->title }}
                         </h3>
                         <div
                             style="display: flex; justify-content: space-between; align-items: center; font-family: 'JetBrains Mono', monospace; text-transform: uppercase;">
                             <span
-                                style="font-size: 13px; font-weight: 500;">Rp{{ number_format($newDrop->price, 0, ',', '.') }}</span>
+                                style="font-size: 13px; font-weight: 500;">Rp{{ number_format($topPick->price, 0, ',', '.') }}</span>
                             <span style="font-size: 10px; font-weight: 500; text-decoration: underline;">+ADD</span>
                         </div>
                     </a>
@@ -229,9 +229,9 @@
 
                 {{-- Tengah: Gambar Utama --}}
                 <div class="clp-drop__main-center" style="border-right: 1px solid #1a1a1a; border-left: 1px solid #1a1a1a;">
-                    <a href="/shop/{{ $newDrop->slug }}" style="display: block; width: 100%; height: 100%;">
-                        @if($newDrop->images && count($newDrop->images) > 0)
-                            <img src="{{ asset('storage/' . $newDrop->images[0]) }}" alt="{{ $newDrop->title }}"
+                    <a href="/shop/{{ $topPick->slug }}" style="display: block; width: 100%; height: 100%;">
+                        @if($topPick->images && count($topPick->images) > 0)
+                            <img src="{{ asset('storage/' . $topPick->images[0]) }}" alt="{{ $topPick->title }}"
                                 style="width: 100%; height: 100%; aspect-ratio: 4/4.8; object-fit: cover; display: block; background: #e8e4dd;">
                         @endif
                     </a>
@@ -239,10 +239,10 @@
 
                 {{-- Kanan: Gallery 2x2 --}}
                 <div class="clp-drop__gallery" style="border-right: 1px solid #1a1a1a;">
-                    @if($newDrop->images && count($newDrop->images) > 1)
-                        @foreach(array_slice($newDrop->images, 1, 4) as $image)
-                            <a href="/shop/{{ $newDrop->slug }}" class="clp-drop__gallery-item">
-                                <img src="{{ asset('storage/' . $image) }}" alt="{{ $newDrop->title }}">
+                    @if($topPick->images && count($topPick->images) > 1)
+                        @foreach(array_slice($topPick->images, 1, 4) as $image)
+                            <a href="/shop/{{ $topPick->slug }}" class="clp-drop__gallery-item">
+                                <img src="{{ asset('storage/' . $image) }}" alt="{{ $topPick->title }}">
                             </a>
                         @endforeach
                     @endif
@@ -301,7 +301,7 @@
             <h2 class="collab__title"></h2>
             <div class="collab__view-all-wrap">
                 <!-- <a href="/collaborations" class="collab__view-all">View All</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="collab__view-all-arrow">&rarr;</span> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="collab__view-all-arrow">&rarr;</span> -->
             </div>
         </div>
     @endif

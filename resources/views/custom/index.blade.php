@@ -7,18 +7,18 @@
 @section('content')
     {{-- Hero Section --}}
     <!-- <section class="cst-hero">
-                                    <div class="cst-hero__left">
-                                        <h1 class="cst-hero__title">MAKE YOUR<br>OWN FLAGS.</h1>
-                                    </div>
-                                    <div class="cst-hero__right">
-                                        <p class="cst-hero__tagline">Designed by you. Made by hand.</p>
-                                        <p class="cst-hero__desc">
-                                            Whether it's for your home, your brand, or your crew. Design a custom flag that tells your story. Choose
-                                            your shape, colors, and text. We'll handle the rest.
-                                        </p>
+                                            <div class="cst-hero__left">
+                                                <h1 class="cst-hero__title">MAKE YOUR<br>OWN FLAGS.</h1>
+                                            </div>
+                                            <div class="cst-hero__right">
+                                                <p class="cst-hero__tagline">Designed by you. Made by hand.</p>
+                                                <p class="cst-hero__desc">
+                                                    Whether it's for your home, your brand, or your crew. Design a custom flag that tells your story. Choose
+                                                    your shape, colors, and text. We'll handle the rest.
+                                                </p>
 
-                                    </div>
-                                </section> -->
+                                            </div>
+                                        </section> -->
     {{-- Hero Section --}}
     <section class="collab-hero">
         <h1 class="collab-hero__title">Make Your Own.</h1>
@@ -34,8 +34,8 @@
     {{-- Start Your Design Section --}}
     <section class="syd">
         <!-- <div class="syd__header">
-                                <span class="syd__label">START YOUR DESIGN</span>
-                            </div> -->
+                                        <span class="syd__label">START YOUR DESIGN</span>
+                                    </div> -->
         <div class="syd__body">
             <div class="swiper syd__swiper">
                 <div class="swiper-wrapper">
@@ -164,8 +164,8 @@
                 We bring your vision to life, one stitch at a time.
             </p>
             <div class="pby__links">
-                <!-- <a href="/custom/pennant" class="pby__link">Start Your Custom Pennant</a> -->
-                <a href="#" class="pby__link">Talk to Us About Your Design</a>
+                <a href="https://wa.me/6285119960101?text=Hi%20Kibardjaya,%20I’d%20love%20to%20create%20a%20custom%20piece.%20Can%20you%20help%20me?"
+                    class="pby__link">Talk to Us About Your Design</a>
                 <span class="pby__link-arrow">&rarr;</span>
             </div>
         </div>

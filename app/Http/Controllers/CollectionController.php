@@ -17,11 +17,12 @@ class CollectionController extends Controller
             ->latest()
             ->get();
 
-        $newDrop = Product::where('is_new_drop', true)
+        $topPick = Product::withSum('orderItems', 'quantity')
             ->with(['subCategory', 'colorVariants'])
-            ->latest()
+            ->orderByRaw('COALESCE(order_items_sum_quantity, 0) DESC')
+            ->orderBy('id', 'desc')
             ->first();
 
-        return view('collections.index', compact('categories', 'studioPicks', 'newDrop'));
+        return view('collections.index', compact('categories', 'studioPicks', 'topPick'));
     }
 }
