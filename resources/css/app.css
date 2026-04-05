@@ -48,6 +48,36 @@
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
+.navbar-sticky--blend {
+    mix-blend-mode: difference;
+    color: #ffffff;
+}
+.navbar-sticky--blend .navbar__link,
+.navbar-sticky--blend .navbar__icon,
+.navbar-sticky--blend .navbar__cart-badge {
+    color: #ffffff;
+}
+.navbar-sticky--blend .navbar__icon svg {
+    stroke: #ffffff;
+}
+.navbar-sticky--blend .mobile-menu-btn {
+    color: #ffffff;
+}
+.navbar-sticky--blend .mobile-menu-btn svg {
+    stroke: #ffffff;
+}
+
+/* --- Logo Switching Logic --- */
+.logo-normal {
+    display: none;
+}
+.navbar-sticky--scrolled .logo-blend {
+    display: none;
+}
+.navbar-sticky--scrolled .logo-normal {
+    display: block;  /* Or whatever its default display is, usually inline or block */
+}
+
 .navbar {
     background: transparent;
     padding: 16px 40px;

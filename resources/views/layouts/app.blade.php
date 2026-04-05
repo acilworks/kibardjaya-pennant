@@ -94,7 +94,8 @@
     " x-init="$watch('mobileOpen', value => { if(!value) activeMobileSubId = null; document.body.style.overflow = value ? 'hidden' : ''; })"
         :class="{ 
             'navbar-sticky--scrolled': scrolled || activeMegaId !== null || mobileOpen,
-            'navbar-sticky--hidden': scrollDirection === 'down' && scrolled && !mobileOpen
+            'navbar-sticky--hidden': scrollDirection === 'down' && scrolled && !mobileOpen,
+            'navbar-sticky--blend': !(scrolled || activeMegaId !== null || mobileOpen)
         }">
         <nav class="navbar">
             {{-- Left Side --}}
@@ -135,7 +136,11 @@
 
             {{-- Center Logo --}}
             <a href="/" class="navbar__logo">
-                <picture>
+                <!-- Logo untuk mode transparan/blend -->
+                <img src="{{ asset('image/kibar-white.png') }}" alt="Kibardjaya Logo" class="logo-blend">
+                
+                <!-- Logo untuk mode statis/scroll putih -->
+                <picture class="logo-normal">
                     <source srcset="{{ asset('image/logo-kibar.webp') }}" type="image/webp">
                     <img src="{{ asset('image/logo-kibar.png') }}" alt="Kibardjaya Logo">
                 </picture>
