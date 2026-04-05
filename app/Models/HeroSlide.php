@@ -11,6 +11,7 @@ class HeroSlide extends Model
         'title',
         'subtitle',
         'background_image',
+        'mobile_background_image',
         'cta_text',
         'cta_url',
         'sort_order',

@@ -13,8 +13,21 @@
                 <div class="swiper-wrapper">
                     @foreach($heroSlides as $slide)
                         <div class="swiper-slide">
-                            <div class="hero__bg"
-                                style="background-image: url('{{ asset('storage/' . $slide->background_image) }}');"></div>
+                            @php
+                                $desktopImg = asset('storage/' . $slide->background_image);
+                                $mobileImg = $slide->mobile_background_image ? asset('storage/' . $slide->mobile_background_image) : $desktopImg;
+                            @endphp
+                            <style>
+                                .hero__bg-{{ $slide->id }} {
+                                    background-image: url('{{ $mobileImg }}');
+                                }
+                                @media (min-width: 768px) {
+                                    .hero__bg-{{ $slide->id }} {
+                                        background-image: url('{{ $desktopImg }}');
+                                    }
+                                }
+                            </style>
+                            <div class="hero__bg hero__bg-{{ $slide->id }}"></div>
                             <div class="hero__content">
                                 @if($slide->label)
                                     <span class="hero__label">{{ $slide->label }}</span>

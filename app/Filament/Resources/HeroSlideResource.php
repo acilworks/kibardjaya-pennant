@@ -30,23 +30,43 @@ class HeroSlideResource extends Resource
             ->schema([
                 Forms\Components\Section::make('Slide Content')
                     ->schema([
-                        Forms\Components\FileUpload::make('background_image')
-                            ->label('Background Image')
-                            ->image()
-                            ->disk('public')
-                            ->directory('hero-slides')
-                            ->required()
-                            ->columnSpanFull()
-                            ->imageResizeMode('cover')
-                            ->imageCropAspectRatio('16:9')
-                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
-                            ->saveUploadedFileUsing(function ($file) {
-                                $filename = Str::random(40) . '.' . $file->getClientOriginalExtension();
-                                $file->storeAs('hero-slides', $filename, 'public');
-                                $path = 'hero-slides/' . $filename;
-                                $service = app(WebpImageService::class);
-                                return $service->convertToWebp($path);
-                            }),
+                        Forms\Components\Grid::make(2)
+                            ->schema([
+                                Forms\Components\FileUpload::make('background_image')
+                                    ->label('Desktop Background Image')
+                                    ->image()
+                                    ->disk('public')
+                                    ->directory('hero-slides')
+                                    ->required()
+                                    ->imageResizeMode('cover')
+                                    ->imageCropAspectRatio('16:9')
+                                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                                    ->saveUploadedFileUsing(function ($file) {
+                                        $filename = Str::random(40) . '.' . $file->getClientOriginalExtension();
+                                        $file->storeAs('hero-slides', $filename, 'public');
+                                        $path = 'hero-slides/' . $filename;
+                                        $service = app(WebpImageService::class);
+                                        return $service->convertToWebp($path);
+                                    }),
+
+                                Forms\Components\FileUpload::make('mobile_background_image')
+                                    ->label('Mobile Background Image')
+                                    ->image()
+                                    ->disk('public')
+                                    ->directory('hero-slides')
+                                    ->nullable()
+                                    ->helperText('Dimensions: 900x1274 px. Digunakan untuk mobile view.')
+                                    ->imageResizeMode('cover')
+                                    ->imageCropAspectRatio('900:1274')
+                                    ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                                    ->saveUploadedFileUsing(function ($file) {
+                                        $filename = Str::random(40) . '.' . $file->getClientOriginalExtension();
+                                        $file->storeAs('hero-slides', $filename, 'public');
+                                        $path = 'hero-slides/' . $filename;
+                                        $service = app(WebpImageService::class);
+                                        return $service->convertToWebp($path);
+                                    }),
+                            ]),
 
                         Forms\Components\TextInput::make('label')
                             ->label('Small Label (optional)')
