@@ -21,6 +21,7 @@
                                 .hero__bg-{{ $slide->id }} {
                                     background-image: url('{{ $mobileImg }}');
                                 }
+
                                 @media (min-width: 768px) {
                                     .hero__bg-{{ $slide->id }} {
                                         background-image: url('{{ $desktopImg }}');
@@ -116,11 +117,29 @@
     {{-- Custom Order Section --}}
     <section class="custom-order">
         <div class="custom-order__image-wrap">
-            <picture>
-                <source srcset="{{ asset('image/custom-img.webp') }}" type="image/webp">
-                <img src="{{ asset('image/custom-img.jpeg') }}" alt="Custom Pennant Order" class="custom-order__image"
-                    loading="lazy">
-            </picture>
+            <div class="swiper custom-swiper">
+                <div class="swiper-wrapper">
+                    <div class="swiper-slide">
+                        <div class="custom-swiper__item">
+                            <img src="{{ asset('image/custom-5sided.gif') }}" alt="Custom 5 Sided Order"
+                                class="custom-order__image" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="custom-swiper__item">
+                            <img src="{{ asset('image/custom-banner.jpeg') }}" alt="Custom Banner Order"
+                                class="custom-order__image" loading="lazy">
+                        </div>
+                    </div>
+                    <div class="swiper-slide">
+                        <div class="custom-swiper__item">
+                            <img src="{{ asset('image/custom-pennant.gif') }}" alt="Custom Pennant Order"
+                                class="custom-order__image" loading="lazy">
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-pagination custom-swiper__pagination"></div>
+            </div>
         </div>
         <div class="custom-order__content">
             <!-- <p class="custom-order__tagline">Not every journey is the same.</p> -->
@@ -175,7 +194,7 @@
             <h2 class="collab__title"></h2>
             <div class="collab__view-all-wrap">
                 <!-- <a href="/collaborations" class="collab__view-all">View All</a>
-                                                                        <span class="collab__view-all-arrow">&rarr;</span> -->
+                                                                                        <span class="collab__view-all-arrow">&rarr;</span> -->
             </div>
         </div>
     @endif
@@ -231,6 +250,19 @@
                 },
             });
 
+            new Swiper('.custom-swiper', {
+                slidesPerView: 1,
+                spaceBetween: 0,
+                loop: false,
+                // autoplay: {
+                //     delay: 3500,
+                //     disableOnInteraction: false,
+                // },
+                pagination: {
+                    el: '.custom-swiper__pagination',
+                    clickable: true,
+                },
+            });
 
         });
     </script>

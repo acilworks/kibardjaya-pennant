@@ -11,25 +11,25 @@
     SHOP HERO
     ============================================ --}}
     <!-- <section class="shop-hero">
-                                                <h1 class="shop-hero__title">ALL PIECES.</h1>
-                                                <p class="shop-hero__desc">
-                                                    Explore our complete collection of handcrafted pennants, banners, and flags.
-                                                    Made for collectors, spaces, and stories.
-                                                </p>
-                                            </section> -->
+                                                            <h1 class="shop-hero__title">ALL PIECES.</h1>
+                                                            <p class="shop-hero__desc">
+                                                                Explore our complete collection of handcrafted pennants, banners, and flags.
+                                                                Made for collectors, spaces, and stories.
+                                                            </p>
+                                                        </section> -->
 
     {{-- Hero Section --}}
     <!-- <section class="collab-hero" style="border-bottom: 1px solid #1a1a1a;">
-                        <h1 class="collab-hero__title">All Pieces.</h1>
-                        <div class="collab-hero__subtitle">
-                            <p class="collab-hero__tagline">Made for collectors, spaces, and stories.</p>
-                            <p class="collab-hero__desc">
-                                Explore handcrafted pennants, banners, flags, and more.
-                                Designed for collectors, spaces, and personal stories.
-                                Find the piece that feels like yours.
-                            </p>
-                        </div>
-                    </section> -->
+                                    <h1 class="collab-hero__title">All Pieces.</h1>
+                                    <div class="collab-hero__subtitle">
+                                        <p class="collab-hero__tagline">Made for collectors, spaces, and stories.</p>
+                                        <p class="collab-hero__desc">
+                                            Explore handcrafted pennants, banners, flags, and more.
+                                            Designed for collectors, spaces, and personal stories.
+                                            Find the piece that feels like yours.
+                                        </p>
+                                    </div>
+                                </section> -->
     <section class="collab-hero" style="border-bottom: 1px solid #1a1a1a;">
         <h1 class="collab-hero__title">Collections.</h1>
         <div class="collab-hero__subtitle">
@@ -193,7 +193,7 @@
                     <div class="swiper-slide">
                         <a href="/custom/pennant" class="syd__card">
                             <div class="syd__card-img-wrap">
-                                <img src="{{ asset('image/syd-01.webp') }}" alt="Pennant" class="syd__card-img"
+                                <img src="{{ asset('image/custom-pennant.gif') }}" alt="Pennant" class="syd__card-img"
                                     loading="lazy">
                             </div>
                             <div class="syd__card-info">
@@ -208,7 +208,7 @@
                     <div class="swiper-slide">
                         <a href="/custom/banner" class="syd__card">
                             <div class="syd__card-img-wrap">
-                                <img src="{{ asset('image/syd-02.webp') }}" alt="Banner" class="syd__card-img"
+                                <img src="{{ asset('image/custom-banner.jpeg') }}" alt="Banner" class="syd__card-img"
                                     loading="lazy">
                             </div>
                             <div class="syd__card-info">
@@ -223,7 +223,7 @@
                     <div class="swiper-slide">
                         <a href="/custom/camp-flag" class="syd__card">
                             <div class="syd__card-img-wrap">
-                                <img src="{{ asset('image/syd-03.webp') }}" alt="Camp Flag" class="syd__card-img"
+                                <img src="{{ asset('image/custom-5sided.gif') }}" alt="Camp Flag" class="syd__card-img"
                                     loading="lazy">
                             </div>
                             <div class="syd__card-info">
