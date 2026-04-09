@@ -20,8 +20,8 @@
     {{-- Start Your Design Section --}}
     <section class="syd">
         <!-- <div class="syd__header">
-                                                                                        <span class="syd__label">START YOUR DESIGN</span>
-                                                                                    </div> -->
+                                                                                            <span class="syd__label">START YOUR DESIGN</span>
+                                                                                        </div> -->
         <div class="syd__body">
             <div class="swiper syd__swiper">
                 <div class="swiper-wrapper">
@@ -137,8 +137,7 @@
     {{-- Personalized By You Section --}}
     <section class="pby" id="custom-pby">
         <div class="pby__image-wrap">
-            <img src="{{ asset('image/bg-personalized.webp') }}" alt="Personalized Pennants" class="pby__image"
-                loading="lazy">
+            <img src="{{ asset('image/personalized.webp') }}" alt="Personalized Pennants" class="pby__image" loading="lazy">
         </div>
         <div class="pby__content">
             <h2 class="pby__title">PERSONALIZED<br>BY YOU</h2>
