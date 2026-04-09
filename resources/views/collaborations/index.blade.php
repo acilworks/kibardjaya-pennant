@@ -22,7 +22,7 @@
             @foreach($collaborations as $index => $collab)
                 <div class="collab-card">
                     <div class="collab-card__image-wrap">
-                        <img src="{{ $collab->image ? Storage::url($collab->image) : asset('image/placeholder.jpg') }}"
+                        <img src="{{ $collab->image ? Storage::url($collab->image) : asset('image/placeholder.webp') }}"
                             alt="{{ $collab->title }}" class="collab-card__image" loading="lazy">
                         <span class="collab-card__tag">{{ $collab->tag }}</span>
                     </div>

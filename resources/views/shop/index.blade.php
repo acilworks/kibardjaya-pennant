@@ -208,7 +208,7 @@
                     <div class="swiper-slide">
                         <a href="/custom/banner" class="syd__card">
                             <div class="syd__card-img-wrap">
-                                <img src="{{ asset('image/custom-banner.jpeg') }}" alt="Banner" class="syd__card-img"
+                                <img src="{{ asset('image/custom-banner.webp') }}" alt="Banner" class="syd__card-img"
                                     loading="lazy">
                             </div>
                             <div class="syd__card-info">

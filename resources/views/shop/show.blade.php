@@ -161,27 +161,27 @@
                 <div class="swiper-slide">
                     <picture>
                         <source srcset="{{ asset('image/balibarong4.webp') }}" type="image/webp">
-                        <img src="{{ asset('image/balibarong4.jpg') }}" alt="Lifestyle" class="pdp-lifestyle__img"
+                        <img src="{{ asset('image/balibarong4.webp') }}" alt="Lifestyle" class="pdp-lifestyle__img"
                             loading="lazy">
                     </picture>
                 </div>
                 <div class="swiper-slide">
                     <picture>
                         <source srcset="{{ asset('image/enjoy.webp') }}" type="image/webp">
-                        <img src="{{ asset('image/enjoy.png') }}" alt="Lifestyle" class="pdp-lifestyle__img" loading="lazy">
+                        <img src="{{ asset('image/enjoy.webp') }}" alt="Lifestyle" class="pdp-lifestyle__img" loading="lazy">
                     </picture>
                 </div>
                 <div class="swiper-slide">
                     <picture>
                         <source srcset="{{ asset('image/brooks.webp') }}" type="image/webp">
-                        <img src="{{ asset('image/brooks.png') }}" alt="Lifestyle" class="pdp-lifestyle__img"
+                        <img src="{{ asset('image/brooks.webp') }}" alt="Lifestyle" class="pdp-lifestyle__img"
                             loading="lazy">
                     </picture>
                 </div>
                 <div class="swiper-slide">
                     <picture>
                         <source srcset="{{ asset('image/yes-chef.webp') }}" type="image/webp">
-                        <img src="{{ asset('image/yes-chef.png') }}" alt="Lifestyle" class="pdp-lifestyle__img"
+                        <img src="{{ asset('image/yes-chef.webp') }}" alt="Lifestyle" class="pdp-lifestyle__img"
                             loading="lazy">
                     </picture>
                 </div>
@@ -197,7 +197,7 @@
             <div class="swiper-wrapper">
                 {{-- Card 1: 15% Off --}}
                 <div class="swiper-slide pdp-trust__card">
-                    <!-- <img src="{{ asset('image/balibarong4.jpg') }}" alt="15% Off" class="pdp-trust__card-bg"> -->
+                    <!-- <img src="{{ asset('image/balibarong4.webp') }}" alt="15% Off" class="pdp-trust__card-bg"> -->
                     <div class="pdp-trust__card-overlay">
                         <h3 class="pdp-trust__card-title">15% Off<br>First Order</h3>
                         <p class="pdp-trust__card-desc">Subscribe to our newsletter and receive 15% off your first order.
@@ -208,7 +208,7 @@
 
                 {{-- Card 2: Ships Worldwide --}}
                 <div class="swiper-slide pdp-trust__card">
-                    <!-- <img src="{{ asset('image/enjoy.png') }}" alt="Ships Worldwide" class="pdp-trust__card-bg"> -->
+                    <!-- <img src="{{ asset('image/enjoy.webp') }}" alt="Ships Worldwide" class="pdp-trust__card-bg"> -->
                     <div class="pdp-trust__card-overlay">
                         <h3 class="pdp-trust__card-title">Ships<br>Worldwide</h3>
                         <p class="pdp-trust__card-desc">Sends from our studio in Indonesia. For international orders, please
@@ -219,7 +219,7 @@
 
                 {{-- Card 3: Handmade Studio --}}
                 <div class="swiper-slide pdp-trust__card">
-                    <!-- <img src="{{ asset('image/yes-chef.png') }}" alt="Handmade" class="pdp-trust__card-bg"> -->
+                    <!-- <img src="{{ asset('image/yes-chef.webp') }}" alt="Handmade" class="pdp-trust__card-bg"> -->
                     <div class="pdp-trust__card-overlay">
                         <h3 class="pdp-trust__card-title">Handmade<br>Studio Production</h3>
                         <p class="pdp-trust__card-desc">Produced in small batches and crafted individually in our Yogyakarta

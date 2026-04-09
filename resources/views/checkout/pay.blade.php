@@ -11,7 +11,7 @@
                 <div class="pay-section__banks">
                     <picture>
                         <source srcset="{{ asset('image/midtrans-bank-support.webp') }}" type="image/webp">
-                        <img src="{{ asset('image/midtrans-bank-support.png') }}" alt="Supported Payment Methods">
+                        <img src="{{ asset('image/midtrans-bank-support.webp') }}" alt="Supported Payment Methods">
                     </picture>
                 </div>
             </div>
@@ -25,7 +25,7 @@
                     </div>
                     <picture>
                         <source srcset="{{ asset('image/logo-kibar.webp') }}" type="image/webp">
-                        <img src="{{ asset('image/logo-kibar.png') }}" alt="Kibardjaya" class="pay-receipt__logo">
+                        <img src="{{ asset('image/logo-kibar.webp') }}" alt="Kibardjaya" class="pay-receipt__logo">
                     </picture>
                 </div>
 

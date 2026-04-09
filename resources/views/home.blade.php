@@ -127,7 +127,7 @@
                     </div>
                     <div class="swiper-slide">
                         <div class="custom-swiper__item">
-                            <img src="{{ asset('image/custom-banner.jpeg') }}" alt="Custom Banner Order"
+                            <img src="{{ asset('image/custom-banner.webp') }}" alt="Custom Banner Order"
                                 class="custom-order__image" loading="lazy">
                         </div>
                     </div>
@@ -174,7 +174,7 @@
                 @foreach($collaborations as $collab)
                     <div class="collab-card">
                         <div class="collab-card__image-wrap">
-                            <img src="{{ $collab->image ? Storage::url($collab->image) : asset('image/placeholder.jpg') }}"
+                            <img src="{{ $collab->image ? Storage::url($collab->image) : asset('image/placeholder.webp') }}"
                                 alt="{{ $collab->title }}" class="collab-card__image" loading="lazy">
                             <span class="collab-card__tag">{{ $collab->tag }}</span>
                         </div>

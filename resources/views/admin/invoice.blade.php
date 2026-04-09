@@ -332,7 +332,7 @@
                 </div>
                 <picture>
                     <source srcset="{{ asset('image/logo-kibar.webp') }}" type="image/webp">
-                    <img src="{{ asset('image/logo-kibar.png') }}" alt="Kibardjaya" class="pay-receipt__logo">
+                    <img src="{{ asset('image/logo-kibar.webp') }}" alt="Kibardjaya" class="pay-receipt__logo">
                 </picture>
             </div>
 
@@ -457,7 +457,7 @@
                     <div class="pay-receipt__stamp">
                         <picture>
                             <source srcset="{{ asset('image/kibar-stamp.webp') }}" type="image/webp">
-                            <img src="{{ asset('image/kibar-stamp.png') }}" alt="KibarDjaya Stamp">
+                            <img src="{{ asset('image/kibar-stamp.webp') }}" alt="KibarDjaya Stamp">
                         </picture>
                     </div>
                 @endif

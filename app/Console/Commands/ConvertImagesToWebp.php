@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\HeroSlide;
 use App\Models\ProductColorVariant;
+use App\Models\Collaboration;
 use Illuminate\Console\Command;
 
 class ConvertImagesToWebp extends Command
@@ -85,28 +86,58 @@ class ConvertImagesToWebp extends Command
             }
         });
 
-        // ── Static Public Images (Menu Custom dll) ──
-        $this->info('Converting static images in public/image...');
-        $staticPath = public_path('image');
-        if (\Illuminate\Support\Facades\File::exists($staticPath)) {
-            $files = \Illuminate\Support\Facades\File::allFiles($staticPath);
-            $manager = new \Intervention\Image\ImageManager(new \Intervention\Image\Drivers\Gd\Driver());
+        // ── Collaborations ──
+        $this->info('Converting collaborations images...');
+        Collaboration::chunk(50, function ($collabs) use ($service, &$converted, &$failed) {
+            foreach ($collabs as $collab) {
+                if ($collab->image) {
+                    try {
+                        $collab->update(['image' => $service->convertToWebp($collab->image)]);
+                        $converted++;
+                    } catch (\Throwable $e) {
+                        $this->warn("  Failed: {$collab->image} — {$e->getMessage()}");
+                        $failed++;
+                    }
+                }
+                if ($collab->banner_image) {
+                    try {
+                        $collab->update(['banner_image' => $service->convertToWebp($collab->banner_image)]);
+                        $converted++;
+                    } catch (\Throwable $e) {
+                        $this->warn("  Failed: {$collab->banner_image} — {$e->getMessage()}");
+                        $failed++;
+                    }
+                }
+            }
+        });
 
-            foreach ($files as $file) {
-                if (in_array(strtolower($file->getExtension()), ['jpg', 'jpeg', 'png', 'bmp'])) {
-                    $absolutePath = $file->getRealPath();
-                    $webpPath = preg_replace('/\.(jpe?g|png|gif|bmp)$/i', '.webp', $absolutePath);
+        // ── Static Public Images ──
+        $this->info('Converting static images in public folders...');
+        $staticPaths = [public_path('image'), public_path('images/pennant_parts')];
+        $manager = new \Intervention\Image\ImageManager(new \Intervention\Image\Drivers\Gd\Driver());
 
-                    if (!file_exists($webpPath)) {
-                        try {
-                            $image = $manager->read($absolutePath);
-                            $image->toWebp(80)->save($webpPath);
-                            $converted++;
-                            // Jika ingin menghapus file asli agar lebih bersih, uncomment baris di bawah:
-                            // unlink($absolutePath);
-                        } catch (\Throwable $e) {
-                            $this->warn("  Failed: {$file->getFilename()} — {$e->getMessage()}");
-                            $failed++;
+        foreach ($staticPaths as $staticPath) {
+            if (\Illuminate\Support\Facades\File::exists($staticPath)) {
+                $files = \Illuminate\Support\Facades\File::allFiles($staticPath);
+                foreach ($files as $file) {
+                    if (in_array(strtolower($file->getExtension()), ['jpg', 'jpeg', 'png', 'bmp'])) {
+                        $absolutePath = $file->getRealPath();
+                        $webpPath = preg_replace('/\.(jpe?g|png|gif|bmp)$/i', '.webp', $absolutePath);
+
+                        if (!file_exists($webpPath)) {
+                            try {
+                                $image = $manager->read($absolutePath);
+                                $image->toWebp(80)->save($webpPath);
+                                $converted++;
+                                unlink($absolutePath);
+                            } catch (\Throwable $e) {
+                                $this->warn("  Failed: {$file->getFilename()} — {$e->getMessage()}");
+                                $failed++;
+                            }
+                        } else {
+                            if (file_exists($absolutePath)) {
+                                unlink($absolutePath);
+                            }
                         }
                     }
                 }

@@ -137,12 +137,12 @@
             {{-- Center Logo --}}
             <a href="/" class="navbar__logo">
                 <!-- Logo untuk mode transparan/blend -->
-                <img src="{{ asset('image/kibar-white.png') }}" alt="Kibardjaya Logo" class="logo-blend">
+                <img src="{{ asset('image/kibar-white.webp') }}" alt="Kibardjaya Logo" class="logo-blend">
                 
                 <!-- Logo untuk mode statis/scroll putih -->
                 <picture class="logo-normal">
                     <source srcset="{{ asset('image/logo-kibar.webp') }}" type="image/webp">
-                    <img src="{{ asset('image/logo-kibar.png') }}" alt="Kibardjaya Logo">
+                    <img src="{{ asset('image/logo-kibar.webp') }}" alt="Kibardjaya Logo">
                 </picture>
             </a>
 
@@ -214,7 +214,7 @@
                         <div class="mega-menu__brand-logo">
                             <picture>
                                 <source srcset="{{ asset('image/kibardjaya.webp') }}" type="image/webp">
-                                <img src="{{ asset('image/kibardjaya.png') }}" alt="Kibardjaya">
+                                <img src="{{ asset('image/kibardjaya.webp') }}" alt="Kibardjaya">
                             </picture>
                         </div>
                     </div>
@@ -466,7 +466,7 @@
             <div class="footer__newsletter-logo">
                 <picture>
                     <source srcset="{{ asset('image/kibardjaya-footer.webp') }}" type="image/webp">
-                    <img src="{{ asset('image/kibardjaya-footer.png') }}" alt="Kibardjaya" loading="lazy">
+                    <img src="{{ asset('image/kibardjaya-footer.webp') }}" alt="Kibardjaya" loading="lazy">
                 </picture>
             </div>
             <span class="footer__newsletter-label">Get in touch!</span>

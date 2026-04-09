@@ -304,7 +304,7 @@
 
             get currentFlagImage() {
                 if (this.flagColor && this.borderColor) {
-                    return `/images/pennant_parts/pennant/pennant-${this.flagColor}-${this.borderColor}.png`;
+                    return `/images/pennant_parts/pennant/pennant-${this.flagColor}-${this.borderColor}.webp`;
                 }
                 return '';
             },
