@@ -67,16 +67,20 @@
     {{-- Brand Story Section --}}
 
     {{-- Hero Section --}}
-    <section class="collab-hero">
-        <h1 class="collab-hero__title">More Than A Souvenir.</h1>
-        <div class="collab-hero__subtitle">
-            <p class="collab-hero__tagline">Bring your story home.</p>
-            <p class="collab-hero__desc">
-                There was a time when travelers brought home pennants as proof
-                of where they had been. A small symbol. A lasting memory.
-                <br>
-                Kibardjaya revives that tradition, reimagined for modern
-                collectors who value story, craftsmanship, and timeless design.
+    <section class="home-hero">
+        <h1 class="home-hero__title">GOOD STORIES,<br>WELL MADE</h1>
+        <div class="home-hero__subtitle">
+            <p class="home-hero__tagline">Bring your story home.</p>
+            <p class="home-hero__desc">
+                Every journey leaves a mark - not just in photos, but in memory.
+                Kibardjaya transforms those moments into handcrafted pennants,
+                made to be kept, not forgotten.
+                <br><br>
+                Inspired by places, stories, and the spirit,
+                each piece is carefully made to carry meaning -
+                not mass-produced, but thoughtfully created.
+                <br><br>
+                Handcrafted in Yogyakarta, Indonesia.
             </p>
         </div>
     </section>
@@ -145,9 +149,9 @@
             <!-- <p class="custom-order__tagline">Not every journey is the same.</p> -->
             <h2 class="custom-order__title">Create Your Own Story</h2>
             <p class="custom-order__desc">
-                Some stories are meant to be created.<br>
+                Some stories are meant to be created.<br><br>
                 Design a piece that reflects yours,
-                whether it’s a pennant, banner, or flag. <br>Choose your message, your colors, your style.
+                whether it’s a pennant, banner, or flag. <br><br>Choose your message, your colors, your style.
                 We’ll bring it to life by hand.
                 Made to keep. Made to remember.
 
@@ -194,7 +198,7 @@
             <h2 class="collab__title"></h2>
             <div class="collab__view-all-wrap">
                 <!-- <a href="/collaborations" class="collab__view-all">View All</a>
-                                                                                        <span class="collab__view-all-arrow">&rarr;</span> -->
+                                                                                                                                                                                                                                                                                <span class="collab__view-all-arrow">&rarr;</span> -->
             </div>
         </div>
     @endif

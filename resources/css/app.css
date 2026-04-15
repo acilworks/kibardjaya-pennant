@@ -42,7 +42,7 @@
 }
 
 .navbar-sticky--scrolled {
-    background-color: #ffffff;
+    background-color: #FAFAFA;
     border-bottom: 1px solid #1a1a1a;
     /* background-color: #f5f5f0; */
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
@@ -50,25 +50,25 @@
 
 .navbar-sticky--blend {
     mix-blend-mode: difference;
-    color: #ffffff;
+    color: #FAFAFA;
 }
 
 .navbar-sticky--blend .navbar__link,
 .navbar-sticky--blend .navbar__icon,
 .navbar-sticky--blend .navbar__cart-badge {
-    color: #ffffff;
+    color: #FAFAFA;
 }
 
 .navbar-sticky--blend .navbar__icon svg {
-    stroke: #ffffff;
+    stroke: #FAFAFA;
 }
 
 .navbar-sticky--blend .mobile-menu-btn {
-    color: #ffffff;
+    color: #FAFAFA;
 }
 
 .navbar-sticky--blend .mobile-menu-btn svg {
-    stroke: #ffffff;
+    stroke: #FAFAFA;
 }
 
 /* --- Logo Switching Logic --- */
@@ -199,7 +199,7 @@
     left: 0;
     width: 50%;
     height: 100vh;
-    background-color: #ffffff;
+    background-color: #FAFAFA;
     border-top: 1px solid #1a1a1a;
     border-bottom: 1px solid #1a1a1a;
     display: flex;
@@ -315,7 +315,7 @@
     width: 100%;
     height: 100vh;
     height: 100dvh;
-    background-color: #ffffff;
+    background-color: #FAFAFA;
     z-index: 40;
     overflow: hidden;
     border-top: 1px solid rgba(0, 0, 0, 0.08);
@@ -338,7 +338,7 @@
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: #ffffff;
+    background-color: #FAFAFA;
     display: flex;
     flex-direction: column;
     overflow-y: auto;
@@ -608,7 +608,7 @@
     font-size: clamp(2.5rem, 3vw, 3.5rem);
     font-weight: 700;
     line-height: 1.05;
-    color: #ffffff;
+    color: #FAFAFA;
     text-transform: uppercase;
     letter-spacing: -1px;
     /* margin-bottom: 40px; */
@@ -811,12 +811,12 @@
 
 .brand-story__cat-btn:hover {
     background-color: #1a1a1a;
-    color: #ffffff;
+    color: #FAFAFA;
 }
 
 .brand-story__cat-btn--active {
     background-color: #1a1a1a;
-    color: #ffffff;
+    color: #FAFAFA;
 }
 
 
@@ -1168,7 +1168,7 @@
     text-transform: uppercase;
     /* text-transform: capitalize; */
     font-weight: 300;
-    color: #ffffff;
+    color: #FAFAFA;
     /* padding-right: 8px; */
     flex-shrink: 0;
 }
@@ -1366,7 +1366,7 @@
     letter-spacing: -2px;
     line-height: 0.95;
     color: #1a1a1a;
-    margin-bottom: 24px;
+    margin-bottom: 50px;
 }
 
 .custom-order__desc {
@@ -1430,7 +1430,7 @@
     }
 
     .custom-order__content {
-        padding: 40px 24px;
+        padding: 80px 24px;
     }
 
     .custom-order__title {
@@ -1508,7 +1508,7 @@
     font-weight: 700;
     text-transform: capitalize;
     letter-spacing: 2px;
-    color: #ffffff;
+    color: #FAFAFA;
     margin-bottom: 6px;
 }
 
@@ -1586,7 +1586,7 @@
 .footer {
     background-color: #1a1a1a;
     border-top: 1px solid #1a1a1a;
-    color: #ffffff;
+    color: #FAFAFA;
 }
 
 .footer__newsletter {
@@ -1726,7 +1726,7 @@
 }
 
 .footer__col-socials-inner a:hover {
-    color: #ffffff;
+    color: #FAFAFA;
 }
 
 .footer__col-store {
@@ -1750,7 +1750,7 @@
 }
 
 .footer__col-store-inner a:hover {
-    color: #ffffff;
+    color: #FAFAFA;
 }
 
 .footer__col-studio {
@@ -1811,7 +1811,7 @@
 }
 
 .footer__credit a:hover {
-    color: #ffffff;
+    color: #FAFAFA;
 }
 
 /* Footer Responsive */
@@ -1970,7 +1970,7 @@
 
 /* --- Info Panel (Right Column) — bordered box --- */
 .pdp__info {
-    background: #ffffff;
+    background: #FAFAFA;
     padding: 20px;
     overflow-y: auto;
     max-height: calc(100vh - 86px);
@@ -2131,7 +2131,7 @@
 .pdp__actions {
     border-top: 1px solid #1a1a1a;
     padding: 16px 32px;
-    background: #ffffff;
+    background: #FAFAFA;
 }
 
 .pdp__actions-inner {
@@ -2191,7 +2191,7 @@
     flex: 1;
     padding: 12px 20px;
     background-color: #1a1a1a;
-    color: #ffffff;
+    color: #FAFAFA;
     font-size: 13px;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -2203,7 +2203,7 @@
 }
 
 .pdp__btn:hover {
-    background-color: #ffffff;
+    background-color: #FAFAFA;
     color: #1a1a1a;
 }
 
@@ -2374,7 +2374,7 @@
 }
 
 .pdp-trust__modal {
-    background: #ffffff;
+    background: #FAFAFA;
     padding: 32px;
     max-width: 420px;
     width: 100%;
@@ -2714,7 +2714,7 @@
     text-align: center;
     border: 1px solid #1a1a1a;
     padding: 24px;
-    background-color: #ffffff;
+    background-color: #FAFAFA;
 }
 
 .pay-section__btn {
@@ -2722,7 +2722,7 @@
     width: 100%;
     padding: 16px 24px;
     background-color: #1a1a1a;
-    color: #ffffff;
+    color: #FAFAFA;
     font-family: 'JetBrains Mono', 'Courier New', Courier, monospace;
     font-size: 12px;
     font-weight: 600;
@@ -2734,7 +2734,7 @@
 }
 
 .pay-section__btn:hover {
-    background-color: #ffffff;
+    background-color: #FAFAFA;
     color: #1a1a1a;
 }
 
@@ -2753,7 +2753,7 @@
 .pay-receipt {
     border: 1px solid #1a1a1a;
     padding: 32px 28px;
-    background-color: #ffffff;
+    background-color: #FAFAFA;
 }
 
 .pay-receipt__header {
@@ -3627,7 +3627,7 @@ a svg {
     position: absolute;
     top: calc(100% + 12px);
     left: 0;
-    background: #ffffff;
+    background: #FAFAFA;
     border: 1px solid #1a1a1a;
     min-width: 220px;
     display: flex;
@@ -3796,7 +3796,7 @@ a svg {
     max-width: 500px;
     /* same width as cart-right-inner generally */
     height: 100vh;
-    background-color: #ffffff;
+    background-color: #FAFAFA;
     z-index: 101;
     box-shadow: -4px 0 15px rgba(0, 0, 0, 0.1);
     display: flex;
@@ -3848,7 +3848,7 @@ a svg {
 .cart-drawer__continue {
     padding: 12px 20px;
     background-color: #1a1a1a;
-    color: #ffffff;
+    color: #FAFAFA;
     font-size: 11px;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -3861,7 +3861,7 @@ a svg {
 }
 
 .cart-drawer__continue:hover {
-    background-color: #ffffff;
+    background-color: #FAFAFA;
     color: #1a1a1a;
 }
 
@@ -4002,7 +4002,7 @@ a svg {
 .cart-drawer__summary-gap {
     /* height: 30px; */
     margin-top: 24px;
-    border-bottom: 1px solid #ffffff;
+    border-bottom: 1px solid #FAFAFA;
 }
 
 .cart-drawer__process-btn {
@@ -4011,7 +4011,7 @@ a svg {
     width: 100%;
     padding: 12px 20px;
     background-color: #1a1a1a;
-    color: #ffffff;
+    color: #FAFAFA;
     font-size: 13px;
     letter-spacing: 3px;
     text-transform: uppercase;
@@ -4024,7 +4024,7 @@ a svg {
 }
 
 .cart-drawer__process-btn:hover {
-    background-color: #ffffff;
+    background-color: #FAFAFA;
     color: #1a1a1a;
 }
 
@@ -4444,7 +4444,7 @@ a svg {
    ============================================ */
 .custom-ideas {
     /* padding: 60px 40px; */
-    background-color: #ffffff;
+    background-color: #FAFAFA;
     border-top: 1px solid #1a1a1a;
     border-bottom: 1px solid #1a1a1a;
     overflow: hidden;
@@ -4612,7 +4612,7 @@ a svg {
     display: inline-block;
     padding: 8px 16px;
     background-color: #1a1a1a;
-    color: #ffffff;
+    color: #FAFAFA;
     font-size: 11px;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -4662,7 +4662,7 @@ a svg {
 .syd {
     border-top: 1.4px solid #1a1a1a;
     border-bottom: 1.4px solid #1a1a1a;
-    background-color: #ffffff;
+    background-color: #FAFAFA;
 }
 
 .syd__header {
@@ -4788,7 +4788,7 @@ a svg {
 
 /* --- How Custom Works (HCW) Section --- */
 .hcw {
-    background-color: #ffffff;
+    background-color: #FAFAFA;
     border-bottom: 1.4px solid #1a1a1a;
 }
 
@@ -4874,7 +4874,7 @@ a svg {
 .pby {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    background-color: #ffffff;
+    background-color: #FAFAFA;
     border-bottom: 1.4px solid #1a1a1a;
 }
 
@@ -4979,7 +4979,7 @@ a svg {
 
 /* --- Inside Kibar Studio (IKS) Section --- */
 .iks {
-    background-color: #ffffff;
+    background-color: #FAFAFA;
     /* background-color: #1a1a1a; */
 }
 
@@ -5015,7 +5015,7 @@ a svg {
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: -1px;
-    color: #ffffff;
+    color: #FAFAFA;
     margin-bottom: 16px;
     line-height: 1;
 }
@@ -5032,8 +5032,8 @@ a svg {
 .iks__cta {
     display: inline-block;
     padding: 8px 16px;
-    border: 1px solid #ffffff;
-    color: #ffffff;
+    border: 1px solid #FAFAFA;
+    color: #FAFAFA;
     font-size: 11px;
     letter-spacing: 2px;
     text-transform: uppercase;
@@ -5043,7 +5043,7 @@ a svg {
 }
 
 .iks__cta:hover {
-    background-color: #ffffff;
+    background-color: #FAFAFA;
     color: #1a1a1a;
 }
 
@@ -5077,16 +5077,17 @@ a svg {
 
 /* --- Hero --- */
 .collab-hero {
-    background-color: #ffffff;
+    background-color: #FAFAFA;
     padding: 60px 50px 50px;
 }
 
 .collab-hero__title {
-    font-size: clamp(5rem, 12vw, 8.5rem);
+    font-size: clamp(6rem, 10vw, 5rem);
+    /* font-size: clamp(3rem, 10vw, 3rem); */
     font-weight: 900;
     text-transform: uppercase;
-    letter-spacing: -5px;
-    color: #1a1a1a;
+    letter-spacing: -3px;
+    color: #1C1A19;
     line-height: 0.9;
     margin-bottom: 10px;
 }
@@ -5102,20 +5103,66 @@ a svg {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 2px;
-    color: #1a1a1a;
+    color: #1C1A19;
     margin-bottom: 16px;
     max-width: 440px;
     width: 100%;
 }
 
 .collab-hero__desc {
-    font-size: 10px;
+    font-size: 12px;
+    font-weight: 100;
     line-height: 1.7;
-    color: #222;
+    color: #1C1A19;
     /* color: #444; */
     max-width: 440px;
     width: 100%;
 }
+
+/* --- Hero --- */
+.home-hero {
+    background-color: #1C1A19;
+    padding: 80px 50px 80px;
+}
+
+.home-hero__title {
+    font-size: clamp(6rem, 10vw, 5rem);
+    /* font-size: clamp(3rem, 10vw, 3rem); */
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -3px;
+    color: #F8F4EE;
+    line-height: 0.9;
+    margin-bottom: 10px;
+}
+
+.home-hero__subtitle {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.home-hero__tagline {
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: #F8F4EE;
+    margin-bottom: 16px;
+    max-width: 520px;
+    width: 100%;
+}
+
+.home-hero__desc {
+    font-size: 12px;
+    font-weight: 100;
+    line-height: 1.7;
+    color: #F8F4EE;
+    /* color: #444; */
+    max-width: 520px;
+    width: 100%;
+}
+
 
 /* --- Collaboration Grid --- */
 .collab-grid {
@@ -5374,6 +5421,26 @@ a svg {
 
 /* --- Collaborations Responsive --- */
 @media (max-width: 768px) {
+    .home-hero {
+        padding: 80px 20px 80px;
+    }
+
+    .home-hero__title {
+        font-size: clamp(3.2rem, 14vw, 5rem);
+        letter-spacing: -3px;
+        margin-bottom: 50px;
+    }
+
+    .home-hero__subtitle {
+        align-items: flex-start;
+    }
+
+    .home-hero__desc {
+        font-size: 12px;
+        letter-spacing: 0.5px;
+        font-weight: 300;
+    }
+
     .collab-hero {
         padding: 30px 20px 24px;
     }

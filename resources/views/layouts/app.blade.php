@@ -49,7 +49,7 @@
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
-<body class="bg-[#ffffff] text-neutral-900 font-sans">
+<body class="bg-[#FAFAFA] text-neutral-900 font-sans">
     <!-- <body class="bg-[#f5f5f0] text-neutral-900 font-sans"> -->
 
     {{-- Announcement Bar --}}
@@ -138,7 +138,7 @@
             <a href="/" class="navbar__logo">
                 <!-- Logo untuk mode transparan/blend -->
                 <img src="{{ asset('image/kibar-white.webp') }}" alt="Kibardjaya Logo" class="logo-blend">
-                
+
                 <!-- Logo untuk mode statis/scroll putih -->
                 <picture class="logo-normal">
                     <source srcset="{{ asset('image/logo-kibar.webp') }}" type="image/webp">
@@ -387,7 +387,7 @@
                                             @endif
                                         </h3>
                                         <span class="cart-drawer__item-price">Rp.{{ number_format($item['price'], 0, ',', '.')
-                                                                    }}</span>
+                                                                            }}</span>
                                     </div>
                                     <div class="cart-drawer__item-bottom">
                                         <div class="cart-drawer__qty-ctrl">
