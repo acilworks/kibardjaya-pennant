@@ -1360,13 +1360,14 @@
 
 .custom-order__title {
 
-    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-size: clamp(1.6rem, 4vw, 2rem);
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: -2px;
     line-height: 0.95;
     color: #1a1a1a;
-    margin-bottom: 50px;
+    margin-bottom: 30px;
+    text-align: center;
 }
 
 .custom-order__desc {
@@ -1380,6 +1381,7 @@
     line-height: 1.7;
     color: #222;
     margin-bottom: 32px;
+    text-align: center;
     /* max-width: 380px; */
 }
 
@@ -1387,6 +1389,7 @@
     display: flex;
     align-items: center;
     gap: 8px;
+    justify-content: center;
 }
 
 .custom-order__cta {
@@ -1437,7 +1440,7 @@
         /* font-size: 1.6rem;
         letter-spacing: -1px;
         font-weight: 900; */
-        font-size: 2rem;
+        font-size: 1.6rem;
         letter-spacing: -1px;
     }
 
@@ -4898,13 +4901,22 @@ a svg {
 }
 
 .pby__title {
-    font-size: clamp(2rem, 4vw, 3.2rem);
+    font-size: clamp(1.6rem, 4vw, 2rem);
     font-weight: 900;
     text-transform: uppercase;
     letter-spacing: -2px;
     line-height: 0.95;
     color: #1a1a1a;
-    margin-bottom: 24px;
+    margin-bottom: 30px;
+
+    /* font-size: clamp(1.6rem, 4vw, 2rem);
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: -2px;
+    line-height: 0.95;
+    color: #1a1a1a;
+    margin-bottom: 30px;
+    text-align: center; */
 }
 
 .pby__desc {
@@ -4961,11 +4973,11 @@ a svg {
     }
 
     .pby__content {
-        padding: 32px 20px 40px;
+        padding: 50px 20px 50px;
     }
 
     .pby__title {
-        font-size: 2rem;
+        font-size: 1.6rem;
         letter-spacing: -1px;
     }
 
@@ -5078,7 +5090,7 @@ a svg {
 /* --- Hero --- */
 .collab-hero {
     background-color: #FAFAFA;
-    padding: 60px 50px 50px;
+    padding: 80px 50px 80px;
 }
 
 .collab-hero__title {
@@ -5089,7 +5101,7 @@ a svg {
     letter-spacing: -3px;
     color: #1C1A19;
     line-height: 0.9;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 .collab-hero__subtitle {
@@ -5100,7 +5112,7 @@ a svg {
 
 .collab-hero__tagline {
     font-size: 12px;
-    font-weight: 600;
+    font-weight: 400;
     text-transform: uppercase;
     letter-spacing: 2px;
     color: #1C1A19;
@@ -5442,12 +5454,12 @@ a svg {
     }
 
     .collab-hero {
-        padding: 30px 20px 24px;
+        padding: 50px 20px 50px;
     }
 
     .collab-hero__title {
-        font-size: clamp(3.2rem, 14vw, 5rem);
-        letter-spacing: -3px;
+        font-size: clamp(2rem, 14vw, 2rem);
+        letter-spacing: -1px;
     }
 
     .collab-hero__subtitle {

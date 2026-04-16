@@ -149,7 +149,7 @@
             <!-- <p class="custom-order__tagline">Not every journey is the same.</p> -->
             <h2 class="custom-order__title">Create Your Own Story</h2>
             <p class="custom-order__desc">
-                Some stories are meant to be created.<br><br>
+                Some stories are meant to be created.<br>
                 Design a piece that reflects yours,
                 whether it’s a pennant, banner, or flag. <br><br>Choose your message, your colors, your style.
                 We’ll bring it to life by hand.
@@ -198,7 +198,7 @@
             <h2 class="collab__title"></h2>
             <div class="collab__view-all-wrap">
                 <!-- <a href="/collaborations" class="collab__view-all">View All</a>
-                                                                                                                                                                                                                                                                                <span class="collab__view-all-arrow">&rarr;</span> -->
+                                                                                                                                                                                                                                                                                        <span class="collab__view-all-arrow">&rarr;</span> -->
             </div>
         </div>
     @endif
