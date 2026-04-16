@@ -28,10 +28,10 @@ class AdminPanelProvider extends PanelProvider
             ->path('admin')
             ->login()
             ->brandName('Kibardjaya')
-            ->brandLogo(asset('image/logo-kibar.png'))
-            ->darkModeBrandLogo(asset('image/kibardjaya-footer.png'))
+            ->brandLogo(asset('image/logo-kibar.webp'))
+            ->darkModeBrandLogo(asset('image/kibardjaya-footer.webp'))
             ->brandLogoHeight('2rem')
-            ->favicon(asset('image/logostamp.png'))
+            ->favicon(asset('image/logostamp.webp'))
             ->colors([
                 'primary' => Color::Amber,
             ])
