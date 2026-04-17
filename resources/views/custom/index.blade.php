@@ -20,8 +20,8 @@
     {{-- Start Your Design Section --}}
     <section class="syd">
         <!-- <div class="syd__header">
-                                                                                                <span class="syd__label">START YOUR DESIGN</span>
-                                                                                            </div> -->
+                                                                                                    <span class="syd__label">START YOUR DESIGN</span>
+                                                                                                </div> -->
         <div class="syd__body">
             <div class="swiper syd__swiper">
                 <div class="swiper-wrapper">
@@ -140,7 +140,7 @@
             <img src="{{ asset('image/personalized.webp') }}" alt="Personalized Pennants" class="pby__image" loading="lazy">
         </div>
         <div class="pby__content">
-            <h2 class="pby__title">PERSONALIZED<br>BY YOU</h2>
+            <h2 class="pby__title">PERSONALIZED BY YOU</h2>
             <p class="pby__desc">
                 Every design starts with you. Choose from a variety of styles,
                 colors, and materials to create something truly
