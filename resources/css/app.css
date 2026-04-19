@@ -4052,7 +4052,7 @@ a svg {
 /* --- Font Faces --- */
 @font-face {
     font-family: 'Ombudsman Stencil';
-    src: url('../fonts/Ombudsmanstencil-jeegj.ttf') format('ttf');
+    src: url('../fonts/Ombudsmanstencil-jeegj.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
     font-display: swap;
@@ -4117,7 +4117,7 @@ a svg {
 /* --- Font Utility Classes --- */
 .font-ombudsman-stencil {
     font-family: 'Ombudsman Stencil', cursive;
-    letter-spacing: 1px;
+    /* letter-spacing: 1px; */
     /* font-weight: bold; */
 }
 
@@ -4456,6 +4456,7 @@ a svg {
 .custom-ideas__header {
     padding: 20px 32px;
     border-bottom: 1px solid #1a1a1a;
+    /* background-color: #FAFAFA; */
     /* margin-bottom: 40px;
     border-bottom: 1px solid #000000; */
 }
