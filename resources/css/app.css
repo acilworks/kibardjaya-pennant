@@ -4447,7 +4447,7 @@ a svg {
    ============================================ */
 .custom-ideas {
     /* padding: 60px 40px; */
-    background-color: #FAFAFA;
+    background-color: #ffffff;
     border-top: 1px solid #1a1a1a;
     border-bottom: 1px solid #1a1a1a;
     overflow: hidden;
@@ -4456,7 +4456,7 @@ a svg {
 .custom-ideas__header {
     padding: 20px 32px;
     border-bottom: 1px solid #1a1a1a;
-    /* background-color: #FAFAFA; */
+    background-color: #FAFAFA;
     /* margin-bottom: 40px;
     border-bottom: 1px solid #000000; */
 }
