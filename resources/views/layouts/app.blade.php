@@ -470,7 +470,7 @@
                 </picture>
             </div>
             <span class="footer__newsletter-label">Get in touch!</span>
-            <form class="footer__newsletter-form" action="#" method="POST">
+            <form class="footer__newsletter-form" action="{{ route('newsletter.subscribe') }}" method="POST">
                 @csrf
                 <input type="email" name="email" class="footer__newsletter-input" placeholder="Enter your email"
                     required>
@@ -548,6 +548,106 @@
         </div>
     </footer>
 
+    {{-- Newsletter Response Modal --}}
+    <div x-data="newsletterModal()" x-cloak>
+        <div class="pdp-trust__modal-backdrop"
+            x-show="open"
+            x-transition:enter="transition ease-out duration-200"
+            x-transition:enter-start="opacity-0"
+            x-transition:enter-end="opacity-100"
+            x-transition:leave="transition ease-in duration-150"
+            x-transition:leave-start="opacity-100"
+            x-transition:leave-end="opacity-0"
+            @click.self="open = false">
+            <div class="pdp-trust__modal">
+                <button class="pdp-trust__modal-close" @click="open = false">&times;</button>
+                <h3 class="pdp-trust__modal-title" x-text="title"></h3>
+                <p class="pdp-trust__modal-text" x-text="message"></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function newsletterModal() {
+            return {
+                open: false,
+                title: '',
+                message: '',
+                show(title, message) {
+                    this.title = title;
+                    this.message = message;
+                    this.open = true;
+                }
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // AJAX Newsletter Form
+            const form = document.querySelector('.footer__newsletter-form');
+            if (form) {
+                form.addEventListener('submit', async function (e) {
+                    e.preventDefault();
+
+                    const emailInput = form.querySelector('input[name="email"]');
+                    const submitBtn = form.querySelector('button[type="submit"]');
+                    const originalBtnText = submitBtn.innerHTML;
+                    submitBtn.innerHTML = '...';
+                    submitBtn.disabled = true;
+
+                    try {
+                        const response = await fetch(form.action, {
+                            method: 'POST',
+                            headers: {
+                                'Content-Type': 'application/json',
+                                'Accept': 'application/json',
+                                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').content,
+                            },
+                            body: JSON.stringify({ email: emailInput.value }),
+                        });
+
+                        const data = await response.json();
+                        const modal = document.querySelector('[x-data="newsletterModal()"]');
+                        const alpineData = Alpine.$data(modal);
+
+                        if (response.ok && data.success) {
+                            alpineData.show('Success!', data.message);
+                            emailInput.value = '';
+                        } else {
+                            alpineData.show('Oops...', data.message || 'Something went wrong.');
+                        }
+                    } catch (err) {
+                        const modal = document.querySelector('[x-data="newsletterModal()"]');
+                        const alpineData = Alpine.$data(modal);
+                        alpineData.show('Oops...', 'A network error occurred. Please try again.');
+                    } finally {
+                        submitBtn.innerHTML = originalBtnText;
+                        submitBtn.disabled = false;
+                    }
+                });
+            }
+
+            // Show modal from server-side session (fallback for non-JS)
+            @if(session('newsletter_success'))
+                setTimeout(() => {
+                    const modal = document.querySelector('[x-data="newsletterModal()"]');
+                    if (modal) {
+                        const alpineData = Alpine.$data(modal);
+                        alpineData.show('Success!', "{{ session('newsletter_success') }}");
+                    }
+                }, 100);
+            @endif
+
+            @if($errors->has('email'))
+                setTimeout(() => {
+                    const modal = document.querySelector('[x-data="newsletterModal()"]');
+                    if (modal) {
+                        const alpineData = Alpine.$data(modal);
+                        alpineData.show('Oops...', "{{ $errors->first('email') }}");
+                    }
+                }, 100);
+            @endif
+        });
+    </script>
     @stack('scripts')
 </body>
 
