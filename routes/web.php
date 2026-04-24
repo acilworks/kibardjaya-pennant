@@ -29,6 +29,7 @@ use Illuminate\Support\Facades\Route;
 // });
 
 Route::get('/', [HomeController::class, 'index']);
+Route::view('/about', 'about');
 Route::get('/collections', [CollectionController::class, 'index']);
 Route::get('/shop', [ProductController::class, 'index']);
 Route::get('/shop/{slug}', [ProductController::class, 'show']);
