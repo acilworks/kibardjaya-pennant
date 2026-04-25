@@ -11,20 +11,20 @@
     SECTION 1: PRODUCT HERO
     ============================================ --}}
     <section class="pdp" x-data="{
-                                                                                qty: 1,
-                                                                                selectedColorIndex: null,
-                                                                                selectedColorName: '',
-                                                                                colorVariants: {{ Js::from($product->colorVariants->map(fn($v) => ['id' => $v->id, 'name' => $v->color_name, 'code' => $v->color_code, 'image' => $v->image ? asset('storage/' . $v->image) : null])) }},
-                                                                                swiperInstance: null,
-                                                                                variantSlideMap: {},
-                                                                                selectColor(index) {
-                                                                                    this.selectedColorIndex = index;
-                                                                                    this.selectedColorName = this.colorVariants[index].name;
-                                                                                    if (this.swiperInstance && this.variantSlideMap[index] !== undefined) {
-                                                                                        this.swiperInstance.slideTo(this.variantSlideMap[index]);
-                                                                                    }
-                                                                                }
-                                                                            }">
+                                                                                            qty: 1,
+                                                                                            selectedColorIndex: null,
+                                                                                            selectedColorName: '',
+                                                                                            colorVariants: {{ Js::from($product->colorVariants->map(fn($v) => ['id' => $v->id, 'name' => $v->color_name, 'code' => $v->color_code, 'image' => $v->image ? asset('storage/' . $v->image) : null])) }},
+                                                                                            swiperInstance: null,
+                                                                                            variantSlideMap: {},
+                                                                                            selectColor(index) {
+                                                                                                this.selectedColorIndex = index;
+                                                                                                this.selectedColorName = this.colorVariants[index].name;
+                                                                                                if (this.swiperInstance && this.variantSlideMap[index] !== undefined) {
+                                                                                                    this.swiperInstance.slideTo(this.variantSlideMap[index]);
+                                                                                                }
+                                                                                            }
+                                                                                        }">
         {{-- Left: Product Photos Swiper --}}
         <div class="pdp__gallery">
             <div class="swiper pdp__swiper">
@@ -168,7 +168,8 @@
                 <div class="swiper-slide">
                     <picture>
                         <source srcset="{{ asset('image/enjoy.webp') }}" type="image/webp">
-                        <img src="{{ asset('image/enjoy.webp') }}" alt="Lifestyle" class="pdp-lifestyle__img" loading="lazy">
+                        <img src="{{ asset('image/enjoy.webp') }}" alt="Lifestyle" class="pdp-lifestyle__img"
+                            loading="lazy">
                     </picture>
                 </div>
                 <div class="swiper-slide">
@@ -193,22 +194,21 @@
     SECTION 3: TRUST BLOCK
     ============================================ --}}
     <section class="pdp-trust" x-data="{ activeModal: null }" @trust-modal-open.window="activeModal = $event.detail">
-        <div class="swiper pdp-trust__swiper">
+        <div class="swiper pdp-trust__swiper clp-trust__swiper">
             <div class="swiper-wrapper">
                 {{-- Card 1: 15% Off --}}
                 <div class="swiper-slide pdp-trust__card">
-                    <!-- <img src="{{ asset('image/balibarong4.webp') }}" alt="15% Off" class="pdp-trust__card-bg"> -->
                     <div class="pdp-trust__card-overlay">
                         <h3 class="pdp-trust__card-title">15% Off<br>First Order</h3>
                         <p class="pdp-trust__card-desc">Subscribe to our newsletter and receive 15% off your first order.
                         </p>
                         <button class="pdp-trust__card-link" data-modal="discount">Info ↗</button>
+
                     </div>
                 </div>
 
                 {{-- Card 2: Ships Worldwide --}}
                 <div class="swiper-slide pdp-trust__card">
-                    <!-- <img src="{{ asset('image/enjoy.webp') }}" alt="Ships Worldwide" class="pdp-trust__card-bg"> -->
                     <div class="pdp-trust__card-overlay">
                         <h3 class="pdp-trust__card-title">Ships<br>Worldwide</h3>
                         <p class="pdp-trust__card-desc">Sends from our studio in Indonesia. For international orders, please
@@ -219,7 +219,6 @@
 
                 {{-- Card 3: Handmade Studio --}}
                 <div class="swiper-slide pdp-trust__card">
-                    <!-- <img src="{{ asset('image/yes-chef.webp') }}" alt="Handmade" class="pdp-trust__card-bg"> -->
                     <div class="pdp-trust__card-overlay">
                         <h3 class="pdp-trust__card-title">Handmade<br>Studio Production</h3>
                         <p class="pdp-trust__card-desc">Produced in small batches and crafted individually in our Yogyakarta
@@ -228,6 +227,8 @@
                     </div>
                 </div>
             </div>
+            <div class="swiper-button-prev clp-trust__nav"></div>
+            <div class="swiper-button-next clp-trust__nav"></div>
             <div class="swiper-pagination pdp-trust__pagination"></div>
         </div>
 
@@ -301,9 +302,9 @@
     @if($relatedProducts->count() > 0)
         <section class="pdp-related">
             <!-- <div class="pdp-related__header">
-                                <h2 class="pdp-related__title">Continue Your Collection</h2>
-                                <a href="/shop" class="pdp-related__view-all">View All &rarr;</a>
-                            </div> -->
+                                                        <h2 class="pdp-related__title">Continue Your Collection</h2>
+                                                        <a href="/shop" class="pdp-related__view-all">View All &rarr;</a>
+                                                    </div> -->
             <div class="collections__header" style="border-bottom: 1px solid #1a1a1a;">
                 <h2 class="collections__title">Continue Your Collection</h2>
                 <div class="collections__view-all-wrap">
@@ -377,10 +378,10 @@
                 slidesPerView: 1,
                 spaceBetween: 0,
                 loop: true,
-                pagination: {
-                    el: '.pdp-trust__pagination',
-                    clickable: true,
-                },
+                // pagination: {
+                //     el: '.pdp-trust__pagination',
+                //     clickable: true,
+                // },
                 on: {
                     click: function (swiper, event) {
                         const trigger = event.target.closest('.pdp-trust__card-link');
@@ -390,6 +391,10 @@
                             }));
                         }
                     }
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
                 },
                 breakpoints: {
                     768: {

@@ -29,8 +29,8 @@
     ============================================ --}}
     <section class="syd">
         <!-- <div class="syd__header">
-                                                                                                                                                                                                                                                                                                                            <span class="syd__label">Explore Categories</span>
-                                                                                                                                                                                                                                                                                                                        </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                                            <span class="syd__label">Explore Categories</span>
+                                                                                                                                                                                                                                                                                                                                                                                                        </div> -->
         <div class="syd__body">
             <div class="swiper clp-categories__swiper">
                 <div class="swiper-wrapper">
@@ -73,9 +73,9 @@
     ============================================ --}}
     <section class="clp-picks">
         <!-- <div class="clp-picks__header">
-                                                                                                                                                                                                                                                                                                            <h2 class="clp-picks__title">Studio Picks</h2>
-                                                                                                                                                                                                                                                                                                            <a href="/shop" class="clp-picks__view-all">View All &rarr;</a>
-                                                                                                                                                                                                                                                                                                        </div> -->
+                                                                                                                                                                                                                                                                                                                                                                                            <h2 class="clp-picks__title">Studio Picks</h2>
+                                                                                                                                                                                                                                                                                                                                                                                            <a href="/shop" class="clp-picks__view-all">View All &rarr;</a>
+                                                                                                                                                                                                                                                                                                                                                                                        </div> -->
         <div class="collections__header" style="border-bottom: 1px solid #1a1a1a;">
             <h2 class="collections__title">Studio Picks</h2>
             <div class="collections__view-all-wrap">
@@ -119,6 +119,7 @@
                         <p class="pdp-trust__card-desc">Subscribe to our newsletter and receive 15% off your first order.
                         </p>
                         <button class="pdp-trust__card-link" data-modal="discount">Info ↗</button>
+
                     </div>
                 </div>
 
@@ -142,6 +143,8 @@
                     </div>
                 </div>
             </div>
+            <div class="swiper-button-prev clp-trust__nav"></div>
+            <div class="swiper-button-next clp-trust__nav"></div>
             <div class="swiper-pagination pdp-trust__pagination"></div>
         </div>
 
@@ -301,7 +304,7 @@
             <h2 class="collab__title"></h2>
             <div class="collab__view-all-wrap">
                 <!-- <a href="/collaborations" class="collab__view-all">View All</a>
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="collab__view-all-arrow">&rarr;</span> -->
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        <span class="collab__view-all-arrow">&rarr;</span> -->
             </div>
         </div>
     @endif
@@ -379,6 +382,10 @@
                             }));
                         }
                     }
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
                 },
                 breakpoints: {
                     768: {

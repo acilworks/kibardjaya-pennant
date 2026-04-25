@@ -20,8 +20,8 @@
     {{-- Start Your Design Section --}}
     <section class="syd">
         <!-- <div class="syd__header">
-                                                                                                    <span class="syd__label">START YOUR DESIGN</span>
-                                                                                                </div> -->
+                                                                                                                                                                                                                            <span class="syd__label">START YOUR DESIGN</span>
+                                                                                                                                                                                                                        </div> -->
         <div class="syd__body">
             <div class="swiper syd__swiper">
                 <div class="swiper-wrapper">
@@ -85,39 +85,108 @@
                 {{-- Step 1 --}}
                 <div class="swiper-slide pdp-trust__card">
                     <div class="pdp-trust__card-overlay">
-                        <h3 class="pdp-trust__card-title">Choose<br>Your Product</h3>
-                        <p class="pdp-trust__card-desc">Pennant, banner, or flag.</p>
-                        <h3 class="pdp-trust__card-title-number">[1]</h3>
+                        <!-- <span
+                                                                                                                            style="font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 20px; opacity: 0.6;">01
+                                                                                                                            — CHOOSE YOUR PRODUCT</span>
+                                                                                                                        <h3 class="pdp-trust__card-title">Start<br>with the base.</h3>
+                                                                                                                        <p class="pdp-trust__card-desc">Select the format that fits your story — a classic pennant, a bold
+                                                                                                                            banner, or a timeless camp flag. Each piece is designed to stand out and last.</p>
+                                                                                                                         -->
+
+                        <div class="swiper-slide" style="padding-top: 10px; border-bottom: 1px solid #1a1a1a;">
+                            <span
+                                style="font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 20px; opacity: 0.6;">01
+                                — CHOOSE YOUR PRODUCT</span>
+                            <h3
+                                style="font-size: 24px; font-weight: 900; line-height: 1.3; text-transform: uppercase; margin: 0 0 20px 0;">
+                                Start with<br>the base.</h3>
+                            <p style="font-size: 15px; line-height: 1.6; max-width: 400px; margin: 0;">
+                                Select the format that fits your story — a classic pennant, a bold
+                                banner, or a timeless camp flag. Each piece is designed to stand out and last.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
                 {{-- Step 2 --}}
                 <div class="swiper-slide pdp-trust__card">
                     <div class="pdp-trust__card-overlay">
-                        <h3 class="pdp-trust__card-title">Design<br>Your Piece</h3>
-                        <p class="pdp-trust__card-desc">Pick your colors and add your message or logo.</p>
-                        <h3 class="pdp-trust__card-title-number">[2]</h3>
+                        <!-- <span
+                                                                                style="font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 20px; opacity: 0.6;">02
+                                                                                — DESIGN YOUR PIECE</span>
+                                                                            <h3 class="pdp-trust__card-title">Make<br>it yours.</h3>
+                                                                            <p class="pdp-trust__card-desc">Add your words, logo, or idea. Choose your colors, layout, and style
+                                                                                — or simply share your vision, and we’ll help shape it into something meaningful.</p>
+                                                                             -->
+                        <div class="swiper-slide" style="padding-top: 10px; border-bottom: 1px solid #1a1a1a;">
+                            <span
+                                style="font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 20px; opacity: 0.6;">02
+                                — DESIGN YOUR PIECE</span>
+                            <h3
+                                style="font-size: 24px; font-weight: 900; line-height: 1.3; text-transform: uppercase; margin: 0 0 20px 0;">
+                                Make<br>it yours.</h3>
+                            <p style="font-size: 15px; line-height: 1.6; max-width: 400px; margin: 0;">
+                                Add your words, logo, or idea. Choose your colors, layout, and style
+                                — or simply share your vision, and we’ll help shape it into something meaningful.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
                 {{-- Step 3 --}}
                 <div class="swiper-slide pdp-trust__card">
                     <div class="pdp-trust__card-overlay">
-                        <h3 class="pdp-trust__card-title">We Craft<br>By Hand</h3>
-                        <p class="pdp-trust__card-desc">Made in our Yogyakarta studio.</p>
-                        <h3 class="pdp-trust__card-title-number">[3]</h3>
+                        <!-- <span
+                                                                            style="font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 20px; opacity: 0.6;">03
+                                                                            — WE CRAFT BY HAND</span>
+                                                                        <h3 class="pdp-trust__card-title">Built<br>with care.</h3>
+                                                                        <p class="pdp-trust__card-desc">Every piece is cut, assembled, and finished by hand in our
+                                                                            Yogyakarta studio. No mass production — just thoughtful craftsmanship in every detail.</p>
+                                                                         -->
+                        <div class="swiper-slide" style="padding-top: 10px; border-bottom: 1px solid #1a1a1a;">
+                            <span
+                                style="font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 20px; opacity: 0.6;">03
+                                — WE CRAFT BY HAND</span>
+                            <h3
+                                style="font-size: 24px; font-weight: 900; line-height: 1.3; text-transform: uppercase; margin: 0 0 20px 0;">
+                                Built<br>with care.</h3>
+                            <p style="font-size: 15px; line-height: 1.6; max-width: 400px; margin: 0;">
+                                Every piece is cut, assembled, and finished by hand in our
+                                Yogyakarta studio. No mass production — just thoughtful craftsmanship in every detail.
+                            </p>
+                        </div>
                     </div>
                 </div>
 
                 {{-- Step 4 --}}
                 <div class="swiper-slide pdp-trust__card">
                     <div class="pdp-trust__card-overlay">
-                        <h3 class="pdp-trust__card-title">Ships<br>Worldwide</h3>
-                        <p class="pdp-trust__card-desc">Delivered to your door.</p>
-                        <h3 class="pdp-trust__card-title-number">[4]</h3>
+                        <!-- <span
+                                                                        style="font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 20px; opacity: 0.6;">04
+                                                                        — SHIPS WORLDWIDE</span>
+                                                                    <h3 class="pdp-trust__card-title">From our Hands<br>to Your Space</h3>
+                                                                    <p class="pdp-trust__card-desc">Your custom piece is carefully packed and shipped to your door,
+                                                                        wherever you are. Ready to hang, ready to tell your story.</p>
+                                                                     -->
+                        <div class="swiper-slide" style="padding-top: 10px; border-bottom: 1px solid #1a1a1a;">
+                            <span
+                                style="font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 20px; opacity: 0.6;">04
+                                — SHIPS WORLDWIDE</span>
+                            <h3
+                                style="font-size: 24px; font-weight: 900; line-height: 1.3; text-transform: uppercase; margin: 0 0 20px 0;">
+                                From our Hands<br>to Your Space</h3>
+                            <p style="font-size: 15px; line-height: 1.6; max-width: 400px; margin: 0;">
+                                Your custom piece is carefully packed and shipped to your door,
+                                wherever you are. Ready to hang, ready to tell your story.
+                            </p>
+                        </div>
                     </div>
                 </div>
             </div>
+
+            <div class="swiper-button-prev cst-hcw__nav"></div>
+            <div class="swiper-button-next cst-hcw__nav"></div>
+
             <div class="swiper-pagination pdp-trust__pagination"></div>
         </div>
     </section>
@@ -198,14 +267,18 @@
                 slidesPerView: 1,
                 spaceBetween: 0,
                 loop: false,
-                pagination: {
-                    el: '.cst-hcw__swiper .pdp-trust__pagination',
-                    clickable: true,
+                // pagination: {
+                //     el: '.cst-hcw__swiper .pdp-trust__pagination',
+                //     clickable: true,
+                // },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
                 },
                 breakpoints: {
                     768: {
-                        slidesPerView: 4,
-                        allowTouchMove: false,
+                        slidesPerView: 2.3,
+                        allowTouchMove: true,
                     }
                 }
             });

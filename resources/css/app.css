@@ -2279,7 +2279,8 @@
 
 .pdp-trust__card {
     position: relative;
-    aspect-ratio: 5/4;
+    aspect-ratio: 1.2/1;
+    /* aspect-ratio: 1/1; */
     overflow: hidden;
     border-right: 1px solid #1a1a1a;
     background: #EDECEA;
@@ -2302,16 +2303,17 @@
     background: #F8F4ED;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    padding: 24px;
-    text-align: center;
+    /* padding: 24px; */
+    text-align: left;
     color: #1a1a1a;
+    padding: 50px 50px;
 }
 
 .pdp-trust__card-title {
     font-size: clamp(1rem, 1.8vw, 1.4rem);
-    font-weight: 700;
+    font-weight: 900;
     text-transform: uppercase;
     letter-spacing: 0.5px;
     line-height: 1.3;
@@ -2417,6 +2419,38 @@
     font-size: 13px;
     line-height: 1.7;
     color: #444;
+}
+
+/* Trust Block — Navigation */
+.cst-hcw__swiper .cst-hcw__nav {
+    color: #1a1a1a;
+    transform: scale(0.3);
+}
+
+@media (max-width: 768px) {
+    .cst-hcw__swiper .swiper-button-next.cst-hcw__nav {
+        right: 10px;
+    }
+
+    .cst-hcw__swiper .swiper-button-prev.cst-hcw__nav {
+        left: 10px;
+    }
+}
+
+/* Trust Block — Navigation */
+.clp-trust__swiper .clp-trust__nav {
+    color: #1a1a1a;
+    transform: scale(0.3);
+}
+
+@media (max-width: 768px) {
+    .clp-trust__swiper .swiper-button-next.clp-trust__nav {
+        right: 10px;
+    }
+
+    .clp-trust__swiper .swiper-button-prev.clp-trust__nav {
+        left: 10px;
+    }
 }
 
 /* Trust Block — Pagination */
@@ -2639,7 +2673,8 @@
         border-right: 1px solid #1a1a1a;
         border-bottom: none;
         /* aspect-ratio: 5 / 4; */
-        aspect-ratio: 16 / 9;
+        aspect-ratio: 1 / 1;
+        /* aspect-ratio: 16 / 9; */
     }
 
     .pdp-trust__card:last-child {
@@ -2648,11 +2683,19 @@
     }
 
     .pdp-trust__card-title {
-        font-size: 1rem;
+        font-size: 1.3rem;
+        margin-bottom: 20px;
     }
 
     .pdp-trust__card-desc {
-        font-size: 12px;
+        font-size: 1rem;
+        margin-bottom: 20px;
+        max-width: 400px;
+
+    }
+
+    .pdp-trust__card-link {
+        font-size: 0.8rem;
     }
 
     .pdp-trust__modal {
