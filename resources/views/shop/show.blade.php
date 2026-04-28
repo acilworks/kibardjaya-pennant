@@ -158,34 +158,46 @@
         </div>
         <div class="swiper pdp-lifestyle__swiper">
             <div class="swiper-wrapper">
-                <div class="swiper-slide">
-                    <picture>
-                        <source srcset="{{ asset('image/balibarong4.webp') }}" type="image/webp">
-                        <img src="{{ asset('image/balibarong4.webp') }}" alt="Lifestyle" class="pdp-lifestyle__img"
-                            loading="lazy">
-                    </picture>
-                </div>
-                <div class="swiper-slide">
-                    <picture>
-                        <source srcset="{{ asset('image/enjoy.webp') }}" type="image/webp">
-                        <img src="{{ asset('image/enjoy.webp') }}" alt="Lifestyle" class="pdp-lifestyle__img"
-                            loading="lazy">
-                    </picture>
-                </div>
-                <div class="swiper-slide">
-                    <picture>
-                        <source srcset="{{ asset('image/brooks.webp') }}" type="image/webp">
-                        <img src="{{ asset('image/brooks.webp') }}" alt="Lifestyle" class="pdp-lifestyle__img"
-                            loading="lazy">
-                    </picture>
-                </div>
-                <div class="swiper-slide">
-                    <picture>
-                        <source srcset="{{ asset('image/yes-chef.webp') }}" type="image/webp">
-                        <img src="{{ asset('image/yes-chef.webp') }}" alt="Lifestyle" class="pdp-lifestyle__img"
-                            loading="lazy">
-                    </picture>
-                </div>
+                @if($product->lifestyle_images && count($product->lifestyle_images) > 0)
+                    @foreach($product->lifestyle_images as $lifestyleImage)
+                        <div class="swiper-slide">
+                            <picture>
+                                <source srcset="{{ asset('storage/' . $lifestyleImage) }}" type="image/webp">
+                                <img src="{{ asset('storage/' . $lifestyleImage) }}" alt="Lifestyle for {{ $product->title }}" class="pdp-lifestyle__img"
+                                    loading="lazy">
+                            </picture>
+                        </div>
+                    @endforeach
+                @else
+                    <div class="swiper-slide">
+                        <picture>
+                            <source srcset="{{ asset('image/balibarong4.webp') }}" type="image/webp">
+                            <img src="{{ asset('image/balibarong4.webp') }}" alt="Lifestyle" class="pdp-lifestyle__img"
+                                loading="lazy">
+                        </picture>
+                    </div>
+                    <div class="swiper-slide">
+                        <picture>
+                            <source srcset="{{ asset('image/enjoy.webp') }}" type="image/webp">
+                            <img src="{{ asset('image/enjoy.webp') }}" alt="Lifestyle" class="pdp-lifestyle__img"
+                                loading="lazy">
+                        </picture>
+                    </div>
+                    <div class="swiper-slide">
+                        <picture>
+                            <source srcset="{{ asset('image/brooks.webp') }}" type="image/webp">
+                            <img src="{{ asset('image/brooks.webp') }}" alt="Lifestyle" class="pdp-lifestyle__img"
+                                loading="lazy">
+                        </picture>
+                    </div>
+                    <div class="swiper-slide">
+                        <picture>
+                            <source srcset="{{ asset('image/yes-chef.webp') }}" type="image/webp">
+                            <img src="{{ asset('image/yes-chef.webp') }}" alt="Lifestyle" class="pdp-lifestyle__img"
+                                loading="lazy">
+                        </picture>
+                    </div>
+                @endif
             </div>
         </div>
     </section>

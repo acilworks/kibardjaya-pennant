@@ -18,6 +18,7 @@ class Product extends Model
         'is_studio_pick',
         'is_new_drop',
         'images',
+        'lifestyle_images',
         'category',
         'category_id',
         'sub_category_id',
@@ -27,6 +28,7 @@ class Product extends Model
 
     protected $casts = [
         'images' => 'array',
+        'lifestyle_images' => 'array',
     ];
 
     public function getIsSoldOutAttribute(): bool

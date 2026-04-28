@@ -62,6 +62,26 @@ class ProductResource extends Resource
                                 $service = app(WebpImageService::class);
                                 return $service->convertToWebp($path);
                             }),
+
+                        FileUpload::make('lifestyle_images')
+                            ->label('Lifestyle Images (Made for Walls with Stories)')
+                            ->helperText('Upload images to be shown in the "Made for Walls with Stories" section. Leave empty to use default images.')
+                            ->image()
+                            ->disk('public')
+                            ->multiple()
+                            ->directory('products/lifestyle')
+                            ->maxFiles(5)
+                            ->imagePreviewHeight('150')
+                            ->reorderable()
+                            ->columnSpanFull()
+                            ->acceptedFileTypes(['image/jpeg', 'image/png', 'image/webp'])
+                            ->saveUploadedFileUsing(function ($file, $get, $set) {
+                                $filename = Str::random(40) . '.' . $file->getClientOriginalExtension();
+                                $file->storeAs('products/lifestyle', $filename, 'public');
+                                $path = 'products/lifestyle/' . $filename;
+                                $service = app(WebpImageService::class);
+                                return $service->convertToWebp($path);
+                            }),
                     ]),
 
                 // ── Section 2: General Information ──
