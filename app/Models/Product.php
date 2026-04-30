@@ -13,6 +13,7 @@ class Product extends Model
         'slug',
         'description',
         'price',
+        'original_price',
         'stock',
         'is_featured',
         'is_studio_pick',
@@ -59,6 +60,19 @@ class Product extends Model
     public function orderItems(): HasMany
     {
         return $this->hasMany(\App\Models\OrderItem::class);
+    }
+
+    public function getHasDiscountAttribute(): bool
+    {
+        return $this->original_price && $this->original_price > $this->price;
+    }
+
+    public function getDiscountPercentageAttribute(): int
+    {
+        if (!$this->has_discount) {
+            return 0;
+        }
+        return (int) round((($this->original_price - $this->price) / $this->original_price) * 100);
     }
 
     protected static function boot()

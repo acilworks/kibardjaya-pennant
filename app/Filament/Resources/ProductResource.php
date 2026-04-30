@@ -112,9 +112,16 @@ class ProductResource extends Resource
                     ->columns(3)
                     ->schema([
                         TextInput::make('price')
+                            ->label('Selling Price')
                             ->numeric()
                             ->prefix('Rp')
                             ->required(),
+
+                        TextInput::make('original_price')
+                            ->label('Original Price (Strikethrough)')
+                            ->numeric()
+                            ->prefix('Rp')
+                            ->helperText('Leave empty if no discount. Must be higher than Selling Price to show discount.'),
 
                         TextInput::make('stock')
                             ->numeric()

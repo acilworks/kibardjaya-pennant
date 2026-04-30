@@ -12,6 +12,9 @@
         @if(count($displayImages) > 0)
             <div class="product-card__image-wrap">
                 <div class="product-card__badges" style="position: absolute; top: 20px; left: 20px; z-index: 10; display: flex; gap: 8px;">
+                    @if($item->has_discount)
+                        <div class="product-card__badge" style="position: relative; top: 0; left: 0; background-color: #8b0000; color: #fff; border-color: #1a1a1a;">{{ $item->discount_percentage }}% OFF</div>
+                    @endif
                     @if($item->is_new_drop)
                         <div class="product-card__badge" style="position: relative; top: 0; left: 0;">NEW</div>
                     @endif
@@ -62,7 +65,12 @@
             @endif
 
             <div style="display: flex; justify-content: space-between; align-items: center; margin-top: auto; font-family: 'JetBrains Mono', monospace; text-transform: uppercase;">
-                <p class="product-card__price" style="margin: 0; font-size: 12px; font-weight: 400; letter-spacing: 0.5px; color: #1a1a1a;">Rp{{ number_format($item->price, 0, ',', '.') }}</p>
+                <div style="display: flex; align-items: center; gap: 6px;">
+                    <p class="product-card__price" style="margin: 0; font-size: 12px; font-weight: 400; letter-spacing: 0.5px; color: {{ $item->has_discount ? '#8b0000' : '#1a1a1a' }};">Rp{{ number_format($item->price, 0, ',', '.') }}</p>
+                    @if($item->has_discount)
+                        <p class="product-card__original-price" style="margin: 0; font-size: 11px; font-weight: 400; letter-spacing: 0.5px; color: #999; text-decoration: line-through;">Rp{{ number_format($item->original_price, 0, ',', '.') }}</p>
+                    @endif
+                </div>
                 <span style="font-size: 11px; font-weight: 500; letter-spacing: 0.5px; color: #1a1a1a; text-decoration: underline;">+ADD</span>
             </div>
         </div>

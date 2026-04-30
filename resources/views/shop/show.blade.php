@@ -72,8 +72,18 @@
 
                     {{-- Title + Price --}}
                     <div class="pdp__header">
-                        <h1 class="pdp__title">{{ $product->title }}</h1>
-                        <span class="pdp__price">Rp.{{ number_format($product->price, 0, ',', '.') }}</span>
+                        <h1 class="pdp__title">
+                            @if($product->has_discount)
+                                <span style="display: inline-block; padding: 2px 6px; background-color: #8b0000; color: #fff; font-size: 12px; margin-right: 8px; vertical-align: middle;">{{ $product->discount_percentage }}% OFF</span>
+                            @endif
+                            {{ $product->title }}
+                        </h1>
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span class="pdp__price" style="color: {{ $product->has_discount ? '#8b0000' : 'inherit' }};">Rp.{{ number_format($product->price, 0, ',', '.') }}</span>
+                            @if($product->has_discount)
+                                <span class="pdp__original-price" style="font-size: 14px; color: #999; text-decoration: line-through;">Rp.{{ number_format($product->original_price, 0, ',', '.') }}</span>
+                            @endif
+                        </div>
                     </div>
 
                     {{-- Description --}}
