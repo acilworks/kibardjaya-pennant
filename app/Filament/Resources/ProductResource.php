@@ -129,19 +129,10 @@ class ProductResource extends Resource
                             ->required()
                             ->helperText('Set to 0 for sold out'),
 
-                        Toggle::make('is_featured')
-                            ->label('Featured')
-                            ->inline(false),
-
                         Toggle::make('is_studio_pick')
                             ->label('Studio Pick')
                             ->inline(false)
                             ->helperText('Show in Collections page Studio Picks'),
-
-                        Toggle::make('is_new_drop')
-                            ->label('New Studio Drop')
-                            ->inline(false)
-                            ->helperText('Show as the featured New Studio Drop in Collections page'),
                     ]),
 
                 // ── Section 4: Classification ──
@@ -279,8 +270,7 @@ class ProductResource extends Resource
                     ->badge()
                     ->color(fn(int $state): string => $state > 0 ? 'success' : 'danger')
                     ->formatStateUsing(fn(int $state): string => $state > 0 ? $state : 'SOLD OUT'),
-                Tables\Columns\IconColumn::make('is_featured')
-                    ->boolean(),
+
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()
                     ->sortable()
