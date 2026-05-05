@@ -1,35 +1,55 @@
 @extends('layouts.app')
 
+@push('styles')
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+@endpush
+
 @section('title', 'About Us — Kibardjaya Pennant')
 
 @section('content')
     {{-- ============================================
     SECTION 1: HERO MANIFESTO
     ============================================ --}}
-    <section class="about-hero" style="padding: 120px 40px 80px; border-bottom: 1px solid #1a1a1a;">
-        <div
-            style="max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 40px; align-items: end;">
 
-            <div style="grid-template-columns: 1fr 1fr; gap: 60px; min-width: 768px">
-
-                <div>
-                    <h1
-                        style="font-size: clamp(3rem, 8vw, 8rem); font-weight: 900; line-height: 0.9; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 20px;">
-                        About<br>Kibardjaya.
-                    </h1>
-                </div>
-                <div style="max-width: 480px; padding-bottom: 10px;">
-                    <p style="font-size: 16px; line-height: 1.6; font-weight: 400; color: #1a1a1a; margin-bottom: 20px;">
-                        Kibardjaya is a small studio from Yogyakarta, Indonesia, crafting handmade pieces inspired by
-                        places, stories, and memories.
-                    </p>
-                    <p style="font-size: 16px; line-height: 1.6; font-weight: 400; color: #1a1a1a; margin: 0;">
-                        We believe every piece carries a feeling of a journey, a moment, or a place worth remembering. Each
-                        creation is made with care, to be kept, shared, and remembered.
-                    </p>
-                </div>
-            </div>
+    <section class="collab-hero">
+        <h1 class="collab-hero__title">About<br>Kibardjaya.</h1>
+        <div class="collab-hero__subtitle">
+            <p class="collab-hero__tagline">Built together, story by story.</p>
+            <p class="collab-hero__desc">
+                Kibardjaya is a small studio from Yogyakarta, Indonesia, crafting handmade pieces inspired by
+                places, stories, and memories.
+            </p>
+            <p class="collab-hero__desc">
+                We believe every piece carries a feeling of a journey, a moment, or a place worth remembering. Each
+                creation is made with care, to be kept, shared, and remembered.
+            </p>
+        </div>
     </section>
+
+    <!-- <section class="about-hero" style="padding: 120px 40px 80px; border-bottom: 1px solid #1a1a1a;">
+            <div 
+                style="max-width: 1440px; margin: 0 auto; display: grid; grid-template-columns: 1fr; gap: 40px; align-items: end;">
+
+                <div style="grid-template-columns: 1fr 1fr; gap: 60px; min-width: 768px">
+
+                    <div>
+                        <h1
+                            style="font-size: clamp(3rem, 8vw, 8rem); font-weight: 900; line-height: 0.9; text-transform: uppercase; letter-spacing: -0.02em; margin-bottom: 20px;">
+                            About<br>Kibardjaya.
+                        </h1>
+                    </div>
+                    <div style="max-width: 480px; padding-bottom: 10px;">
+                        <p style="font-size: 16px; line-height: 1.6; font-weight: 400; color: #1a1a1a; margin-bottom: 20px;">
+                            Kibardjaya is a small studio from Yogyakarta, Indonesia, crafting handmade pieces inspired by
+                            places, stories, and memories.
+                        </p>
+                        <p style="font-size: 16px; line-height: 1.6; font-weight: 400; color: #1a1a1a; margin: 0;">
+                            We believe every piece carries a feeling of a journey, a moment, or a place worth remembering. Each
+                            creation is made with care, to be kept, shared, and remembered.
+                        </p>
+                    </div>
+                </div>
+        </section> -->
 
     {{-- ============================================
     SECTION 2: FEATURED IMAGE PLACEHOLDER
@@ -47,43 +67,39 @@
     {{-- ============================================
     SECTION 3: OUR PROCESS (GRID)
     ============================================ --}}
-    <section style="border-bottom: 1px solid #1a1a1a; background-color: #F8F4ED;">
-        <div style="display: grid; grid-template-columns: 1fr; border-right: none;">
-            <!-- Process 1 -->
-            <div style="padding: 60px 40px; border-bottom: 1px solid #1a1a1a;">
-                <span
-                    style="font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 20px; opacity: 0.6;">01
-                    — The Studio</span>
-                <h3 style="font-size: 24px; font-weight: 700; text-transform: uppercase; margin: 0 0 20px 0;">Handmade
-                    Production</h3>
-                <p style="font-size: 15px; line-height: 1.6; max-width: 400px; margin: 0;">
-                    Each piece is individually finished in our Yogyakarta studio. We avoid mass manufacturing to preserve
-                    quality and craftsmanship in every pennant.
-                </p>
-            </div>
-            <!-- Process 2 -->
-            <div style="padding: 60px 40px; border-bottom: 1px solid #1a1a1a;">
-                <span
-                    style="font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 20px; opacity: 0.6;">02
-                    — The Approach</span>
-                <h3 style="font-size: 24px; font-weight: 700; text-transform: uppercase; margin: 0 0 20px 0;">Small Batches
-                </h3>
-                <p style="font-size: 15px; line-height: 1.6; max-width: 400px; margin: 0;">
-                    Produced in limited small batches. We take our time to source materials and carefully construct items
-                    that are built for collectors and explorers alike.
-                </p>
-            </div>
-            <!-- Process 3 -->
-            <div style="padding: 60px 40px;">
-                <span
-                    style="font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 20px; opacity: 0.6;">03
-                    — The Goal</span>
-                <h3 style="font-size: 24px; font-weight: 700; text-transform: uppercase; margin: 0 0 20px 0;">Crafted
-                    Memories</h3>
-                <p style="font-size: 15px; line-height: 1.6; max-width: 400px; margin: 0;">
-                    More than just decorative items, we aim to create tangible reminders of your favorite places,
-                    experiences, and stories.
-                </p>
+    <section class="about-process" style="border-bottom: 1px solid #1a1a1a; background-color: #F8F4ED; overflow: hidden;">
+        <div class="swiper about-process__swiper">
+            <div class="swiper-wrapper">
+                <!-- Process 1 -->
+                <div class="swiper-slide about-process__item">
+                    <div style="padding: 60px 40px; height: 100%;">
+                        <span style="font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 20px; opacity: 0.6;">01 — The Studio</span>
+                        <h3 style="font-size: 24px; font-weight: 700; text-transform: uppercase; margin: 0 0 20px 0;">Handmade Production</h3>
+                        <p style="font-size: 15px; line-height: 1.6; max-width: 400px; margin: 0;">
+                            Each piece is individually finished in our Yogyakarta studio. We avoid mass manufacturing to preserve quality and craftsmanship in every pennant.
+                        </p>
+                    </div>
+                </div>
+                <!-- Process 2 -->
+                <div class="swiper-slide about-process__item">
+                    <div style="padding: 60px 40px; height: 100%;">
+                        <span style="font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 20px; opacity: 0.6;">02 — The Approach</span>
+                        <h3 style="font-size: 24px; font-weight: 700; text-transform: uppercase; margin: 0 0 20px 0;">Small Batches</h3>
+                        <p style="font-size: 15px; line-height: 1.6; max-width: 400px; margin: 0;">
+                            Produced in limited small batches. We take our time to source materials and carefully construct items that are built for collectors and explorers alike.
+                        </p>
+                    </div>
+                </div>
+                <!-- Process 3 -->
+                <div class="swiper-slide about-process__item">
+                    <div style="padding: 60px 40px; height: 100%;">
+                        <span style="font-size: 12px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.05em; display: block; margin-bottom: 20px; opacity: 0.6;">03 — The Goal</span>
+                        <h3 style="font-size: 24px; font-weight: 700; text-transform: uppercase; margin: 0 0 20px 0;">Crafted Memories</h3>
+                        <p style="font-size: 15px; line-height: 1.6; max-width: 400px; margin: 0;">
+                            More than just decorative items, we aim to create tangible reminders of your favorite places, experiences, and stories.
+                        </p>
+                    </div>
+                </div>
             </div>
         </div>
     </section>
@@ -131,17 +147,20 @@
                 grid-template-columns: 1fr 1fr;
             }
 
-            section>div[style*="display: grid"] {
-                grid-template-columns: repeat(3, 1fr) !important;
-            }
-
-            section>div[style*="display: grid"]>div {
-                border-bottom: none !important;
+            .about-process__item {
                 border-right: 1px solid #1a1a1a;
+                box-sizing: border-box;
+                height: auto;
             }
 
-            section>div[style*="display: grid"]>div:last-child {
+            .about-process__item:last-child {
                 border-right: none;
+            }
+
+            @media (max-width: 767px) {
+                .about-process__swiper .swiper-wrapper {
+                    align-items: stretch;
+                }
             }
 
             /* Section 4 Adjustments */
@@ -160,3 +179,21 @@
         }
     </style>
 @endsection
+
+@push('scripts')
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            new Swiper('.about-process__swiper', {
+                slidesPerView: 1.2,
+                spaceBetween: 0,
+                breakpoints: {
+                    768: {
+                        slidesPerView: 3,
+                        allowTouchMove: false,
+                    }
+                }
+            });
+        });
+    </script>
+@endpush
