@@ -2283,7 +2283,7 @@
     /* aspect-ratio: 1/1; */
     overflow: hidden;
     border-right: 1px solid #1a1a1a;
-    background: #EDECEA;
+    background: #dfdfdf;
 }
 
 .pdp-trust__card:last-child {
@@ -2300,7 +2300,7 @@
 .pdp-trust__card-overlay {
     position: absolute;
     inset: 0;
-    background: #F8F4ED;
+    background: #dfdfdf;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
