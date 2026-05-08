@@ -24,11 +24,20 @@ class SiteSettings extends Page implements HasForms
 
     protected static string $view = 'filament.pages.site-settings';
 
-    public ?string $announcement_text = '';
+    public ?array $announcement_texts = [];
 
     public function mount(): void
     {
-        $this->announcement_text = SiteSetting::get('announcement_text', '');
+        $texts = SiteSetting::get('announcement_texts', '[]');
+        $this->announcement_texts = json_decode($texts, true) ?? [];
+        
+        // Migrate old setting if available
+        if (empty($this->announcement_texts)) {
+            $oldText = SiteSetting::get('announcement_text', '');
+            if (!empty($oldText)) {
+                $this->announcement_texts = [['text' => $oldText]];
+            }
+        }
     }
 
     public function form(Form $form): Form
@@ -36,20 +45,25 @@ class SiteSettings extends Page implements HasForms
         return $form
             ->schema([
                 Forms\Components\Section::make('Announcement Bar')
-                    ->description('Teks yang tampil di bar atas halaman')
+                    ->description('Teks yang tampil di bar atas halaman (otomatis berganti setiap 15 detik)')
                     ->schema([
-                        Forms\Components\TextInput::make('announcement_text')
-                            ->label('Announcement Text')
-                            ->maxLength(255)
-                            ->helperText('Contoh: Subscribe for 15% off your first order')
-                            ->nullable(),
+                        Forms\Components\Repeater::make('announcement_texts')
+                            ->label('Announcement Texts')
+                            ->schema([
+                                Forms\Components\TextInput::make('text')
+                                    ->label('Text')
+                                    ->maxLength(255)
+                                    ->required(),
+                            ])
+                            ->addActionLabel('Add Announcement')
+                            ->defaultItems(1),
                     ]),
             ]);
     }
 
     public function save(): void
     {
-        SiteSetting::set('announcement_text', $this->announcement_text);
+        SiteSetting::set('announcement_texts', json_encode($this->announcement_texts));
 
         Notification::make()
             ->title('Settings saved!')

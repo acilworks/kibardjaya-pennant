@@ -23,12 +23,23 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         View::composer('layouts.app', function ($view) {
+            $textsJson = SiteSetting::get('announcement_texts', '[]');
+            $announcementTexts = json_decode($textsJson, true) ?? [];
+            
+            // Fallback to old text if empty
+            if (empty($announcementTexts)) {
+                $oldText = SiteSetting::get('announcement_text', '');
+                if (!empty($oldText)) {
+                    $announcementTexts = [['text' => $oldText]];
+                }
+            }
+
             $view->with([
                 'navItemsLeft' => NavItem::active()->ordered()->left()
                     ->with('megaGroups.items')->get(),
                 'navItemsRight' => NavItem::active()->ordered()->right()
                     ->with('megaGroups.items')->get(),
-                'announcementText' => SiteSetting::get('announcement_text', ''),
+                'announcementTexts' => $announcementTexts,
             ]);
         });
     }

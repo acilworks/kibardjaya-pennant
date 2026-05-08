@@ -53,9 +53,31 @@
     <!-- <body class="bg-[#f5f5f0] text-neutral-900 font-sans"> -->
 
     {{-- Announcement Bar --}}
-    @if($announcementText)
-        <div class="announcement-bar">
-            {{ $announcementText }}
+    @if(isset($announcementTexts) && count($announcementTexts) > 0)
+        <div class="announcement-bar relative overflow-hidden" style="height: 36px; display: flex; align-items: center; justify-content: center;" x-data="{
+            currentIndex: 0,
+            texts: {{ json_encode(array_column($announcementTexts, 'text')) }},
+            init() {
+                if (this.texts.length > 1) {
+                    setInterval(() => {
+                        this.currentIndex = (this.currentIndex + 1) % this.texts.length;
+                    }, 15000);
+                }
+            }
+        }">
+            <template x-for="(text, index) in texts" :key="index">
+                <div x-show="currentIndex === index"
+                     x-transition:enter="transition ease-out duration-500"
+                     x-transition:enter-start="opacity-0 translate-y-full"
+                     x-transition:enter-end="opacity-100 translate-y-0"
+                     x-transition:leave="transition ease-in duration-500 absolute top-0 left-0"
+                     x-transition:leave-start="opacity-100 translate-y-0"
+                     x-transition:leave-end="opacity-0 -translate-y-full"
+                     class="w-full h-full flex items-center justify-center px-4"
+                     x-text="text"
+                     x-cloak>
+                </div>
+            </template>
         </div>
     @endif
 
