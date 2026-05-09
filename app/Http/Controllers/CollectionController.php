@@ -12,12 +12,14 @@ class CollectionController extends Controller
     {
         $categories = Category::all();
 
-        $studioPicks = Product::where('is_studio_pick', true)
+        $studioPicks = Product::where('is_active', true)
+            ->where('is_studio_pick', true)
             ->with(['subCategory', 'colorVariants'])
             ->latest()
             ->get();
 
-        $topPick = Product::withSum('orderItems', 'quantity')
+        $topPick = Product::where('is_active', true)
+            ->withSum('orderItems', 'quantity')
             ->with(['subCategory', 'colorVariants'])
             ->orderByRaw('COALESCE(order_items_sum_quantity, 0) DESC')
             ->orderBy('id', 'desc')

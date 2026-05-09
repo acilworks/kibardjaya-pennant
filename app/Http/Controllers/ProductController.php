@@ -9,7 +9,7 @@ class ProductController extends Controller
 {
     public function index(Request $request)
     {
-        $query = Product::with(['subCategory', 'colorVariants']);
+        $query = Product::where('is_active', true)->with(['subCategory', 'colorVariants']);
 
         if ($request->filled('category')) {
             $query->whereHas('categoryRelation', function ($q) use ($request) {
@@ -48,11 +48,13 @@ class ProductController extends Controller
 
     public function show($slug)
     {
-        $product = Product::with(['categoryRelation', 'subCategory', 'colorVariants'])
+        $product = Product::where('is_active', true)
+            ->with(['categoryRelation', 'subCategory', 'colorVariants'])
             ->where('slug', $slug)
             ->firstOrFail();
 
-        $relatedProducts = Product::where('sub_category_id', $product->sub_category_id)
+        $relatedProducts = Product::where('is_active', true)
+            ->where('sub_category_id', $product->sub_category_id)
             ->where('id', '!=', $product->id)
             ->take(4)
             ->get();

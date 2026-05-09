@@ -129,6 +129,12 @@ class ProductResource extends Resource
                             ->required()
                             ->helperText('Set to 0 for sold out'),
 
+                        Toggle::make('is_active')
+                            ->label('Active')
+                            ->default(true)
+                            ->inline(false)
+                            ->helperText('If inactive, product will not be shown to customers'),
+
                         Toggle::make('is_studio_pick')
                             ->label('Studio Pick')
                             ->inline(false)
@@ -270,6 +276,10 @@ class ProductResource extends Resource
                     ->badge()
                     ->color(fn(int $state): string => $state > 0 ? 'success' : 'danger')
                     ->formatStateUsing(fn(int $state): string => $state > 0 ? $state : 'SOLD OUT'),
+                
+                Tables\Columns\ToggleColumn::make('is_active')
+                    ->label('Active')
+                    ->sortable(),
 
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime()

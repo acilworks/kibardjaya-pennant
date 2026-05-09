@@ -16,7 +16,7 @@ class CartController extends Controller
 
     public function add(Request $request, $id)
     {
-        $product = Product::findOrFail($id);
+        $product = Product::where('is_active', true)->findOrFail($id);
 
         // Reject if product is sold out
         if ($product->is_sold_out) {
