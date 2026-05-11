@@ -92,7 +92,7 @@ The website is built as a modern showcase store experience with a strong focus o
 
 ## Mobile Experience
 
-<img src="./public/image/git-mobile.png" width="100%" />
+<img src="./public/image/git-mobile.png" width="60%" />
 
 ---
 
