@@ -54,10 +54,11 @@ The website is built as a modern showcase store experience with a strong focus o
 - Product detail experience
 - WebP image optimization
 - SEO-friendly structure
-- Shopify integration ready
+- Midtrans integration ready
 - Filament admin panel
 - Announcement bar system
 - Clean minimalist UI
+- Custom product builder for customer
 
 ---
 
@@ -92,7 +93,9 @@ The website is built as a modern showcase store experience with a strong focus o
 
 ## Mobile Experience
 
-<img src="./public/image/git-mobile.png" width="60%" />
+<div align="center">
+    <img src="./public/image/git-mobile.png" width="40%" />
+</div>
 
 ---
 
@@ -203,16 +206,16 @@ It is a collection of memories, places, stories, and adventures translated into 
 
 # AUTHOR
 
-## Ahmad Arief H
+## Ahmad Arief Harwoko
 
-Full-stack developer, fiber optic engineer, and independent brand builder from Indonesia.
+Full-stack developer, fiber optic engineer, and independent brand builder from Sleman, Indonesia.
 
 ### Focus Areas
 - Laravel Development
 - UI/UX Design
 - E-commerce Systems
 - Branding & Storytelling
-- Network Infrastructure
+- Fiber Optic Infrastructure
 - Digital Product Development
 
 ---
@@ -238,6 +241,5 @@ Commercial reuse, redistribution, or replication of proprietary assets and brand
 
 ### STORIES YOU CAN HANG.
 
-Built with passion in Indonesia.
 
 </div>

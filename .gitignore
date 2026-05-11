@@ -1,6 +1,7 @@
 *.log
 .DS_Store
 .env
+.env.example
 .env.backup
 .env.production
 .phpactor.json
@@ -22,3 +23,12 @@
 Homestead.json
 Homestead.yaml
 Thumbs.db
+
+# Local Private Files
+/app/Core/
+/app/Services/
+/app/Services/AI/
+/app/Services/Automation/
+/app/View/Components/
+
+/storage/app/
