@@ -22,7 +22,7 @@ Built with Laravel and designed with a modern minimalist aesthetic.
 
 <br>
 
-<img src="./public/preview/homepage-preview.webp" width="100%" alt="Kibardjaya Preview"/>
+<img src="./public/image/git-hero.webp" width="100%" alt="Kibardjaya Preview"/>
 
 </div>
 
@@ -80,19 +80,19 @@ The website is built as a modern showcase store experience with a strong focus o
 
 ## Homepage
 
-<img src="./public/preview/homepage-preview.webp" width="100%" />
+<img src="./public/image/git-page.webp" width="100%" />
 
 ---
 
 ## Product Detail
 
-<img src="./public/preview/product-preview.webp" width="100%" />
+<img src="./public/image/git-pagecusstom.webp" width="100%" />
 
 ---
 
 ## Mobile Experience
 
-<img src="./public/preview/mobile-preview.webp" width="100%" />
+<img src="./public/image/git-mobile.png" width="100%" />
 
 ---
 
